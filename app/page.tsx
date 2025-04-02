@@ -1,9 +1,9 @@
 'use client';
 import { Languages, Briefcase, Users } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import LocationSearch from '@/components/LocationSearch';
-import ServiceCard from '@/components/ServiceCard';
-
+import Navbar from '@/app/components/Navbar';
+// import LocationSearch from '@/components/LocationSearch';
+import ServiceCard from '@/app/components/ServiceCard';
+import EventSearch from '@/app/components/EventSearch';
 const services = [
   {
     title: 'Translation Services',
@@ -24,7 +24,7 @@ const services = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-gray-50">
       <Navbar />
       
       {/* Hero Section */}
@@ -37,7 +37,7 @@ export default function Home() {
             Connect with local support, jobs, events, and services in your area
           </p>
           
-          <LocationSearch />
+          <EventSearch />
         </div>
       </section>
 
@@ -58,6 +58,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </main>
   );
 } 

@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  images: {
+    domains: [
+      'cdn.eventfinda.com.au',
+      // Keep any other domains you already have configured here
+    ]
+  },
 };
 
 export default nextConfig;
