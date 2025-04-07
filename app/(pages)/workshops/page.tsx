@@ -3,7 +3,7 @@
 import Navbar from "@/app/components/Navbar";
 import PopularServices from "@/app/components/PopularServices";
 
-export default function Workshop() {
+export default function Workshops() {
     return (
         <main className="min-h-screen bg-gray-50">
             <Navbar />
