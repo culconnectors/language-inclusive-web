@@ -7,7 +7,7 @@ const Navbar = () => {
   const navItems = ['Home', 'Services', 'Community'];
 
   return (
-    <header className="fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b">
+    <header className="fixed top-0 w-full bg-stone-100 backdrop-blur-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="text-2xl font-semibold text-blue-600">

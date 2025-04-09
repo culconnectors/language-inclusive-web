@@ -1,0 +1,126 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Technology Stack
+- Next.js (latest version)
+- Node.js compatible libraries
+- Tailwind CSS
+- Shadcn component libraries
+- Prisma ORM with PostgreSQL
+
+## Code Organization & Patterns
+
+### Data Fetching
+- All data fetching MUST be performed on the server side
+- Use Next.js Server Components for initial data fetching
+- Implement Prisma queries in dedicated service files
+
+```typescript
+// Example pattern for server-side data fetching in app/service/page.tsx
+import { getEventsNearLocation } from '@/lib/services/eventService';
+
+export default async function ServicePage({ params }) {
+  // Server component that fetches data
+  const events = await getEventsNearLocation(params.lat, params.lng, 50);
+  return <ClientSideComponent initialData={events} />;
+}
+```
+
+### State Management
+- Fetched results should be passed to client components for client-side operations
+- Use React state for sorting, filtering, and UI interactions
+- Avoid redundant fetching - store data appropriately on the client
+
+```typescript
+// Example pattern for client-side state management
+'use client';
+
+import { useState } from 'react';
+
+export function EventList({ initialData }) {
+  const [events, setEvents] = useState(initialData);
+  const [sortBy, setSortBy] = useState('date');
+  
+  const sortedEvents = sortEvents(events, sortBy);
+  
+  // Client-side sorting function
+  function sortEvents(events, criteria) {
+    // Sort implementation
+    return [...events].sort((a, b) => /* sorting logic */);
+  }
+  
+  return (/* Component JSX */);
+}
+```
+
+### Component Structure
+- Components should be atomic and reusable
+- Use appropriate file structure with index files for organization
+- Implement proper TypeScript interfaces for props
+
+```typescript
+// Example component structure
+components/
+  EventCard/
+    index.tsx  // Re-exports
+    EventCard.tsx
+    EventCardSkeleton.tsx
+    types.ts  // Type definitions
+```
+
+## Styling Guidelines
+- Use Tailwind CSS classes directly in JSX
+- Extract complex styling into reusable components
+- Follow shadcn component patterns for consistency
+- Use CSS variables for theming and customization
+
+```tsx
+// Example styling pattern
+<div className="flex flex-col gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow">
+  {/* Component content */}
+</div>
+```
+
+## Database Access
+- Prisma schema should define clear models for events, workshops, and users
+- Implement efficient queries with proper pagination
+- Use geospatial functions for location-based queries
+- Keep database connection management server-side only
+
+```typescript
+// Example Prisma query Function
+async function findCommunityFriendlyEvents() {
+  try {
+    const communityFriendlyEvents = await communityClient.event.findMany({
+      where: {
+        predicted_community_friendly: true,
+        venue: {
+          venue_city: "Ballarat Central"
+        }
+      },
+      include: {
+        category: true,
+        venue: true,
+        organizer: true
+      }
+    });
+    console.log('Community Friendly Events:', communityFriendlyEvents);
+  } finally {
+    await communityClient.$disconnect();
+  }
+}
+```
+
+## Performance Considerations
+- Implement lazy loading for images and components
+- Use proper caching strategies for location data
+- Optimize bundle size with dynamic imports
+- Implement Suspense boundaries for loading states
+
+## Accessibility
+- Use proper ARIA attributes
+- Ensure keyboard navigation works correctly
+- Maintain sufficient color contrast
+- Test with screen readers
