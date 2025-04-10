@@ -1,48 +1,61 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client-community';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client-community";
 
-const prisma = new PrismaClient();
+const globalForPrisma = globalThis as unknown as {
+    prisma: PrismaClient | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 interface RawEventResult {
-  event_id: string;
-  event_name: string;
-  event_description: string;
-  start_datetime: Date;
-  end_datetime: Date;
-  event_url: string | null;
-  organizer_name: string;
-  logo_url: string | null;
-  category_name: string;
-  venue_latitude: number;
-  venue_longitude: number;
-  venue_name: string;
-  venue_address: string;
-  venue_city: string;
-  distance: number;
+    event_id: string;
+    event_name: string;
+    event_description: string;
+    start_datetime: Date;
+    end_datetime: Date;
+    event_url: string | null;
+    organizer_name: string;
+    logo_url: string | null;
+    category_name: string;
+    venue_latitude: number;
+    venue_longitude: number;
+    venue_name: string;
+    venue_address: string;
+    venue_city: string;
+    distance: number;
 }
 
 // Function to calculate distance between two coordinates using Haversine formula
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371; // Earth's radius in kilometers
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
+function calculateDistance(
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number
+): number {
+    const R = 6371; // Earth's radius in kilometers
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
 }
 
 export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const lat = parseFloat(searchParams.get('lat') || '0');
-    const lng = parseFloat(searchParams.get('lng') || '0');
-    const radius = 20; // 20km radius
+    try {
+        const { searchParams } = new URL(request.url);
+        const lat = parseFloat(searchParams.get("lat") || "0");
+        const lng = parseFloat(searchParams.get("lng") || "0");
+        const radius = 20; // 20km radius
 
-    // Using raw SQL query with Prisma
-    const events = await prisma.$queryRaw<RawEventResult[]>`
+        // Using raw SQL query with Prisma
+        const events = await prisma.$queryRaw<RawEventResult[]>`
       WITH events_with_distance AS (
         SELECT 
           e.event_id,
@@ -79,35 +92,37 @@ export async function GET(request: Request) {
       ORDER BY distance;
     `;
 
-    // Transform the raw SQL results to match the Event interface
-    const formattedEvents = events.map((event) => ({
-      id: event.event_id,
-      name: event.event_name,
-      description: event.event_description,
-      url: event.event_url || '',
-      start: {
-        local: event.start_datetime.toISOString(),
-      },
-      end: {
-        local: event.end_datetime.toISOString(),
-      },
-      venue: {
-        name: event.venue_name,
-        address: {
-          localized_address_display: `${event.venue_address}, ${event.venue_city}`,
-        },
-      },
-      logo: event.logo_url ? {
-        url: event.logo_url,
-      } : undefined,
-    }));
+        // Transform the raw SQL results to match the Event interface
+        const formattedEvents = events.map((event) => ({
+            id: event.event_id,
+            name: event.event_name,
+            description: event.event_description,
+            url: event.event_url || "",
+            start: {
+                local: event.start_datetime.toISOString(),
+            },
+            end: {
+                local: event.end_datetime.toISOString(),
+            },
+            venue: {
+                name: event.venue_name,
+                address: {
+                    localized_address_display: `${event.venue_address}, ${event.venue_city}`,
+                },
+            },
+            logo: event.logo_url
+                ? {
+                      url: event.logo_url,
+                  }
+                : undefined,
+        }));
 
-    return NextResponse.json(formattedEvents);
-  } catch (error) {
-    console.error('Error fetching events:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch events' },
-      { status: 500 }
-    );
-  }
+        return NextResponse.json(formattedEvents);
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        return NextResponse.json(
+            { error: "Failed to fetch events" },
+            { status: 500 }
+        );
+    }
 }
