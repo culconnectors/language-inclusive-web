@@ -1,19 +1,12 @@
 generator clientEvents {
   provider        = "prisma-client-js"
   output          = "../node_modules/@prisma/client-community"
-  previewFeatures = ["multiSchema"]
-}
-
-generator clientEnglish {
-  provider        = "prisma-client-js"
-  output          = "../node_modules/@prisma/client-workshop"
-  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["community_events", "english_courses"]
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model Venue {
@@ -26,7 +19,6 @@ model Venue {
   venue_postcode  Int
   events          Event[] @relation("VenueEvents")
 
-  @@schema("community_events")
 }
 
 model Category {
@@ -34,7 +26,6 @@ model Category {
   category_name String
   events        Event[] @relation("CategoryEvents")
 
-  @@schema("community_events")
 }
 
 model Organizer {
@@ -43,7 +34,6 @@ model Organizer {
   organizer_url  String
   events         Event[] @relation("OrganizerEvents")
 
-  @@schema("community_events")
 }
 
 model Logo {
@@ -54,7 +44,6 @@ model Logo {
   logo_aspect_ratio Float
   events            Event[] @relation("LogoEvents")
 
-  @@schema("community_events")
 }
 
 model Event {
@@ -79,7 +68,6 @@ model Event {
   venue                        Venue?     @relation("VenueEvents", fields: [venue_id], references: [venue_id])
   websites                     Website[]
 
-  @@schema("community_events")
 }
 
 model Website {
@@ -87,54 +75,5 @@ model Website {
   event_id  String
   event     Event  @relation(fields: [event_id], references: [event_id])
 
-  @@schema("community_events")
 }
 
-model Provider {
-  provider_id           Int        @id
-  provider_name         String
-  site_name             String
-  government_subsidised String
-  subsidy_tag           String?
-  asqa_code             Int
-  url                   String?
-  email                 String?
-  courses               Course[]
-  locations             Location[]
-
-  @@schema("english_courses")
-}
-
-model Location {
-  geographic_id              Int      @id
-  provider_id                Int
-  address_line_1             String
-  suburb                     String
-  postcode                   Int
-  latitude                   Float
-  longitude                  Float
-  full_address               String
-  region_name                String
-  local_government_authority String
-  provider                   Provider @relation(fields: [provider_id], references: [provider_id])
-
-  @@schema("english_courses")
-}
-
-model Course {
-  course_id             Int      @id
-  provider_id           Int
-  course_title          String
-  course_code           String
-  qualification_level   String
-  course_type           String
-  government_subsidised Boolean
-  apprenticeship        Boolean
-  traineeship           Boolean
-  entry_requirements    String
-  description           String
-  is_english_course     Boolean
-  provider              Provider @relation(fields: [provider_id], references: [provider_id])
-
-  @@schema("english_courses")
-}
