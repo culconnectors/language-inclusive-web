@@ -1,12 +1,12 @@
 generator clientEvents {
   provider        = "prisma-client-js"
-  output          = "../node_modules/@prisma/client-community"
+  output          = "../.prisma/client-community"
   previewFeatures = ["multiSchema"]
 }
 
 generator clientEnglish {
   provider        = "prisma-client-js"
-  output          = "../node_modules/@prisma/client-workshop"
+  output          = "../.prisma/client-workshop"
   previewFeatures = ["multiSchema"]
 }
 

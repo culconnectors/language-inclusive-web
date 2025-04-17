@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prismaCommunity } from "@/lib/prisma";
+import { communityClient } from "@/lib/prisma";
 
 interface RawEventResult {
     event_id: string;
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
         const radius = 20; // 20km radius
 
         // Using raw SQL query with Prisma
-        const events = await prismaCommunity.$queryRaw<RawEventResult[]>`
+        const events = await communityClient.$queryRaw<RawEventResult[]>`
       WITH events_with_distance AS (
         SELECT 
           e.event_id,

@@ -1,40 +1,41 @@
 {
-  "name": "language-inclusive-web",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
-    "start": "next start",
-    "lint": "next lint",
-    "query-db": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/query-db-testing.ts",
-    "migrate": "prisma migrate dev"
-  },
-  "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
-    "@prisma/client": "^6.5.0",
-    "@tanstack/react-query": "^5.71.1",
-    "cheerio": "^1.0.0",
-    "date-fns": "^4.1.0",
-    "framer-motion": "^12.6.2",
-    "lucide-react": "^0.485.0",
-    "next": "15.2.4",
-    "node-fetch": "^3.3.2",
-    "pg": "^8.14.1",
-    "prisma": "^6.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "swr": "^2.3.3",
-    "use-debounce": "^10.0.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20.17.30",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "tailwindcss": "^4",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
-  }
+    "name": "language-inclusive-web",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "query-db": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/query-db-testing.ts",
+        "migrate": "prisma migrate dev",
+        "postinstall": "prisma generate"
+    },
+    "dependencies": {
+        "@neondatabase/serverless": "^0.10.4",
+        "@prisma/client": "^6.5.0",
+        "@tanstack/react-query": "^5.71.1",
+        "cheerio": "^1.0.0",
+        "date-fns": "^4.1.0",
+        "framer-motion": "^12.6.2",
+        "lucide-react": "^0.485.0",
+        "next": "15.2.4",
+        "node-fetch": "^3.3.2",
+        "pg": "^8.14.1",
+        "prisma": "^6.5.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "swr": "^2.3.3",
+        "use-debounce": "^10.0.4"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4",
+        "@types/node": "^20.17.30",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "tailwindcss": "^4",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.3"
+    }
 }

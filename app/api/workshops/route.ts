@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prismaEnglish } from "@/lib/prisma";
+import { workshopClient } from "@/lib/prisma";
 
 interface Workshop {
     id: string;
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
         const radius = 20; // 20km radius
 
         // Using Prisma's query builder with relations
-        const workshops = await prismaEnglish.provider.findMany({
+        const workshops = await workshopClient.provider.findMany({
             where: {
                 courses: {
                     some: {

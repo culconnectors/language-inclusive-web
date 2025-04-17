@@ -1,17 +1,20 @@
-import { PrismaClient as PrismaCommunity } from "@prisma/client-community";
-import { PrismaClient as PrismaEnglish } from "@prisma/client-workshop";
+import { PrismaClient as PrismaClientCommunity } from "../.prisma/client-community";
+import { PrismaClient as PrismaClientWorkshop } from "../.prisma/client-workshop";
 
+// PrismaClient is attached to the `global` object in development to prevent
+// exhausting your database connection limit.
 const globalForPrisma = globalThis as unknown as {
-    prismaCommunity: PrismaCommunity | undefined;
-    prismaEnglish: PrismaEnglish | undefined;
+    communityClient: PrismaClientCommunity;
+    workshopClient: PrismaClientWorkshop;
 };
 
-export const prismaCommunity =
-    globalForPrisma.prismaCommunity ?? new PrismaCommunity();
-export const prismaEnglish =
-    globalForPrisma.prismaEnglish ?? new PrismaEnglish();
+export const communityClient =
+    globalForPrisma.communityClient || new PrismaClientCommunity();
+
+export const workshopClient =
+    globalForPrisma.workshopClient || new PrismaClientWorkshop();
 
 if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.prismaCommunity = prismaCommunity;
-    globalForPrisma.prismaEnglish = prismaEnglish;
+    globalForPrisma.communityClient = communityClient;
+    globalForPrisma.workshopClient = workshopClient;
 }
