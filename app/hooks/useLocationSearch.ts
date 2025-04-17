@@ -59,18 +59,44 @@ export function useLocationSearch() {
             return;
         }
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setSelectedLocation({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                });
-            },
-            (error) => {
-                console.error("Error getting current location:", error);
-                alert("Unable to retrieve your location");
-            }
-        );
+        try {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setSelectedLocation({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    });
+                },
+                (error) => {
+                    // Only show errors for actual geolocation failures
+                    if (error instanceof GeolocationPositionError) {
+                        let message = "Unable to retrieve your location";
+                        switch (error.code) {
+                            case GeolocationPositionError.PERMISSION_DENIED:
+                                message =
+                                    "Please allow location access to use this feature";
+                                break;
+                            case GeolocationPositionError.POSITION_UNAVAILABLE:
+                                message = "Location information is unavailable";
+                                break;
+                            case GeolocationPositionError.TIMEOUT:
+                                message = "Location request timed out";
+                                break;
+                        }
+                        alert(message);
+                        console.error("Geolocation error:", error);
+                    }
+                    // Ignore errors from browser extensions
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0,
+                }
+            );
+        } catch (error) {
+            // Suppress any other errors that might be caused by extensions
+        }
     }, []);
 
     return {
