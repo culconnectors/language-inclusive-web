@@ -219,7 +219,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/chriswiesanjaya/Documents/GitHub/language-inclusive-web-cul/.prisma/client-community",
+      "value": "/Users/monglee/Desktop/IE project/language-inclusive-web/.prisma/client-community",
       "fromEnvVar": null
     },
     "config": {
@@ -235,11 +235,11 @@ const config = {
     "previewFeatures": [
       "multiSchema"
     ],
-    "sourceFilePath": "/Users/chriswiesanjaya/Documents/GitHub/language-inclusive-web-cul/prisma/schema.prisma",
+    "sourceFilePath": "/Users/monglee/Desktop/IE project/language-inclusive-web/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",

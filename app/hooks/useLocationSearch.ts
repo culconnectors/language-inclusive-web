@@ -2,110 +2,89 @@ import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 interface Coordinates {
-    lat: number;
-    lng: number;
+  lat: number;
+  lng: number;
 }
 
+// Prediction location and postcode within  from the autocomplete API
 interface Prediction {
-    description: string;
-    place_id: string;
+  description: string;
+  place_id: string;
+  postcode?: string;
 }
 
 export function useLocationSearch() {
-    const [locationTerm, setLocationTerm] = useState("");
-    const [selectedLocation, setSelectedLocation] =
-        useState<Coordinates | null>(null);
+  const [locationTerm, setLocationTerm] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState<Coordinates | null>(null);
+  const [selectedPostcode, setSelectedPostcode] = useState<string | null>(null);
 
-    const { data: predictions = [], isLoading } = useQuery({
-        queryKey: ["locationPredictions", locationTerm],
-        queryFn: async () => {
-            if (!locationTerm) return [];
-            const response = await fetch(
-                `/api/googlePlace/autocomplete?input=${encodeURIComponent(
-                    locationTerm
-                )}`
-            );
-            if (!response.ok) throw new Error("Failed to fetch predictions");
-            const data = await response.json();
-            return data.predictions || [];
-        },
-        enabled: locationTerm.length > 2,
-    });
+  const { data: predictions = [], isLoading } = useQuery<Prediction[]>({
+    queryKey: ["locationPredictions", locationTerm],
+    queryFn: async () => {
+      if (!locationTerm) return [];
+      const response = await fetch(
+        `/api/googlePlace/autocomplete?input=${encodeURIComponent(locationTerm)}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch predictions");
+      const data = await response.json();
+      return data.predictions || [];
+    },
+    enabled: locationTerm.length > 2,
+  });
 
-    const handlePredictionSelect = useCallback(
-        async (placeId: string, description: string) => {
-            try {
-                const response = await fetch(
-                    `/api/googlePlace/details?placeId=${placeId}`
-                );
-                if (!response.ok)
-                    throw new Error("Failed to fetch place details");
-                const data = await response.json();
+  const handlePredictionSelect = useCallback(async (placeId: string, description: string) => {
+    try {
+      const response = await fetch(`/api/googlePlace/details?placeId=${placeId}`);
+      if (!response.ok) throw new Error("Failed to fetch place details");
+      const data = await response.json();
 
-                if (data.result?.geometry?.location) {
-                    const { lat, lng } = data.result.geometry.location;
-                    setSelectedLocation({ lat, lng });
-                }
-            } catch (error) {
-                console.error("Error fetching place details:", error);
-            }
-        },
-        []
+      const location = data?.location;
+      const postcode = data?.postcode || null;
+
+      if (location) {
+        setSelectedLocation(location);
+        setSelectedPostcode(postcode);
+      }
+    } catch (error) {
+      console.error("Error fetching place details:", error);
+    }
+  }, []);
+
+  const getCurrentLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setSelectedLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        setSelectedPostcode(null);
+      },
+      (error) => {
+        console.error("Error getting current location:", error);
+        alert("Unable to retrieve your location");
+      }
     );
+  }, []);
 
-    const getCurrentLocation = useCallback(() => {
-        if (!navigator.geolocation) {
-            alert("Geolocation is not supported by your browser");
-            return;
-        }
+  const resetLocation = useCallback(() => {
+    setLocationTerm("");
+    setSelectedLocation(null);
+  }, []);
 
-        try {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setSelectedLocation({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    });
-                },
-                (error) => {
-                    // Only show errors for actual geolocation failures
-                    if (error instanceof GeolocationPositionError) {
-                        let message = "Unable to retrieve your location";
-                        switch (error.code) {
-                            case GeolocationPositionError.PERMISSION_DENIED:
-                                message =
-                                    "Please allow location access to use this feature";
-                                break;
-                            case GeolocationPositionError.POSITION_UNAVAILABLE:
-                                message = "Location information is unavailable";
-                                break;
-                            case GeolocationPositionError.TIMEOUT:
-                                message = "Location request timed out";
-                                break;
-                        }
-                        alert(message);
-                        console.error("Geolocation error:", error);
-                    }
-                    // Ignore errors from browser extensions
-                },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0,
-                }
-            );
-        } catch (error) {
-            // Suppress any other errors that might be caused by extensions
-        }
-    }, []);
-
-    return {
-        locationTerm,
-        setLocationTerm,
-        predictions,
-        isLoading,
-        selectedLocation,
-        handlePredictionSelect,
-        getCurrentLocation,
-    };
+  return {
+    locationTerm,
+    setLocationTerm,
+    predictions,
+    isLoading,
+    selectedLocation,
+    selectedPostcode,
+    handlePredictionSelect,
+    getCurrentLocation,
+    resetLocation,
+  };
 }
