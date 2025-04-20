@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { workshopClient } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client-workshop";
 
 interface Workshop {
     id: string;
@@ -12,6 +13,31 @@ interface Workshop {
     };
 }
 
+type Location = {
+    geographic_id: number;
+    provider_id: number;
+    latitude: number;
+    longitude: number;
+    address_line_1: string;
+    suburb: string;
+    postcode: number;
+    full_address: string;
+    region_name: string;
+    local_government_authority: string;
+};
+
+type Provider = {
+    provider_id: number;
+    provider_name: string;
+    site_name: string;
+    government_subsidised: string;
+    subsidy_tag: string | null;
+    asqa_code: number;
+    url: string | null;
+    email: string | null;
+    locations: Location[];
+};
+
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -19,37 +45,27 @@ export async function GET(request: Request) {
         const lng = parseFloat(searchParams.get("lng") || "0");
         const radius = 20; // 20km radius
 
-        // Using Prisma's query builder with relations
-        const workshops = await workshopClient.provider.findMany({
-            where: {
-                courses: {
-                    some: {
-                        OR: [
-                            { qualification_level: { contains: "English" } },
-                            { course_title: { contains: "English" } },
-                            { course_code: { contains: "ENG" } },
-                        ],
-                    },
-                },
-            },
+        // Using Prisma's query builder with relations, without English filtering
+        const workshops = (await workshopClient.provider.findMany({
             include: {
                 locations: true,
-                courses: {
-                    where: {
-                        OR: [
-                            { qualification_level: { contains: "English" } },
-                            { course_title: { contains: "English" } },
-                            { course_code: { contains: "ENG" } },
-                        ],
-                    },
-                },
             },
-        });
+        })) as Provider[];
 
-        // Filter and format workshops based on distance
+        // Filter and format workshops based on distance, keeping only distinct provider names
         const formattedWorkshops: Workshop[] = [];
+        const seenProviderNames = new Set<string>();
 
         workshops.forEach((provider) => {
+            // Skip if we've already seen this provider name
+            if (seenProviderNames.has(provider.provider_name)) {
+                return;
+            }
+
+            // Find the closest location for this provider within radius
+            let closestLocation: Location | null = null;
+            let shortestDistance = Infinity;
+
             provider.locations.forEach((location) => {
                 const distance = calculateDistance(
                     lat,
@@ -58,21 +74,26 @@ export async function GET(request: Request) {
                     location.longitude
                 );
 
-                if (distance <= radius) {
-                    provider.courses.forEach((course) => {
-                        formattedWorkshops.push({
-                            id: `${provider.provider_id}${location.geographic_id}${course.course_id}`,
-                            name: course.course_title,
-                            provider_name: provider.provider_name,
-                            url: provider.url || "",
-                            location: {
-                                latitude: location.latitude,
-                                longitude: location.longitude,
-                            },
-                        });
-                    });
+                if (distance <= radius && distance < shortestDistance) {
+                    closestLocation = location;
+                    shortestDistance = distance;
                 }
             });
+
+            // If we found a location within radius, add this provider
+            if (closestLocation) {
+                seenProviderNames.add(provider.provider_name);
+                formattedWorkshops.push({
+                    id: `${provider.provider_name}-${closestLocation.geographic_id}`,
+                    name: provider.provider_name,
+                    provider_name: provider.provider_name,
+                    url: provider.url || "",
+                    location: {
+                        latitude: closestLocation.latitude,
+                        longitude: closestLocation.longitude,
+                    },
+                });
+            }
         });
 
         // Sort by distance
