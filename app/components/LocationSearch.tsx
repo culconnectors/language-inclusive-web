@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface LocationSearchProps {
   onLocationSelect: (coords: { lat: number; lng: number }) => void;
@@ -23,6 +22,11 @@ export default function LocationSearch({
   const [inputValue, setInputValue] = useState(locationTerm);
   const [showPredictions, setShowPredictions] = useState(false);
 
+  // Sync inputValue with locationTerm
+  useEffect(() => {
+    setInputValue(locationTerm);
+  }, [locationTerm]);
+
   const handlePredictionSelect = (placeId: string, description: string) => {
     setInputValue(description);
     onLocationTermChange(description);
@@ -38,6 +42,7 @@ export default function LocationSearch({
         onChange={(e) => {
           setInputValue(e.target.value);
           onLocationTermChange(e.target.value);
+
           setShowPredictions(true);
         }}
         placeholder="Enter your location or entire postcode"

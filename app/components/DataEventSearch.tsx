@@ -20,6 +20,7 @@ export default function DataEventSearch() {
     resetLocation,
   } = useLocationSearch();
 
+
   const { data: events = [], isLoading: isEventsLoading } = useQuery({
     queryKey: ['events', selectedLocation],
     queryFn: async () => {
