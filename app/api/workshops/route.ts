@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { workshopClient } from "@/lib/prisma";
-import type { Prisma } from "@prisma/client-workshop";
 
 interface Workshop {
     id: string;
