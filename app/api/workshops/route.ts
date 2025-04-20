@@ -83,13 +83,15 @@ export async function GET(request: Request) {
             if (closestLocation) {
                 seenProviderNames.add(provider.provider_name);
                 formattedWorkshops.push({
-                    id: `${provider.provider_name}-${closestLocation.geographic_id}`,
+                    id: `${provider.provider_name}-${
+                        (closestLocation as Location).geographic_id
+                    }`,
                     name: provider.provider_name,
                     provider_name: provider.provider_name,
                     url: provider.url || "",
                     location: {
-                        latitude: closestLocation.latitude,
-                        longitude: closestLocation.longitude,
+                        latitude: (closestLocation as Location).latitude,
+                        longitude: (closestLocation as Location).longitude,
                     },
                 });
             }
