@@ -12,6 +12,7 @@ interface Event {
   name: string;
   description: string;
   url: string;
+  category: string;
   start: {
     local: string;
   };

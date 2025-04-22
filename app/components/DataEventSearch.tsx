@@ -1,12 +1,38 @@
 // Project: event-search
-// File updated: (2025-04-17) resetting location button
+/* File updated: 
+    (2025-04-17) resetting location button
+*/
 'use client';
-
+import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MapPin, Navigation, RefreshCw } from 'lucide-react';
 import EventList from './EventList';
 import LocationSearch from './LocationSearch';
 import { useLocationSearch } from '../hooks/useLocationSearch';
+
+// Define the API response type
+interface EventBriteResponse {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  start: {
+    local: string;
+  };
+  end: {
+    local: string;
+  };
+  venue: {
+    name: string;
+    address: {
+      localized_address_display: string;
+    };
+  };
+  logo?: {
+    url: string;
+  };
+}
 
 export default function DataEventSearch() {
   const {
@@ -20,10 +46,13 @@ export default function DataEventSearch() {
     resetLocation,
   } = useLocationSearch();
 
+  // State to manage selected categories
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
 
+  // Fetch events from api endpoint based on selected location
   const { data: events = [], isLoading: isEventsLoading } = useQuery({
     queryKey: ['events', selectedLocation],
-    queryFn: async () => {
+    queryFn: async (): Promise<EventBriteResponse[]> => {
       if (!selectedLocation) return [];
       const response = await fetch(
         `/api/eventBrite?lat=${selectedLocation.lat}&lng=${selectedLocation.lng}`
@@ -35,6 +64,33 @@ export default function DataEventSearch() {
     },
     enabled: !!selectedLocation,
   });
+
+  // Extract unique categories from events
+  const allCategories: string[] = useMemo(() => {
+    return [...new Set(events.map((event) => event.category).filter((c): c is string => Boolean(c)))];
+  }, [events]);
+
+  // Handle checkbox toggle
+  const handleCategoryToggle = (category: string) => {
+    setSelectedCategories((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(category)) {
+        newSet.delete(category);
+      } else {
+        newSet.add(category);
+      }
+      return newSet;
+    });
+  };
+
+  // Filter events by selected categories
+  const filteredEvents = useMemo(() => {
+    if (selectedCategories.size === 0) return events;
+    
+    return events.filter((event) => 
+      event.category && selectedCategories.has(event.category)
+    );
+  }, [events, selectedCategories]);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -72,10 +128,30 @@ export default function DataEventSearch() {
             <span>Showing events within 20km of selected location</span>
           </div>
         )}
+
+        {allCategories.length > 0 && (
+          <div className="mb-6">
+            <p className="font-medium mb-2">Filter by Categories:</p>
+            <div className="flex flex-wrap gap-4">
+              {allCategories.map((category) => (
+                <label key={category} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedCategories.has(category)}
+                    onChange={() => handleCategoryToggle(category)}
+                  />
+                  <span>{category}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+
       <EventList 
         coordinates={selectedLocation}
-        events={events}
+        events={filteredEvents}
         isLoading={isEventsLoading}
       />
     </div>

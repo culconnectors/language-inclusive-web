@@ -1,3 +1,7 @@
+// Description: This code defines a GET function that fetches events from the EventBrite API based on the user's location and filters them by category. It uses Prisma to query the database and returns the results in a specific format.
+/* File updated:
+    (2025-04-20) Added "category" into Event interface for filtering
+*/
 import { NextResponse } from "next/server";
 import { communityClient } from "@/lib/prisma";
 
@@ -39,6 +43,8 @@ function calculateDistance(
     return R * c;
 }
 
+
+// This GRT function is used to fetch all events from the EventBrite API based on the user's location, and return them in a specific format. It uses Prisma to query the database 
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -90,6 +96,7 @@ export async function GET(request: Request) {
             name: event.event_name,
             description: event.event_description,
             url: event.event_url || "",
+            category: event.category_name,
             start: {
                 local: event.start_datetime.toISOString(),
             },
@@ -118,3 +125,6 @@ export async function GET(request: Request) {
         );
     }
 }
+
+// GET function to fetch events based on input location and filter by category_name
+
