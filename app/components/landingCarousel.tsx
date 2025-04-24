@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import EventSearch from "@/app/components/DataEventSearch";
-import WorkshopSearch from "@/app/components/WorkshopSearch";
+import EventSearch from "@/app/components/event/DataEventSearch";
+import WorkshopSearch from "@/app/components/workshop/WorkshopSearch";
+import LgaMap from "@/app/components/map/LgaMap";
+import { Feature } from 'geojson';
 
 type ExplorationTypes = "events" | "workshops" | "community";
 
@@ -25,6 +27,8 @@ const images = [
 export default function LandingCarousel() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [activeType, setActiveType] = useState<ExplorationTypes>("events");
+    const [selectedLga, setSelectedLga] = useState<string | null>(null);
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -35,6 +39,18 @@ export default function LandingCarousel() {
 
         return () => clearInterval(interval);
     }, []);
+
+    const handleLgaClick = (lga: Feature) => {
+        console.log('LGA clicked:', lga.properties?.lga_name);
+    };
+
+    const handleViewNationalities = (lga: Feature) => {
+        console.log('View nationalities for:', lga.properties?.lga_name);
+    };
+
+    const handleViewLanguage = (lga: Feature) => {
+        console.log('View languages for:', lga.properties?.lga_name);
+    };
 
     return (
         <section className="relative min-h-[calc(100vh-4rem)] flex items-center mt-16">
@@ -93,7 +109,7 @@ export default function LandingCarousel() {
                                             key: "workshops",
                                         },
                                         {
-                                            label: "Community Friendly",
+                                            label: "Community Explorer",
                                             key: "community",
                                         },
                                     ].map(({ label, key }) => (
@@ -120,14 +136,15 @@ export default function LandingCarousel() {
                 </div>
 
                 {/* Search Components Section */}
-                <div className="max-w-3xl mx-auto px-4">
+                <div className="max-w-4xl mx-auto px-4">
                     {activeType === "events" && <EventSearch />}
                     {activeType === "workshops" && <WorkshopSearch />}
-                    {activeType === "community" && (
-                        <div className="text-zinc-700 text-center p-4 bg-white rounded-lg shadow">
-                            Community search coming soon...
-                        </div>
-                    )}
+                    {activeType === "community" && <LgaMap
+                        onSuburbSelect={(lgaCode) => {
+                            setSelectedLga(lgaCode);
+                            console.log("User clicked suburb with LGA_CODE:", lgaCode);
+                        }}
+                    />}
                 </div>
             </div>
         </section>

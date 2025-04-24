@@ -208,6 +208,74 @@ exports.Prisma.CourseScalarFieldEnum = {
   is_english_course: 'is_english_course'
 };
 
+exports.Prisma.LgaScalarFieldEnum = {
+  lga_code: 'lga_code',
+  lga_name: 'lga_name'
+};
+
+exports.Prisma.NationalityScalarFieldEnum = {
+  nationality_id: 'nationality_id',
+  nationality: 'nationality'
+};
+
+exports.Prisma.LgaNationalityScalarFieldEnum = {
+  lga_nationality_id: 'lga_nationality_id',
+  lga_code: 'lga_code',
+  nationality_id: 'nationality_id',
+  count: 'count'
+};
+
+exports.Prisma.CouncilInfoScalarFieldEnum = {
+  lga_code: 'lga_code',
+  council_name: 'council_name',
+  council_info: 'council_info',
+  address: 'address',
+  suburb: 'suburb',
+  postcode: 'postcode',
+  phone: 'phone',
+  email: 'email',
+  website: 'website'
+};
+
+exports.Prisma.PostcodeScalarFieldEnum = {
+  postcode: 'postcode',
+  suburb: 'suburb',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  lga_code: 'lga_code'
+};
+
+exports.Prisma.LanguageScalarFieldEnum = {
+  language_id: 'language_id',
+  language: 'language'
+};
+
+exports.Prisma.LgaLanguageProficiencyScalarFieldEnum = {
+  lga_language_prof_id: 'lga_language_prof_id',
+  lga_code: 'lga_code',
+  language_id: 'language_id',
+  english_profiency_level: 'english_profiency_level',
+  count: 'count'
+};
+
+exports.Prisma.LgaStatisticsScalarFieldEnum = {
+  lga_code: 'lga_code',
+  total_businesses: 'total_businesses',
+  total_employed_over_15: 'total_employed_over_15',
+  born_overseas: 'born_overseas',
+  pct_arrived_within_5_years: 'pct_arrived_within_5_years',
+  pct_proficient_english: 'pct_proficient_english',
+  percent_speaks_other_lang_at_home: 'percent_speaks_other_lang_at_home',
+  median_age_years: 'median_age_years',
+  pct_completed_year_12: 'pct_completed_year_12',
+  pct_certificate: 'pct_certificate',
+  pct_bachelor_degree: 'pct_bachelor_degree',
+  pct_postgraduate: 'pct_postgraduate',
+  pct_managers: 'pct_managers',
+  pct_professionals: 'pct_professionals',
+  pct_labourers: 'pct_labourers'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -233,7 +301,15 @@ exports.Prisma.ModelName = {
   Website: 'Website',
   Provider: 'Provider',
   Location: 'Location',
-  Course: 'Course'
+  Course: 'Course',
+  Lga: 'Lga',
+  Nationality: 'Nationality',
+  LgaNationality: 'LgaNationality',
+  CouncilInfo: 'CouncilInfo',
+  Postcode: 'Postcode',
+  Language: 'Language',
+  LgaLanguageProficiency: 'LgaLanguageProficiency',
+  LgaStatistics: 'LgaStatistics'
 };
 
 /**

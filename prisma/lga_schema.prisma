@@ -1,0 +1,116 @@
+// prisma/lga-map.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/client-lga"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_LGA")
+  schemas  = ["lga_map"]
+}
+
+model Lga {
+  @@schema("lga_map")
+
+  lga_code                   Int                    @id
+  lga_name                   String
+  council_info               CouncilInfo?
+  statistics                 LgaStatistics?
+  lga_nationalities          LgaNationality[]
+  language_proficiencies     LgaLanguageProficiency[]
+  postcodes                  Postcode[]
+}
+
+model Nationality {
+  @@schema("lga_map")
+
+  nationality_id     Int             @id @default(autoincrement())
+  nationality        String          @unique
+  lga_nationalities  LgaNationality[]
+}
+
+model LgaNationality {
+  @@schema("lga_map")
+
+  lga_nationality_id Int       @id @default(autoincrement())
+  lga_code           Int
+  nationality_id     Int
+  count              Int
+
+  lga         Lga         @relation(fields: [lga_code], references: [lga_code])
+  nationality Nationality @relation(fields: [nationality_id], references: [nationality_id])
+}
+
+model CouncilInfo {
+  @@schema("lga_map")
+
+  lga_code     Int     @id
+  council_name String?
+  council_info String?
+  address      String?
+  suburb       String?
+  postcode     Int?
+  phone        String?
+  email        String?
+  website      String?
+
+  lga          Lga     @relation(fields: [lga_code], references: [lga_code])
+}
+
+model Postcode {
+  @@schema("lga_map")
+
+  postcode  Int    @id
+  suburb    String
+  latitude  Float
+  longitude Float
+  lga_code  Int
+
+  lga       Lga     @relation(fields: [lga_code], references: [lga_code])
+}
+
+model Language {
+  @@schema("lga_map")
+
+  language_id   Int                     @id @default(autoincrement())
+  language      String?
+  proficiencies LgaLanguageProficiency[]
+}
+
+model LgaLanguageProficiency {
+  @@schema("lga_map")
+
+  lga_language_prof_id Int     @id @default(autoincrement())
+  lga_code             Int
+  language_id          Int
+  english_profiency_level String
+  count                Int
+
+  lga      Lga      @relation(fields: [lga_code], references: [lga_code])
+  language Language @relation(fields: [language_id], references: [language_id])
+}
+
+model LgaStatistics {
+  @@schema("lga_map")
+
+  lga_code                        Int     @id
+  total_businesses               Int?
+  total_employed_over_15         Int?
+  born_overseas                  Int?
+  pct_arrived_within_5_years     Float?
+  pct_proficient_english         Float?
+  percent_speaks_other_lang_at_home Float?
+  median_age_years               Float?
+  pct_completed_year_12          Float?
+  pct_certificate                Float?
+  pct_bachelor_degree            Float?
+  pct_postgraduate               Float?
+  pct_managers                   Float?
+  pct_professionals              Float?
+  pct_labourers                  Float?
+
+  lga Lga @relation(fields: [lga_code], references: [lga_code])
+}

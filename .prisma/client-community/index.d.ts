@@ -58,6 +58,46 @@ export type Location = $Result.DefaultSelection<Prisma.$LocationPayload>
  * 
  */
 export type Course = $Result.DefaultSelection<Prisma.$CoursePayload>
+/**
+ * Model Lga
+ * 
+ */
+export type Lga = $Result.DefaultSelection<Prisma.$LgaPayload>
+/**
+ * Model Nationality
+ * 
+ */
+export type Nationality = $Result.DefaultSelection<Prisma.$NationalityPayload>
+/**
+ * Model LgaNationality
+ * 
+ */
+export type LgaNationality = $Result.DefaultSelection<Prisma.$LgaNationalityPayload>
+/**
+ * Model CouncilInfo
+ * 
+ */
+export type CouncilInfo = $Result.DefaultSelection<Prisma.$CouncilInfoPayload>
+/**
+ * Model Postcode
+ * 
+ */
+export type Postcode = $Result.DefaultSelection<Prisma.$PostcodePayload>
+/**
+ * Model Language
+ * 
+ */
+export type Language = $Result.DefaultSelection<Prisma.$LanguagePayload>
+/**
+ * Model LgaLanguageProficiency
+ * 
+ */
+export type LgaLanguageProficiency = $Result.DefaultSelection<Prisma.$LgaLanguageProficiencyPayload>
+/**
+ * Model LgaStatistics
+ * 
+ */
+export type LgaStatistics = $Result.DefaultSelection<Prisma.$LgaStatisticsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -273,6 +313,86 @@ export class PrismaClient<
     * ```
     */
   get course(): Prisma.CourseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lga`: Exposes CRUD operations for the **Lga** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Lgas
+    * const lgas = await prisma.lga.findMany()
+    * ```
+    */
+  get lga(): Prisma.LgaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.nationality`: Exposes CRUD operations for the **Nationality** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Nationalities
+    * const nationalities = await prisma.nationality.findMany()
+    * ```
+    */
+  get nationality(): Prisma.NationalityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lgaNationality`: Exposes CRUD operations for the **LgaNationality** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LgaNationalities
+    * const lgaNationalities = await prisma.lgaNationality.findMany()
+    * ```
+    */
+  get lgaNationality(): Prisma.LgaNationalityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.councilInfo`: Exposes CRUD operations for the **CouncilInfo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CouncilInfos
+    * const councilInfos = await prisma.councilInfo.findMany()
+    * ```
+    */
+  get councilInfo(): Prisma.CouncilInfoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.postcode`: Exposes CRUD operations for the **Postcode** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Postcodes
+    * const postcodes = await prisma.postcode.findMany()
+    * ```
+    */
+  get postcode(): Prisma.PostcodeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.language`: Exposes CRUD operations for the **Language** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Languages
+    * const languages = await prisma.language.findMany()
+    * ```
+    */
+  get language(): Prisma.LanguageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lgaLanguageProficiency`: Exposes CRUD operations for the **LgaLanguageProficiency** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LgaLanguageProficiencies
+    * const lgaLanguageProficiencies = await prisma.lgaLanguageProficiency.findMany()
+    * ```
+    */
+  get lgaLanguageProficiency(): Prisma.LgaLanguageProficiencyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lgaStatistics`: Exposes CRUD operations for the **LgaStatistics** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LgaStatistics
+    * const lgaStatistics = await prisma.lgaStatistics.findMany()
+    * ```
+    */
+  get lgaStatistics(): Prisma.LgaStatisticsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -721,7 +841,15 @@ export namespace Prisma {
     Website: 'Website',
     Provider: 'Provider',
     Location: 'Location',
-    Course: 'Course'
+    Course: 'Course',
+    Lga: 'Lga',
+    Nationality: 'Nationality',
+    LgaNationality: 'LgaNationality',
+    CouncilInfo: 'CouncilInfo',
+    Postcode: 'Postcode',
+    Language: 'Language',
+    LgaLanguageProficiency: 'LgaLanguageProficiency',
+    LgaStatistics: 'LgaStatistics'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -740,7 +868,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course"
+      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course" | "lga" | "nationality" | "lgaNationality" | "councilInfo" | "postcode" | "language" | "lgaLanguageProficiency" | "lgaStatistics"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1410,6 +1538,598 @@ export namespace Prisma {
           }
         }
       }
+      Lga: {
+        payload: Prisma.$LgaPayload<ExtArgs>
+        fields: Prisma.LgaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LgaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LgaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          findFirst: {
+            args: Prisma.LgaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LgaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          findMany: {
+            args: Prisma.LgaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>[]
+          }
+          create: {
+            args: Prisma.LgaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          createMany: {
+            args: Prisma.LgaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LgaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>[]
+          }
+          delete: {
+            args: Prisma.LgaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          update: {
+            args: Prisma.LgaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          deleteMany: {
+            args: Prisma.LgaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LgaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LgaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>[]
+          }
+          upsert: {
+            args: Prisma.LgaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaPayload>
+          }
+          aggregate: {
+            args: Prisma.LgaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLga>
+          }
+          groupBy: {
+            args: Prisma.LgaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LgaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LgaCountArgs<ExtArgs>
+            result: $Utils.Optional<LgaCountAggregateOutputType> | number
+          }
+        }
+      }
+      Nationality: {
+        payload: Prisma.$NationalityPayload<ExtArgs>
+        fields: Prisma.NationalityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NationalityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NationalityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          findFirst: {
+            args: Prisma.NationalityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NationalityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          findMany: {
+            args: Prisma.NationalityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>[]
+          }
+          create: {
+            args: Prisma.NationalityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          createMany: {
+            args: Prisma.NationalityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NationalityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>[]
+          }
+          delete: {
+            args: Prisma.NationalityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          update: {
+            args: Prisma.NationalityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          deleteMany: {
+            args: Prisma.NationalityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NationalityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NationalityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>[]
+          }
+          upsert: {
+            args: Prisma.NationalityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NationalityPayload>
+          }
+          aggregate: {
+            args: Prisma.NationalityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNationality>
+          }
+          groupBy: {
+            args: Prisma.NationalityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NationalityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NationalityCountArgs<ExtArgs>
+            result: $Utils.Optional<NationalityCountAggregateOutputType> | number
+          }
+        }
+      }
+      LgaNationality: {
+        payload: Prisma.$LgaNationalityPayload<ExtArgs>
+        fields: Prisma.LgaNationalityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LgaNationalityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LgaNationalityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          findFirst: {
+            args: Prisma.LgaNationalityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LgaNationalityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          findMany: {
+            args: Prisma.LgaNationalityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>[]
+          }
+          create: {
+            args: Prisma.LgaNationalityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          createMany: {
+            args: Prisma.LgaNationalityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LgaNationalityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>[]
+          }
+          delete: {
+            args: Prisma.LgaNationalityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          update: {
+            args: Prisma.LgaNationalityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          deleteMany: {
+            args: Prisma.LgaNationalityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LgaNationalityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LgaNationalityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>[]
+          }
+          upsert: {
+            args: Prisma.LgaNationalityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityPayload>
+          }
+          aggregate: {
+            args: Prisma.LgaNationalityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLgaNationality>
+          }
+          groupBy: {
+            args: Prisma.LgaNationalityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LgaNationalityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LgaNationalityCountArgs<ExtArgs>
+            result: $Utils.Optional<LgaNationalityCountAggregateOutputType> | number
+          }
+        }
+      }
+      CouncilInfo: {
+        payload: Prisma.$CouncilInfoPayload<ExtArgs>
+        fields: Prisma.CouncilInfoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CouncilInfoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CouncilInfoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          findFirst: {
+            args: Prisma.CouncilInfoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CouncilInfoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          findMany: {
+            args: Prisma.CouncilInfoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>[]
+          }
+          create: {
+            args: Prisma.CouncilInfoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          createMany: {
+            args: Prisma.CouncilInfoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CouncilInfoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>[]
+          }
+          delete: {
+            args: Prisma.CouncilInfoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          update: {
+            args: Prisma.CouncilInfoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          deleteMany: {
+            args: Prisma.CouncilInfoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CouncilInfoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CouncilInfoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>[]
+          }
+          upsert: {
+            args: Prisma.CouncilInfoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CouncilInfoPayload>
+          }
+          aggregate: {
+            args: Prisma.CouncilInfoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCouncilInfo>
+          }
+          groupBy: {
+            args: Prisma.CouncilInfoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CouncilInfoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CouncilInfoCountArgs<ExtArgs>
+            result: $Utils.Optional<CouncilInfoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Postcode: {
+        payload: Prisma.$PostcodePayload<ExtArgs>
+        fields: Prisma.PostcodeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostcodeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostcodeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          findFirst: {
+            args: Prisma.PostcodeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostcodeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          findMany: {
+            args: Prisma.PostcodeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>[]
+          }
+          create: {
+            args: Prisma.PostcodeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          createMany: {
+            args: Prisma.PostcodeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PostcodeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>[]
+          }
+          delete: {
+            args: Prisma.PostcodeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          update: {
+            args: Prisma.PostcodeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          deleteMany: {
+            args: Prisma.PostcodeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostcodeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PostcodeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>[]
+          }
+          upsert: {
+            args: Prisma.PostcodeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostcodePayload>
+          }
+          aggregate: {
+            args: Prisma.PostcodeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePostcode>
+          }
+          groupBy: {
+            args: Prisma.PostcodeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PostcodeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostcodeCountArgs<ExtArgs>
+            result: $Utils.Optional<PostcodeCountAggregateOutputType> | number
+          }
+        }
+      }
+      Language: {
+        payload: Prisma.$LanguagePayload<ExtArgs>
+        fields: Prisma.LanguageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LanguageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LanguageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          findFirst: {
+            args: Prisma.LanguageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LanguageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          findMany: {
+            args: Prisma.LanguageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+          }
+          create: {
+            args: Prisma.LanguageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          createMany: {
+            args: Prisma.LanguageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LanguageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+          }
+          delete: {
+            args: Prisma.LanguageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          update: {
+            args: Prisma.LanguageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          deleteMany: {
+            args: Prisma.LanguageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LanguageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LanguageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+          }
+          upsert: {
+            args: Prisma.LanguageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LanguagePayload>
+          }
+          aggregate: {
+            args: Prisma.LanguageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLanguage>
+          }
+          groupBy: {
+            args: Prisma.LanguageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LanguageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LanguageCountArgs<ExtArgs>
+            result: $Utils.Optional<LanguageCountAggregateOutputType> | number
+          }
+        }
+      }
+      LgaLanguageProficiency: {
+        payload: Prisma.$LgaLanguageProficiencyPayload<ExtArgs>
+        fields: Prisma.LgaLanguageProficiencyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LgaLanguageProficiencyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LgaLanguageProficiencyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          findFirst: {
+            args: Prisma.LgaLanguageProficiencyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LgaLanguageProficiencyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          findMany: {
+            args: Prisma.LgaLanguageProficiencyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>[]
+          }
+          create: {
+            args: Prisma.LgaLanguageProficiencyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          createMany: {
+            args: Prisma.LgaLanguageProficiencyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LgaLanguageProficiencyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>[]
+          }
+          delete: {
+            args: Prisma.LgaLanguageProficiencyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          update: {
+            args: Prisma.LgaLanguageProficiencyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          deleteMany: {
+            args: Prisma.LgaLanguageProficiencyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LgaLanguageProficiencyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LgaLanguageProficiencyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>[]
+          }
+          upsert: {
+            args: Prisma.LgaLanguageProficiencyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaLanguageProficiencyPayload>
+          }
+          aggregate: {
+            args: Prisma.LgaLanguageProficiencyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLgaLanguageProficiency>
+          }
+          groupBy: {
+            args: Prisma.LgaLanguageProficiencyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LgaLanguageProficiencyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LgaLanguageProficiencyCountArgs<ExtArgs>
+            result: $Utils.Optional<LgaLanguageProficiencyCountAggregateOutputType> | number
+          }
+        }
+      }
+      LgaStatistics: {
+        payload: Prisma.$LgaStatisticsPayload<ExtArgs>
+        fields: Prisma.LgaStatisticsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LgaStatisticsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LgaStatisticsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          findFirst: {
+            args: Prisma.LgaStatisticsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LgaStatisticsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          findMany: {
+            args: Prisma.LgaStatisticsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>[]
+          }
+          create: {
+            args: Prisma.LgaStatisticsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          createMany: {
+            args: Prisma.LgaStatisticsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LgaStatisticsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>[]
+          }
+          delete: {
+            args: Prisma.LgaStatisticsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          update: {
+            args: Prisma.LgaStatisticsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          deleteMany: {
+            args: Prisma.LgaStatisticsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LgaStatisticsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LgaStatisticsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>[]
+          }
+          upsert: {
+            args: Prisma.LgaStatisticsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaStatisticsPayload>
+          }
+          aggregate: {
+            args: Prisma.LgaStatisticsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLgaStatistics>
+          }
+          groupBy: {
+            args: Prisma.LgaStatisticsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LgaStatisticsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LgaStatisticsCountArgs<ExtArgs>
+            result: $Utils.Optional<LgaStatisticsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1503,6 +2223,14 @@ export namespace Prisma {
     provider?: ProviderOmit
     location?: LocationOmit
     course?: CourseOmit
+    lga?: LgaOmit
+    nationality?: NationalityOmit
+    lgaNationality?: LgaNationalityOmit
+    councilInfo?: CouncilInfoOmit
+    postcode?: PostcodeOmit
+    language?: LanguageOmit
+    lgaLanguageProficiency?: LgaLanguageProficiencyOmit
+    lgaStatistics?: LgaStatisticsOmit
   }
 
   /* Types for Logging */
@@ -1784,6 +2512,117 @@ export namespace Prisma {
    */
   export type ProviderCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LocationWhereInput
+  }
+
+
+  /**
+   * Count Type LgaCountOutputType
+   */
+
+  export type LgaCountOutputType = {
+    language_proficiencies: number
+    lga_nationalities: number
+    postcodes: number
+  }
+
+  export type LgaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language_proficiencies?: boolean | LgaCountOutputTypeCountLanguage_proficienciesArgs
+    lga_nationalities?: boolean | LgaCountOutputTypeCountLga_nationalitiesArgs
+    postcodes?: boolean | LgaCountOutputTypeCountPostcodesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LgaCountOutputType without action
+   */
+  export type LgaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaCountOutputType
+     */
+    select?: LgaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LgaCountOutputType without action
+   */
+  export type LgaCountOutputTypeCountLanguage_proficienciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaLanguageProficiencyWhereInput
+  }
+
+  /**
+   * LgaCountOutputType without action
+   */
+  export type LgaCountOutputTypeCountLga_nationalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityWhereInput
+  }
+
+  /**
+   * LgaCountOutputType without action
+   */
+  export type LgaCountOutputTypeCountPostcodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostcodeWhereInput
+  }
+
+
+  /**
+   * Count Type NationalityCountOutputType
+   */
+
+  export type NationalityCountOutputType = {
+    lga_nationalities: number
+  }
+
+  export type NationalityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga_nationalities?: boolean | NationalityCountOutputTypeCountLga_nationalitiesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NationalityCountOutputType without action
+   */
+  export type NationalityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NationalityCountOutputType
+     */
+    select?: NationalityCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NationalityCountOutputType without action
+   */
+  export type NationalityCountOutputTypeCountLga_nationalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityWhereInput
+  }
+
+
+  /**
+   * Count Type LanguageCountOutputType
+   */
+
+  export type LanguageCountOutputType = {
+    proficiencies: number
+  }
+
+  export type LanguageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    proficiencies?: boolean | LanguageCountOutputTypeCountProficienciesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LanguageCountOutputType
+     */
+    select?: LanguageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LanguageCountOutputType without action
+   */
+  export type LanguageCountOutputTypeCountProficienciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaLanguageProficiencyWhereInput
   }
 
 
@@ -12027,6 +12866,9044 @@ export namespace Prisma {
 
 
   /**
+   * Model Lga
+   */
+
+  export type AggregateLga = {
+    _count: LgaCountAggregateOutputType | null
+    _avg: LgaAvgAggregateOutputType | null
+    _sum: LgaSumAggregateOutputType | null
+    _min: LgaMinAggregateOutputType | null
+    _max: LgaMaxAggregateOutputType | null
+  }
+
+  export type LgaAvgAggregateOutputType = {
+    lga_code: number | null
+  }
+
+  export type LgaSumAggregateOutputType = {
+    lga_code: number | null
+  }
+
+  export type LgaMinAggregateOutputType = {
+    lga_code: number | null
+    lga_name: string | null
+  }
+
+  export type LgaMaxAggregateOutputType = {
+    lga_code: number | null
+    lga_name: string | null
+  }
+
+  export type LgaCountAggregateOutputType = {
+    lga_code: number
+    lga_name: number
+    _all: number
+  }
+
+
+  export type LgaAvgAggregateInputType = {
+    lga_code?: true
+  }
+
+  export type LgaSumAggregateInputType = {
+    lga_code?: true
+  }
+
+  export type LgaMinAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+  }
+
+  export type LgaMaxAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+  }
+
+  export type LgaCountAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+    _all?: true
+  }
+
+  export type LgaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Lga to aggregate.
+     */
+    where?: LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lgas to fetch.
+     */
+    orderBy?: LgaOrderByWithRelationInput | LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Lgas
+    **/
+    _count?: true | LgaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LgaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LgaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LgaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LgaMaxAggregateInputType
+  }
+
+  export type GetLgaAggregateType<T extends LgaAggregateArgs> = {
+        [P in keyof T & keyof AggregateLga]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLga[P]>
+      : GetScalarType<T[P], AggregateLga[P]>
+  }
+
+
+
+
+  export type LgaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaWhereInput
+    orderBy?: LgaOrderByWithAggregationInput | LgaOrderByWithAggregationInput[]
+    by: LgaScalarFieldEnum[] | LgaScalarFieldEnum
+    having?: LgaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LgaCountAggregateInputType | true
+    _avg?: LgaAvgAggregateInputType
+    _sum?: LgaSumAggregateInputType
+    _min?: LgaMinAggregateInputType
+    _max?: LgaMaxAggregateInputType
+  }
+
+  export type LgaGroupByOutputType = {
+    lga_code: number
+    lga_name: string
+    _count: LgaCountAggregateOutputType | null
+    _avg: LgaAvgAggregateOutputType | null
+    _sum: LgaSumAggregateOutputType | null
+    _min: LgaMinAggregateOutputType | null
+    _max: LgaMaxAggregateOutputType | null
+  }
+
+  type GetLgaGroupByPayload<T extends LgaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LgaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LgaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LgaGroupByOutputType[P]>
+            : GetScalarType<T[P], LgaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LgaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+    council_info?: boolean | Lga$council_infoArgs<ExtArgs>
+    language_proficiencies?: boolean | Lga$language_proficienciesArgs<ExtArgs>
+    lga_nationalities?: boolean | Lga$lga_nationalitiesArgs<ExtArgs>
+    statistics?: boolean | Lga$statisticsArgs<ExtArgs>
+    postcodes?: boolean | Lga$postcodesArgs<ExtArgs>
+    _count?: boolean | LgaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lga"]>
+
+  export type LgaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+  }, ExtArgs["result"]["lga"]>
+
+  export type LgaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+  }, ExtArgs["result"]["lga"]>
+
+  export type LgaSelectScalar = {
+    lga_code?: boolean
+    lga_name?: boolean
+  }
+
+  export type LgaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "lga_name", ExtArgs["result"]["lga"]>
+  export type LgaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    council_info?: boolean | Lga$council_infoArgs<ExtArgs>
+    language_proficiencies?: boolean | Lga$language_proficienciesArgs<ExtArgs>
+    lga_nationalities?: boolean | Lga$lga_nationalitiesArgs<ExtArgs>
+    statistics?: boolean | Lga$statisticsArgs<ExtArgs>
+    postcodes?: boolean | Lga$postcodesArgs<ExtArgs>
+    _count?: boolean | LgaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LgaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LgaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $LgaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Lga"
+    objects: {
+      council_info: Prisma.$CouncilInfoPayload<ExtArgs> | null
+      language_proficiencies: Prisma.$LgaLanguageProficiencyPayload<ExtArgs>[]
+      lga_nationalities: Prisma.$LgaNationalityPayload<ExtArgs>[]
+      statistics: Prisma.$LgaStatisticsPayload<ExtArgs> | null
+      postcodes: Prisma.$PostcodePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_code: number
+      lga_name: string
+    }, ExtArgs["result"]["lga"]>
+    composites: {}
+  }
+
+  type LgaGetPayload<S extends boolean | null | undefined | LgaDefaultArgs> = $Result.GetResult<Prisma.$LgaPayload, S>
+
+  type LgaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LgaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LgaCountAggregateInputType | true
+    }
+
+  export interface LgaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Lga'], meta: { name: 'Lga' } }
+    /**
+     * Find zero or one Lga that matches the filter.
+     * @param {LgaFindUniqueArgs} args - Arguments to find a Lga
+     * @example
+     * // Get one Lga
+     * const lga = await prisma.lga.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LgaFindUniqueArgs>(args: SelectSubset<T, LgaFindUniqueArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Lga that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LgaFindUniqueOrThrowArgs} args - Arguments to find a Lga
+     * @example
+     * // Get one Lga
+     * const lga = await prisma.lga.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LgaFindUniqueOrThrowArgs>(args: SelectSubset<T, LgaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Lga that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaFindFirstArgs} args - Arguments to find a Lga
+     * @example
+     * // Get one Lga
+     * const lga = await prisma.lga.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LgaFindFirstArgs>(args?: SelectSubset<T, LgaFindFirstArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Lga that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaFindFirstOrThrowArgs} args - Arguments to find a Lga
+     * @example
+     * // Get one Lga
+     * const lga = await prisma.lga.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LgaFindFirstOrThrowArgs>(args?: SelectSubset<T, LgaFindFirstOrThrowArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Lgas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Lgas
+     * const lgas = await prisma.lga.findMany()
+     * 
+     * // Get first 10 Lgas
+     * const lgas = await prisma.lga.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_code`
+     * const lgaWithLga_codeOnly = await prisma.lga.findMany({ select: { lga_code: true } })
+     * 
+     */
+    findMany<T extends LgaFindManyArgs>(args?: SelectSubset<T, LgaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Lga.
+     * @param {LgaCreateArgs} args - Arguments to create a Lga.
+     * @example
+     * // Create one Lga
+     * const Lga = await prisma.lga.create({
+     *   data: {
+     *     // ... data to create a Lga
+     *   }
+     * })
+     * 
+     */
+    create<T extends LgaCreateArgs>(args: SelectSubset<T, LgaCreateArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Lgas.
+     * @param {LgaCreateManyArgs} args - Arguments to create many Lgas.
+     * @example
+     * // Create many Lgas
+     * const lga = await prisma.lga.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LgaCreateManyArgs>(args?: SelectSubset<T, LgaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Lgas and returns the data saved in the database.
+     * @param {LgaCreateManyAndReturnArgs} args - Arguments to create many Lgas.
+     * @example
+     * // Create many Lgas
+     * const lga = await prisma.lga.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Lgas and only return the `lga_code`
+     * const lgaWithLga_codeOnly = await prisma.lga.createManyAndReturn({
+     *   select: { lga_code: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LgaCreateManyAndReturnArgs>(args?: SelectSubset<T, LgaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Lga.
+     * @param {LgaDeleteArgs} args - Arguments to delete one Lga.
+     * @example
+     * // Delete one Lga
+     * const Lga = await prisma.lga.delete({
+     *   where: {
+     *     // ... filter to delete one Lga
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LgaDeleteArgs>(args: SelectSubset<T, LgaDeleteArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Lga.
+     * @param {LgaUpdateArgs} args - Arguments to update one Lga.
+     * @example
+     * // Update one Lga
+     * const lga = await prisma.lga.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LgaUpdateArgs>(args: SelectSubset<T, LgaUpdateArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Lgas.
+     * @param {LgaDeleteManyArgs} args - Arguments to filter Lgas to delete.
+     * @example
+     * // Delete a few Lgas
+     * const { count } = await prisma.lga.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LgaDeleteManyArgs>(args?: SelectSubset<T, LgaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Lgas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Lgas
+     * const lga = await prisma.lga.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LgaUpdateManyArgs>(args: SelectSubset<T, LgaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Lgas and returns the data updated in the database.
+     * @param {LgaUpdateManyAndReturnArgs} args - Arguments to update many Lgas.
+     * @example
+     * // Update many Lgas
+     * const lga = await prisma.lga.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Lgas and only return the `lga_code`
+     * const lgaWithLga_codeOnly = await prisma.lga.updateManyAndReturn({
+     *   select: { lga_code: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LgaUpdateManyAndReturnArgs>(args: SelectSubset<T, LgaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Lga.
+     * @param {LgaUpsertArgs} args - Arguments to update or create a Lga.
+     * @example
+     * // Update or create a Lga
+     * const lga = await prisma.lga.upsert({
+     *   create: {
+     *     // ... data to create a Lga
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Lga we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LgaUpsertArgs>(args: SelectSubset<T, LgaUpsertArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Lgas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaCountArgs} args - Arguments to filter Lgas to count.
+     * @example
+     * // Count the number of Lgas
+     * const count = await prisma.lga.count({
+     *   where: {
+     *     // ... the filter for the Lgas we want to count
+     *   }
+     * })
+    **/
+    count<T extends LgaCountArgs>(
+      args?: Subset<T, LgaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LgaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Lga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LgaAggregateArgs>(args: Subset<T, LgaAggregateArgs>): Prisma.PrismaPromise<GetLgaAggregateType<T>>
+
+    /**
+     * Group by Lga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LgaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LgaGroupByArgs['orderBy'] }
+        : { orderBy?: LgaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LgaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLgaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Lga model
+   */
+  readonly fields: LgaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Lga.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LgaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    council_info<T extends Lga$council_infoArgs<ExtArgs> = {}>(args?: Subset<T, Lga$council_infoArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    language_proficiencies<T extends Lga$language_proficienciesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$language_proficienciesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    lga_nationalities<T extends Lga$lga_nationalitiesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$lga_nationalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    statistics<T extends Lga$statisticsArgs<ExtArgs> = {}>(args?: Subset<T, Lga$statisticsArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    postcodes<T extends Lga$postcodesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$postcodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Lga model
+   */ 
+  interface LgaFieldRefs {
+    readonly lga_code: FieldRef<"Lga", 'Int'>
+    readonly lga_name: FieldRef<"Lga", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Lga findUnique
+   */
+  export type LgaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which Lga to fetch.
+     */
+    where: LgaWhereUniqueInput
+  }
+
+  /**
+   * Lga findUniqueOrThrow
+   */
+  export type LgaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which Lga to fetch.
+     */
+    where: LgaWhereUniqueInput
+  }
+
+  /**
+   * Lga findFirst
+   */
+  export type LgaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which Lga to fetch.
+     */
+    where?: LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lgas to fetch.
+     */
+    orderBy?: LgaOrderByWithRelationInput | LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Lgas.
+     */
+    cursor?: LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Lgas.
+     */
+    distinct?: LgaScalarFieldEnum | LgaScalarFieldEnum[]
+  }
+
+  /**
+   * Lga findFirstOrThrow
+   */
+  export type LgaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which Lga to fetch.
+     */
+    where?: LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lgas to fetch.
+     */
+    orderBy?: LgaOrderByWithRelationInput | LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Lgas.
+     */
+    cursor?: LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Lgas.
+     */
+    distinct?: LgaScalarFieldEnum | LgaScalarFieldEnum[]
+  }
+
+  /**
+   * Lga findMany
+   */
+  export type LgaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which Lgas to fetch.
+     */
+    where?: LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lgas to fetch.
+     */
+    orderBy?: LgaOrderByWithRelationInput | LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Lgas.
+     */
+    cursor?: LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lgas.
+     */
+    skip?: number
+    distinct?: LgaScalarFieldEnum | LgaScalarFieldEnum[]
+  }
+
+  /**
+   * Lga create
+   */
+  export type LgaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Lga.
+     */
+    data: XOR<LgaCreateInput, LgaUncheckedCreateInput>
+  }
+
+  /**
+   * Lga createMany
+   */
+  export type LgaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Lgas.
+     */
+    data: LgaCreateManyInput | LgaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Lga createManyAndReturn
+   */
+  export type LgaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Lgas.
+     */
+    data: LgaCreateManyInput | LgaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Lga update
+   */
+  export type LgaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Lga.
+     */
+    data: XOR<LgaUpdateInput, LgaUncheckedUpdateInput>
+    /**
+     * Choose, which Lga to update.
+     */
+    where: LgaWhereUniqueInput
+  }
+
+  /**
+   * Lga updateMany
+   */
+  export type LgaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Lgas.
+     */
+    data: XOR<LgaUpdateManyMutationInput, LgaUncheckedUpdateManyInput>
+    /**
+     * Filter which Lgas to update
+     */
+    where?: LgaWhereInput
+    /**
+     * Limit how many Lgas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Lga updateManyAndReturn
+   */
+  export type LgaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * The data used to update Lgas.
+     */
+    data: XOR<LgaUpdateManyMutationInput, LgaUncheckedUpdateManyInput>
+    /**
+     * Filter which Lgas to update
+     */
+    where?: LgaWhereInput
+    /**
+     * Limit how many Lgas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Lga upsert
+   */
+  export type LgaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Lga to update in case it exists.
+     */
+    where: LgaWhereUniqueInput
+    /**
+     * In case the Lga found by the `where` argument doesn't exist, create a new Lga with this data.
+     */
+    create: XOR<LgaCreateInput, LgaUncheckedCreateInput>
+    /**
+     * In case the Lga was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LgaUpdateInput, LgaUncheckedUpdateInput>
+  }
+
+  /**
+   * Lga delete
+   */
+  export type LgaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+    /**
+     * Filter which Lga to delete.
+     */
+    where: LgaWhereUniqueInput
+  }
+
+  /**
+   * Lga deleteMany
+   */
+  export type LgaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Lgas to delete
+     */
+    where?: LgaWhereInput
+    /**
+     * Limit how many Lgas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Lga.council_info
+   */
+  export type Lga$council_infoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    where?: CouncilInfoWhereInput
+  }
+
+  /**
+   * Lga.language_proficiencies
+   */
+  export type Lga$language_proficienciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    where?: LgaLanguageProficiencyWhereInput
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaLanguageProficiencyScalarFieldEnum | LgaLanguageProficiencyScalarFieldEnum[]
+  }
+
+  /**
+   * Lga.lga_nationalities
+   */
+  export type Lga$lga_nationalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    where?: LgaNationalityWhereInput
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    cursor?: LgaNationalityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Lga.statistics
+   */
+  export type Lga$statisticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    where?: LgaStatisticsWhereInput
+  }
+
+  /**
+   * Lga.postcodes
+   */
+  export type Lga$postcodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    where?: PostcodeWhereInput
+    orderBy?: PostcodeOrderByWithRelationInput | PostcodeOrderByWithRelationInput[]
+    cursor?: PostcodeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostcodeScalarFieldEnum | PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * Lga without action
+   */
+  export type LgaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lga
+     */
+    select?: LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lga
+     */
+    omit?: LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Nationality
+   */
+
+  export type AggregateNationality = {
+    _count: NationalityCountAggregateOutputType | null
+    _avg: NationalityAvgAggregateOutputType | null
+    _sum: NationalitySumAggregateOutputType | null
+    _min: NationalityMinAggregateOutputType | null
+    _max: NationalityMaxAggregateOutputType | null
+  }
+
+  export type NationalityAvgAggregateOutputType = {
+    nationality_id: number | null
+  }
+
+  export type NationalitySumAggregateOutputType = {
+    nationality_id: number | null
+  }
+
+  export type NationalityMinAggregateOutputType = {
+    nationality_id: number | null
+    nationality: string | null
+  }
+
+  export type NationalityMaxAggregateOutputType = {
+    nationality_id: number | null
+    nationality: string | null
+  }
+
+  export type NationalityCountAggregateOutputType = {
+    nationality_id: number
+    nationality: number
+    _all: number
+  }
+
+
+  export type NationalityAvgAggregateInputType = {
+    nationality_id?: true
+  }
+
+  export type NationalitySumAggregateInputType = {
+    nationality_id?: true
+  }
+
+  export type NationalityMinAggregateInputType = {
+    nationality_id?: true
+    nationality?: true
+  }
+
+  export type NationalityMaxAggregateInputType = {
+    nationality_id?: true
+    nationality?: true
+  }
+
+  export type NationalityCountAggregateInputType = {
+    nationality_id?: true
+    nationality?: true
+    _all?: true
+  }
+
+  export type NationalityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Nationality to aggregate.
+     */
+    where?: NationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nationalities to fetch.
+     */
+    orderBy?: NationalityOrderByWithRelationInput | NationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Nationalities
+    **/
+    _count?: true | NationalityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NationalityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NationalitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NationalityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NationalityMaxAggregateInputType
+  }
+
+  export type GetNationalityAggregateType<T extends NationalityAggregateArgs> = {
+        [P in keyof T & keyof AggregateNationality]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNationality[P]>
+      : GetScalarType<T[P], AggregateNationality[P]>
+  }
+
+
+
+
+  export type NationalityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NationalityWhereInput
+    orderBy?: NationalityOrderByWithAggregationInput | NationalityOrderByWithAggregationInput[]
+    by: NationalityScalarFieldEnum[] | NationalityScalarFieldEnum
+    having?: NationalityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NationalityCountAggregateInputType | true
+    _avg?: NationalityAvgAggregateInputType
+    _sum?: NationalitySumAggregateInputType
+    _min?: NationalityMinAggregateInputType
+    _max?: NationalityMaxAggregateInputType
+  }
+
+  export type NationalityGroupByOutputType = {
+    nationality_id: number
+    nationality: string
+    _count: NationalityCountAggregateOutputType | null
+    _avg: NationalityAvgAggregateOutputType | null
+    _sum: NationalitySumAggregateOutputType | null
+    _min: NationalityMinAggregateOutputType | null
+    _max: NationalityMaxAggregateOutputType | null
+  }
+
+  type GetNationalityGroupByPayload<T extends NationalityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NationalityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NationalityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NationalityGroupByOutputType[P]>
+            : GetScalarType<T[P], NationalityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NationalitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nationality_id?: boolean
+    nationality?: boolean
+    lga_nationalities?: boolean | Nationality$lga_nationalitiesArgs<ExtArgs>
+    _count?: boolean | NationalityCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["nationality"]>
+
+  export type NationalitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nationality_id?: boolean
+    nationality?: boolean
+  }, ExtArgs["result"]["nationality"]>
+
+  export type NationalitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    nationality_id?: boolean
+    nationality?: boolean
+  }, ExtArgs["result"]["nationality"]>
+
+  export type NationalitySelectScalar = {
+    nationality_id?: boolean
+    nationality?: boolean
+  }
+
+  export type NationalityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nationality_id" | "nationality", ExtArgs["result"]["nationality"]>
+  export type NationalityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga_nationalities?: boolean | Nationality$lga_nationalitiesArgs<ExtArgs>
+    _count?: boolean | NationalityCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type NationalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type NationalityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $NationalityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Nationality"
+    objects: {
+      lga_nationalities: Prisma.$LgaNationalityPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      nationality_id: number
+      nationality: string
+    }, ExtArgs["result"]["nationality"]>
+    composites: {}
+  }
+
+  type NationalityGetPayload<S extends boolean | null | undefined | NationalityDefaultArgs> = $Result.GetResult<Prisma.$NationalityPayload, S>
+
+  type NationalityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NationalityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NationalityCountAggregateInputType | true
+    }
+
+  export interface NationalityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Nationality'], meta: { name: 'Nationality' } }
+    /**
+     * Find zero or one Nationality that matches the filter.
+     * @param {NationalityFindUniqueArgs} args - Arguments to find a Nationality
+     * @example
+     * // Get one Nationality
+     * const nationality = await prisma.nationality.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NationalityFindUniqueArgs>(args: SelectSubset<T, NationalityFindUniqueArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Nationality that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NationalityFindUniqueOrThrowArgs} args - Arguments to find a Nationality
+     * @example
+     * // Get one Nationality
+     * const nationality = await prisma.nationality.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NationalityFindUniqueOrThrowArgs>(args: SelectSubset<T, NationalityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Nationality that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityFindFirstArgs} args - Arguments to find a Nationality
+     * @example
+     * // Get one Nationality
+     * const nationality = await prisma.nationality.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NationalityFindFirstArgs>(args?: SelectSubset<T, NationalityFindFirstArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Nationality that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityFindFirstOrThrowArgs} args - Arguments to find a Nationality
+     * @example
+     * // Get one Nationality
+     * const nationality = await prisma.nationality.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NationalityFindFirstOrThrowArgs>(args?: SelectSubset<T, NationalityFindFirstOrThrowArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Nationalities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Nationalities
+     * const nationalities = await prisma.nationality.findMany()
+     * 
+     * // Get first 10 Nationalities
+     * const nationalities = await prisma.nationality.findMany({ take: 10 })
+     * 
+     * // Only select the `nationality_id`
+     * const nationalityWithNationality_idOnly = await prisma.nationality.findMany({ select: { nationality_id: true } })
+     * 
+     */
+    findMany<T extends NationalityFindManyArgs>(args?: SelectSubset<T, NationalityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Nationality.
+     * @param {NationalityCreateArgs} args - Arguments to create a Nationality.
+     * @example
+     * // Create one Nationality
+     * const Nationality = await prisma.nationality.create({
+     *   data: {
+     *     // ... data to create a Nationality
+     *   }
+     * })
+     * 
+     */
+    create<T extends NationalityCreateArgs>(args: SelectSubset<T, NationalityCreateArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Nationalities.
+     * @param {NationalityCreateManyArgs} args - Arguments to create many Nationalities.
+     * @example
+     * // Create many Nationalities
+     * const nationality = await prisma.nationality.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NationalityCreateManyArgs>(args?: SelectSubset<T, NationalityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Nationalities and returns the data saved in the database.
+     * @param {NationalityCreateManyAndReturnArgs} args - Arguments to create many Nationalities.
+     * @example
+     * // Create many Nationalities
+     * const nationality = await prisma.nationality.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Nationalities and only return the `nationality_id`
+     * const nationalityWithNationality_idOnly = await prisma.nationality.createManyAndReturn({
+     *   select: { nationality_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NationalityCreateManyAndReturnArgs>(args?: SelectSubset<T, NationalityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Nationality.
+     * @param {NationalityDeleteArgs} args - Arguments to delete one Nationality.
+     * @example
+     * // Delete one Nationality
+     * const Nationality = await prisma.nationality.delete({
+     *   where: {
+     *     // ... filter to delete one Nationality
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NationalityDeleteArgs>(args: SelectSubset<T, NationalityDeleteArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Nationality.
+     * @param {NationalityUpdateArgs} args - Arguments to update one Nationality.
+     * @example
+     * // Update one Nationality
+     * const nationality = await prisma.nationality.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NationalityUpdateArgs>(args: SelectSubset<T, NationalityUpdateArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Nationalities.
+     * @param {NationalityDeleteManyArgs} args - Arguments to filter Nationalities to delete.
+     * @example
+     * // Delete a few Nationalities
+     * const { count } = await prisma.nationality.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NationalityDeleteManyArgs>(args?: SelectSubset<T, NationalityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Nationalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Nationalities
+     * const nationality = await prisma.nationality.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NationalityUpdateManyArgs>(args: SelectSubset<T, NationalityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Nationalities and returns the data updated in the database.
+     * @param {NationalityUpdateManyAndReturnArgs} args - Arguments to update many Nationalities.
+     * @example
+     * // Update many Nationalities
+     * const nationality = await prisma.nationality.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Nationalities and only return the `nationality_id`
+     * const nationalityWithNationality_idOnly = await prisma.nationality.updateManyAndReturn({
+     *   select: { nationality_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NationalityUpdateManyAndReturnArgs>(args: SelectSubset<T, NationalityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Nationality.
+     * @param {NationalityUpsertArgs} args - Arguments to update or create a Nationality.
+     * @example
+     * // Update or create a Nationality
+     * const nationality = await prisma.nationality.upsert({
+     *   create: {
+     *     // ... data to create a Nationality
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Nationality we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NationalityUpsertArgs>(args: SelectSubset<T, NationalityUpsertArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Nationalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityCountArgs} args - Arguments to filter Nationalities to count.
+     * @example
+     * // Count the number of Nationalities
+     * const count = await prisma.nationality.count({
+     *   where: {
+     *     // ... the filter for the Nationalities we want to count
+     *   }
+     * })
+    **/
+    count<T extends NationalityCountArgs>(
+      args?: Subset<T, NationalityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NationalityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Nationality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NationalityAggregateArgs>(args: Subset<T, NationalityAggregateArgs>): Prisma.PrismaPromise<GetNationalityAggregateType<T>>
+
+    /**
+     * Group by Nationality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NationalityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NationalityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NationalityGroupByArgs['orderBy'] }
+        : { orderBy?: NationalityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NationalityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNationalityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Nationality model
+   */
+  readonly fields: NationalityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Nationality.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NationalityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lga_nationalities<T extends Nationality$lga_nationalitiesArgs<ExtArgs> = {}>(args?: Subset<T, Nationality$lga_nationalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Nationality model
+   */ 
+  interface NationalityFieldRefs {
+    readonly nationality_id: FieldRef<"Nationality", 'Int'>
+    readonly nationality: FieldRef<"Nationality", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Nationality findUnique
+   */
+  export type NationalityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Nationality to fetch.
+     */
+    where: NationalityWhereUniqueInput
+  }
+
+  /**
+   * Nationality findUniqueOrThrow
+   */
+  export type NationalityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Nationality to fetch.
+     */
+    where: NationalityWhereUniqueInput
+  }
+
+  /**
+   * Nationality findFirst
+   */
+  export type NationalityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Nationality to fetch.
+     */
+    where?: NationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nationalities to fetch.
+     */
+    orderBy?: NationalityOrderByWithRelationInput | NationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Nationalities.
+     */
+    cursor?: NationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Nationalities.
+     */
+    distinct?: NationalityScalarFieldEnum | NationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Nationality findFirstOrThrow
+   */
+  export type NationalityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Nationality to fetch.
+     */
+    where?: NationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nationalities to fetch.
+     */
+    orderBy?: NationalityOrderByWithRelationInput | NationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Nationalities.
+     */
+    cursor?: NationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Nationalities.
+     */
+    distinct?: NationalityScalarFieldEnum | NationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Nationality findMany
+   */
+  export type NationalityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Nationalities to fetch.
+     */
+    where?: NationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nationalities to fetch.
+     */
+    orderBy?: NationalityOrderByWithRelationInput | NationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Nationalities.
+     */
+    cursor?: NationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nationalities.
+     */
+    skip?: number
+    distinct?: NationalityScalarFieldEnum | NationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Nationality create
+   */
+  export type NationalityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Nationality.
+     */
+    data: XOR<NationalityCreateInput, NationalityUncheckedCreateInput>
+  }
+
+  /**
+   * Nationality createMany
+   */
+  export type NationalityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Nationalities.
+     */
+    data: NationalityCreateManyInput | NationalityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Nationality createManyAndReturn
+   */
+  export type NationalityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * The data used to create many Nationalities.
+     */
+    data: NationalityCreateManyInput | NationalityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Nationality update
+   */
+  export type NationalityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Nationality.
+     */
+    data: XOR<NationalityUpdateInput, NationalityUncheckedUpdateInput>
+    /**
+     * Choose, which Nationality to update.
+     */
+    where: NationalityWhereUniqueInput
+  }
+
+  /**
+   * Nationality updateMany
+   */
+  export type NationalityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Nationalities.
+     */
+    data: XOR<NationalityUpdateManyMutationInput, NationalityUncheckedUpdateManyInput>
+    /**
+     * Filter which Nationalities to update
+     */
+    where?: NationalityWhereInput
+    /**
+     * Limit how many Nationalities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nationality updateManyAndReturn
+   */
+  export type NationalityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * The data used to update Nationalities.
+     */
+    data: XOR<NationalityUpdateManyMutationInput, NationalityUncheckedUpdateManyInput>
+    /**
+     * Filter which Nationalities to update
+     */
+    where?: NationalityWhereInput
+    /**
+     * Limit how many Nationalities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nationality upsert
+   */
+  export type NationalityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Nationality to update in case it exists.
+     */
+    where: NationalityWhereUniqueInput
+    /**
+     * In case the Nationality found by the `where` argument doesn't exist, create a new Nationality with this data.
+     */
+    create: XOR<NationalityCreateInput, NationalityUncheckedCreateInput>
+    /**
+     * In case the Nationality was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NationalityUpdateInput, NationalityUncheckedUpdateInput>
+  }
+
+  /**
+   * Nationality delete
+   */
+  export type NationalityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+    /**
+     * Filter which Nationality to delete.
+     */
+    where: NationalityWhereUniqueInput
+  }
+
+  /**
+   * Nationality deleteMany
+   */
+  export type NationalityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Nationalities to delete
+     */
+    where?: NationalityWhereInput
+    /**
+     * Limit how many Nationalities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nationality.lga_nationalities
+   */
+  export type Nationality$lga_nationalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    where?: LgaNationalityWhereInput
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    cursor?: LgaNationalityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Nationality without action
+   */
+  export type NationalityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nationality
+     */
+    select?: NationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nationality
+     */
+    omit?: NationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NationalityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LgaNationality
+   */
+
+  export type AggregateLgaNationality = {
+    _count: LgaNationalityCountAggregateOutputType | null
+    _avg: LgaNationalityAvgAggregateOutputType | null
+    _sum: LgaNationalitySumAggregateOutputType | null
+    _min: LgaNationalityMinAggregateOutputType | null
+    _max: LgaNationalityMaxAggregateOutputType | null
+  }
+
+  export type LgaNationalityAvgAggregateOutputType = {
+    lga_nationality_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    count: number | null
+  }
+
+  export type LgaNationalitySumAggregateOutputType = {
+    lga_nationality_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityMinAggregateOutputType = {
+    lga_nationality_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityMaxAggregateOutputType = {
+    lga_nationality_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityCountAggregateOutputType = {
+    lga_nationality_id: number
+    lga_code: number
+    nationality_id: number
+    count: number
+    _all: number
+  }
+
+
+  export type LgaNationalityAvgAggregateInputType = {
+    lga_nationality_id?: true
+    lga_code?: true
+    nationality_id?: true
+    count?: true
+  }
+
+  export type LgaNationalitySumAggregateInputType = {
+    lga_nationality_id?: true
+    lga_code?: true
+    nationality_id?: true
+    count?: true
+  }
+
+  export type LgaNationalityMinAggregateInputType = {
+    lga_nationality_id?: true
+    lga_code?: true
+    nationality_id?: true
+    count?: true
+  }
+
+  export type LgaNationalityMaxAggregateInputType = {
+    lga_nationality_id?: true
+    lga_code?: true
+    nationality_id?: true
+    count?: true
+  }
+
+  export type LgaNationalityCountAggregateInputType = {
+    lga_nationality_id?: true
+    lga_code?: true
+    nationality_id?: true
+    count?: true
+    _all?: true
+  }
+
+  export type LgaNationalityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaNationality to aggregate.
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalities to fetch.
+     */
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LgaNationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LgaNationalities
+    **/
+    _count?: true | LgaNationalityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LgaNationalityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LgaNationalitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LgaNationalityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LgaNationalityMaxAggregateInputType
+  }
+
+  export type GetLgaNationalityAggregateType<T extends LgaNationalityAggregateArgs> = {
+        [P in keyof T & keyof AggregateLgaNationality]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLgaNationality[P]>
+      : GetScalarType<T[P], AggregateLgaNationality[P]>
+  }
+
+
+
+
+  export type LgaNationalityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityWhereInput
+    orderBy?: LgaNationalityOrderByWithAggregationInput | LgaNationalityOrderByWithAggregationInput[]
+    by: LgaNationalityScalarFieldEnum[] | LgaNationalityScalarFieldEnum
+    having?: LgaNationalityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LgaNationalityCountAggregateInputType | true
+    _avg?: LgaNationalityAvgAggregateInputType
+    _sum?: LgaNationalitySumAggregateInputType
+    _min?: LgaNationalityMinAggregateInputType
+    _max?: LgaNationalityMaxAggregateInputType
+  }
+
+  export type LgaNationalityGroupByOutputType = {
+    lga_nationality_id: number
+    lga_code: number
+    nationality_id: number
+    count: number
+    _count: LgaNationalityCountAggregateOutputType | null
+    _avg: LgaNationalityAvgAggregateOutputType | null
+    _sum: LgaNationalitySumAggregateOutputType | null
+    _min: LgaNationalityMinAggregateOutputType | null
+    _max: LgaNationalityMaxAggregateOutputType | null
+  }
+
+  type GetLgaNationalityGroupByPayload<T extends LgaNationalityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LgaNationalityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LgaNationalityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LgaNationalityGroupByOutputType[P]>
+            : GetScalarType<T[P], LgaNationalityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LgaNationalitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    count?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationality"]>
+
+  export type LgaNationalitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    count?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationality"]>
+
+  export type LgaNationalitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    count?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationality"]>
+
+  export type LgaNationalitySelectScalar = {
+    lga_nationality_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    count?: boolean
+  }
+
+  export type LgaNationalityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_nationality_id" | "lga_code" | "nationality_id" | "count", ExtArgs["result"]["lgaNationality"]>
+  export type LgaNationalityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+  export type LgaNationalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+  export type LgaNationalityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+    nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+
+  export type $LgaNationalityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LgaNationality"
+    objects: {
+      lga: Prisma.$LgaPayload<ExtArgs>
+      nationality: Prisma.$NationalityPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_nationality_id: number
+      lga_code: number
+      nationality_id: number
+      count: number
+    }, ExtArgs["result"]["lgaNationality"]>
+    composites: {}
+  }
+
+  type LgaNationalityGetPayload<S extends boolean | null | undefined | LgaNationalityDefaultArgs> = $Result.GetResult<Prisma.$LgaNationalityPayload, S>
+
+  type LgaNationalityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LgaNationalityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LgaNationalityCountAggregateInputType | true
+    }
+
+  export interface LgaNationalityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LgaNationality'], meta: { name: 'LgaNationality' } }
+    /**
+     * Find zero or one LgaNationality that matches the filter.
+     * @param {LgaNationalityFindUniqueArgs} args - Arguments to find a LgaNationality
+     * @example
+     * // Get one LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LgaNationalityFindUniqueArgs>(args: SelectSubset<T, LgaNationalityFindUniqueArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LgaNationality that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LgaNationalityFindUniqueOrThrowArgs} args - Arguments to find a LgaNationality
+     * @example
+     * // Get one LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LgaNationalityFindUniqueOrThrowArgs>(args: SelectSubset<T, LgaNationalityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaNationality that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityFindFirstArgs} args - Arguments to find a LgaNationality
+     * @example
+     * // Get one LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LgaNationalityFindFirstArgs>(args?: SelectSubset<T, LgaNationalityFindFirstArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaNationality that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityFindFirstOrThrowArgs} args - Arguments to find a LgaNationality
+     * @example
+     * // Get one LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LgaNationalityFindFirstOrThrowArgs>(args?: SelectSubset<T, LgaNationalityFindFirstOrThrowArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LgaNationalities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LgaNationalities
+     * const lgaNationalities = await prisma.lgaNationality.findMany()
+     * 
+     * // Get first 10 LgaNationalities
+     * const lgaNationalities = await prisma.lgaNationality.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_nationality_id`
+     * const lgaNationalityWithLga_nationality_idOnly = await prisma.lgaNationality.findMany({ select: { lga_nationality_id: true } })
+     * 
+     */
+    findMany<T extends LgaNationalityFindManyArgs>(args?: SelectSubset<T, LgaNationalityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LgaNationality.
+     * @param {LgaNationalityCreateArgs} args - Arguments to create a LgaNationality.
+     * @example
+     * // Create one LgaNationality
+     * const LgaNationality = await prisma.lgaNationality.create({
+     *   data: {
+     *     // ... data to create a LgaNationality
+     *   }
+     * })
+     * 
+     */
+    create<T extends LgaNationalityCreateArgs>(args: SelectSubset<T, LgaNationalityCreateArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LgaNationalities.
+     * @param {LgaNationalityCreateManyArgs} args - Arguments to create many LgaNationalities.
+     * @example
+     * // Create many LgaNationalities
+     * const lgaNationality = await prisma.lgaNationality.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LgaNationalityCreateManyArgs>(args?: SelectSubset<T, LgaNationalityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LgaNationalities and returns the data saved in the database.
+     * @param {LgaNationalityCreateManyAndReturnArgs} args - Arguments to create many LgaNationalities.
+     * @example
+     * // Create many LgaNationalities
+     * const lgaNationality = await prisma.lgaNationality.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LgaNationalities and only return the `lga_nationality_id`
+     * const lgaNationalityWithLga_nationality_idOnly = await prisma.lgaNationality.createManyAndReturn({
+     *   select: { lga_nationality_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LgaNationalityCreateManyAndReturnArgs>(args?: SelectSubset<T, LgaNationalityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LgaNationality.
+     * @param {LgaNationalityDeleteArgs} args - Arguments to delete one LgaNationality.
+     * @example
+     * // Delete one LgaNationality
+     * const LgaNationality = await prisma.lgaNationality.delete({
+     *   where: {
+     *     // ... filter to delete one LgaNationality
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LgaNationalityDeleteArgs>(args: SelectSubset<T, LgaNationalityDeleteArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LgaNationality.
+     * @param {LgaNationalityUpdateArgs} args - Arguments to update one LgaNationality.
+     * @example
+     * // Update one LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LgaNationalityUpdateArgs>(args: SelectSubset<T, LgaNationalityUpdateArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LgaNationalities.
+     * @param {LgaNationalityDeleteManyArgs} args - Arguments to filter LgaNationalities to delete.
+     * @example
+     * // Delete a few LgaNationalities
+     * const { count } = await prisma.lgaNationality.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LgaNationalityDeleteManyArgs>(args?: SelectSubset<T, LgaNationalityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaNationalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LgaNationalities
+     * const lgaNationality = await prisma.lgaNationality.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LgaNationalityUpdateManyArgs>(args: SelectSubset<T, LgaNationalityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaNationalities and returns the data updated in the database.
+     * @param {LgaNationalityUpdateManyAndReturnArgs} args - Arguments to update many LgaNationalities.
+     * @example
+     * // Update many LgaNationalities
+     * const lgaNationality = await prisma.lgaNationality.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LgaNationalities and only return the `lga_nationality_id`
+     * const lgaNationalityWithLga_nationality_idOnly = await prisma.lgaNationality.updateManyAndReturn({
+     *   select: { lga_nationality_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LgaNationalityUpdateManyAndReturnArgs>(args: SelectSubset<T, LgaNationalityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LgaNationality.
+     * @param {LgaNationalityUpsertArgs} args - Arguments to update or create a LgaNationality.
+     * @example
+     * // Update or create a LgaNationality
+     * const lgaNationality = await prisma.lgaNationality.upsert({
+     *   create: {
+     *     // ... data to create a LgaNationality
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LgaNationality we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LgaNationalityUpsertArgs>(args: SelectSubset<T, LgaNationalityUpsertArgs<ExtArgs>>): Prisma__LgaNationalityClient<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LgaNationalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityCountArgs} args - Arguments to filter LgaNationalities to count.
+     * @example
+     * // Count the number of LgaNationalities
+     * const count = await prisma.lgaNationality.count({
+     *   where: {
+     *     // ... the filter for the LgaNationalities we want to count
+     *   }
+     * })
+    **/
+    count<T extends LgaNationalityCountArgs>(
+      args?: Subset<T, LgaNationalityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LgaNationalityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LgaNationality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LgaNationalityAggregateArgs>(args: Subset<T, LgaNationalityAggregateArgs>): Prisma.PrismaPromise<GetLgaNationalityAggregateType<T>>
+
+    /**
+     * Group by LgaNationality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LgaNationalityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LgaNationalityGroupByArgs['orderBy'] }
+        : { orderBy?: LgaNationalityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LgaNationalityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLgaNationalityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LgaNationality model
+   */
+  readonly fields: LgaNationalityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LgaNationality.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LgaNationalityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    nationality<T extends NationalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NationalityDefaultArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LgaNationality model
+   */ 
+  interface LgaNationalityFieldRefs {
+    readonly lga_nationality_id: FieldRef<"LgaNationality", 'Int'>
+    readonly lga_code: FieldRef<"LgaNationality", 'Int'>
+    readonly nationality_id: FieldRef<"LgaNationality", 'Int'>
+    readonly count: FieldRef<"LgaNationality", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LgaNationality findUnique
+   */
+  export type LgaNationalityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationality to fetch.
+     */
+    where: LgaNationalityWhereUniqueInput
+  }
+
+  /**
+   * LgaNationality findUniqueOrThrow
+   */
+  export type LgaNationalityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationality to fetch.
+     */
+    where: LgaNationalityWhereUniqueInput
+  }
+
+  /**
+   * LgaNationality findFirst
+   */
+  export type LgaNationalityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationality to fetch.
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalities to fetch.
+     */
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaNationalities.
+     */
+    cursor?: LgaNationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaNationalities.
+     */
+    distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationality findFirstOrThrow
+   */
+  export type LgaNationalityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationality to fetch.
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalities to fetch.
+     */
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaNationalities.
+     */
+    cursor?: LgaNationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaNationalities.
+     */
+    distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationality findMany
+   */
+  export type LgaNationalityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalities to fetch.
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalities to fetch.
+     */
+    orderBy?: LgaNationalityOrderByWithRelationInput | LgaNationalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LgaNationalities.
+     */
+    cursor?: LgaNationalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalities.
+     */
+    skip?: number
+    distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationality create
+   */
+  export type LgaNationalityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LgaNationality.
+     */
+    data: XOR<LgaNationalityCreateInput, LgaNationalityUncheckedCreateInput>
+  }
+
+  /**
+   * LgaNationality createMany
+   */
+  export type LgaNationalityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LgaNationalities.
+     */
+    data: LgaNationalityCreateManyInput | LgaNationalityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LgaNationality createManyAndReturn
+   */
+  export type LgaNationalityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * The data used to create many LgaNationalities.
+     */
+    data: LgaNationalityCreateManyInput | LgaNationalityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaNationality update
+   */
+  export type LgaNationalityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LgaNationality.
+     */
+    data: XOR<LgaNationalityUpdateInput, LgaNationalityUncheckedUpdateInput>
+    /**
+     * Choose, which LgaNationality to update.
+     */
+    where: LgaNationalityWhereUniqueInput
+  }
+
+  /**
+   * LgaNationality updateMany
+   */
+  export type LgaNationalityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LgaNationalities.
+     */
+    data: XOR<LgaNationalityUpdateManyMutationInput, LgaNationalityUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaNationalities to update
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * Limit how many LgaNationalities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaNationality updateManyAndReturn
+   */
+  export type LgaNationalityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * The data used to update LgaNationalities.
+     */
+    data: XOR<LgaNationalityUpdateManyMutationInput, LgaNationalityUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaNationalities to update
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * Limit how many LgaNationalities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaNationality upsert
+   */
+  export type LgaNationalityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LgaNationality to update in case it exists.
+     */
+    where: LgaNationalityWhereUniqueInput
+    /**
+     * In case the LgaNationality found by the `where` argument doesn't exist, create a new LgaNationality with this data.
+     */
+    create: XOR<LgaNationalityCreateInput, LgaNationalityUncheckedCreateInput>
+    /**
+     * In case the LgaNationality was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LgaNationalityUpdateInput, LgaNationalityUncheckedUpdateInput>
+  }
+
+  /**
+   * LgaNationality delete
+   */
+  export type LgaNationalityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+    /**
+     * Filter which LgaNationality to delete.
+     */
+    where: LgaNationalityWhereUniqueInput
+  }
+
+  /**
+   * LgaNationality deleteMany
+   */
+  export type LgaNationalityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaNationalities to delete
+     */
+    where?: LgaNationalityWhereInput
+    /**
+     * Limit how many LgaNationalities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaNationality without action
+   */
+  export type LgaNationalityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationality
+     */
+    select?: LgaNationalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationality
+     */
+    omit?: LgaNationalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CouncilInfo
+   */
+
+  export type AggregateCouncilInfo = {
+    _count: CouncilInfoCountAggregateOutputType | null
+    _avg: CouncilInfoAvgAggregateOutputType | null
+    _sum: CouncilInfoSumAggregateOutputType | null
+    _min: CouncilInfoMinAggregateOutputType | null
+    _max: CouncilInfoMaxAggregateOutputType | null
+  }
+
+  export type CouncilInfoAvgAggregateOutputType = {
+    lga_code: number | null
+    postcode: number | null
+  }
+
+  export type CouncilInfoSumAggregateOutputType = {
+    lga_code: number | null
+    postcode: number | null
+  }
+
+  export type CouncilInfoMinAggregateOutputType = {
+    lga_code: number | null
+    council_name: string | null
+    council_info: string | null
+    address: string | null
+    suburb: string | null
+    postcode: number | null
+    phone: string | null
+    email: string | null
+    website: string | null
+  }
+
+  export type CouncilInfoMaxAggregateOutputType = {
+    lga_code: number | null
+    council_name: string | null
+    council_info: string | null
+    address: string | null
+    suburb: string | null
+    postcode: number | null
+    phone: string | null
+    email: string | null
+    website: string | null
+  }
+
+  export type CouncilInfoCountAggregateOutputType = {
+    lga_code: number
+    council_name: number
+    council_info: number
+    address: number
+    suburb: number
+    postcode: number
+    phone: number
+    email: number
+    website: number
+    _all: number
+  }
+
+
+  export type CouncilInfoAvgAggregateInputType = {
+    lga_code?: true
+    postcode?: true
+  }
+
+  export type CouncilInfoSumAggregateInputType = {
+    lga_code?: true
+    postcode?: true
+  }
+
+  export type CouncilInfoMinAggregateInputType = {
+    lga_code?: true
+    council_name?: true
+    council_info?: true
+    address?: true
+    suburb?: true
+    postcode?: true
+    phone?: true
+    email?: true
+    website?: true
+  }
+
+  export type CouncilInfoMaxAggregateInputType = {
+    lga_code?: true
+    council_name?: true
+    council_info?: true
+    address?: true
+    suburb?: true
+    postcode?: true
+    phone?: true
+    email?: true
+    website?: true
+  }
+
+  export type CouncilInfoCountAggregateInputType = {
+    lga_code?: true
+    council_name?: true
+    council_info?: true
+    address?: true
+    suburb?: true
+    postcode?: true
+    phone?: true
+    email?: true
+    website?: true
+    _all?: true
+  }
+
+  export type CouncilInfoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CouncilInfo to aggregate.
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CouncilInfos to fetch.
+     */
+    orderBy?: CouncilInfoOrderByWithRelationInput | CouncilInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CouncilInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CouncilInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CouncilInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CouncilInfos
+    **/
+    _count?: true | CouncilInfoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CouncilInfoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CouncilInfoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CouncilInfoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CouncilInfoMaxAggregateInputType
+  }
+
+  export type GetCouncilInfoAggregateType<T extends CouncilInfoAggregateArgs> = {
+        [P in keyof T & keyof AggregateCouncilInfo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCouncilInfo[P]>
+      : GetScalarType<T[P], AggregateCouncilInfo[P]>
+  }
+
+
+
+
+  export type CouncilInfoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CouncilInfoWhereInput
+    orderBy?: CouncilInfoOrderByWithAggregationInput | CouncilInfoOrderByWithAggregationInput[]
+    by: CouncilInfoScalarFieldEnum[] | CouncilInfoScalarFieldEnum
+    having?: CouncilInfoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CouncilInfoCountAggregateInputType | true
+    _avg?: CouncilInfoAvgAggregateInputType
+    _sum?: CouncilInfoSumAggregateInputType
+    _min?: CouncilInfoMinAggregateInputType
+    _max?: CouncilInfoMaxAggregateInputType
+  }
+
+  export type CouncilInfoGroupByOutputType = {
+    lga_code: number
+    council_name: string | null
+    council_info: string | null
+    address: string | null
+    suburb: string | null
+    postcode: number | null
+    phone: string | null
+    email: string | null
+    website: string | null
+    _count: CouncilInfoCountAggregateOutputType | null
+    _avg: CouncilInfoAvgAggregateOutputType | null
+    _sum: CouncilInfoSumAggregateOutputType | null
+    _min: CouncilInfoMinAggregateOutputType | null
+    _max: CouncilInfoMaxAggregateOutputType | null
+  }
+
+  type GetCouncilInfoGroupByPayload<T extends CouncilInfoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CouncilInfoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CouncilInfoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CouncilInfoGroupByOutputType[P]>
+            : GetScalarType<T[P], CouncilInfoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CouncilInfoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    council_name?: boolean
+    council_info?: boolean
+    address?: boolean
+    suburb?: boolean
+    postcode?: boolean
+    phone?: boolean
+    email?: boolean
+    website?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["councilInfo"]>
+
+  export type CouncilInfoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    council_name?: boolean
+    council_info?: boolean
+    address?: boolean
+    suburb?: boolean
+    postcode?: boolean
+    phone?: boolean
+    email?: boolean
+    website?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["councilInfo"]>
+
+  export type CouncilInfoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    council_name?: boolean
+    council_info?: boolean
+    address?: boolean
+    suburb?: boolean
+    postcode?: boolean
+    phone?: boolean
+    email?: boolean
+    website?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["councilInfo"]>
+
+  export type CouncilInfoSelectScalar = {
+    lga_code?: boolean
+    council_name?: boolean
+    council_info?: boolean
+    address?: boolean
+    suburb?: boolean
+    postcode?: boolean
+    phone?: boolean
+    email?: boolean
+    website?: boolean
+  }
+
+  export type CouncilInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "council_name" | "council_info" | "address" | "suburb" | "postcode" | "phone" | "email" | "website", ExtArgs["result"]["councilInfo"]>
+  export type CouncilInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type CouncilInfoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type CouncilInfoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $CouncilInfoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CouncilInfo"
+    objects: {
+      lga: Prisma.$LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_code: number
+      council_name: string | null
+      council_info: string | null
+      address: string | null
+      suburb: string | null
+      postcode: number | null
+      phone: string | null
+      email: string | null
+      website: string | null
+    }, ExtArgs["result"]["councilInfo"]>
+    composites: {}
+  }
+
+  type CouncilInfoGetPayload<S extends boolean | null | undefined | CouncilInfoDefaultArgs> = $Result.GetResult<Prisma.$CouncilInfoPayload, S>
+
+  type CouncilInfoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CouncilInfoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CouncilInfoCountAggregateInputType | true
+    }
+
+  export interface CouncilInfoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CouncilInfo'], meta: { name: 'CouncilInfo' } }
+    /**
+     * Find zero or one CouncilInfo that matches the filter.
+     * @param {CouncilInfoFindUniqueArgs} args - Arguments to find a CouncilInfo
+     * @example
+     * // Get one CouncilInfo
+     * const councilInfo = await prisma.councilInfo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CouncilInfoFindUniqueArgs>(args: SelectSubset<T, CouncilInfoFindUniqueArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CouncilInfo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CouncilInfoFindUniqueOrThrowArgs} args - Arguments to find a CouncilInfo
+     * @example
+     * // Get one CouncilInfo
+     * const councilInfo = await prisma.councilInfo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CouncilInfoFindUniqueOrThrowArgs>(args: SelectSubset<T, CouncilInfoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CouncilInfo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoFindFirstArgs} args - Arguments to find a CouncilInfo
+     * @example
+     * // Get one CouncilInfo
+     * const councilInfo = await prisma.councilInfo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CouncilInfoFindFirstArgs>(args?: SelectSubset<T, CouncilInfoFindFirstArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CouncilInfo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoFindFirstOrThrowArgs} args - Arguments to find a CouncilInfo
+     * @example
+     * // Get one CouncilInfo
+     * const councilInfo = await prisma.councilInfo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CouncilInfoFindFirstOrThrowArgs>(args?: SelectSubset<T, CouncilInfoFindFirstOrThrowArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CouncilInfos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CouncilInfos
+     * const councilInfos = await prisma.councilInfo.findMany()
+     * 
+     * // Get first 10 CouncilInfos
+     * const councilInfos = await prisma.councilInfo.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_code`
+     * const councilInfoWithLga_codeOnly = await prisma.councilInfo.findMany({ select: { lga_code: true } })
+     * 
+     */
+    findMany<T extends CouncilInfoFindManyArgs>(args?: SelectSubset<T, CouncilInfoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CouncilInfo.
+     * @param {CouncilInfoCreateArgs} args - Arguments to create a CouncilInfo.
+     * @example
+     * // Create one CouncilInfo
+     * const CouncilInfo = await prisma.councilInfo.create({
+     *   data: {
+     *     // ... data to create a CouncilInfo
+     *   }
+     * })
+     * 
+     */
+    create<T extends CouncilInfoCreateArgs>(args: SelectSubset<T, CouncilInfoCreateArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CouncilInfos.
+     * @param {CouncilInfoCreateManyArgs} args - Arguments to create many CouncilInfos.
+     * @example
+     * // Create many CouncilInfos
+     * const councilInfo = await prisma.councilInfo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CouncilInfoCreateManyArgs>(args?: SelectSubset<T, CouncilInfoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CouncilInfos and returns the data saved in the database.
+     * @param {CouncilInfoCreateManyAndReturnArgs} args - Arguments to create many CouncilInfos.
+     * @example
+     * // Create many CouncilInfos
+     * const councilInfo = await prisma.councilInfo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CouncilInfos and only return the `lga_code`
+     * const councilInfoWithLga_codeOnly = await prisma.councilInfo.createManyAndReturn({
+     *   select: { lga_code: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CouncilInfoCreateManyAndReturnArgs>(args?: SelectSubset<T, CouncilInfoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CouncilInfo.
+     * @param {CouncilInfoDeleteArgs} args - Arguments to delete one CouncilInfo.
+     * @example
+     * // Delete one CouncilInfo
+     * const CouncilInfo = await prisma.councilInfo.delete({
+     *   where: {
+     *     // ... filter to delete one CouncilInfo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CouncilInfoDeleteArgs>(args: SelectSubset<T, CouncilInfoDeleteArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CouncilInfo.
+     * @param {CouncilInfoUpdateArgs} args - Arguments to update one CouncilInfo.
+     * @example
+     * // Update one CouncilInfo
+     * const councilInfo = await prisma.councilInfo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CouncilInfoUpdateArgs>(args: SelectSubset<T, CouncilInfoUpdateArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CouncilInfos.
+     * @param {CouncilInfoDeleteManyArgs} args - Arguments to filter CouncilInfos to delete.
+     * @example
+     * // Delete a few CouncilInfos
+     * const { count } = await prisma.councilInfo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CouncilInfoDeleteManyArgs>(args?: SelectSubset<T, CouncilInfoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CouncilInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CouncilInfos
+     * const councilInfo = await prisma.councilInfo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CouncilInfoUpdateManyArgs>(args: SelectSubset<T, CouncilInfoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CouncilInfos and returns the data updated in the database.
+     * @param {CouncilInfoUpdateManyAndReturnArgs} args - Arguments to update many CouncilInfos.
+     * @example
+     * // Update many CouncilInfos
+     * const councilInfo = await prisma.councilInfo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CouncilInfos and only return the `lga_code`
+     * const councilInfoWithLga_codeOnly = await prisma.councilInfo.updateManyAndReturn({
+     *   select: { lga_code: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CouncilInfoUpdateManyAndReturnArgs>(args: SelectSubset<T, CouncilInfoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CouncilInfo.
+     * @param {CouncilInfoUpsertArgs} args - Arguments to update or create a CouncilInfo.
+     * @example
+     * // Update or create a CouncilInfo
+     * const councilInfo = await prisma.councilInfo.upsert({
+     *   create: {
+     *     // ... data to create a CouncilInfo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CouncilInfo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CouncilInfoUpsertArgs>(args: SelectSubset<T, CouncilInfoUpsertArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CouncilInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoCountArgs} args - Arguments to filter CouncilInfos to count.
+     * @example
+     * // Count the number of CouncilInfos
+     * const count = await prisma.councilInfo.count({
+     *   where: {
+     *     // ... the filter for the CouncilInfos we want to count
+     *   }
+     * })
+    **/
+    count<T extends CouncilInfoCountArgs>(
+      args?: Subset<T, CouncilInfoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CouncilInfoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CouncilInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CouncilInfoAggregateArgs>(args: Subset<T, CouncilInfoAggregateArgs>): Prisma.PrismaPromise<GetCouncilInfoAggregateType<T>>
+
+    /**
+     * Group by CouncilInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CouncilInfoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CouncilInfoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CouncilInfoGroupByArgs['orderBy'] }
+        : { orderBy?: CouncilInfoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CouncilInfoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCouncilInfoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CouncilInfo model
+   */
+  readonly fields: CouncilInfoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CouncilInfo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CouncilInfoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CouncilInfo model
+   */ 
+  interface CouncilInfoFieldRefs {
+    readonly lga_code: FieldRef<"CouncilInfo", 'Int'>
+    readonly council_name: FieldRef<"CouncilInfo", 'String'>
+    readonly council_info: FieldRef<"CouncilInfo", 'String'>
+    readonly address: FieldRef<"CouncilInfo", 'String'>
+    readonly suburb: FieldRef<"CouncilInfo", 'String'>
+    readonly postcode: FieldRef<"CouncilInfo", 'Int'>
+    readonly phone: FieldRef<"CouncilInfo", 'String'>
+    readonly email: FieldRef<"CouncilInfo", 'String'>
+    readonly website: FieldRef<"CouncilInfo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CouncilInfo findUnique
+   */
+  export type CouncilInfoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which CouncilInfo to fetch.
+     */
+    where: CouncilInfoWhereUniqueInput
+  }
+
+  /**
+   * CouncilInfo findUniqueOrThrow
+   */
+  export type CouncilInfoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which CouncilInfo to fetch.
+     */
+    where: CouncilInfoWhereUniqueInput
+  }
+
+  /**
+   * CouncilInfo findFirst
+   */
+  export type CouncilInfoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which CouncilInfo to fetch.
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CouncilInfos to fetch.
+     */
+    orderBy?: CouncilInfoOrderByWithRelationInput | CouncilInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CouncilInfos.
+     */
+    cursor?: CouncilInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CouncilInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CouncilInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CouncilInfos.
+     */
+    distinct?: CouncilInfoScalarFieldEnum | CouncilInfoScalarFieldEnum[]
+  }
+
+  /**
+   * CouncilInfo findFirstOrThrow
+   */
+  export type CouncilInfoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which CouncilInfo to fetch.
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CouncilInfos to fetch.
+     */
+    orderBy?: CouncilInfoOrderByWithRelationInput | CouncilInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CouncilInfos.
+     */
+    cursor?: CouncilInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CouncilInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CouncilInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CouncilInfos.
+     */
+    distinct?: CouncilInfoScalarFieldEnum | CouncilInfoScalarFieldEnum[]
+  }
+
+  /**
+   * CouncilInfo findMany
+   */
+  export type CouncilInfoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which CouncilInfos to fetch.
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CouncilInfos to fetch.
+     */
+    orderBy?: CouncilInfoOrderByWithRelationInput | CouncilInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CouncilInfos.
+     */
+    cursor?: CouncilInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CouncilInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CouncilInfos.
+     */
+    skip?: number
+    distinct?: CouncilInfoScalarFieldEnum | CouncilInfoScalarFieldEnum[]
+  }
+
+  /**
+   * CouncilInfo create
+   */
+  export type CouncilInfoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CouncilInfo.
+     */
+    data: XOR<CouncilInfoCreateInput, CouncilInfoUncheckedCreateInput>
+  }
+
+  /**
+   * CouncilInfo createMany
+   */
+  export type CouncilInfoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CouncilInfos.
+     */
+    data: CouncilInfoCreateManyInput | CouncilInfoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CouncilInfo createManyAndReturn
+   */
+  export type CouncilInfoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * The data used to create many CouncilInfos.
+     */
+    data: CouncilInfoCreateManyInput | CouncilInfoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CouncilInfo update
+   */
+  export type CouncilInfoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CouncilInfo.
+     */
+    data: XOR<CouncilInfoUpdateInput, CouncilInfoUncheckedUpdateInput>
+    /**
+     * Choose, which CouncilInfo to update.
+     */
+    where: CouncilInfoWhereUniqueInput
+  }
+
+  /**
+   * CouncilInfo updateMany
+   */
+  export type CouncilInfoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CouncilInfos.
+     */
+    data: XOR<CouncilInfoUpdateManyMutationInput, CouncilInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which CouncilInfos to update
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * Limit how many CouncilInfos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CouncilInfo updateManyAndReturn
+   */
+  export type CouncilInfoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * The data used to update CouncilInfos.
+     */
+    data: XOR<CouncilInfoUpdateManyMutationInput, CouncilInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which CouncilInfos to update
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * Limit how many CouncilInfos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CouncilInfo upsert
+   */
+  export type CouncilInfoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CouncilInfo to update in case it exists.
+     */
+    where: CouncilInfoWhereUniqueInput
+    /**
+     * In case the CouncilInfo found by the `where` argument doesn't exist, create a new CouncilInfo with this data.
+     */
+    create: XOR<CouncilInfoCreateInput, CouncilInfoUncheckedCreateInput>
+    /**
+     * In case the CouncilInfo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CouncilInfoUpdateInput, CouncilInfoUncheckedUpdateInput>
+  }
+
+  /**
+   * CouncilInfo delete
+   */
+  export type CouncilInfoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+    /**
+     * Filter which CouncilInfo to delete.
+     */
+    where: CouncilInfoWhereUniqueInput
+  }
+
+  /**
+   * CouncilInfo deleteMany
+   */
+  export type CouncilInfoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CouncilInfos to delete
+     */
+    where?: CouncilInfoWhereInput
+    /**
+     * Limit how many CouncilInfos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CouncilInfo without action
+   */
+  export type CouncilInfoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CouncilInfo
+     */
+    select?: CouncilInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CouncilInfo
+     */
+    omit?: CouncilInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CouncilInfoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Postcode
+   */
+
+  export type AggregatePostcode = {
+    _count: PostcodeCountAggregateOutputType | null
+    _avg: PostcodeAvgAggregateOutputType | null
+    _sum: PostcodeSumAggregateOutputType | null
+    _min: PostcodeMinAggregateOutputType | null
+    _max: PostcodeMaxAggregateOutputType | null
+  }
+
+  export type PostcodeAvgAggregateOutputType = {
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type PostcodeSumAggregateOutputType = {
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type PostcodeMinAggregateOutputType = {
+    postcode: number | null
+    suburb: string | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type PostcodeMaxAggregateOutputType = {
+    postcode: number | null
+    suburb: string | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type PostcodeCountAggregateOutputType = {
+    postcode: number
+    suburb: number
+    latitude: number
+    longitude: number
+    lga_code: number
+    _all: number
+  }
+
+
+  export type PostcodeAvgAggregateInputType = {
+    postcode?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type PostcodeSumAggregateInputType = {
+    postcode?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type PostcodeMinAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type PostcodeMaxAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type PostcodeCountAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+    _all?: true
+  }
+
+  export type PostcodeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Postcode to aggregate.
+     */
+    where?: PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Postcodes to fetch.
+     */
+    orderBy?: PostcodeOrderByWithRelationInput | PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Postcodes
+    **/
+    _count?: true | PostcodeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PostcodeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PostcodeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostcodeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostcodeMaxAggregateInputType
+  }
+
+  export type GetPostcodeAggregateType<T extends PostcodeAggregateArgs> = {
+        [P in keyof T & keyof AggregatePostcode]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePostcode[P]>
+      : GetScalarType<T[P], AggregatePostcode[P]>
+  }
+
+
+
+
+  export type PostcodeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostcodeWhereInput
+    orderBy?: PostcodeOrderByWithAggregationInput | PostcodeOrderByWithAggregationInput[]
+    by: PostcodeScalarFieldEnum[] | PostcodeScalarFieldEnum
+    having?: PostcodeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostcodeCountAggregateInputType | true
+    _avg?: PostcodeAvgAggregateInputType
+    _sum?: PostcodeSumAggregateInputType
+    _min?: PostcodeMinAggregateInputType
+    _max?: PostcodeMaxAggregateInputType
+  }
+
+  export type PostcodeGroupByOutputType = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+    _count: PostcodeCountAggregateOutputType | null
+    _avg: PostcodeAvgAggregateOutputType | null
+    _sum: PostcodeSumAggregateOutputType | null
+    _min: PostcodeMinAggregateOutputType | null
+    _max: PostcodeMaxAggregateOutputType | null
+  }
+
+  type GetPostcodeGroupByPayload<T extends PostcodeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostcodeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostcodeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostcodeGroupByOutputType[P]>
+            : GetScalarType<T[P], PostcodeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostcodeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postcode"]>
+
+  export type PostcodeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postcode"]>
+
+  export type PostcodeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postcode"]>
+
+  export type PostcodeSelectScalar = {
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+  }
+
+  export type PostcodeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"postcode" | "suburb" | "latitude" | "longitude" | "lga_code", ExtArgs["result"]["postcode"]>
+  export type PostcodeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type PostcodeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type PostcodeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $PostcodePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Postcode"
+    objects: {
+      lga: Prisma.$LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      postcode: number
+      suburb: string
+      latitude: number
+      longitude: number
+      lga_code: number
+    }, ExtArgs["result"]["postcode"]>
+    composites: {}
+  }
+
+  type PostcodeGetPayload<S extends boolean | null | undefined | PostcodeDefaultArgs> = $Result.GetResult<Prisma.$PostcodePayload, S>
+
+  type PostcodeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PostcodeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PostcodeCountAggregateInputType | true
+    }
+
+  export interface PostcodeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Postcode'], meta: { name: 'Postcode' } }
+    /**
+     * Find zero or one Postcode that matches the filter.
+     * @param {PostcodeFindUniqueArgs} args - Arguments to find a Postcode
+     * @example
+     * // Get one Postcode
+     * const postcode = await prisma.postcode.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PostcodeFindUniqueArgs>(args: SelectSubset<T, PostcodeFindUniqueArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Postcode that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PostcodeFindUniqueOrThrowArgs} args - Arguments to find a Postcode
+     * @example
+     * // Get one Postcode
+     * const postcode = await prisma.postcode.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PostcodeFindUniqueOrThrowArgs>(args: SelectSubset<T, PostcodeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Postcode that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeFindFirstArgs} args - Arguments to find a Postcode
+     * @example
+     * // Get one Postcode
+     * const postcode = await prisma.postcode.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PostcodeFindFirstArgs>(args?: SelectSubset<T, PostcodeFindFirstArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Postcode that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeFindFirstOrThrowArgs} args - Arguments to find a Postcode
+     * @example
+     * // Get one Postcode
+     * const postcode = await prisma.postcode.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PostcodeFindFirstOrThrowArgs>(args?: SelectSubset<T, PostcodeFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Postcodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Postcodes
+     * const postcodes = await prisma.postcode.findMany()
+     * 
+     * // Get first 10 Postcodes
+     * const postcodes = await prisma.postcode.findMany({ take: 10 })
+     * 
+     * // Only select the `postcode`
+     * const postcodeWithPostcodeOnly = await prisma.postcode.findMany({ select: { postcode: true } })
+     * 
+     */
+    findMany<T extends PostcodeFindManyArgs>(args?: SelectSubset<T, PostcodeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Postcode.
+     * @param {PostcodeCreateArgs} args - Arguments to create a Postcode.
+     * @example
+     * // Create one Postcode
+     * const Postcode = await prisma.postcode.create({
+     *   data: {
+     *     // ... data to create a Postcode
+     *   }
+     * })
+     * 
+     */
+    create<T extends PostcodeCreateArgs>(args: SelectSubset<T, PostcodeCreateArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Postcodes.
+     * @param {PostcodeCreateManyArgs} args - Arguments to create many Postcodes.
+     * @example
+     * // Create many Postcodes
+     * const postcode = await prisma.postcode.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PostcodeCreateManyArgs>(args?: SelectSubset<T, PostcodeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Postcodes and returns the data saved in the database.
+     * @param {PostcodeCreateManyAndReturnArgs} args - Arguments to create many Postcodes.
+     * @example
+     * // Create many Postcodes
+     * const postcode = await prisma.postcode.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Postcodes and only return the `postcode`
+     * const postcodeWithPostcodeOnly = await prisma.postcode.createManyAndReturn({
+     *   select: { postcode: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PostcodeCreateManyAndReturnArgs>(args?: SelectSubset<T, PostcodeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Postcode.
+     * @param {PostcodeDeleteArgs} args - Arguments to delete one Postcode.
+     * @example
+     * // Delete one Postcode
+     * const Postcode = await prisma.postcode.delete({
+     *   where: {
+     *     // ... filter to delete one Postcode
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PostcodeDeleteArgs>(args: SelectSubset<T, PostcodeDeleteArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Postcode.
+     * @param {PostcodeUpdateArgs} args - Arguments to update one Postcode.
+     * @example
+     * // Update one Postcode
+     * const postcode = await prisma.postcode.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PostcodeUpdateArgs>(args: SelectSubset<T, PostcodeUpdateArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Postcodes.
+     * @param {PostcodeDeleteManyArgs} args - Arguments to filter Postcodes to delete.
+     * @example
+     * // Delete a few Postcodes
+     * const { count } = await prisma.postcode.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PostcodeDeleteManyArgs>(args?: SelectSubset<T, PostcodeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Postcodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Postcodes
+     * const postcode = await prisma.postcode.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PostcodeUpdateManyArgs>(args: SelectSubset<T, PostcodeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Postcodes and returns the data updated in the database.
+     * @param {PostcodeUpdateManyAndReturnArgs} args - Arguments to update many Postcodes.
+     * @example
+     * // Update many Postcodes
+     * const postcode = await prisma.postcode.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Postcodes and only return the `postcode`
+     * const postcodeWithPostcodeOnly = await prisma.postcode.updateManyAndReturn({
+     *   select: { postcode: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PostcodeUpdateManyAndReturnArgs>(args: SelectSubset<T, PostcodeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Postcode.
+     * @param {PostcodeUpsertArgs} args - Arguments to update or create a Postcode.
+     * @example
+     * // Update or create a Postcode
+     * const postcode = await prisma.postcode.upsert({
+     *   create: {
+     *     // ... data to create a Postcode
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Postcode we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PostcodeUpsertArgs>(args: SelectSubset<T, PostcodeUpsertArgs<ExtArgs>>): Prisma__PostcodeClient<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Postcodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeCountArgs} args - Arguments to filter Postcodes to count.
+     * @example
+     * // Count the number of Postcodes
+     * const count = await prisma.postcode.count({
+     *   where: {
+     *     // ... the filter for the Postcodes we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostcodeCountArgs>(
+      args?: Subset<T, PostcodeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostcodeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Postcode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostcodeAggregateArgs>(args: Subset<T, PostcodeAggregateArgs>): Prisma.PrismaPromise<GetPostcodeAggregateType<T>>
+
+    /**
+     * Group by Postcode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostcodeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostcodeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostcodeGroupByArgs['orderBy'] }
+        : { orderBy?: PostcodeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostcodeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostcodeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Postcode model
+   */
+  readonly fields: PostcodeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Postcode.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostcodeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Postcode model
+   */ 
+  interface PostcodeFieldRefs {
+    readonly postcode: FieldRef<"Postcode", 'Int'>
+    readonly suburb: FieldRef<"Postcode", 'String'>
+    readonly latitude: FieldRef<"Postcode", 'Float'>
+    readonly longitude: FieldRef<"Postcode", 'Float'>
+    readonly lga_code: FieldRef<"Postcode", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Postcode findUnique
+   */
+  export type PostcodeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which Postcode to fetch.
+     */
+    where: PostcodeWhereUniqueInput
+  }
+
+  /**
+   * Postcode findUniqueOrThrow
+   */
+  export type PostcodeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which Postcode to fetch.
+     */
+    where: PostcodeWhereUniqueInput
+  }
+
+  /**
+   * Postcode findFirst
+   */
+  export type PostcodeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which Postcode to fetch.
+     */
+    where?: PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Postcodes to fetch.
+     */
+    orderBy?: PostcodeOrderByWithRelationInput | PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Postcodes.
+     */
+    cursor?: PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Postcodes.
+     */
+    distinct?: PostcodeScalarFieldEnum | PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * Postcode findFirstOrThrow
+   */
+  export type PostcodeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which Postcode to fetch.
+     */
+    where?: PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Postcodes to fetch.
+     */
+    orderBy?: PostcodeOrderByWithRelationInput | PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Postcodes.
+     */
+    cursor?: PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Postcodes.
+     */
+    distinct?: PostcodeScalarFieldEnum | PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * Postcode findMany
+   */
+  export type PostcodeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which Postcodes to fetch.
+     */
+    where?: PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Postcodes to fetch.
+     */
+    orderBy?: PostcodeOrderByWithRelationInput | PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Postcodes.
+     */
+    cursor?: PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Postcodes.
+     */
+    skip?: number
+    distinct?: PostcodeScalarFieldEnum | PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * Postcode create
+   */
+  export type PostcodeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Postcode.
+     */
+    data: XOR<PostcodeCreateInput, PostcodeUncheckedCreateInput>
+  }
+
+  /**
+   * Postcode createMany
+   */
+  export type PostcodeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Postcodes.
+     */
+    data: PostcodeCreateManyInput | PostcodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Postcode createManyAndReturn
+   */
+  export type PostcodeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Postcodes.
+     */
+    data: PostcodeCreateManyInput | PostcodeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Postcode update
+   */
+  export type PostcodeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Postcode.
+     */
+    data: XOR<PostcodeUpdateInput, PostcodeUncheckedUpdateInput>
+    /**
+     * Choose, which Postcode to update.
+     */
+    where: PostcodeWhereUniqueInput
+  }
+
+  /**
+   * Postcode updateMany
+   */
+  export type PostcodeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Postcodes.
+     */
+    data: XOR<PostcodeUpdateManyMutationInput, PostcodeUncheckedUpdateManyInput>
+    /**
+     * Filter which Postcodes to update
+     */
+    where?: PostcodeWhereInput
+    /**
+     * Limit how many Postcodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Postcode updateManyAndReturn
+   */
+  export type PostcodeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * The data used to update Postcodes.
+     */
+    data: XOR<PostcodeUpdateManyMutationInput, PostcodeUncheckedUpdateManyInput>
+    /**
+     * Filter which Postcodes to update
+     */
+    where?: PostcodeWhereInput
+    /**
+     * Limit how many Postcodes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Postcode upsert
+   */
+  export type PostcodeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Postcode to update in case it exists.
+     */
+    where: PostcodeWhereUniqueInput
+    /**
+     * In case the Postcode found by the `where` argument doesn't exist, create a new Postcode with this data.
+     */
+    create: XOR<PostcodeCreateInput, PostcodeUncheckedCreateInput>
+    /**
+     * In case the Postcode was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostcodeUpdateInput, PostcodeUncheckedUpdateInput>
+  }
+
+  /**
+   * Postcode delete
+   */
+  export type PostcodeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter which Postcode to delete.
+     */
+    where: PostcodeWhereUniqueInput
+  }
+
+  /**
+   * Postcode deleteMany
+   */
+  export type PostcodeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Postcodes to delete
+     */
+    where?: PostcodeWhereInput
+    /**
+     * Limit how many Postcodes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Postcode without action
+   */
+  export type PostcodeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Postcode
+     */
+    select?: PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Postcode
+     */
+    omit?: PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostcodeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Language
+   */
+
+  export type AggregateLanguage = {
+    _count: LanguageCountAggregateOutputType | null
+    _avg: LanguageAvgAggregateOutputType | null
+    _sum: LanguageSumAggregateOutputType | null
+    _min: LanguageMinAggregateOutputType | null
+    _max: LanguageMaxAggregateOutputType | null
+  }
+
+  export type LanguageAvgAggregateOutputType = {
+    language_id: number | null
+  }
+
+  export type LanguageSumAggregateOutputType = {
+    language_id: number | null
+  }
+
+  export type LanguageMinAggregateOutputType = {
+    language_id: number | null
+    language: string | null
+  }
+
+  export type LanguageMaxAggregateOutputType = {
+    language_id: number | null
+    language: string | null
+  }
+
+  export type LanguageCountAggregateOutputType = {
+    language_id: number
+    language: number
+    _all: number
+  }
+
+
+  export type LanguageAvgAggregateInputType = {
+    language_id?: true
+  }
+
+  export type LanguageSumAggregateInputType = {
+    language_id?: true
+  }
+
+  export type LanguageMinAggregateInputType = {
+    language_id?: true
+    language?: true
+  }
+
+  export type LanguageMaxAggregateInputType = {
+    language_id?: true
+    language?: true
+  }
+
+  export type LanguageCountAggregateInputType = {
+    language_id?: true
+    language?: true
+    _all?: true
+  }
+
+  export type LanguageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Language to aggregate.
+     */
+    where?: LanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Languages to fetch.
+     */
+    orderBy?: LanguageOrderByWithRelationInput | LanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Languages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Languages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Languages
+    **/
+    _count?: true | LanguageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LanguageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LanguageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LanguageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LanguageMaxAggregateInputType
+  }
+
+  export type GetLanguageAggregateType<T extends LanguageAggregateArgs> = {
+        [P in keyof T & keyof AggregateLanguage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLanguage[P]>
+      : GetScalarType<T[P], AggregateLanguage[P]>
+  }
+
+
+
+
+  export type LanguageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LanguageWhereInput
+    orderBy?: LanguageOrderByWithAggregationInput | LanguageOrderByWithAggregationInput[]
+    by: LanguageScalarFieldEnum[] | LanguageScalarFieldEnum
+    having?: LanguageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LanguageCountAggregateInputType | true
+    _avg?: LanguageAvgAggregateInputType
+    _sum?: LanguageSumAggregateInputType
+    _min?: LanguageMinAggregateInputType
+    _max?: LanguageMaxAggregateInputType
+  }
+
+  export type LanguageGroupByOutputType = {
+    language_id: number
+    language: string | null
+    _count: LanguageCountAggregateOutputType | null
+    _avg: LanguageAvgAggregateOutputType | null
+    _sum: LanguageSumAggregateOutputType | null
+    _min: LanguageMinAggregateOutputType | null
+    _max: LanguageMaxAggregateOutputType | null
+  }
+
+  type GetLanguageGroupByPayload<T extends LanguageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LanguageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LanguageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LanguageGroupByOutputType[P]>
+            : GetScalarType<T[P], LanguageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LanguageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    language_id?: boolean
+    language?: boolean
+    proficiencies?: boolean | Language$proficienciesArgs<ExtArgs>
+    _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["language"]>
+
+  export type LanguageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    language_id?: boolean
+    language?: boolean
+  }, ExtArgs["result"]["language"]>
+
+  export type LanguageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    language_id?: boolean
+    language?: boolean
+  }, ExtArgs["result"]["language"]>
+
+  export type LanguageSelectScalar = {
+    language_id?: boolean
+    language?: boolean
+  }
+
+  export type LanguageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"language_id" | "language", ExtArgs["result"]["language"]>
+  export type LanguageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    proficiencies?: boolean | Language$proficienciesArgs<ExtArgs>
+    _count?: boolean | LanguageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LanguageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LanguageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $LanguagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Language"
+    objects: {
+      proficiencies: Prisma.$LgaLanguageProficiencyPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      language_id: number
+      language: string | null
+    }, ExtArgs["result"]["language"]>
+    composites: {}
+  }
+
+  type LanguageGetPayload<S extends boolean | null | undefined | LanguageDefaultArgs> = $Result.GetResult<Prisma.$LanguagePayload, S>
+
+  type LanguageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LanguageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LanguageCountAggregateInputType | true
+    }
+
+  export interface LanguageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Language'], meta: { name: 'Language' } }
+    /**
+     * Find zero or one Language that matches the filter.
+     * @param {LanguageFindUniqueArgs} args - Arguments to find a Language
+     * @example
+     * // Get one Language
+     * const language = await prisma.language.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LanguageFindUniqueArgs>(args: SelectSubset<T, LanguageFindUniqueArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Language that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LanguageFindUniqueOrThrowArgs} args - Arguments to find a Language
+     * @example
+     * // Get one Language
+     * const language = await prisma.language.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LanguageFindUniqueOrThrowArgs>(args: SelectSubset<T, LanguageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Language that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageFindFirstArgs} args - Arguments to find a Language
+     * @example
+     * // Get one Language
+     * const language = await prisma.language.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LanguageFindFirstArgs>(args?: SelectSubset<T, LanguageFindFirstArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Language that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageFindFirstOrThrowArgs} args - Arguments to find a Language
+     * @example
+     * // Get one Language
+     * const language = await prisma.language.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LanguageFindFirstOrThrowArgs>(args?: SelectSubset<T, LanguageFindFirstOrThrowArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Languages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Languages
+     * const languages = await prisma.language.findMany()
+     * 
+     * // Get first 10 Languages
+     * const languages = await prisma.language.findMany({ take: 10 })
+     * 
+     * // Only select the `language_id`
+     * const languageWithLanguage_idOnly = await prisma.language.findMany({ select: { language_id: true } })
+     * 
+     */
+    findMany<T extends LanguageFindManyArgs>(args?: SelectSubset<T, LanguageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Language.
+     * @param {LanguageCreateArgs} args - Arguments to create a Language.
+     * @example
+     * // Create one Language
+     * const Language = await prisma.language.create({
+     *   data: {
+     *     // ... data to create a Language
+     *   }
+     * })
+     * 
+     */
+    create<T extends LanguageCreateArgs>(args: SelectSubset<T, LanguageCreateArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Languages.
+     * @param {LanguageCreateManyArgs} args - Arguments to create many Languages.
+     * @example
+     * // Create many Languages
+     * const language = await prisma.language.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LanguageCreateManyArgs>(args?: SelectSubset<T, LanguageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Languages and returns the data saved in the database.
+     * @param {LanguageCreateManyAndReturnArgs} args - Arguments to create many Languages.
+     * @example
+     * // Create many Languages
+     * const language = await prisma.language.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Languages and only return the `language_id`
+     * const languageWithLanguage_idOnly = await prisma.language.createManyAndReturn({
+     *   select: { language_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LanguageCreateManyAndReturnArgs>(args?: SelectSubset<T, LanguageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Language.
+     * @param {LanguageDeleteArgs} args - Arguments to delete one Language.
+     * @example
+     * // Delete one Language
+     * const Language = await prisma.language.delete({
+     *   where: {
+     *     // ... filter to delete one Language
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LanguageDeleteArgs>(args: SelectSubset<T, LanguageDeleteArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Language.
+     * @param {LanguageUpdateArgs} args - Arguments to update one Language.
+     * @example
+     * // Update one Language
+     * const language = await prisma.language.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LanguageUpdateArgs>(args: SelectSubset<T, LanguageUpdateArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Languages.
+     * @param {LanguageDeleteManyArgs} args - Arguments to filter Languages to delete.
+     * @example
+     * // Delete a few Languages
+     * const { count } = await prisma.language.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LanguageDeleteManyArgs>(args?: SelectSubset<T, LanguageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Languages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Languages
+     * const language = await prisma.language.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LanguageUpdateManyArgs>(args: SelectSubset<T, LanguageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Languages and returns the data updated in the database.
+     * @param {LanguageUpdateManyAndReturnArgs} args - Arguments to update many Languages.
+     * @example
+     * // Update many Languages
+     * const language = await prisma.language.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Languages and only return the `language_id`
+     * const languageWithLanguage_idOnly = await prisma.language.updateManyAndReturn({
+     *   select: { language_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LanguageUpdateManyAndReturnArgs>(args: SelectSubset<T, LanguageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Language.
+     * @param {LanguageUpsertArgs} args - Arguments to update or create a Language.
+     * @example
+     * // Update or create a Language
+     * const language = await prisma.language.upsert({
+     *   create: {
+     *     // ... data to create a Language
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Language we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LanguageUpsertArgs>(args: SelectSubset<T, LanguageUpsertArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Languages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageCountArgs} args - Arguments to filter Languages to count.
+     * @example
+     * // Count the number of Languages
+     * const count = await prisma.language.count({
+     *   where: {
+     *     // ... the filter for the Languages we want to count
+     *   }
+     * })
+    **/
+    count<T extends LanguageCountArgs>(
+      args?: Subset<T, LanguageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LanguageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Language.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LanguageAggregateArgs>(args: Subset<T, LanguageAggregateArgs>): Prisma.PrismaPromise<GetLanguageAggregateType<T>>
+
+    /**
+     * Group by Language.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LanguageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LanguageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LanguageGroupByArgs['orderBy'] }
+        : { orderBy?: LanguageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LanguageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLanguageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Language model
+   */
+  readonly fields: LanguageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Language.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LanguageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    proficiencies<T extends Language$proficienciesArgs<ExtArgs> = {}>(args?: Subset<T, Language$proficienciesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Language model
+   */ 
+  interface LanguageFieldRefs {
+    readonly language_id: FieldRef<"Language", 'Int'>
+    readonly language: FieldRef<"Language", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Language findUnique
+   */
+  export type LanguageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which Language to fetch.
+     */
+    where: LanguageWhereUniqueInput
+  }
+
+  /**
+   * Language findUniqueOrThrow
+   */
+  export type LanguageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which Language to fetch.
+     */
+    where: LanguageWhereUniqueInput
+  }
+
+  /**
+   * Language findFirst
+   */
+  export type LanguageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which Language to fetch.
+     */
+    where?: LanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Languages to fetch.
+     */
+    orderBy?: LanguageOrderByWithRelationInput | LanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Languages.
+     */
+    cursor?: LanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Languages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Languages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Languages.
+     */
+    distinct?: LanguageScalarFieldEnum | LanguageScalarFieldEnum[]
+  }
+
+  /**
+   * Language findFirstOrThrow
+   */
+  export type LanguageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which Language to fetch.
+     */
+    where?: LanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Languages to fetch.
+     */
+    orderBy?: LanguageOrderByWithRelationInput | LanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Languages.
+     */
+    cursor?: LanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Languages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Languages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Languages.
+     */
+    distinct?: LanguageScalarFieldEnum | LanguageScalarFieldEnum[]
+  }
+
+  /**
+   * Language findMany
+   */
+  export type LanguageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter, which Languages to fetch.
+     */
+    where?: LanguageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Languages to fetch.
+     */
+    orderBy?: LanguageOrderByWithRelationInput | LanguageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Languages.
+     */
+    cursor?: LanguageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Languages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Languages.
+     */
+    skip?: number
+    distinct?: LanguageScalarFieldEnum | LanguageScalarFieldEnum[]
+  }
+
+  /**
+   * Language create
+   */
+  export type LanguageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Language.
+     */
+    data?: XOR<LanguageCreateInput, LanguageUncheckedCreateInput>
+  }
+
+  /**
+   * Language createMany
+   */
+  export type LanguageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Languages.
+     */
+    data: LanguageCreateManyInput | LanguageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Language createManyAndReturn
+   */
+  export type LanguageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * The data used to create many Languages.
+     */
+    data: LanguageCreateManyInput | LanguageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Language update
+   */
+  export type LanguageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Language.
+     */
+    data: XOR<LanguageUpdateInput, LanguageUncheckedUpdateInput>
+    /**
+     * Choose, which Language to update.
+     */
+    where: LanguageWhereUniqueInput
+  }
+
+  /**
+   * Language updateMany
+   */
+  export type LanguageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Languages.
+     */
+    data: XOR<LanguageUpdateManyMutationInput, LanguageUncheckedUpdateManyInput>
+    /**
+     * Filter which Languages to update
+     */
+    where?: LanguageWhereInput
+    /**
+     * Limit how many Languages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Language updateManyAndReturn
+   */
+  export type LanguageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * The data used to update Languages.
+     */
+    data: XOR<LanguageUpdateManyMutationInput, LanguageUncheckedUpdateManyInput>
+    /**
+     * Filter which Languages to update
+     */
+    where?: LanguageWhereInput
+    /**
+     * Limit how many Languages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Language upsert
+   */
+  export type LanguageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Language to update in case it exists.
+     */
+    where: LanguageWhereUniqueInput
+    /**
+     * In case the Language found by the `where` argument doesn't exist, create a new Language with this data.
+     */
+    create: XOR<LanguageCreateInput, LanguageUncheckedCreateInput>
+    /**
+     * In case the Language was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LanguageUpdateInput, LanguageUncheckedUpdateInput>
+  }
+
+  /**
+   * Language delete
+   */
+  export type LanguageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+    /**
+     * Filter which Language to delete.
+     */
+    where: LanguageWhereUniqueInput
+  }
+
+  /**
+   * Language deleteMany
+   */
+  export type LanguageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Languages to delete
+     */
+    where?: LanguageWhereInput
+    /**
+     * Limit how many Languages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Language.proficiencies
+   */
+  export type Language$proficienciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    where?: LgaLanguageProficiencyWhereInput
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaLanguageProficiencyScalarFieldEnum | LgaLanguageProficiencyScalarFieldEnum[]
+  }
+
+  /**
+   * Language without action
+   */
+  export type LanguageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Language
+     */
+    select?: LanguageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Language
+     */
+    omit?: LanguageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LanguageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LgaLanguageProficiency
+   */
+
+  export type AggregateLgaLanguageProficiency = {
+    _count: LgaLanguageProficiencyCountAggregateOutputType | null
+    _avg: LgaLanguageProficiencyAvgAggregateOutputType | null
+    _sum: LgaLanguageProficiencySumAggregateOutputType | null
+    _min: LgaLanguageProficiencyMinAggregateOutputType | null
+    _max: LgaLanguageProficiencyMaxAggregateOutputType | null
+  }
+
+  export type LgaLanguageProficiencyAvgAggregateOutputType = {
+    lga_language_prof_id: number | null
+    lga_code: number | null
+    language_id: number | null
+    count: number | null
+  }
+
+  export type LgaLanguageProficiencySumAggregateOutputType = {
+    lga_language_prof_id: number | null
+    lga_code: number | null
+    language_id: number | null
+    count: number | null
+  }
+
+  export type LgaLanguageProficiencyMinAggregateOutputType = {
+    lga_language_prof_id: number | null
+    lga_code: number | null
+    language_id: number | null
+    english_profiency_level: string | null
+    count: number | null
+  }
+
+  export type LgaLanguageProficiencyMaxAggregateOutputType = {
+    lga_language_prof_id: number | null
+    lga_code: number | null
+    language_id: number | null
+    english_profiency_level: string | null
+    count: number | null
+  }
+
+  export type LgaLanguageProficiencyCountAggregateOutputType = {
+    lga_language_prof_id: number
+    lga_code: number
+    language_id: number
+    english_profiency_level: number
+    count: number
+    _all: number
+  }
+
+
+  export type LgaLanguageProficiencyAvgAggregateInputType = {
+    lga_language_prof_id?: true
+    lga_code?: true
+    language_id?: true
+    count?: true
+  }
+
+  export type LgaLanguageProficiencySumAggregateInputType = {
+    lga_language_prof_id?: true
+    lga_code?: true
+    language_id?: true
+    count?: true
+  }
+
+  export type LgaLanguageProficiencyMinAggregateInputType = {
+    lga_language_prof_id?: true
+    lga_code?: true
+    language_id?: true
+    english_profiency_level?: true
+    count?: true
+  }
+
+  export type LgaLanguageProficiencyMaxAggregateInputType = {
+    lga_language_prof_id?: true
+    lga_code?: true
+    language_id?: true
+    english_profiency_level?: true
+    count?: true
+  }
+
+  export type LgaLanguageProficiencyCountAggregateInputType = {
+    lga_language_prof_id?: true
+    lga_code?: true
+    language_id?: true
+    english_profiency_level?: true
+    count?: true
+    _all?: true
+  }
+
+  export type LgaLanguageProficiencyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaLanguageProficiency to aggregate.
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaLanguageProficiencies to fetch.
+     */
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaLanguageProficiencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaLanguageProficiencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LgaLanguageProficiencies
+    **/
+    _count?: true | LgaLanguageProficiencyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LgaLanguageProficiencyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LgaLanguageProficiencySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LgaLanguageProficiencyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LgaLanguageProficiencyMaxAggregateInputType
+  }
+
+  export type GetLgaLanguageProficiencyAggregateType<T extends LgaLanguageProficiencyAggregateArgs> = {
+        [P in keyof T & keyof AggregateLgaLanguageProficiency]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLgaLanguageProficiency[P]>
+      : GetScalarType<T[P], AggregateLgaLanguageProficiency[P]>
+  }
+
+
+
+
+  export type LgaLanguageProficiencyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaLanguageProficiencyWhereInput
+    orderBy?: LgaLanguageProficiencyOrderByWithAggregationInput | LgaLanguageProficiencyOrderByWithAggregationInput[]
+    by: LgaLanguageProficiencyScalarFieldEnum[] | LgaLanguageProficiencyScalarFieldEnum
+    having?: LgaLanguageProficiencyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LgaLanguageProficiencyCountAggregateInputType | true
+    _avg?: LgaLanguageProficiencyAvgAggregateInputType
+    _sum?: LgaLanguageProficiencySumAggregateInputType
+    _min?: LgaLanguageProficiencyMinAggregateInputType
+    _max?: LgaLanguageProficiencyMaxAggregateInputType
+  }
+
+  export type LgaLanguageProficiencyGroupByOutputType = {
+    lga_language_prof_id: number
+    lga_code: number
+    language_id: number
+    english_profiency_level: string
+    count: number
+    _count: LgaLanguageProficiencyCountAggregateOutputType | null
+    _avg: LgaLanguageProficiencyAvgAggregateOutputType | null
+    _sum: LgaLanguageProficiencySumAggregateOutputType | null
+    _min: LgaLanguageProficiencyMinAggregateOutputType | null
+    _max: LgaLanguageProficiencyMaxAggregateOutputType | null
+  }
+
+  type GetLgaLanguageProficiencyGroupByPayload<T extends LgaLanguageProficiencyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LgaLanguageProficiencyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LgaLanguageProficiencyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LgaLanguageProficiencyGroupByOutputType[P]>
+            : GetScalarType<T[P], LgaLanguageProficiencyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LgaLanguageProficiencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_language_prof_id?: boolean
+    lga_code?: boolean
+    language_id?: boolean
+    english_profiency_level?: boolean
+    count?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaLanguageProficiency"]>
+
+  export type LgaLanguageProficiencySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_language_prof_id?: boolean
+    lga_code?: boolean
+    language_id?: boolean
+    english_profiency_level?: boolean
+    count?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaLanguageProficiency"]>
+
+  export type LgaLanguageProficiencySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_language_prof_id?: boolean
+    lga_code?: boolean
+    language_id?: boolean
+    english_profiency_level?: boolean
+    count?: boolean
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaLanguageProficiency"]>
+
+  export type LgaLanguageProficiencySelectScalar = {
+    lga_language_prof_id?: boolean
+    lga_code?: boolean
+    language_id?: boolean
+    english_profiency_level?: boolean
+    count?: boolean
+  }
+
+  export type LgaLanguageProficiencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_language_prof_id" | "lga_code" | "language_id" | "english_profiency_level" | "count", ExtArgs["result"]["lgaLanguageProficiency"]>
+  export type LgaLanguageProficiencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type LgaLanguageProficiencyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type LgaLanguageProficiencyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    language?: boolean | LanguageDefaultArgs<ExtArgs>
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $LgaLanguageProficiencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LgaLanguageProficiency"
+    objects: {
+      language: Prisma.$LanguagePayload<ExtArgs>
+      lga: Prisma.$LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_language_prof_id: number
+      lga_code: number
+      language_id: number
+      english_profiency_level: string
+      count: number
+    }, ExtArgs["result"]["lgaLanguageProficiency"]>
+    composites: {}
+  }
+
+  type LgaLanguageProficiencyGetPayload<S extends boolean | null | undefined | LgaLanguageProficiencyDefaultArgs> = $Result.GetResult<Prisma.$LgaLanguageProficiencyPayload, S>
+
+  type LgaLanguageProficiencyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LgaLanguageProficiencyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LgaLanguageProficiencyCountAggregateInputType | true
+    }
+
+  export interface LgaLanguageProficiencyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LgaLanguageProficiency'], meta: { name: 'LgaLanguageProficiency' } }
+    /**
+     * Find zero or one LgaLanguageProficiency that matches the filter.
+     * @param {LgaLanguageProficiencyFindUniqueArgs} args - Arguments to find a LgaLanguageProficiency
+     * @example
+     * // Get one LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LgaLanguageProficiencyFindUniqueArgs>(args: SelectSubset<T, LgaLanguageProficiencyFindUniqueArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LgaLanguageProficiency that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LgaLanguageProficiencyFindUniqueOrThrowArgs} args - Arguments to find a LgaLanguageProficiency
+     * @example
+     * // Get one LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LgaLanguageProficiencyFindUniqueOrThrowArgs>(args: SelectSubset<T, LgaLanguageProficiencyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaLanguageProficiency that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyFindFirstArgs} args - Arguments to find a LgaLanguageProficiency
+     * @example
+     * // Get one LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LgaLanguageProficiencyFindFirstArgs>(args?: SelectSubset<T, LgaLanguageProficiencyFindFirstArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaLanguageProficiency that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyFindFirstOrThrowArgs} args - Arguments to find a LgaLanguageProficiency
+     * @example
+     * // Get one LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LgaLanguageProficiencyFindFirstOrThrowArgs>(args?: SelectSubset<T, LgaLanguageProficiencyFindFirstOrThrowArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LgaLanguageProficiencies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LgaLanguageProficiencies
+     * const lgaLanguageProficiencies = await prisma.lgaLanguageProficiency.findMany()
+     * 
+     * // Get first 10 LgaLanguageProficiencies
+     * const lgaLanguageProficiencies = await prisma.lgaLanguageProficiency.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_language_prof_id`
+     * const lgaLanguageProficiencyWithLga_language_prof_idOnly = await prisma.lgaLanguageProficiency.findMany({ select: { lga_language_prof_id: true } })
+     * 
+     */
+    findMany<T extends LgaLanguageProficiencyFindManyArgs>(args?: SelectSubset<T, LgaLanguageProficiencyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LgaLanguageProficiency.
+     * @param {LgaLanguageProficiencyCreateArgs} args - Arguments to create a LgaLanguageProficiency.
+     * @example
+     * // Create one LgaLanguageProficiency
+     * const LgaLanguageProficiency = await prisma.lgaLanguageProficiency.create({
+     *   data: {
+     *     // ... data to create a LgaLanguageProficiency
+     *   }
+     * })
+     * 
+     */
+    create<T extends LgaLanguageProficiencyCreateArgs>(args: SelectSubset<T, LgaLanguageProficiencyCreateArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LgaLanguageProficiencies.
+     * @param {LgaLanguageProficiencyCreateManyArgs} args - Arguments to create many LgaLanguageProficiencies.
+     * @example
+     * // Create many LgaLanguageProficiencies
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LgaLanguageProficiencyCreateManyArgs>(args?: SelectSubset<T, LgaLanguageProficiencyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LgaLanguageProficiencies and returns the data saved in the database.
+     * @param {LgaLanguageProficiencyCreateManyAndReturnArgs} args - Arguments to create many LgaLanguageProficiencies.
+     * @example
+     * // Create many LgaLanguageProficiencies
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LgaLanguageProficiencies and only return the `lga_language_prof_id`
+     * const lgaLanguageProficiencyWithLga_language_prof_idOnly = await prisma.lgaLanguageProficiency.createManyAndReturn({
+     *   select: { lga_language_prof_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LgaLanguageProficiencyCreateManyAndReturnArgs>(args?: SelectSubset<T, LgaLanguageProficiencyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LgaLanguageProficiency.
+     * @param {LgaLanguageProficiencyDeleteArgs} args - Arguments to delete one LgaLanguageProficiency.
+     * @example
+     * // Delete one LgaLanguageProficiency
+     * const LgaLanguageProficiency = await prisma.lgaLanguageProficiency.delete({
+     *   where: {
+     *     // ... filter to delete one LgaLanguageProficiency
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LgaLanguageProficiencyDeleteArgs>(args: SelectSubset<T, LgaLanguageProficiencyDeleteArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LgaLanguageProficiency.
+     * @param {LgaLanguageProficiencyUpdateArgs} args - Arguments to update one LgaLanguageProficiency.
+     * @example
+     * // Update one LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LgaLanguageProficiencyUpdateArgs>(args: SelectSubset<T, LgaLanguageProficiencyUpdateArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LgaLanguageProficiencies.
+     * @param {LgaLanguageProficiencyDeleteManyArgs} args - Arguments to filter LgaLanguageProficiencies to delete.
+     * @example
+     * // Delete a few LgaLanguageProficiencies
+     * const { count } = await prisma.lgaLanguageProficiency.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LgaLanguageProficiencyDeleteManyArgs>(args?: SelectSubset<T, LgaLanguageProficiencyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaLanguageProficiencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LgaLanguageProficiencies
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LgaLanguageProficiencyUpdateManyArgs>(args: SelectSubset<T, LgaLanguageProficiencyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaLanguageProficiencies and returns the data updated in the database.
+     * @param {LgaLanguageProficiencyUpdateManyAndReturnArgs} args - Arguments to update many LgaLanguageProficiencies.
+     * @example
+     * // Update many LgaLanguageProficiencies
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LgaLanguageProficiencies and only return the `lga_language_prof_id`
+     * const lgaLanguageProficiencyWithLga_language_prof_idOnly = await prisma.lgaLanguageProficiency.updateManyAndReturn({
+     *   select: { lga_language_prof_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LgaLanguageProficiencyUpdateManyAndReturnArgs>(args: SelectSubset<T, LgaLanguageProficiencyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LgaLanguageProficiency.
+     * @param {LgaLanguageProficiencyUpsertArgs} args - Arguments to update or create a LgaLanguageProficiency.
+     * @example
+     * // Update or create a LgaLanguageProficiency
+     * const lgaLanguageProficiency = await prisma.lgaLanguageProficiency.upsert({
+     *   create: {
+     *     // ... data to create a LgaLanguageProficiency
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LgaLanguageProficiency we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LgaLanguageProficiencyUpsertArgs>(args: SelectSubset<T, LgaLanguageProficiencyUpsertArgs<ExtArgs>>): Prisma__LgaLanguageProficiencyClient<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LgaLanguageProficiencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyCountArgs} args - Arguments to filter LgaLanguageProficiencies to count.
+     * @example
+     * // Count the number of LgaLanguageProficiencies
+     * const count = await prisma.lgaLanguageProficiency.count({
+     *   where: {
+     *     // ... the filter for the LgaLanguageProficiencies we want to count
+     *   }
+     * })
+    **/
+    count<T extends LgaLanguageProficiencyCountArgs>(
+      args?: Subset<T, LgaLanguageProficiencyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LgaLanguageProficiencyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LgaLanguageProficiency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LgaLanguageProficiencyAggregateArgs>(args: Subset<T, LgaLanguageProficiencyAggregateArgs>): Prisma.PrismaPromise<GetLgaLanguageProficiencyAggregateType<T>>
+
+    /**
+     * Group by LgaLanguageProficiency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaLanguageProficiencyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LgaLanguageProficiencyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LgaLanguageProficiencyGroupByArgs['orderBy'] }
+        : { orderBy?: LgaLanguageProficiencyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LgaLanguageProficiencyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLgaLanguageProficiencyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LgaLanguageProficiency model
+   */
+  readonly fields: LgaLanguageProficiencyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LgaLanguageProficiency.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LgaLanguageProficiencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    language<T extends LanguageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LanguageDefaultArgs<ExtArgs>>): Prisma__LanguageClient<$Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LgaLanguageProficiency model
+   */ 
+  interface LgaLanguageProficiencyFieldRefs {
+    readonly lga_language_prof_id: FieldRef<"LgaLanguageProficiency", 'Int'>
+    readonly lga_code: FieldRef<"LgaLanguageProficiency", 'Int'>
+    readonly language_id: FieldRef<"LgaLanguageProficiency", 'Int'>
+    readonly english_profiency_level: FieldRef<"LgaLanguageProficiency", 'String'>
+    readonly count: FieldRef<"LgaLanguageProficiency", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LgaLanguageProficiency findUnique
+   */
+  export type LgaLanguageProficiencyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaLanguageProficiency to fetch.
+     */
+    where: LgaLanguageProficiencyWhereUniqueInput
+  }
+
+  /**
+   * LgaLanguageProficiency findUniqueOrThrow
+   */
+  export type LgaLanguageProficiencyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaLanguageProficiency to fetch.
+     */
+    where: LgaLanguageProficiencyWhereUniqueInput
+  }
+
+  /**
+   * LgaLanguageProficiency findFirst
+   */
+  export type LgaLanguageProficiencyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaLanguageProficiency to fetch.
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaLanguageProficiencies to fetch.
+     */
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaLanguageProficiencies.
+     */
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaLanguageProficiencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaLanguageProficiencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaLanguageProficiencies.
+     */
+    distinct?: LgaLanguageProficiencyScalarFieldEnum | LgaLanguageProficiencyScalarFieldEnum[]
+  }
+
+  /**
+   * LgaLanguageProficiency findFirstOrThrow
+   */
+  export type LgaLanguageProficiencyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaLanguageProficiency to fetch.
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaLanguageProficiencies to fetch.
+     */
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaLanguageProficiencies.
+     */
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaLanguageProficiencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaLanguageProficiencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaLanguageProficiencies.
+     */
+    distinct?: LgaLanguageProficiencyScalarFieldEnum | LgaLanguageProficiencyScalarFieldEnum[]
+  }
+
+  /**
+   * LgaLanguageProficiency findMany
+   */
+  export type LgaLanguageProficiencyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaLanguageProficiencies to fetch.
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaLanguageProficiencies to fetch.
+     */
+    orderBy?: LgaLanguageProficiencyOrderByWithRelationInput | LgaLanguageProficiencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LgaLanguageProficiencies.
+     */
+    cursor?: LgaLanguageProficiencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaLanguageProficiencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaLanguageProficiencies.
+     */
+    skip?: number
+    distinct?: LgaLanguageProficiencyScalarFieldEnum | LgaLanguageProficiencyScalarFieldEnum[]
+  }
+
+  /**
+   * LgaLanguageProficiency create
+   */
+  export type LgaLanguageProficiencyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LgaLanguageProficiency.
+     */
+    data: XOR<LgaLanguageProficiencyCreateInput, LgaLanguageProficiencyUncheckedCreateInput>
+  }
+
+  /**
+   * LgaLanguageProficiency createMany
+   */
+  export type LgaLanguageProficiencyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LgaLanguageProficiencies.
+     */
+    data: LgaLanguageProficiencyCreateManyInput | LgaLanguageProficiencyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LgaLanguageProficiency createManyAndReturn
+   */
+  export type LgaLanguageProficiencyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * The data used to create many LgaLanguageProficiencies.
+     */
+    data: LgaLanguageProficiencyCreateManyInput | LgaLanguageProficiencyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaLanguageProficiency update
+   */
+  export type LgaLanguageProficiencyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LgaLanguageProficiency.
+     */
+    data: XOR<LgaLanguageProficiencyUpdateInput, LgaLanguageProficiencyUncheckedUpdateInput>
+    /**
+     * Choose, which LgaLanguageProficiency to update.
+     */
+    where: LgaLanguageProficiencyWhereUniqueInput
+  }
+
+  /**
+   * LgaLanguageProficiency updateMany
+   */
+  export type LgaLanguageProficiencyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LgaLanguageProficiencies.
+     */
+    data: XOR<LgaLanguageProficiencyUpdateManyMutationInput, LgaLanguageProficiencyUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaLanguageProficiencies to update
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * Limit how many LgaLanguageProficiencies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaLanguageProficiency updateManyAndReturn
+   */
+  export type LgaLanguageProficiencyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * The data used to update LgaLanguageProficiencies.
+     */
+    data: XOR<LgaLanguageProficiencyUpdateManyMutationInput, LgaLanguageProficiencyUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaLanguageProficiencies to update
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * Limit how many LgaLanguageProficiencies to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaLanguageProficiency upsert
+   */
+  export type LgaLanguageProficiencyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LgaLanguageProficiency to update in case it exists.
+     */
+    where: LgaLanguageProficiencyWhereUniqueInput
+    /**
+     * In case the LgaLanguageProficiency found by the `where` argument doesn't exist, create a new LgaLanguageProficiency with this data.
+     */
+    create: XOR<LgaLanguageProficiencyCreateInput, LgaLanguageProficiencyUncheckedCreateInput>
+    /**
+     * In case the LgaLanguageProficiency was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LgaLanguageProficiencyUpdateInput, LgaLanguageProficiencyUncheckedUpdateInput>
+  }
+
+  /**
+   * LgaLanguageProficiency delete
+   */
+  export type LgaLanguageProficiencyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+    /**
+     * Filter which LgaLanguageProficiency to delete.
+     */
+    where: LgaLanguageProficiencyWhereUniqueInput
+  }
+
+  /**
+   * LgaLanguageProficiency deleteMany
+   */
+  export type LgaLanguageProficiencyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaLanguageProficiencies to delete
+     */
+    where?: LgaLanguageProficiencyWhereInput
+    /**
+     * Limit how many LgaLanguageProficiencies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaLanguageProficiency without action
+   */
+  export type LgaLanguageProficiencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaLanguageProficiency
+     */
+    select?: LgaLanguageProficiencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaLanguageProficiency
+     */
+    omit?: LgaLanguageProficiencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaLanguageProficiencyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LgaStatistics
+   */
+
+  export type AggregateLgaStatistics = {
+    _count: LgaStatisticsCountAggregateOutputType | null
+    _avg: LgaStatisticsAvgAggregateOutputType | null
+    _sum: LgaStatisticsSumAggregateOutputType | null
+    _min: LgaStatisticsMinAggregateOutputType | null
+    _max: LgaStatisticsMaxAggregateOutputType | null
+  }
+
+  export type LgaStatisticsAvgAggregateOutputType = {
+    lga_code: number | null
+    total_businesses: number | null
+    total_employed_over_15: number | null
+    born_overseas: number | null
+    pct_arrived_within_5_years: number | null
+    pct_proficient_english: number | null
+    percent_speaks_other_lang_at_home: number | null
+    median_age_years: number | null
+    pct_completed_year_12: number | null
+    pct_certificate: number | null
+    pct_bachelor_degree: number | null
+    pct_postgraduate: number | null
+    pct_managers: number | null
+    pct_professionals: number | null
+    pct_labourers: number | null
+  }
+
+  export type LgaStatisticsSumAggregateOutputType = {
+    lga_code: number | null
+    total_businesses: number | null
+    total_employed_over_15: number | null
+    born_overseas: number | null
+    pct_arrived_within_5_years: number | null
+    pct_proficient_english: number | null
+    percent_speaks_other_lang_at_home: number | null
+    median_age_years: number | null
+    pct_completed_year_12: number | null
+    pct_certificate: number | null
+    pct_bachelor_degree: number | null
+    pct_postgraduate: number | null
+    pct_managers: number | null
+    pct_professionals: number | null
+    pct_labourers: number | null
+  }
+
+  export type LgaStatisticsMinAggregateOutputType = {
+    lga_code: number | null
+    total_businesses: number | null
+    total_employed_over_15: number | null
+    born_overseas: number | null
+    pct_arrived_within_5_years: number | null
+    pct_proficient_english: number | null
+    percent_speaks_other_lang_at_home: number | null
+    median_age_years: number | null
+    pct_completed_year_12: number | null
+    pct_certificate: number | null
+    pct_bachelor_degree: number | null
+    pct_postgraduate: number | null
+    pct_managers: number | null
+    pct_professionals: number | null
+    pct_labourers: number | null
+  }
+
+  export type LgaStatisticsMaxAggregateOutputType = {
+    lga_code: number | null
+    total_businesses: number | null
+    total_employed_over_15: number | null
+    born_overseas: number | null
+    pct_arrived_within_5_years: number | null
+    pct_proficient_english: number | null
+    percent_speaks_other_lang_at_home: number | null
+    median_age_years: number | null
+    pct_completed_year_12: number | null
+    pct_certificate: number | null
+    pct_bachelor_degree: number | null
+    pct_postgraduate: number | null
+    pct_managers: number | null
+    pct_professionals: number | null
+    pct_labourers: number | null
+  }
+
+  export type LgaStatisticsCountAggregateOutputType = {
+    lga_code: number
+    total_businesses: number
+    total_employed_over_15: number
+    born_overseas: number
+    pct_arrived_within_5_years: number
+    pct_proficient_english: number
+    percent_speaks_other_lang_at_home: number
+    median_age_years: number
+    pct_completed_year_12: number
+    pct_certificate: number
+    pct_bachelor_degree: number
+    pct_postgraduate: number
+    pct_managers: number
+    pct_professionals: number
+    pct_labourers: number
+    _all: number
+  }
+
+
+  export type LgaStatisticsAvgAggregateInputType = {
+    lga_code?: true
+    total_businesses?: true
+    total_employed_over_15?: true
+    born_overseas?: true
+    pct_arrived_within_5_years?: true
+    pct_proficient_english?: true
+    percent_speaks_other_lang_at_home?: true
+    median_age_years?: true
+    pct_completed_year_12?: true
+    pct_certificate?: true
+    pct_bachelor_degree?: true
+    pct_postgraduate?: true
+    pct_managers?: true
+    pct_professionals?: true
+    pct_labourers?: true
+  }
+
+  export type LgaStatisticsSumAggregateInputType = {
+    lga_code?: true
+    total_businesses?: true
+    total_employed_over_15?: true
+    born_overseas?: true
+    pct_arrived_within_5_years?: true
+    pct_proficient_english?: true
+    percent_speaks_other_lang_at_home?: true
+    median_age_years?: true
+    pct_completed_year_12?: true
+    pct_certificate?: true
+    pct_bachelor_degree?: true
+    pct_postgraduate?: true
+    pct_managers?: true
+    pct_professionals?: true
+    pct_labourers?: true
+  }
+
+  export type LgaStatisticsMinAggregateInputType = {
+    lga_code?: true
+    total_businesses?: true
+    total_employed_over_15?: true
+    born_overseas?: true
+    pct_arrived_within_5_years?: true
+    pct_proficient_english?: true
+    percent_speaks_other_lang_at_home?: true
+    median_age_years?: true
+    pct_completed_year_12?: true
+    pct_certificate?: true
+    pct_bachelor_degree?: true
+    pct_postgraduate?: true
+    pct_managers?: true
+    pct_professionals?: true
+    pct_labourers?: true
+  }
+
+  export type LgaStatisticsMaxAggregateInputType = {
+    lga_code?: true
+    total_businesses?: true
+    total_employed_over_15?: true
+    born_overseas?: true
+    pct_arrived_within_5_years?: true
+    pct_proficient_english?: true
+    percent_speaks_other_lang_at_home?: true
+    median_age_years?: true
+    pct_completed_year_12?: true
+    pct_certificate?: true
+    pct_bachelor_degree?: true
+    pct_postgraduate?: true
+    pct_managers?: true
+    pct_professionals?: true
+    pct_labourers?: true
+  }
+
+  export type LgaStatisticsCountAggregateInputType = {
+    lga_code?: true
+    total_businesses?: true
+    total_employed_over_15?: true
+    born_overseas?: true
+    pct_arrived_within_5_years?: true
+    pct_proficient_english?: true
+    percent_speaks_other_lang_at_home?: true
+    median_age_years?: true
+    pct_completed_year_12?: true
+    pct_certificate?: true
+    pct_bachelor_degree?: true
+    pct_postgraduate?: true
+    pct_managers?: true
+    pct_professionals?: true
+    pct_labourers?: true
+    _all?: true
+  }
+
+  export type LgaStatisticsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaStatistics to aggregate.
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaStatistics to fetch.
+     */
+    orderBy?: LgaStatisticsOrderByWithRelationInput | LgaStatisticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LgaStatisticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaStatistics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaStatistics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LgaStatistics
+    **/
+    _count?: true | LgaStatisticsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LgaStatisticsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LgaStatisticsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LgaStatisticsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LgaStatisticsMaxAggregateInputType
+  }
+
+  export type GetLgaStatisticsAggregateType<T extends LgaStatisticsAggregateArgs> = {
+        [P in keyof T & keyof AggregateLgaStatistics]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLgaStatistics[P]>
+      : GetScalarType<T[P], AggregateLgaStatistics[P]>
+  }
+
+
+
+
+  export type LgaStatisticsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaStatisticsWhereInput
+    orderBy?: LgaStatisticsOrderByWithAggregationInput | LgaStatisticsOrderByWithAggregationInput[]
+    by: LgaStatisticsScalarFieldEnum[] | LgaStatisticsScalarFieldEnum
+    having?: LgaStatisticsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LgaStatisticsCountAggregateInputType | true
+    _avg?: LgaStatisticsAvgAggregateInputType
+    _sum?: LgaStatisticsSumAggregateInputType
+    _min?: LgaStatisticsMinAggregateInputType
+    _max?: LgaStatisticsMaxAggregateInputType
+  }
+
+  export type LgaStatisticsGroupByOutputType = {
+    lga_code: number
+    total_businesses: number | null
+    total_employed_over_15: number | null
+    born_overseas: number | null
+    pct_arrived_within_5_years: number | null
+    pct_proficient_english: number | null
+    percent_speaks_other_lang_at_home: number | null
+    median_age_years: number | null
+    pct_completed_year_12: number | null
+    pct_certificate: number | null
+    pct_bachelor_degree: number | null
+    pct_postgraduate: number | null
+    pct_managers: number | null
+    pct_professionals: number | null
+    pct_labourers: number | null
+    _count: LgaStatisticsCountAggregateOutputType | null
+    _avg: LgaStatisticsAvgAggregateOutputType | null
+    _sum: LgaStatisticsSumAggregateOutputType | null
+    _min: LgaStatisticsMinAggregateOutputType | null
+    _max: LgaStatisticsMaxAggregateOutputType | null
+  }
+
+  type GetLgaStatisticsGroupByPayload<T extends LgaStatisticsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LgaStatisticsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LgaStatisticsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LgaStatisticsGroupByOutputType[P]>
+            : GetScalarType<T[P], LgaStatisticsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LgaStatisticsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    total_businesses?: boolean
+    total_employed_over_15?: boolean
+    born_overseas?: boolean
+    pct_arrived_within_5_years?: boolean
+    pct_proficient_english?: boolean
+    percent_speaks_other_lang_at_home?: boolean
+    median_age_years?: boolean
+    pct_completed_year_12?: boolean
+    pct_certificate?: boolean
+    pct_bachelor_degree?: boolean
+    pct_postgraduate?: boolean
+    pct_managers?: boolean
+    pct_professionals?: boolean
+    pct_labourers?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaStatistics"]>
+
+  export type LgaStatisticsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    total_businesses?: boolean
+    total_employed_over_15?: boolean
+    born_overseas?: boolean
+    pct_arrived_within_5_years?: boolean
+    pct_proficient_english?: boolean
+    percent_speaks_other_lang_at_home?: boolean
+    median_age_years?: boolean
+    pct_completed_year_12?: boolean
+    pct_certificate?: boolean
+    pct_bachelor_degree?: boolean
+    pct_postgraduate?: boolean
+    pct_managers?: boolean
+    pct_professionals?: boolean
+    pct_labourers?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaStatistics"]>
+
+  export type LgaStatisticsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    total_businesses?: boolean
+    total_employed_over_15?: boolean
+    born_overseas?: boolean
+    pct_arrived_within_5_years?: boolean
+    pct_proficient_english?: boolean
+    percent_speaks_other_lang_at_home?: boolean
+    median_age_years?: boolean
+    pct_completed_year_12?: boolean
+    pct_certificate?: boolean
+    pct_bachelor_degree?: boolean
+    pct_postgraduate?: boolean
+    pct_managers?: boolean
+    pct_professionals?: boolean
+    pct_labourers?: boolean
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaStatistics"]>
+
+  export type LgaStatisticsSelectScalar = {
+    lga_code?: boolean
+    total_businesses?: boolean
+    total_employed_over_15?: boolean
+    born_overseas?: boolean
+    pct_arrived_within_5_years?: boolean
+    pct_proficient_english?: boolean
+    percent_speaks_other_lang_at_home?: boolean
+    median_age_years?: boolean
+    pct_completed_year_12?: boolean
+    pct_certificate?: boolean
+    pct_bachelor_degree?: boolean
+    pct_postgraduate?: boolean
+    pct_managers?: boolean
+    pct_professionals?: boolean
+    pct_labourers?: boolean
+  }
+
+  export type LgaStatisticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "total_businesses" | "total_employed_over_15" | "born_overseas" | "pct_arrived_within_5_years" | "pct_proficient_english" | "percent_speaks_other_lang_at_home" | "median_age_years" | "pct_completed_year_12" | "pct_certificate" | "pct_bachelor_degree" | "pct_postgraduate" | "pct_managers" | "pct_professionals" | "pct_labourers", ExtArgs["result"]["lgaStatistics"]>
+  export type LgaStatisticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type LgaStatisticsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+  export type LgaStatisticsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lga?: boolean | LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $LgaStatisticsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LgaStatistics"
+    objects: {
+      lga: Prisma.$LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_code: number
+      total_businesses: number | null
+      total_employed_over_15: number | null
+      born_overseas: number | null
+      pct_arrived_within_5_years: number | null
+      pct_proficient_english: number | null
+      percent_speaks_other_lang_at_home: number | null
+      median_age_years: number | null
+      pct_completed_year_12: number | null
+      pct_certificate: number | null
+      pct_bachelor_degree: number | null
+      pct_postgraduate: number | null
+      pct_managers: number | null
+      pct_professionals: number | null
+      pct_labourers: number | null
+    }, ExtArgs["result"]["lgaStatistics"]>
+    composites: {}
+  }
+
+  type LgaStatisticsGetPayload<S extends boolean | null | undefined | LgaStatisticsDefaultArgs> = $Result.GetResult<Prisma.$LgaStatisticsPayload, S>
+
+  type LgaStatisticsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LgaStatisticsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LgaStatisticsCountAggregateInputType | true
+    }
+
+  export interface LgaStatisticsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LgaStatistics'], meta: { name: 'LgaStatistics' } }
+    /**
+     * Find zero or one LgaStatistics that matches the filter.
+     * @param {LgaStatisticsFindUniqueArgs} args - Arguments to find a LgaStatistics
+     * @example
+     * // Get one LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LgaStatisticsFindUniqueArgs>(args: SelectSubset<T, LgaStatisticsFindUniqueArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LgaStatistics that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LgaStatisticsFindUniqueOrThrowArgs} args - Arguments to find a LgaStatistics
+     * @example
+     * // Get one LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LgaStatisticsFindUniqueOrThrowArgs>(args: SelectSubset<T, LgaStatisticsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaStatistics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsFindFirstArgs} args - Arguments to find a LgaStatistics
+     * @example
+     * // Get one LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LgaStatisticsFindFirstArgs>(args?: SelectSubset<T, LgaStatisticsFindFirstArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaStatistics that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsFindFirstOrThrowArgs} args - Arguments to find a LgaStatistics
+     * @example
+     * // Get one LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LgaStatisticsFindFirstOrThrowArgs>(args?: SelectSubset<T, LgaStatisticsFindFirstOrThrowArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LgaStatistics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findMany()
+     * 
+     * // Get first 10 LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_code`
+     * const lgaStatisticsWithLga_codeOnly = await prisma.lgaStatistics.findMany({ select: { lga_code: true } })
+     * 
+     */
+    findMany<T extends LgaStatisticsFindManyArgs>(args?: SelectSubset<T, LgaStatisticsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LgaStatistics.
+     * @param {LgaStatisticsCreateArgs} args - Arguments to create a LgaStatistics.
+     * @example
+     * // Create one LgaStatistics
+     * const LgaStatistics = await prisma.lgaStatistics.create({
+     *   data: {
+     *     // ... data to create a LgaStatistics
+     *   }
+     * })
+     * 
+     */
+    create<T extends LgaStatisticsCreateArgs>(args: SelectSubset<T, LgaStatisticsCreateArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LgaStatistics.
+     * @param {LgaStatisticsCreateManyArgs} args - Arguments to create many LgaStatistics.
+     * @example
+     * // Create many LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LgaStatisticsCreateManyArgs>(args?: SelectSubset<T, LgaStatisticsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LgaStatistics and returns the data saved in the database.
+     * @param {LgaStatisticsCreateManyAndReturnArgs} args - Arguments to create many LgaStatistics.
+     * @example
+     * // Create many LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LgaStatistics and only return the `lga_code`
+     * const lgaStatisticsWithLga_codeOnly = await prisma.lgaStatistics.createManyAndReturn({
+     *   select: { lga_code: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LgaStatisticsCreateManyAndReturnArgs>(args?: SelectSubset<T, LgaStatisticsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LgaStatistics.
+     * @param {LgaStatisticsDeleteArgs} args - Arguments to delete one LgaStatistics.
+     * @example
+     * // Delete one LgaStatistics
+     * const LgaStatistics = await prisma.lgaStatistics.delete({
+     *   where: {
+     *     // ... filter to delete one LgaStatistics
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LgaStatisticsDeleteArgs>(args: SelectSubset<T, LgaStatisticsDeleteArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LgaStatistics.
+     * @param {LgaStatisticsUpdateArgs} args - Arguments to update one LgaStatistics.
+     * @example
+     * // Update one LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LgaStatisticsUpdateArgs>(args: SelectSubset<T, LgaStatisticsUpdateArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LgaStatistics.
+     * @param {LgaStatisticsDeleteManyArgs} args - Arguments to filter LgaStatistics to delete.
+     * @example
+     * // Delete a few LgaStatistics
+     * const { count } = await prisma.lgaStatistics.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LgaStatisticsDeleteManyArgs>(args?: SelectSubset<T, LgaStatisticsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaStatistics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LgaStatisticsUpdateManyArgs>(args: SelectSubset<T, LgaStatisticsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaStatistics and returns the data updated in the database.
+     * @param {LgaStatisticsUpdateManyAndReturnArgs} args - Arguments to update many LgaStatistics.
+     * @example
+     * // Update many LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LgaStatistics and only return the `lga_code`
+     * const lgaStatisticsWithLga_codeOnly = await prisma.lgaStatistics.updateManyAndReturn({
+     *   select: { lga_code: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LgaStatisticsUpdateManyAndReturnArgs>(args: SelectSubset<T, LgaStatisticsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LgaStatistics.
+     * @param {LgaStatisticsUpsertArgs} args - Arguments to update or create a LgaStatistics.
+     * @example
+     * // Update or create a LgaStatistics
+     * const lgaStatistics = await prisma.lgaStatistics.upsert({
+     *   create: {
+     *     // ... data to create a LgaStatistics
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LgaStatistics we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LgaStatisticsUpsertArgs>(args: SelectSubset<T, LgaStatisticsUpsertArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LgaStatistics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsCountArgs} args - Arguments to filter LgaStatistics to count.
+     * @example
+     * // Count the number of LgaStatistics
+     * const count = await prisma.lgaStatistics.count({
+     *   where: {
+     *     // ... the filter for the LgaStatistics we want to count
+     *   }
+     * })
+    **/
+    count<T extends LgaStatisticsCountArgs>(
+      args?: Subset<T, LgaStatisticsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LgaStatisticsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LgaStatistics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LgaStatisticsAggregateArgs>(args: Subset<T, LgaStatisticsAggregateArgs>): Prisma.PrismaPromise<GetLgaStatisticsAggregateType<T>>
+
+    /**
+     * Group by LgaStatistics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaStatisticsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LgaStatisticsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LgaStatisticsGroupByArgs['orderBy'] }
+        : { orderBy?: LgaStatisticsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LgaStatisticsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLgaStatisticsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LgaStatistics model
+   */
+  readonly fields: LgaStatisticsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LgaStatistics.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LgaStatisticsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LgaStatistics model
+   */ 
+  interface LgaStatisticsFieldRefs {
+    readonly lga_code: FieldRef<"LgaStatistics", 'Int'>
+    readonly total_businesses: FieldRef<"LgaStatistics", 'Int'>
+    readonly total_employed_over_15: FieldRef<"LgaStatistics", 'Int'>
+    readonly born_overseas: FieldRef<"LgaStatistics", 'Int'>
+    readonly pct_arrived_within_5_years: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_proficient_english: FieldRef<"LgaStatistics", 'Float'>
+    readonly percent_speaks_other_lang_at_home: FieldRef<"LgaStatistics", 'Float'>
+    readonly median_age_years: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_completed_year_12: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_certificate: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_bachelor_degree: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_postgraduate: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_managers: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_professionals: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_labourers: FieldRef<"LgaStatistics", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LgaStatistics findUnique
+   */
+  export type LgaStatisticsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaStatistics to fetch.
+     */
+    where: LgaStatisticsWhereUniqueInput
+  }
+
+  /**
+   * LgaStatistics findUniqueOrThrow
+   */
+  export type LgaStatisticsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaStatistics to fetch.
+     */
+    where: LgaStatisticsWhereUniqueInput
+  }
+
+  /**
+   * LgaStatistics findFirst
+   */
+  export type LgaStatisticsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaStatistics to fetch.
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaStatistics to fetch.
+     */
+    orderBy?: LgaStatisticsOrderByWithRelationInput | LgaStatisticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaStatistics.
+     */
+    cursor?: LgaStatisticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaStatistics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaStatistics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaStatistics.
+     */
+    distinct?: LgaStatisticsScalarFieldEnum | LgaStatisticsScalarFieldEnum[]
+  }
+
+  /**
+   * LgaStatistics findFirstOrThrow
+   */
+  export type LgaStatisticsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaStatistics to fetch.
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaStatistics to fetch.
+     */
+    orderBy?: LgaStatisticsOrderByWithRelationInput | LgaStatisticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaStatistics.
+     */
+    cursor?: LgaStatisticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaStatistics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaStatistics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaStatistics.
+     */
+    distinct?: LgaStatisticsScalarFieldEnum | LgaStatisticsScalarFieldEnum[]
+  }
+
+  /**
+   * LgaStatistics findMany
+   */
+  export type LgaStatisticsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaStatistics to fetch.
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaStatistics to fetch.
+     */
+    orderBy?: LgaStatisticsOrderByWithRelationInput | LgaStatisticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LgaStatistics.
+     */
+    cursor?: LgaStatisticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaStatistics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaStatistics.
+     */
+    skip?: number
+    distinct?: LgaStatisticsScalarFieldEnum | LgaStatisticsScalarFieldEnum[]
+  }
+
+  /**
+   * LgaStatistics create
+   */
+  export type LgaStatisticsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LgaStatistics.
+     */
+    data: XOR<LgaStatisticsCreateInput, LgaStatisticsUncheckedCreateInput>
+  }
+
+  /**
+   * LgaStatistics createMany
+   */
+  export type LgaStatisticsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LgaStatistics.
+     */
+    data: LgaStatisticsCreateManyInput | LgaStatisticsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LgaStatistics createManyAndReturn
+   */
+  export type LgaStatisticsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * The data used to create many LgaStatistics.
+     */
+    data: LgaStatisticsCreateManyInput | LgaStatisticsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaStatistics update
+   */
+  export type LgaStatisticsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LgaStatistics.
+     */
+    data: XOR<LgaStatisticsUpdateInput, LgaStatisticsUncheckedUpdateInput>
+    /**
+     * Choose, which LgaStatistics to update.
+     */
+    where: LgaStatisticsWhereUniqueInput
+  }
+
+  /**
+   * LgaStatistics updateMany
+   */
+  export type LgaStatisticsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LgaStatistics.
+     */
+    data: XOR<LgaStatisticsUpdateManyMutationInput, LgaStatisticsUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaStatistics to update
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * Limit how many LgaStatistics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaStatistics updateManyAndReturn
+   */
+  export type LgaStatisticsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * The data used to update LgaStatistics.
+     */
+    data: XOR<LgaStatisticsUpdateManyMutationInput, LgaStatisticsUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaStatistics to update
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * Limit how many LgaStatistics to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaStatistics upsert
+   */
+  export type LgaStatisticsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LgaStatistics to update in case it exists.
+     */
+    where: LgaStatisticsWhereUniqueInput
+    /**
+     * In case the LgaStatistics found by the `where` argument doesn't exist, create a new LgaStatistics with this data.
+     */
+    create: XOR<LgaStatisticsCreateInput, LgaStatisticsUncheckedCreateInput>
+    /**
+     * In case the LgaStatistics was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LgaStatisticsUpdateInput, LgaStatisticsUncheckedUpdateInput>
+  }
+
+  /**
+   * LgaStatistics delete
+   */
+  export type LgaStatisticsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+    /**
+     * Filter which LgaStatistics to delete.
+     */
+    where: LgaStatisticsWhereUniqueInput
+  }
+
+  /**
+   * LgaStatistics deleteMany
+   */
+  export type LgaStatisticsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaStatistics to delete
+     */
+    where?: LgaStatisticsWhereInput
+    /**
+     * Limit how many LgaStatistics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaStatistics without action
+   */
+  export type LgaStatisticsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaStatistics
+     */
+    select?: LgaStatisticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaStatistics
+     */
+    omit?: LgaStatisticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaStatisticsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12156,6 +22033,98 @@ export namespace Prisma {
   };
 
   export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
+
+
+  export const LgaScalarFieldEnum: {
+    lga_code: 'lga_code',
+    lga_name: 'lga_name'
+  };
+
+  export type LgaScalarFieldEnum = (typeof LgaScalarFieldEnum)[keyof typeof LgaScalarFieldEnum]
+
+
+  export const NationalityScalarFieldEnum: {
+    nationality_id: 'nationality_id',
+    nationality: 'nationality'
+  };
+
+  export type NationalityScalarFieldEnum = (typeof NationalityScalarFieldEnum)[keyof typeof NationalityScalarFieldEnum]
+
+
+  export const LgaNationalityScalarFieldEnum: {
+    lga_nationality_id: 'lga_nationality_id',
+    lga_code: 'lga_code',
+    nationality_id: 'nationality_id',
+    count: 'count'
+  };
+
+  export type LgaNationalityScalarFieldEnum = (typeof LgaNationalityScalarFieldEnum)[keyof typeof LgaNationalityScalarFieldEnum]
+
+
+  export const CouncilInfoScalarFieldEnum: {
+    lga_code: 'lga_code',
+    council_name: 'council_name',
+    council_info: 'council_info',
+    address: 'address',
+    suburb: 'suburb',
+    postcode: 'postcode',
+    phone: 'phone',
+    email: 'email',
+    website: 'website'
+  };
+
+  export type CouncilInfoScalarFieldEnum = (typeof CouncilInfoScalarFieldEnum)[keyof typeof CouncilInfoScalarFieldEnum]
+
+
+  export const PostcodeScalarFieldEnum: {
+    postcode: 'postcode',
+    suburb: 'suburb',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    lga_code: 'lga_code'
+  };
+
+  export type PostcodeScalarFieldEnum = (typeof PostcodeScalarFieldEnum)[keyof typeof PostcodeScalarFieldEnum]
+
+
+  export const LanguageScalarFieldEnum: {
+    language_id: 'language_id',
+    language: 'language'
+  };
+
+  export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
+  export const LgaLanguageProficiencyScalarFieldEnum: {
+    lga_language_prof_id: 'lga_language_prof_id',
+    lga_code: 'lga_code',
+    language_id: 'language_id',
+    english_profiency_level: 'english_profiency_level',
+    count: 'count'
+  };
+
+  export type LgaLanguageProficiencyScalarFieldEnum = (typeof LgaLanguageProficiencyScalarFieldEnum)[keyof typeof LgaLanguageProficiencyScalarFieldEnum]
+
+
+  export const LgaStatisticsScalarFieldEnum: {
+    lga_code: 'lga_code',
+    total_businesses: 'total_businesses',
+    total_employed_over_15: 'total_employed_over_15',
+    born_overseas: 'born_overseas',
+    pct_arrived_within_5_years: 'pct_arrived_within_5_years',
+    pct_proficient_english: 'pct_proficient_english',
+    percent_speaks_other_lang_at_home: 'percent_speaks_other_lang_at_home',
+    median_age_years: 'median_age_years',
+    pct_completed_year_12: 'pct_completed_year_12',
+    pct_certificate: 'pct_certificate',
+    pct_bachelor_degree: 'pct_bachelor_degree',
+    pct_postgraduate: 'pct_postgraduate',
+    pct_managers: 'pct_managers',
+    pct_professionals: 'pct_professionals',
+    pct_labourers: 'pct_labourers'
+  };
+
+  export type LgaStatisticsScalarFieldEnum = (typeof LgaStatisticsScalarFieldEnum)[keyof typeof LgaStatisticsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12884,6 +22853,500 @@ export namespace Prisma {
     is_english_course?: BoolWithAggregatesFilter<"Course"> | boolean
   }
 
+  export type LgaWhereInput = {
+    AND?: LgaWhereInput | LgaWhereInput[]
+    OR?: LgaWhereInput[]
+    NOT?: LgaWhereInput | LgaWhereInput[]
+    lga_code?: IntFilter<"Lga"> | number
+    lga_name?: StringFilter<"Lga"> | string
+    council_info?: XOR<CouncilInfoNullableScalarRelationFilter, CouncilInfoWhereInput> | null
+    language_proficiencies?: LgaLanguageProficiencyListRelationFilter
+    lga_nationalities?: LgaNationalityListRelationFilter
+    statistics?: XOR<LgaStatisticsNullableScalarRelationFilter, LgaStatisticsWhereInput> | null
+    postcodes?: PostcodeListRelationFilter
+  }
+
+  export type LgaOrderByWithRelationInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+    council_info?: CouncilInfoOrderByWithRelationInput
+    language_proficiencies?: LgaLanguageProficiencyOrderByRelationAggregateInput
+    lga_nationalities?: LgaNationalityOrderByRelationAggregateInput
+    statistics?: LgaStatisticsOrderByWithRelationInput
+    postcodes?: PostcodeOrderByRelationAggregateInput
+  }
+
+  export type LgaWhereUniqueInput = Prisma.AtLeast<{
+    lga_code?: number
+    AND?: LgaWhereInput | LgaWhereInput[]
+    OR?: LgaWhereInput[]
+    NOT?: LgaWhereInput | LgaWhereInput[]
+    lga_name?: StringFilter<"Lga"> | string
+    council_info?: XOR<CouncilInfoNullableScalarRelationFilter, CouncilInfoWhereInput> | null
+    language_proficiencies?: LgaLanguageProficiencyListRelationFilter
+    lga_nationalities?: LgaNationalityListRelationFilter
+    statistics?: XOR<LgaStatisticsNullableScalarRelationFilter, LgaStatisticsWhereInput> | null
+    postcodes?: PostcodeListRelationFilter
+  }, "lga_code">
+
+  export type LgaOrderByWithAggregationInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+    _count?: LgaCountOrderByAggregateInput
+    _avg?: LgaAvgOrderByAggregateInput
+    _max?: LgaMaxOrderByAggregateInput
+    _min?: LgaMinOrderByAggregateInput
+    _sum?: LgaSumOrderByAggregateInput
+  }
+
+  export type LgaScalarWhereWithAggregatesInput = {
+    AND?: LgaScalarWhereWithAggregatesInput | LgaScalarWhereWithAggregatesInput[]
+    OR?: LgaScalarWhereWithAggregatesInput[]
+    NOT?: LgaScalarWhereWithAggregatesInput | LgaScalarWhereWithAggregatesInput[]
+    lga_code?: IntWithAggregatesFilter<"Lga"> | number
+    lga_name?: StringWithAggregatesFilter<"Lga"> | string
+  }
+
+  export type NationalityWhereInput = {
+    AND?: NationalityWhereInput | NationalityWhereInput[]
+    OR?: NationalityWhereInput[]
+    NOT?: NationalityWhereInput | NationalityWhereInput[]
+    nationality_id?: IntFilter<"Nationality"> | number
+    nationality?: StringFilter<"Nationality"> | string
+    lga_nationalities?: LgaNationalityListRelationFilter
+  }
+
+  export type NationalityOrderByWithRelationInput = {
+    nationality_id?: SortOrder
+    nationality?: SortOrder
+    lga_nationalities?: LgaNationalityOrderByRelationAggregateInput
+  }
+
+  export type NationalityWhereUniqueInput = Prisma.AtLeast<{
+    nationality_id?: number
+    nationality?: string
+    AND?: NationalityWhereInput | NationalityWhereInput[]
+    OR?: NationalityWhereInput[]
+    NOT?: NationalityWhereInput | NationalityWhereInput[]
+    lga_nationalities?: LgaNationalityListRelationFilter
+  }, "nationality_id" | "nationality">
+
+  export type NationalityOrderByWithAggregationInput = {
+    nationality_id?: SortOrder
+    nationality?: SortOrder
+    _count?: NationalityCountOrderByAggregateInput
+    _avg?: NationalityAvgOrderByAggregateInput
+    _max?: NationalityMaxOrderByAggregateInput
+    _min?: NationalityMinOrderByAggregateInput
+    _sum?: NationalitySumOrderByAggregateInput
+  }
+
+  export type NationalityScalarWhereWithAggregatesInput = {
+    AND?: NationalityScalarWhereWithAggregatesInput | NationalityScalarWhereWithAggregatesInput[]
+    OR?: NationalityScalarWhereWithAggregatesInput[]
+    NOT?: NationalityScalarWhereWithAggregatesInput | NationalityScalarWhereWithAggregatesInput[]
+    nationality_id?: IntWithAggregatesFilter<"Nationality"> | number
+    nationality?: StringWithAggregatesFilter<"Nationality"> | string
+  }
+
+  export type LgaNationalityWhereInput = {
+    AND?: LgaNationalityWhereInput | LgaNationalityWhereInput[]
+    OR?: LgaNationalityWhereInput[]
+    NOT?: LgaNationalityWhereInput | LgaNationalityWhereInput[]
+    lga_nationality_id?: IntFilter<"LgaNationality"> | number
+    lga_code?: IntFilter<"LgaNationality"> | number
+    nationality_id?: IntFilter<"LgaNationality"> | number
+    count?: IntFilter<"LgaNationality"> | number
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+    nationality?: XOR<NationalityScalarRelationFilter, NationalityWhereInput>
+  }
+
+  export type LgaNationalityOrderByWithRelationInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+    lga?: LgaOrderByWithRelationInput
+    nationality?: NationalityOrderByWithRelationInput
+  }
+
+  export type LgaNationalityWhereUniqueInput = Prisma.AtLeast<{
+    lga_nationality_id?: number
+    AND?: LgaNationalityWhereInput | LgaNationalityWhereInput[]
+    OR?: LgaNationalityWhereInput[]
+    NOT?: LgaNationalityWhereInput | LgaNationalityWhereInput[]
+    lga_code?: IntFilter<"LgaNationality"> | number
+    nationality_id?: IntFilter<"LgaNationality"> | number
+    count?: IntFilter<"LgaNationality"> | number
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+    nationality?: XOR<NationalityScalarRelationFilter, NationalityWhereInput>
+  }, "lga_nationality_id">
+
+  export type LgaNationalityOrderByWithAggregationInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+    _count?: LgaNationalityCountOrderByAggregateInput
+    _avg?: LgaNationalityAvgOrderByAggregateInput
+    _max?: LgaNationalityMaxOrderByAggregateInput
+    _min?: LgaNationalityMinOrderByAggregateInput
+    _sum?: LgaNationalitySumOrderByAggregateInput
+  }
+
+  export type LgaNationalityScalarWhereWithAggregatesInput = {
+    AND?: LgaNationalityScalarWhereWithAggregatesInput | LgaNationalityScalarWhereWithAggregatesInput[]
+    OR?: LgaNationalityScalarWhereWithAggregatesInput[]
+    NOT?: LgaNationalityScalarWhereWithAggregatesInput | LgaNationalityScalarWhereWithAggregatesInput[]
+    lga_nationality_id?: IntWithAggregatesFilter<"LgaNationality"> | number
+    lga_code?: IntWithAggregatesFilter<"LgaNationality"> | number
+    nationality_id?: IntWithAggregatesFilter<"LgaNationality"> | number
+    count?: IntWithAggregatesFilter<"LgaNationality"> | number
+  }
+
+  export type CouncilInfoWhereInput = {
+    AND?: CouncilInfoWhereInput | CouncilInfoWhereInput[]
+    OR?: CouncilInfoWhereInput[]
+    NOT?: CouncilInfoWhereInput | CouncilInfoWhereInput[]
+    lga_code?: IntFilter<"CouncilInfo"> | number
+    council_name?: StringNullableFilter<"CouncilInfo"> | string | null
+    council_info?: StringNullableFilter<"CouncilInfo"> | string | null
+    address?: StringNullableFilter<"CouncilInfo"> | string | null
+    suburb?: StringNullableFilter<"CouncilInfo"> | string | null
+    postcode?: IntNullableFilter<"CouncilInfo"> | number | null
+    phone?: StringNullableFilter<"CouncilInfo"> | string | null
+    email?: StringNullableFilter<"CouncilInfo"> | string | null
+    website?: StringNullableFilter<"CouncilInfo"> | string | null
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }
+
+  export type CouncilInfoOrderByWithRelationInput = {
+    lga_code?: SortOrder
+    council_name?: SortOrderInput | SortOrder
+    council_info?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    suburb?: SortOrderInput | SortOrder
+    postcode?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    website?: SortOrderInput | SortOrder
+    lga?: LgaOrderByWithRelationInput
+  }
+
+  export type CouncilInfoWhereUniqueInput = Prisma.AtLeast<{
+    lga_code?: number
+    AND?: CouncilInfoWhereInput | CouncilInfoWhereInput[]
+    OR?: CouncilInfoWhereInput[]
+    NOT?: CouncilInfoWhereInput | CouncilInfoWhereInput[]
+    council_name?: StringNullableFilter<"CouncilInfo"> | string | null
+    council_info?: StringNullableFilter<"CouncilInfo"> | string | null
+    address?: StringNullableFilter<"CouncilInfo"> | string | null
+    suburb?: StringNullableFilter<"CouncilInfo"> | string | null
+    postcode?: IntNullableFilter<"CouncilInfo"> | number | null
+    phone?: StringNullableFilter<"CouncilInfo"> | string | null
+    email?: StringNullableFilter<"CouncilInfo"> | string | null
+    website?: StringNullableFilter<"CouncilInfo"> | string | null
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }, "lga_code">
+
+  export type CouncilInfoOrderByWithAggregationInput = {
+    lga_code?: SortOrder
+    council_name?: SortOrderInput | SortOrder
+    council_info?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    suburb?: SortOrderInput | SortOrder
+    postcode?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    website?: SortOrderInput | SortOrder
+    _count?: CouncilInfoCountOrderByAggregateInput
+    _avg?: CouncilInfoAvgOrderByAggregateInput
+    _max?: CouncilInfoMaxOrderByAggregateInput
+    _min?: CouncilInfoMinOrderByAggregateInput
+    _sum?: CouncilInfoSumOrderByAggregateInput
+  }
+
+  export type CouncilInfoScalarWhereWithAggregatesInput = {
+    AND?: CouncilInfoScalarWhereWithAggregatesInput | CouncilInfoScalarWhereWithAggregatesInput[]
+    OR?: CouncilInfoScalarWhereWithAggregatesInput[]
+    NOT?: CouncilInfoScalarWhereWithAggregatesInput | CouncilInfoScalarWhereWithAggregatesInput[]
+    lga_code?: IntWithAggregatesFilter<"CouncilInfo"> | number
+    council_name?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    council_info?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    address?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    suburb?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    postcode?: IntNullableWithAggregatesFilter<"CouncilInfo"> | number | null
+    phone?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    email?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+    website?: StringNullableWithAggregatesFilter<"CouncilInfo"> | string | null
+  }
+
+  export type PostcodeWhereInput = {
+    AND?: PostcodeWhereInput | PostcodeWhereInput[]
+    OR?: PostcodeWhereInput[]
+    NOT?: PostcodeWhereInput | PostcodeWhereInput[]
+    postcode?: IntFilter<"Postcode"> | number
+    suburb?: StringFilter<"Postcode"> | string
+    latitude?: FloatFilter<"Postcode"> | number
+    longitude?: FloatFilter<"Postcode"> | number
+    lga_code?: IntFilter<"Postcode"> | number
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }
+
+  export type PostcodeOrderByWithRelationInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+    lga?: LgaOrderByWithRelationInput
+  }
+
+  export type PostcodeWhereUniqueInput = Prisma.AtLeast<{
+    postcode?: number
+    AND?: PostcodeWhereInput | PostcodeWhereInput[]
+    OR?: PostcodeWhereInput[]
+    NOT?: PostcodeWhereInput | PostcodeWhereInput[]
+    suburb?: StringFilter<"Postcode"> | string
+    latitude?: FloatFilter<"Postcode"> | number
+    longitude?: FloatFilter<"Postcode"> | number
+    lga_code?: IntFilter<"Postcode"> | number
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }, "postcode">
+
+  export type PostcodeOrderByWithAggregationInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+    _count?: PostcodeCountOrderByAggregateInput
+    _avg?: PostcodeAvgOrderByAggregateInput
+    _max?: PostcodeMaxOrderByAggregateInput
+    _min?: PostcodeMinOrderByAggregateInput
+    _sum?: PostcodeSumOrderByAggregateInput
+  }
+
+  export type PostcodeScalarWhereWithAggregatesInput = {
+    AND?: PostcodeScalarWhereWithAggregatesInput | PostcodeScalarWhereWithAggregatesInput[]
+    OR?: PostcodeScalarWhereWithAggregatesInput[]
+    NOT?: PostcodeScalarWhereWithAggregatesInput | PostcodeScalarWhereWithAggregatesInput[]
+    postcode?: IntWithAggregatesFilter<"Postcode"> | number
+    suburb?: StringWithAggregatesFilter<"Postcode"> | string
+    latitude?: FloatWithAggregatesFilter<"Postcode"> | number
+    longitude?: FloatWithAggregatesFilter<"Postcode"> | number
+    lga_code?: IntWithAggregatesFilter<"Postcode"> | number
+  }
+
+  export type LanguageWhereInput = {
+    AND?: LanguageWhereInput | LanguageWhereInput[]
+    OR?: LanguageWhereInput[]
+    NOT?: LanguageWhereInput | LanguageWhereInput[]
+    language_id?: IntFilter<"Language"> | number
+    language?: StringNullableFilter<"Language"> | string | null
+    proficiencies?: LgaLanguageProficiencyListRelationFilter
+  }
+
+  export type LanguageOrderByWithRelationInput = {
+    language_id?: SortOrder
+    language?: SortOrderInput | SortOrder
+    proficiencies?: LgaLanguageProficiencyOrderByRelationAggregateInput
+  }
+
+  export type LanguageWhereUniqueInput = Prisma.AtLeast<{
+    language_id?: number
+    AND?: LanguageWhereInput | LanguageWhereInput[]
+    OR?: LanguageWhereInput[]
+    NOT?: LanguageWhereInput | LanguageWhereInput[]
+    language?: StringNullableFilter<"Language"> | string | null
+    proficiencies?: LgaLanguageProficiencyListRelationFilter
+  }, "language_id">
+
+  export type LanguageOrderByWithAggregationInput = {
+    language_id?: SortOrder
+    language?: SortOrderInput | SortOrder
+    _count?: LanguageCountOrderByAggregateInput
+    _avg?: LanguageAvgOrderByAggregateInput
+    _max?: LanguageMaxOrderByAggregateInput
+    _min?: LanguageMinOrderByAggregateInput
+    _sum?: LanguageSumOrderByAggregateInput
+  }
+
+  export type LanguageScalarWhereWithAggregatesInput = {
+    AND?: LanguageScalarWhereWithAggregatesInput | LanguageScalarWhereWithAggregatesInput[]
+    OR?: LanguageScalarWhereWithAggregatesInput[]
+    NOT?: LanguageScalarWhereWithAggregatesInput | LanguageScalarWhereWithAggregatesInput[]
+    language_id?: IntWithAggregatesFilter<"Language"> | number
+    language?: StringNullableWithAggregatesFilter<"Language"> | string | null
+  }
+
+  export type LgaLanguageProficiencyWhereInput = {
+    AND?: LgaLanguageProficiencyWhereInput | LgaLanguageProficiencyWhereInput[]
+    OR?: LgaLanguageProficiencyWhereInput[]
+    NOT?: LgaLanguageProficiencyWhereInput | LgaLanguageProficiencyWhereInput[]
+    lga_language_prof_id?: IntFilter<"LgaLanguageProficiency"> | number
+    lga_code?: IntFilter<"LgaLanguageProficiency"> | number
+    language_id?: IntFilter<"LgaLanguageProficiency"> | number
+    english_profiency_level?: StringFilter<"LgaLanguageProficiency"> | string
+    count?: IntFilter<"LgaLanguageProficiency"> | number
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }
+
+  export type LgaLanguageProficiencyOrderByWithRelationInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    english_profiency_level?: SortOrder
+    count?: SortOrder
+    language?: LanguageOrderByWithRelationInput
+    lga?: LgaOrderByWithRelationInput
+  }
+
+  export type LgaLanguageProficiencyWhereUniqueInput = Prisma.AtLeast<{
+    lga_language_prof_id?: number
+    AND?: LgaLanguageProficiencyWhereInput | LgaLanguageProficiencyWhereInput[]
+    OR?: LgaLanguageProficiencyWhereInput[]
+    NOT?: LgaLanguageProficiencyWhereInput | LgaLanguageProficiencyWhereInput[]
+    lga_code?: IntFilter<"LgaLanguageProficiency"> | number
+    language_id?: IntFilter<"LgaLanguageProficiency"> | number
+    english_profiency_level?: StringFilter<"LgaLanguageProficiency"> | string
+    count?: IntFilter<"LgaLanguageProficiency"> | number
+    language?: XOR<LanguageScalarRelationFilter, LanguageWhereInput>
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }, "lga_language_prof_id">
+
+  export type LgaLanguageProficiencyOrderByWithAggregationInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    english_profiency_level?: SortOrder
+    count?: SortOrder
+    _count?: LgaLanguageProficiencyCountOrderByAggregateInput
+    _avg?: LgaLanguageProficiencyAvgOrderByAggregateInput
+    _max?: LgaLanguageProficiencyMaxOrderByAggregateInput
+    _min?: LgaLanguageProficiencyMinOrderByAggregateInput
+    _sum?: LgaLanguageProficiencySumOrderByAggregateInput
+  }
+
+  export type LgaLanguageProficiencyScalarWhereWithAggregatesInput = {
+    AND?: LgaLanguageProficiencyScalarWhereWithAggregatesInput | LgaLanguageProficiencyScalarWhereWithAggregatesInput[]
+    OR?: LgaLanguageProficiencyScalarWhereWithAggregatesInput[]
+    NOT?: LgaLanguageProficiencyScalarWhereWithAggregatesInput | LgaLanguageProficiencyScalarWhereWithAggregatesInput[]
+    lga_language_prof_id?: IntWithAggregatesFilter<"LgaLanguageProficiency"> | number
+    lga_code?: IntWithAggregatesFilter<"LgaLanguageProficiency"> | number
+    language_id?: IntWithAggregatesFilter<"LgaLanguageProficiency"> | number
+    english_profiency_level?: StringWithAggregatesFilter<"LgaLanguageProficiency"> | string
+    count?: IntWithAggregatesFilter<"LgaLanguageProficiency"> | number
+  }
+
+  export type LgaStatisticsWhereInput = {
+    AND?: LgaStatisticsWhereInput | LgaStatisticsWhereInput[]
+    OR?: LgaStatisticsWhereInput[]
+    NOT?: LgaStatisticsWhereInput | LgaStatisticsWhereInput[]
+    lga_code?: IntFilter<"LgaStatistics"> | number
+    total_businesses?: IntNullableFilter<"LgaStatistics"> | number | null
+    total_employed_over_15?: IntNullableFilter<"LgaStatistics"> | number | null
+    born_overseas?: IntNullableFilter<"LgaStatistics"> | number | null
+    pct_arrived_within_5_years?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_proficient_english?: FloatNullableFilter<"LgaStatistics"> | number | null
+    percent_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
+    median_age_years?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_completed_year_12?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_certificate?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_bachelor_degree?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_postgraduate?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_managers?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_professionals?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_labourers?: FloatNullableFilter<"LgaStatistics"> | number | null
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }
+
+  export type LgaStatisticsOrderByWithRelationInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrderInput | SortOrder
+    total_employed_over_15?: SortOrderInput | SortOrder
+    born_overseas?: SortOrderInput | SortOrder
+    pct_arrived_within_5_years?: SortOrderInput | SortOrder
+    pct_proficient_english?: SortOrderInput | SortOrder
+    percent_speaks_other_lang_at_home?: SortOrderInput | SortOrder
+    median_age_years?: SortOrderInput | SortOrder
+    pct_completed_year_12?: SortOrderInput | SortOrder
+    pct_certificate?: SortOrderInput | SortOrder
+    pct_bachelor_degree?: SortOrderInput | SortOrder
+    pct_postgraduate?: SortOrderInput | SortOrder
+    pct_managers?: SortOrderInput | SortOrder
+    pct_professionals?: SortOrderInput | SortOrder
+    pct_labourers?: SortOrderInput | SortOrder
+    lga?: LgaOrderByWithRelationInput
+  }
+
+  export type LgaStatisticsWhereUniqueInput = Prisma.AtLeast<{
+    lga_code?: number
+    AND?: LgaStatisticsWhereInput | LgaStatisticsWhereInput[]
+    OR?: LgaStatisticsWhereInput[]
+    NOT?: LgaStatisticsWhereInput | LgaStatisticsWhereInput[]
+    total_businesses?: IntNullableFilter<"LgaStatistics"> | number | null
+    total_employed_over_15?: IntNullableFilter<"LgaStatistics"> | number | null
+    born_overseas?: IntNullableFilter<"LgaStatistics"> | number | null
+    pct_arrived_within_5_years?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_proficient_english?: FloatNullableFilter<"LgaStatistics"> | number | null
+    percent_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
+    median_age_years?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_completed_year_12?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_certificate?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_bachelor_degree?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_postgraduate?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_managers?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_professionals?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_labourers?: FloatNullableFilter<"LgaStatistics"> | number | null
+    lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+  }, "lga_code">
+
+  export type LgaStatisticsOrderByWithAggregationInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrderInput | SortOrder
+    total_employed_over_15?: SortOrderInput | SortOrder
+    born_overseas?: SortOrderInput | SortOrder
+    pct_arrived_within_5_years?: SortOrderInput | SortOrder
+    pct_proficient_english?: SortOrderInput | SortOrder
+    percent_speaks_other_lang_at_home?: SortOrderInput | SortOrder
+    median_age_years?: SortOrderInput | SortOrder
+    pct_completed_year_12?: SortOrderInput | SortOrder
+    pct_certificate?: SortOrderInput | SortOrder
+    pct_bachelor_degree?: SortOrderInput | SortOrder
+    pct_postgraduate?: SortOrderInput | SortOrder
+    pct_managers?: SortOrderInput | SortOrder
+    pct_professionals?: SortOrderInput | SortOrder
+    pct_labourers?: SortOrderInput | SortOrder
+    _count?: LgaStatisticsCountOrderByAggregateInput
+    _avg?: LgaStatisticsAvgOrderByAggregateInput
+    _max?: LgaStatisticsMaxOrderByAggregateInput
+    _min?: LgaStatisticsMinOrderByAggregateInput
+    _sum?: LgaStatisticsSumOrderByAggregateInput
+  }
+
+  export type LgaStatisticsScalarWhereWithAggregatesInput = {
+    AND?: LgaStatisticsScalarWhereWithAggregatesInput | LgaStatisticsScalarWhereWithAggregatesInput[]
+    OR?: LgaStatisticsScalarWhereWithAggregatesInput[]
+    NOT?: LgaStatisticsScalarWhereWithAggregatesInput | LgaStatisticsScalarWhereWithAggregatesInput[]
+    lga_code?: IntWithAggregatesFilter<"LgaStatistics"> | number
+    total_businesses?: IntNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    total_employed_over_15?: IntNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    born_overseas?: IntNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_arrived_within_5_years?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_proficient_english?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    percent_speaks_other_lang_at_home?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    median_age_years?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_completed_year_12?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_certificate?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_bachelor_degree?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_postgraduate?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_managers?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_professionals?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_labourers?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+  }
+
   export type VenueCreateInput = {
     venue_id: string
     venue_name: string
@@ -13542,6 +24005,491 @@ export namespace Prisma {
     is_english_course?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type LgaCreateInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaCreateManyInput = {
+    lga_code: number
+    lga_name: string
+  }
+
+  export type LgaUpdateManyMutationInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LgaUncheckedUpdateManyInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NationalityCreateInput = {
+    nationality: string
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutNationalityInput
+  }
+
+  export type NationalityUncheckedCreateInput = {
+    nationality_id?: number
+    nationality: string
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutNationalityInput
+  }
+
+  export type NationalityUpdateInput = {
+    nationality?: StringFieldUpdateOperationsInput | string
+    lga_nationalities?: LgaNationalityUpdateManyWithoutNationalityNestedInput
+  }
+
+  export type NationalityUncheckedUpdateInput = {
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality?: StringFieldUpdateOperationsInput | string
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput
+  }
+
+  export type NationalityCreateManyInput = {
+    nationality_id?: number
+    nationality: string
+  }
+
+  export type NationalityUpdateManyMutationInput = {
+    nationality?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NationalityUncheckedUpdateManyInput = {
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LgaNationalityCreateInput = {
+    count: number
+    lga: LgaCreateNestedOneWithoutLga_nationalitiesInput
+    nationality: NationalityCreateNestedOneWithoutLga_nationalitiesInput
+  }
+
+  export type LgaNationalityUncheckedCreateInput = {
+    lga_nationality_id?: number
+    lga_code: number
+    nationality_id: number
+    count: number
+  }
+
+  export type LgaNationalityUpdateInput = {
+    count?: IntFieldUpdateOperationsInput | number
+    lga?: LgaUpdateOneRequiredWithoutLga_nationalitiesNestedInput
+    nationality?: NationalityUpdateOneRequiredWithoutLga_nationalitiesNestedInput
+  }
+
+  export type LgaNationalityUncheckedUpdateInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityCreateManyInput = {
+    lga_nationality_id?: number
+    lga_code: number
+    nationality_id: number
+    count: number
+  }
+
+  export type LgaNationalityUpdateManyMutationInput = {
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityUncheckedUpdateManyInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CouncilInfoCreateInput = {
+    council_name?: string | null
+    council_info?: string | null
+    address?: string | null
+    suburb?: string | null
+    postcode?: number | null
+    phone?: string | null
+    email?: string | null
+    website?: string | null
+    lga: LgaCreateNestedOneWithoutCouncil_infoInput
+  }
+
+  export type CouncilInfoUncheckedCreateInput = {
+    lga_code: number
+    council_name?: string | null
+    council_info?: string | null
+    address?: string | null
+    suburb?: string | null
+    postcode?: number | null
+    phone?: string | null
+    email?: string | null
+    website?: string | null
+  }
+
+  export type CouncilInfoUpdateInput = {
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    lga?: LgaUpdateOneRequiredWithoutCouncil_infoNestedInput
+  }
+
+  export type CouncilInfoUncheckedUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CouncilInfoCreateManyInput = {
+    lga_code: number
+    council_name?: string | null
+    council_info?: string | null
+    address?: string | null
+    suburb?: string | null
+    postcode?: number | null
+    phone?: string | null
+    email?: string | null
+    website?: string | null
+  }
+
+  export type CouncilInfoUpdateManyMutationInput = {
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CouncilInfoUncheckedUpdateManyInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PostcodeCreateInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga: LgaCreateNestedOneWithoutPostcodesInput
+  }
+
+  export type PostcodeUncheckedCreateInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type PostcodeUpdateInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga?: LgaUpdateOneRequiredWithoutPostcodesNestedInput
+  }
+
+  export type PostcodeUncheckedUpdateInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PostcodeCreateManyInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type PostcodeUpdateManyMutationInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PostcodeUncheckedUpdateManyInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LanguageCreateInput = {
+    language?: string | null
+    proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUncheckedCreateInput = {
+    language_id?: number
+    language?: string | null
+    proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLanguageInput
+  }
+
+  export type LanguageUpdateInput = {
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageUncheckedUpdateInput = {
+    language_id?: IntFieldUpdateOperationsInput | number
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLanguageNestedInput
+  }
+
+  export type LanguageCreateManyInput = {
+    language_id?: number
+    language?: string | null
+  }
+
+  export type LanguageUpdateManyMutationInput = {
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LanguageUncheckedUpdateManyInput = {
+    language_id?: IntFieldUpdateOperationsInput | number
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LgaLanguageProficiencyCreateInput = {
+    english_profiency_level: string
+    count: number
+    language: LanguageCreateNestedOneWithoutProficienciesInput
+    lga: LgaCreateNestedOneWithoutLanguage_proficienciesInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedCreateInput = {
+    lga_language_prof_id?: number
+    lga_code: number
+    language_id: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaLanguageProficiencyUpdateInput = {
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    language?: LanguageUpdateOneRequiredWithoutProficienciesNestedInput
+    lga?: LgaUpdateOneRequiredWithoutLanguage_proficienciesNestedInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    language_id?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaLanguageProficiencyCreateManyInput = {
+    lga_language_prof_id?: number
+    lga_code: number
+    language_id: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaLanguageProficiencyUpdateManyMutationInput = {
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateManyInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    language_id?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaStatisticsCreateInput = {
+    total_businesses?: number | null
+    total_employed_over_15?: number | null
+    born_overseas?: number | null
+    pct_arrived_within_5_years?: number | null
+    pct_proficient_english?: number | null
+    percent_speaks_other_lang_at_home?: number | null
+    median_age_years?: number | null
+    pct_completed_year_12?: number | null
+    pct_certificate?: number | null
+    pct_bachelor_degree?: number | null
+    pct_postgraduate?: number | null
+    pct_managers?: number | null
+    pct_professionals?: number | null
+    pct_labourers?: number | null
+    lga: LgaCreateNestedOneWithoutStatisticsInput
+  }
+
+  export type LgaStatisticsUncheckedCreateInput = {
+    lga_code: number
+    total_businesses?: number | null
+    total_employed_over_15?: number | null
+    born_overseas?: number | null
+    pct_arrived_within_5_years?: number | null
+    pct_proficient_english?: number | null
+    percent_speaks_other_lang_at_home?: number | null
+    median_age_years?: number | null
+    pct_completed_year_12?: number | null
+    pct_certificate?: number | null
+    pct_bachelor_degree?: number | null
+    pct_postgraduate?: number | null
+    pct_managers?: number | null
+    pct_professionals?: number | null
+    pct_labourers?: number | null
+  }
+
+  export type LgaStatisticsUpdateInput = {
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+    lga?: LgaUpdateOneRequiredWithoutStatisticsNestedInput
+  }
+
+  export type LgaStatisticsUncheckedUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LgaStatisticsCreateManyInput = {
+    lga_code: number
+    total_businesses?: number | null
+    total_employed_over_15?: number | null
+    born_overseas?: number | null
+    pct_arrived_within_5_years?: number | null
+    pct_proficient_english?: number | null
+    percent_speaks_other_lang_at_home?: number | null
+    median_age_years?: number | null
+    pct_completed_year_12?: number | null
+    pct_certificate?: number | null
+    pct_bachelor_degree?: number | null
+    pct_postgraduate?: number | null
+    pct_managers?: number | null
+    pct_professionals?: number | null
+    pct_labourers?: number | null
+  }
+
+  export type LgaStatisticsUpdateManyMutationInput = {
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LgaStatisticsUncheckedUpdateManyInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14172,6 +25120,431 @@ export namespace Prisma {
     provider_id?: SortOrder
   }
 
+  export type CouncilInfoNullableScalarRelationFilter = {
+    is?: CouncilInfoWhereInput | null
+    isNot?: CouncilInfoWhereInput | null
+  }
+
+  export type LgaLanguageProficiencyListRelationFilter = {
+    every?: LgaLanguageProficiencyWhereInput
+    some?: LgaLanguageProficiencyWhereInput
+    none?: LgaLanguageProficiencyWhereInput
+  }
+
+  export type LgaNationalityListRelationFilter = {
+    every?: LgaNationalityWhereInput
+    some?: LgaNationalityWhereInput
+    none?: LgaNationalityWhereInput
+  }
+
+  export type LgaStatisticsNullableScalarRelationFilter = {
+    is?: LgaStatisticsWhereInput | null
+    isNot?: LgaStatisticsWhereInput | null
+  }
+
+  export type PostcodeListRelationFilter = {
+    every?: PostcodeWhereInput
+    some?: PostcodeWhereInput
+    none?: PostcodeWhereInput
+  }
+
+  export type LgaLanguageProficiencyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LgaNationalityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PostcodeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LgaCountOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type LgaAvgOrderByAggregateInput = {
+    lga_code?: SortOrder
+  }
+
+  export type LgaMaxOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type LgaMinOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type LgaSumOrderByAggregateInput = {
+    lga_code?: SortOrder
+  }
+
+  export type NationalityCountOrderByAggregateInput = {
+    nationality_id?: SortOrder
+    nationality?: SortOrder
+  }
+
+  export type NationalityAvgOrderByAggregateInput = {
+    nationality_id?: SortOrder
+  }
+
+  export type NationalityMaxOrderByAggregateInput = {
+    nationality_id?: SortOrder
+    nationality?: SortOrder
+  }
+
+  export type NationalityMinOrderByAggregateInput = {
+    nationality_id?: SortOrder
+    nationality?: SortOrder
+  }
+
+  export type NationalitySumOrderByAggregateInput = {
+    nationality_id?: SortOrder
+  }
+
+  export type LgaScalarRelationFilter = {
+    is?: LgaWhereInput
+    isNot?: LgaWhereInput
+  }
+
+  export type NationalityScalarRelationFilter = {
+    is?: NationalityWhereInput
+    isNot?: NationalityWhereInput
+  }
+
+  export type LgaNationalityCountOrderByAggregateInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityAvgOrderByAggregateInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityMaxOrderByAggregateInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityMinOrderByAggregateInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalitySumOrderByAggregateInput = {
+    lga_nationality_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CouncilInfoCountOrderByAggregateInput = {
+    lga_code?: SortOrder
+    council_name?: SortOrder
+    council_info?: SortOrder
+    address?: SortOrder
+    suburb?: SortOrder
+    postcode?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+  }
+
+  export type CouncilInfoAvgOrderByAggregateInput = {
+    lga_code?: SortOrder
+    postcode?: SortOrder
+  }
+
+  export type CouncilInfoMaxOrderByAggregateInput = {
+    lga_code?: SortOrder
+    council_name?: SortOrder
+    council_info?: SortOrder
+    address?: SortOrder
+    suburb?: SortOrder
+    postcode?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+  }
+
+  export type CouncilInfoMinOrderByAggregateInput = {
+    lga_code?: SortOrder
+    council_name?: SortOrder
+    council_info?: SortOrder
+    address?: SortOrder
+    suburb?: SortOrder
+    postcode?: SortOrder
+    phone?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+  }
+
+  export type CouncilInfoSumOrderByAggregateInput = {
+    lga_code?: SortOrder
+    postcode?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type PostcodeCountOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type PostcodeAvgOrderByAggregateInput = {
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type PostcodeMaxOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type PostcodeMinOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type PostcodeSumOrderByAggregateInput = {
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type LanguageCountOrderByAggregateInput = {
+    language_id?: SortOrder
+    language?: SortOrder
+  }
+
+  export type LanguageAvgOrderByAggregateInput = {
+    language_id?: SortOrder
+  }
+
+  export type LanguageMaxOrderByAggregateInput = {
+    language_id?: SortOrder
+    language?: SortOrder
+  }
+
+  export type LanguageMinOrderByAggregateInput = {
+    language_id?: SortOrder
+    language?: SortOrder
+  }
+
+  export type LanguageSumOrderByAggregateInput = {
+    language_id?: SortOrder
+  }
+
+  export type LanguageScalarRelationFilter = {
+    is?: LanguageWhereInput
+    isNot?: LanguageWhereInput
+  }
+
+  export type LgaLanguageProficiencyCountOrderByAggregateInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    english_profiency_level?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaLanguageProficiencyAvgOrderByAggregateInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaLanguageProficiencyMaxOrderByAggregateInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    english_profiency_level?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaLanguageProficiencyMinOrderByAggregateInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    english_profiency_level?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaLanguageProficiencySumOrderByAggregateInput = {
+    lga_language_prof_id?: SortOrder
+    lga_code?: SortOrder
+    language_id?: SortOrder
+    count?: SortOrder
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type LgaStatisticsCountOrderByAggregateInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrder
+    total_employed_over_15?: SortOrder
+    born_overseas?: SortOrder
+    pct_arrived_within_5_years?: SortOrder
+    pct_proficient_english?: SortOrder
+    percent_speaks_other_lang_at_home?: SortOrder
+    median_age_years?: SortOrder
+    pct_completed_year_12?: SortOrder
+    pct_certificate?: SortOrder
+    pct_bachelor_degree?: SortOrder
+    pct_postgraduate?: SortOrder
+    pct_managers?: SortOrder
+    pct_professionals?: SortOrder
+    pct_labourers?: SortOrder
+  }
+
+  export type LgaStatisticsAvgOrderByAggregateInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrder
+    total_employed_over_15?: SortOrder
+    born_overseas?: SortOrder
+    pct_arrived_within_5_years?: SortOrder
+    pct_proficient_english?: SortOrder
+    percent_speaks_other_lang_at_home?: SortOrder
+    median_age_years?: SortOrder
+    pct_completed_year_12?: SortOrder
+    pct_certificate?: SortOrder
+    pct_bachelor_degree?: SortOrder
+    pct_postgraduate?: SortOrder
+    pct_managers?: SortOrder
+    pct_professionals?: SortOrder
+    pct_labourers?: SortOrder
+  }
+
+  export type LgaStatisticsMaxOrderByAggregateInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrder
+    total_employed_over_15?: SortOrder
+    born_overseas?: SortOrder
+    pct_arrived_within_5_years?: SortOrder
+    pct_proficient_english?: SortOrder
+    percent_speaks_other_lang_at_home?: SortOrder
+    median_age_years?: SortOrder
+    pct_completed_year_12?: SortOrder
+    pct_certificate?: SortOrder
+    pct_bachelor_degree?: SortOrder
+    pct_postgraduate?: SortOrder
+    pct_managers?: SortOrder
+    pct_professionals?: SortOrder
+    pct_labourers?: SortOrder
+  }
+
+  export type LgaStatisticsMinOrderByAggregateInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrder
+    total_employed_over_15?: SortOrder
+    born_overseas?: SortOrder
+    pct_arrived_within_5_years?: SortOrder
+    pct_proficient_english?: SortOrder
+    percent_speaks_other_lang_at_home?: SortOrder
+    median_age_years?: SortOrder
+    pct_completed_year_12?: SortOrder
+    pct_certificate?: SortOrder
+    pct_bachelor_degree?: SortOrder
+    pct_postgraduate?: SortOrder
+    pct_managers?: SortOrder
+    pct_professionals?: SortOrder
+    pct_labourers?: SortOrder
+  }
+
+  export type LgaStatisticsSumOrderByAggregateInput = {
+    lga_code?: SortOrder
+    total_businesses?: SortOrder
+    total_employed_over_15?: SortOrder
+    born_overseas?: SortOrder
+    pct_arrived_within_5_years?: SortOrder
+    pct_proficient_english?: SortOrder
+    percent_speaks_other_lang_at_home?: SortOrder
+    median_age_years?: SortOrder
+    pct_completed_year_12?: SortOrder
+    pct_certificate?: SortOrder
+    pct_bachelor_degree?: SortOrder
+    pct_postgraduate?: SortOrder
+    pct_managers?: SortOrder
+    pct_professionals?: SortOrder
+    pct_labourers?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type EventCreateNestedManyWithoutVenueInput = {
     create?: XOR<EventCreateWithoutVenueInput, EventUncheckedCreateWithoutVenueInput> | EventCreateWithoutVenueInput[] | EventUncheckedCreateWithoutVenueInput[]
     connectOrCreate?: EventCreateOrConnectWithoutVenueInput | EventCreateOrConnectWithoutVenueInput[]
@@ -14620,6 +25993,394 @@ export namespace Prisma {
     update?: XOR<XOR<ProviderUpdateToOneWithWhereWithoutCoursesInput, ProviderUpdateWithoutCoursesInput>, ProviderUncheckedUpdateWithoutCoursesInput>
   }
 
+  export type CouncilInfoCreateNestedOneWithoutLgaInput = {
+    create?: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: CouncilInfoCreateOrConnectWithoutLgaInput
+    connect?: CouncilInfoWhereUniqueInput
+  }
+
+  export type LgaLanguageProficiencyCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput> | LgaLanguageProficiencyCreateWithoutLgaInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLgaInput | LgaLanguageProficiencyCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLgaInputEnvelope
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+  }
+
+  export type LgaNationalityCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput> | LgaNationalityCreateWithoutLgaInput[] | LgaNationalityUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutLgaInput | LgaNationalityCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaNationalityCreateManyLgaInputEnvelope
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaStatisticsCreateNestedOneWithoutLgaInput = {
+    create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
+    connect?: LgaStatisticsWhereUniqueInput
+  }
+
+  export type PostcodeCreateNestedManyWithoutLgaInput = {
+    create?: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput> | PostcodeCreateWithoutLgaInput[] | PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: PostcodeCreateOrConnectWithoutLgaInput | PostcodeCreateOrConnectWithoutLgaInput[]
+    createMany?: PostcodeCreateManyLgaInputEnvelope
+    connect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+  }
+
+  export type CouncilInfoUncheckedCreateNestedOneWithoutLgaInput = {
+    create?: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: CouncilInfoCreateOrConnectWithoutLgaInput
+    connect?: CouncilInfoWhereUniqueInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput> | LgaLanguageProficiencyCreateWithoutLgaInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLgaInput | LgaLanguageProficiencyCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLgaInputEnvelope
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+  }
+
+  export type LgaNationalityUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput> | LgaNationalityCreateWithoutLgaInput[] | LgaNationalityUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutLgaInput | LgaNationalityCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaNationalityCreateManyLgaInputEnvelope
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput = {
+    create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
+    connect?: LgaStatisticsWhereUniqueInput
+  }
+
+  export type PostcodeUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput> | PostcodeCreateWithoutLgaInput[] | PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: PostcodeCreateOrConnectWithoutLgaInput | PostcodeCreateOrConnectWithoutLgaInput[]
+    createMany?: PostcodeCreateManyLgaInputEnvelope
+    connect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+  }
+
+  export type CouncilInfoUpdateOneWithoutLgaNestedInput = {
+    create?: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: CouncilInfoCreateOrConnectWithoutLgaInput
+    upsert?: CouncilInfoUpsertWithoutLgaInput
+    disconnect?: CouncilInfoWhereInput | boolean
+    delete?: CouncilInfoWhereInput | boolean
+    connect?: CouncilInfoWhereUniqueInput
+    update?: XOR<XOR<CouncilInfoUpdateToOneWithWhereWithoutLgaInput, CouncilInfoUpdateWithoutLgaInput>, CouncilInfoUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput> | LgaLanguageProficiencyCreateWithoutLgaInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLgaInput | LgaLanguageProficiencyCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLgaInput | LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLgaInputEnvelope
+    set?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    disconnect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    delete?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    update?: LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLgaInput | LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaLanguageProficiencyUpdateManyWithWhereWithoutLgaInput | LgaLanguageProficiencyUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+  }
+
+  export type LgaNationalityUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput> | LgaNationalityCreateWithoutLgaInput[] | LgaNationalityUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutLgaInput | LgaNationalityCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaNationalityUpsertWithWhereUniqueWithoutLgaInput | LgaNationalityUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaNationalityCreateManyLgaInputEnvelope
+    set?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    disconnect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    delete?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    update?: LgaNationalityUpdateWithWhereUniqueWithoutLgaInput | LgaNationalityUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaNationalityUpdateManyWithWhereWithoutLgaInput | LgaNationalityUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaStatisticsUpdateOneWithoutLgaNestedInput = {
+    create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
+    upsert?: LgaStatisticsUpsertWithoutLgaInput
+    disconnect?: LgaStatisticsWhereInput | boolean
+    delete?: LgaStatisticsWhereInput | boolean
+    connect?: LgaStatisticsWhereUniqueInput
+    update?: XOR<XOR<LgaStatisticsUpdateToOneWithWhereWithoutLgaInput, LgaStatisticsUpdateWithoutLgaInput>, LgaStatisticsUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type PostcodeUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput> | PostcodeCreateWithoutLgaInput[] | PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: PostcodeCreateOrConnectWithoutLgaInput | PostcodeCreateOrConnectWithoutLgaInput[]
+    upsert?: PostcodeUpsertWithWhereUniqueWithoutLgaInput | PostcodeUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: PostcodeCreateManyLgaInputEnvelope
+    set?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    disconnect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    delete?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    connect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    update?: PostcodeUpdateWithWhereUniqueWithoutLgaInput | PostcodeUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: PostcodeUpdateManyWithWhereWithoutLgaInput | PostcodeUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: PostcodeScalarWhereInput | PostcodeScalarWhereInput[]
+  }
+
+  export type CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput = {
+    create?: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: CouncilInfoCreateOrConnectWithoutLgaInput
+    upsert?: CouncilInfoUpsertWithoutLgaInput
+    disconnect?: CouncilInfoWhereInput | boolean
+    delete?: CouncilInfoWhereInput | boolean
+    connect?: CouncilInfoWhereUniqueInput
+    update?: XOR<XOR<CouncilInfoUpdateToOneWithWhereWithoutLgaInput, CouncilInfoUpdateWithoutLgaInput>, CouncilInfoUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput> | LgaLanguageProficiencyCreateWithoutLgaInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLgaInput | LgaLanguageProficiencyCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLgaInput | LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLgaInputEnvelope
+    set?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    disconnect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    delete?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    update?: LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLgaInput | LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaLanguageProficiencyUpdateManyWithWhereWithoutLgaInput | LgaLanguageProficiencyUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+  }
+
+  export type LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput> | LgaNationalityCreateWithoutLgaInput[] | LgaNationalityUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutLgaInput | LgaNationalityCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaNationalityUpsertWithWhereUniqueWithoutLgaInput | LgaNationalityUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaNationalityCreateManyLgaInputEnvelope
+    set?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    disconnect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    delete?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    update?: LgaNationalityUpdateWithWhereUniqueWithoutLgaInput | LgaNationalityUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaNationalityUpdateManyWithWhereWithoutLgaInput | LgaNationalityUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput = {
+    create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+    connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
+    upsert?: LgaStatisticsUpsertWithoutLgaInput
+    disconnect?: LgaStatisticsWhereInput | boolean
+    delete?: LgaStatisticsWhereInput | boolean
+    connect?: LgaStatisticsWhereUniqueInput
+    update?: XOR<XOR<LgaStatisticsUpdateToOneWithWhereWithoutLgaInput, LgaStatisticsUpdateWithoutLgaInput>, LgaStatisticsUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type PostcodeUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput> | PostcodeCreateWithoutLgaInput[] | PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: PostcodeCreateOrConnectWithoutLgaInput | PostcodeCreateOrConnectWithoutLgaInput[]
+    upsert?: PostcodeUpsertWithWhereUniqueWithoutLgaInput | PostcodeUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: PostcodeCreateManyLgaInputEnvelope
+    set?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    disconnect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    delete?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    connect?: PostcodeWhereUniqueInput | PostcodeWhereUniqueInput[]
+    update?: PostcodeUpdateWithWhereUniqueWithoutLgaInput | PostcodeUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: PostcodeUpdateManyWithWhereWithoutLgaInput | PostcodeUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: PostcodeScalarWhereInput | PostcodeScalarWhereInput[]
+  }
+
+  export type LgaNationalityCreateNestedManyWithoutNationalityInput = {
+    create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
+    createMany?: LgaNationalityCreateManyNationalityInputEnvelope
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaNationalityUncheckedCreateNestedManyWithoutNationalityInput = {
+    create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
+    createMany?: LgaNationalityCreateManyNationalityInputEnvelope
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaNationalityUpdateManyWithoutNationalityNestedInput = {
+    create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
+    upsert?: LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput | LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput[]
+    createMany?: LgaNationalityCreateManyNationalityInputEnvelope
+    set?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    disconnect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    delete?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    update?: LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput | LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput[]
+    updateMany?: LgaNationalityUpdateManyWithWhereWithoutNationalityInput | LgaNationalityUpdateManyWithWhereWithoutNationalityInput[]
+    deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput = {
+    create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
+    upsert?: LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput | LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput[]
+    createMany?: LgaNationalityCreateManyNationalityInputEnvelope
+    set?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    disconnect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    delete?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+    update?: LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput | LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput[]
+    updateMany?: LgaNationalityUpdateManyWithWhereWithoutNationalityInput | LgaNationalityUpdateManyWithWhereWithoutNationalityInput[]
+    deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaCreateNestedOneWithoutLga_nationalitiesInput = {
+    create?: XOR<LgaCreateWithoutLga_nationalitiesInput, LgaUncheckedCreateWithoutLga_nationalitiesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLga_nationalitiesInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type NationalityCreateNestedOneWithoutLga_nationalitiesInput = {
+    create?: XOR<NationalityCreateWithoutLga_nationalitiesInput, NationalityUncheckedCreateWithoutLga_nationalitiesInput>
+    connectOrCreate?: NationalityCreateOrConnectWithoutLga_nationalitiesInput
+    connect?: NationalityWhereUniqueInput
+  }
+
+  export type LgaUpdateOneRequiredWithoutLga_nationalitiesNestedInput = {
+    create?: XOR<LgaCreateWithoutLga_nationalitiesInput, LgaUncheckedCreateWithoutLga_nationalitiesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLga_nationalitiesInput
+    upsert?: LgaUpsertWithoutLga_nationalitiesInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutLga_nationalitiesInput, LgaUpdateWithoutLga_nationalitiesInput>, LgaUncheckedUpdateWithoutLga_nationalitiesInput>
+  }
+
+  export type NationalityUpdateOneRequiredWithoutLga_nationalitiesNestedInput = {
+    create?: XOR<NationalityCreateWithoutLga_nationalitiesInput, NationalityUncheckedCreateWithoutLga_nationalitiesInput>
+    connectOrCreate?: NationalityCreateOrConnectWithoutLga_nationalitiesInput
+    upsert?: NationalityUpsertWithoutLga_nationalitiesInput
+    connect?: NationalityWhereUniqueInput
+    update?: XOR<XOR<NationalityUpdateToOneWithWhereWithoutLga_nationalitiesInput, NationalityUpdateWithoutLga_nationalitiesInput>, NationalityUncheckedUpdateWithoutLga_nationalitiesInput>
+  }
+
+  export type LgaCreateNestedOneWithoutCouncil_infoInput = {
+    create?: XOR<LgaCreateWithoutCouncil_infoInput, LgaUncheckedCreateWithoutCouncil_infoInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutCouncil_infoInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type LgaUpdateOneRequiredWithoutCouncil_infoNestedInput = {
+    create?: XOR<LgaCreateWithoutCouncil_infoInput, LgaUncheckedCreateWithoutCouncil_infoInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutCouncil_infoInput
+    upsert?: LgaUpsertWithoutCouncil_infoInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutCouncil_infoInput, LgaUpdateWithoutCouncil_infoInput>, LgaUncheckedUpdateWithoutCouncil_infoInput>
+  }
+
+  export type LgaCreateNestedOneWithoutPostcodesInput = {
+    create?: XOR<LgaCreateWithoutPostcodesInput, LgaUncheckedCreateWithoutPostcodesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutPostcodesInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type LgaUpdateOneRequiredWithoutPostcodesNestedInput = {
+    create?: XOR<LgaCreateWithoutPostcodesInput, LgaUncheckedCreateWithoutPostcodesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutPostcodesInput
+    upsert?: LgaUpsertWithoutPostcodesInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutPostcodesInput, LgaUpdateWithoutPostcodesInput>, LgaUncheckedUpdateWithoutPostcodesInput>
+  }
+
+  export type LgaLanguageProficiencyCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput> | LgaLanguageProficiencyCreateWithoutLanguageInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput | LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLanguageInputEnvelope
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+  }
+
+  export type LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLanguageInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput> | LgaLanguageProficiencyCreateWithoutLanguageInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput | LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLanguageInputEnvelope
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+  }
+
+  export type LgaLanguageProficiencyUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput> | LgaLanguageProficiencyCreateWithoutLanguageInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput | LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput[]
+    upsert?: LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLanguageInput | LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLanguageInputEnvelope
+    set?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    disconnect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    delete?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    update?: LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLanguageInput | LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: LgaLanguageProficiencyUpdateManyWithWhereWithoutLanguageInput | LgaLanguageProficiencyUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateManyWithoutLanguageNestedInput = {
+    create?: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput> | LgaLanguageProficiencyCreateWithoutLanguageInput[] | LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput[]
+    connectOrCreate?: LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput | LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput[]
+    upsert?: LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLanguageInput | LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLanguageInput[]
+    createMany?: LgaLanguageProficiencyCreateManyLanguageInputEnvelope
+    set?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    disconnect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    delete?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    connect?: LgaLanguageProficiencyWhereUniqueInput | LgaLanguageProficiencyWhereUniqueInput[]
+    update?: LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLanguageInput | LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLanguageInput[]
+    updateMany?: LgaLanguageProficiencyUpdateManyWithWhereWithoutLanguageInput | LgaLanguageProficiencyUpdateManyWithWhereWithoutLanguageInput[]
+    deleteMany?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+  }
+
+  export type LanguageCreateNestedOneWithoutProficienciesInput = {
+    create?: XOR<LanguageCreateWithoutProficienciesInput, LanguageUncheckedCreateWithoutProficienciesInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutProficienciesInput
+    connect?: LanguageWhereUniqueInput
+  }
+
+  export type LgaCreateNestedOneWithoutLanguage_proficienciesInput = {
+    create?: XOR<LgaCreateWithoutLanguage_proficienciesInput, LgaUncheckedCreateWithoutLanguage_proficienciesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLanguage_proficienciesInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type LanguageUpdateOneRequiredWithoutProficienciesNestedInput = {
+    create?: XOR<LanguageCreateWithoutProficienciesInput, LanguageUncheckedCreateWithoutProficienciesInput>
+    connectOrCreate?: LanguageCreateOrConnectWithoutProficienciesInput
+    upsert?: LanguageUpsertWithoutProficienciesInput
+    connect?: LanguageWhereUniqueInput
+    update?: XOR<XOR<LanguageUpdateToOneWithWhereWithoutProficienciesInput, LanguageUpdateWithoutProficienciesInput>, LanguageUncheckedUpdateWithoutProficienciesInput>
+  }
+
+  export type LgaUpdateOneRequiredWithoutLanguage_proficienciesNestedInput = {
+    create?: XOR<LgaCreateWithoutLanguage_proficienciesInput, LgaUncheckedCreateWithoutLanguage_proficienciesInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLanguage_proficienciesInput
+    upsert?: LgaUpsertWithoutLanguage_proficienciesInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutLanguage_proficienciesInput, LgaUpdateWithoutLanguage_proficienciesInput>, LgaUncheckedUpdateWithoutLanguage_proficienciesInput>
+  }
+
+  export type LgaCreateNestedOneWithoutStatisticsInput = {
+    create?: XOR<LgaCreateWithoutStatisticsInput, LgaUncheckedCreateWithoutStatisticsInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutStatisticsInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type LgaUpdateOneRequiredWithoutStatisticsNestedInput = {
+    create?: XOR<LgaCreateWithoutStatisticsInput, LgaUncheckedCreateWithoutStatisticsInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutStatisticsInput
+    upsert?: LgaUpsertWithoutStatisticsInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutStatisticsInput, LgaUpdateWithoutStatisticsInput>, LgaUncheckedUpdateWithoutStatisticsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14848,6 +26609,38 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type EventCreateWithoutVenueInput = {
@@ -15695,6 +27488,702 @@ export namespace Prisma {
     locations?: LocationUncheckedUpdateManyWithoutProviderNestedInput
   }
 
+  export type CouncilInfoCreateWithoutLgaInput = {
+    council_name?: string | null
+    council_info?: string | null
+    address?: string | null
+    suburb?: string | null
+    postcode?: number | null
+    phone?: string | null
+    email?: string | null
+    website?: string | null
+  }
+
+  export type CouncilInfoUncheckedCreateWithoutLgaInput = {
+    council_name?: string | null
+    council_info?: string | null
+    address?: string | null
+    suburb?: string | null
+    postcode?: number | null
+    phone?: string | null
+    email?: string | null
+    website?: string | null
+  }
+
+  export type CouncilInfoCreateOrConnectWithoutLgaInput = {
+    where: CouncilInfoWhereUniqueInput
+    create: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyCreateWithoutLgaInput = {
+    english_profiency_level: string
+    count: number
+    language: LanguageCreateNestedOneWithoutProficienciesInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedCreateWithoutLgaInput = {
+    lga_language_prof_id?: number
+    language_id: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaLanguageProficiencyCreateOrConnectWithoutLgaInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    create: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyCreateManyLgaInputEnvelope = {
+    data: LgaLanguageProficiencyCreateManyLgaInput | LgaLanguageProficiencyCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LgaNationalityCreateWithoutLgaInput = {
+    count: number
+    nationality: NationalityCreateNestedOneWithoutLga_nationalitiesInput
+  }
+
+  export type LgaNationalityUncheckedCreateWithoutLgaInput = {
+    lga_nationality_id?: number
+    nationality_id: number
+    count: number
+  }
+
+  export type LgaNationalityCreateOrConnectWithoutLgaInput = {
+    where: LgaNationalityWhereUniqueInput
+    create: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaNationalityCreateManyLgaInputEnvelope = {
+    data: LgaNationalityCreateManyLgaInput | LgaNationalityCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LgaStatisticsCreateWithoutLgaInput = {
+    total_businesses?: number | null
+    total_employed_over_15?: number | null
+    born_overseas?: number | null
+    pct_arrived_within_5_years?: number | null
+    pct_proficient_english?: number | null
+    percent_speaks_other_lang_at_home?: number | null
+    median_age_years?: number | null
+    pct_completed_year_12?: number | null
+    pct_certificate?: number | null
+    pct_bachelor_degree?: number | null
+    pct_postgraduate?: number | null
+    pct_managers?: number | null
+    pct_professionals?: number | null
+    pct_labourers?: number | null
+  }
+
+  export type LgaStatisticsUncheckedCreateWithoutLgaInput = {
+    total_businesses?: number | null
+    total_employed_over_15?: number | null
+    born_overseas?: number | null
+    pct_arrived_within_5_years?: number | null
+    pct_proficient_english?: number | null
+    percent_speaks_other_lang_at_home?: number | null
+    median_age_years?: number | null
+    pct_completed_year_12?: number | null
+    pct_certificate?: number | null
+    pct_bachelor_degree?: number | null
+    pct_postgraduate?: number | null
+    pct_managers?: number | null
+    pct_professionals?: number | null
+    pct_labourers?: number | null
+  }
+
+  export type LgaStatisticsCreateOrConnectWithoutLgaInput = {
+    where: LgaStatisticsWhereUniqueInput
+    create: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+  }
+
+  export type PostcodeCreateWithoutLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+  }
+
+  export type PostcodeUncheckedCreateWithoutLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+  }
+
+  export type PostcodeCreateOrConnectWithoutLgaInput = {
+    where: PostcodeWhereUniqueInput
+    create: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput>
+  }
+
+  export type PostcodeCreateManyLgaInputEnvelope = {
+    data: PostcodeCreateManyLgaInput | PostcodeCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CouncilInfoUpsertWithoutLgaInput = {
+    update: XOR<CouncilInfoUpdateWithoutLgaInput, CouncilInfoUncheckedUpdateWithoutLgaInput>
+    create: XOR<CouncilInfoCreateWithoutLgaInput, CouncilInfoUncheckedCreateWithoutLgaInput>
+    where?: CouncilInfoWhereInput
+  }
+
+  export type CouncilInfoUpdateToOneWithWhereWithoutLgaInput = {
+    where?: CouncilInfoWhereInput
+    data: XOR<CouncilInfoUpdateWithoutLgaInput, CouncilInfoUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type CouncilInfoUpdateWithoutLgaInput = {
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CouncilInfoUncheckedUpdateWithoutLgaInput = {
+    council_name?: NullableStringFieldUpdateOperationsInput | string | null
+    council_info?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    suburb?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLgaInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    update: XOR<LgaLanguageProficiencyUpdateWithoutLgaInput, LgaLanguageProficiencyUncheckedUpdateWithoutLgaInput>
+    create: XOR<LgaLanguageProficiencyCreateWithoutLgaInput, LgaLanguageProficiencyUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLgaInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    data: XOR<LgaLanguageProficiencyUpdateWithoutLgaInput, LgaLanguageProficiencyUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyUpdateManyWithWhereWithoutLgaInput = {
+    where: LgaLanguageProficiencyScalarWhereInput
+    data: XOR<LgaLanguageProficiencyUpdateManyMutationInput, LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type LgaLanguageProficiencyScalarWhereInput = {
+    AND?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+    OR?: LgaLanguageProficiencyScalarWhereInput[]
+    NOT?: LgaLanguageProficiencyScalarWhereInput | LgaLanguageProficiencyScalarWhereInput[]
+    lga_language_prof_id?: IntFilter<"LgaLanguageProficiency"> | number
+    lga_code?: IntFilter<"LgaLanguageProficiency"> | number
+    language_id?: IntFilter<"LgaLanguageProficiency"> | number
+    english_profiency_level?: StringFilter<"LgaLanguageProficiency"> | string
+    count?: IntFilter<"LgaLanguageProficiency"> | number
+  }
+
+  export type LgaNationalityUpsertWithWhereUniqueWithoutLgaInput = {
+    where: LgaNationalityWhereUniqueInput
+    update: XOR<LgaNationalityUpdateWithoutLgaInput, LgaNationalityUncheckedUpdateWithoutLgaInput>
+    create: XOR<LgaNationalityCreateWithoutLgaInput, LgaNationalityUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaNationalityUpdateWithWhereUniqueWithoutLgaInput = {
+    where: LgaNationalityWhereUniqueInput
+    data: XOR<LgaNationalityUpdateWithoutLgaInput, LgaNationalityUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaNationalityUpdateManyWithWhereWithoutLgaInput = {
+    where: LgaNationalityScalarWhereInput
+    data: XOR<LgaNationalityUpdateManyMutationInput, LgaNationalityUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type LgaNationalityScalarWhereInput = {
+    AND?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+    OR?: LgaNationalityScalarWhereInput[]
+    NOT?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+    lga_nationality_id?: IntFilter<"LgaNationality"> | number
+    lga_code?: IntFilter<"LgaNationality"> | number
+    nationality_id?: IntFilter<"LgaNationality"> | number
+    count?: IntFilter<"LgaNationality"> | number
+  }
+
+  export type LgaStatisticsUpsertWithoutLgaInput = {
+    update: XOR<LgaStatisticsUpdateWithoutLgaInput, LgaStatisticsUncheckedUpdateWithoutLgaInput>
+    create: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
+    where?: LgaStatisticsWhereInput
+  }
+
+  export type LgaStatisticsUpdateToOneWithWhereWithoutLgaInput = {
+    where?: LgaStatisticsWhereInput
+    data: XOR<LgaStatisticsUpdateWithoutLgaInput, LgaStatisticsUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaStatisticsUpdateWithoutLgaInput = {
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LgaStatisticsUncheckedUpdateWithoutLgaInput = {
+    total_businesses?: NullableIntFieldUpdateOperationsInput | number | null
+    total_employed_over_15?: NullableIntFieldUpdateOperationsInput | number | null
+    born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
+    pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
+    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_bachelor_degree?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_postgraduate?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type PostcodeUpsertWithWhereUniqueWithoutLgaInput = {
+    where: PostcodeWhereUniqueInput
+    update: XOR<PostcodeUpdateWithoutLgaInput, PostcodeUncheckedUpdateWithoutLgaInput>
+    create: XOR<PostcodeCreateWithoutLgaInput, PostcodeUncheckedCreateWithoutLgaInput>
+  }
+
+  export type PostcodeUpdateWithWhereUniqueWithoutLgaInput = {
+    where: PostcodeWhereUniqueInput
+    data: XOR<PostcodeUpdateWithoutLgaInput, PostcodeUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type PostcodeUpdateManyWithWhereWithoutLgaInput = {
+    where: PostcodeScalarWhereInput
+    data: XOR<PostcodeUpdateManyMutationInput, PostcodeUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type PostcodeScalarWhereInput = {
+    AND?: PostcodeScalarWhereInput | PostcodeScalarWhereInput[]
+    OR?: PostcodeScalarWhereInput[]
+    NOT?: PostcodeScalarWhereInput | PostcodeScalarWhereInput[]
+    postcode?: IntFilter<"Postcode"> | number
+    suburb?: StringFilter<"Postcode"> | string
+    latitude?: FloatFilter<"Postcode"> | number
+    longitude?: FloatFilter<"Postcode"> | number
+    lga_code?: IntFilter<"Postcode"> | number
+  }
+
+  export type LgaNationalityCreateWithoutNationalityInput = {
+    count: number
+    lga: LgaCreateNestedOneWithoutLga_nationalitiesInput
+  }
+
+  export type LgaNationalityUncheckedCreateWithoutNationalityInput = {
+    lga_nationality_id?: number
+    lga_code: number
+    count: number
+  }
+
+  export type LgaNationalityCreateOrConnectWithoutNationalityInput = {
+    where: LgaNationalityWhereUniqueInput
+    create: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityCreateManyNationalityInputEnvelope = {
+    data: LgaNationalityCreateManyNationalityInput | LgaNationalityCreateManyNationalityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput = {
+    where: LgaNationalityWhereUniqueInput
+    update: XOR<LgaNationalityUpdateWithoutNationalityInput, LgaNationalityUncheckedUpdateWithoutNationalityInput>
+    create: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput = {
+    where: LgaNationalityWhereUniqueInput
+    data: XOR<LgaNationalityUpdateWithoutNationalityInput, LgaNationalityUncheckedUpdateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityUpdateManyWithWhereWithoutNationalityInput = {
+    where: LgaNationalityScalarWhereInput
+    data: XOR<LgaNationalityUpdateManyMutationInput, LgaNationalityUncheckedUpdateManyWithoutNationalityInput>
+  }
+
+  export type LgaCreateWithoutLga_nationalitiesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutLga_nationalitiesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutLga_nationalitiesInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutLga_nationalitiesInput, LgaUncheckedCreateWithoutLga_nationalitiesInput>
+  }
+
+  export type NationalityCreateWithoutLga_nationalitiesInput = {
+    nationality: string
+  }
+
+  export type NationalityUncheckedCreateWithoutLga_nationalitiesInput = {
+    nationality_id?: number
+    nationality: string
+  }
+
+  export type NationalityCreateOrConnectWithoutLga_nationalitiesInput = {
+    where: NationalityWhereUniqueInput
+    create: XOR<NationalityCreateWithoutLga_nationalitiesInput, NationalityUncheckedCreateWithoutLga_nationalitiesInput>
+  }
+
+  export type LgaUpsertWithoutLga_nationalitiesInput = {
+    update: XOR<LgaUpdateWithoutLga_nationalitiesInput, LgaUncheckedUpdateWithoutLga_nationalitiesInput>
+    create: XOR<LgaCreateWithoutLga_nationalitiesInput, LgaUncheckedCreateWithoutLga_nationalitiesInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutLga_nationalitiesInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutLga_nationalitiesInput, LgaUncheckedUpdateWithoutLga_nationalitiesInput>
+  }
+
+  export type LgaUpdateWithoutLga_nationalitiesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutLga_nationalitiesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type NationalityUpsertWithoutLga_nationalitiesInput = {
+    update: XOR<NationalityUpdateWithoutLga_nationalitiesInput, NationalityUncheckedUpdateWithoutLga_nationalitiesInput>
+    create: XOR<NationalityCreateWithoutLga_nationalitiesInput, NationalityUncheckedCreateWithoutLga_nationalitiesInput>
+    where?: NationalityWhereInput
+  }
+
+  export type NationalityUpdateToOneWithWhereWithoutLga_nationalitiesInput = {
+    where?: NationalityWhereInput
+    data: XOR<NationalityUpdateWithoutLga_nationalitiesInput, NationalityUncheckedUpdateWithoutLga_nationalitiesInput>
+  }
+
+  export type NationalityUpdateWithoutLga_nationalitiesInput = {
+    nationality?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NationalityUncheckedUpdateWithoutLga_nationalitiesInput = {
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LgaCreateWithoutCouncil_infoInput = {
+    lga_code: number
+    lga_name: string
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutCouncil_infoInput = {
+    lga_code: number
+    lga_name: string
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutCouncil_infoInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutCouncil_infoInput, LgaUncheckedCreateWithoutCouncil_infoInput>
+  }
+
+  export type LgaUpsertWithoutCouncil_infoInput = {
+    update: XOR<LgaUpdateWithoutCouncil_infoInput, LgaUncheckedUpdateWithoutCouncil_infoInput>
+    create: XOR<LgaCreateWithoutCouncil_infoInput, LgaUncheckedCreateWithoutCouncil_infoInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutCouncil_infoInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutCouncil_infoInput, LgaUncheckedUpdateWithoutCouncil_infoInput>
+  }
+
+  export type LgaUpdateWithoutCouncil_infoInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutCouncil_infoInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaCreateWithoutPostcodesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutPostcodesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutPostcodesInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutPostcodesInput, LgaUncheckedCreateWithoutPostcodesInput>
+  }
+
+  export type LgaUpsertWithoutPostcodesInput = {
+    update: XOR<LgaUpdateWithoutPostcodesInput, LgaUncheckedUpdateWithoutPostcodesInput>
+    create: XOR<LgaCreateWithoutPostcodesInput, LgaUncheckedCreateWithoutPostcodesInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutPostcodesInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutPostcodesInput, LgaUncheckedUpdateWithoutPostcodesInput>
+  }
+
+  export type LgaUpdateWithoutPostcodesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutPostcodesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+  }
+
+  export type LgaLanguageProficiencyCreateWithoutLanguageInput = {
+    english_profiency_level: string
+    count: number
+    lga: LgaCreateNestedOneWithoutLanguage_proficienciesInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput = {
+    lga_language_prof_id?: number
+    lga_code: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaLanguageProficiencyCreateOrConnectWithoutLanguageInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    create: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type LgaLanguageProficiencyCreateManyLanguageInputEnvelope = {
+    data: LgaLanguageProficiencyCreateManyLanguageInput | LgaLanguageProficiencyCreateManyLanguageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LgaLanguageProficiencyUpsertWithWhereUniqueWithoutLanguageInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    update: XOR<LgaLanguageProficiencyUpdateWithoutLanguageInput, LgaLanguageProficiencyUncheckedUpdateWithoutLanguageInput>
+    create: XOR<LgaLanguageProficiencyCreateWithoutLanguageInput, LgaLanguageProficiencyUncheckedCreateWithoutLanguageInput>
+  }
+
+  export type LgaLanguageProficiencyUpdateWithWhereUniqueWithoutLanguageInput = {
+    where: LgaLanguageProficiencyWhereUniqueInput
+    data: XOR<LgaLanguageProficiencyUpdateWithoutLanguageInput, LgaLanguageProficiencyUncheckedUpdateWithoutLanguageInput>
+  }
+
+  export type LgaLanguageProficiencyUpdateManyWithWhereWithoutLanguageInput = {
+    where: LgaLanguageProficiencyScalarWhereInput
+    data: XOR<LgaLanguageProficiencyUpdateManyMutationInput, LgaLanguageProficiencyUncheckedUpdateManyWithoutLanguageInput>
+  }
+
+  export type LanguageCreateWithoutProficienciesInput = {
+    language?: string | null
+  }
+
+  export type LanguageUncheckedCreateWithoutProficienciesInput = {
+    language_id?: number
+    language?: string | null
+  }
+
+  export type LanguageCreateOrConnectWithoutProficienciesInput = {
+    where: LanguageWhereUniqueInput
+    create: XOR<LanguageCreateWithoutProficienciesInput, LanguageUncheckedCreateWithoutProficienciesInput>
+  }
+
+  export type LgaCreateWithoutLanguage_proficienciesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutLanguage_proficienciesInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutLanguage_proficienciesInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutLanguage_proficienciesInput, LgaUncheckedCreateWithoutLanguage_proficienciesInput>
+  }
+
+  export type LanguageUpsertWithoutProficienciesInput = {
+    update: XOR<LanguageUpdateWithoutProficienciesInput, LanguageUncheckedUpdateWithoutProficienciesInput>
+    create: XOR<LanguageCreateWithoutProficienciesInput, LanguageUncheckedCreateWithoutProficienciesInput>
+    where?: LanguageWhereInput
+  }
+
+  export type LanguageUpdateToOneWithWhereWithoutProficienciesInput = {
+    where?: LanguageWhereInput
+    data: XOR<LanguageUpdateWithoutProficienciesInput, LanguageUncheckedUpdateWithoutProficienciesInput>
+  }
+
+  export type LanguageUpdateWithoutProficienciesInput = {
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LanguageUncheckedUpdateWithoutProficienciesInput = {
+    language_id?: IntFieldUpdateOperationsInput | number
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LgaUpsertWithoutLanguage_proficienciesInput = {
+    update: XOR<LgaUpdateWithoutLanguage_proficienciesInput, LgaUncheckedUpdateWithoutLanguage_proficienciesInput>
+    create: XOR<LgaCreateWithoutLanguage_proficienciesInput, LgaUncheckedCreateWithoutLanguage_proficienciesInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutLanguage_proficienciesInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutLanguage_proficienciesInput, LgaUncheckedUpdateWithoutLanguage_proficienciesInput>
+  }
+
+  export type LgaUpdateWithoutLanguage_proficienciesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutLanguage_proficienciesInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaCreateWithoutStatisticsInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutStatisticsInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutStatisticsInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutStatisticsInput, LgaUncheckedCreateWithoutStatisticsInput>
+  }
+
+  export type LgaUpsertWithoutStatisticsInput = {
+    update: XOR<LgaUpdateWithoutStatisticsInput, LgaUncheckedUpdateWithoutStatisticsInput>
+    create: XOR<LgaCreateWithoutStatisticsInput, LgaUncheckedCreateWithoutStatisticsInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutStatisticsInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutStatisticsInput, LgaUncheckedUpdateWithoutStatisticsInput>
+  }
+
+  export type LgaUpdateWithoutStatisticsInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutStatisticsInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
   export type EventCreateManyVenueInput = {
     event_id: string
     event_name: string
@@ -16093,6 +28582,134 @@ export namespace Prisma {
     full_address?: StringFieldUpdateOperationsInput | string
     region_name?: StringFieldUpdateOperationsInput | string
     local_government_authority?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LgaLanguageProficiencyCreateManyLgaInput = {
+    lga_language_prof_id?: number
+    language_id: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaNationalityCreateManyLgaInput = {
+    lga_nationality_id?: number
+    nationality_id: number
+    count: number
+  }
+
+  export type PostcodeCreateManyLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+  }
+
+  export type LgaLanguageProficiencyUpdateWithoutLgaInput = {
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    language?: LanguageUpdateOneRequiredWithoutProficienciesNestedInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateWithoutLgaInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    language_id?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    language_id?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityUpdateWithoutLgaInput = {
+    count?: IntFieldUpdateOperationsInput | number
+    nationality?: NationalityUpdateOneRequiredWithoutLga_nationalitiesNestedInput
+  }
+
+  export type LgaNationalityUncheckedUpdateWithoutLgaInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityUncheckedUpdateManyWithoutLgaInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PostcodeUpdateWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PostcodeUncheckedUpdateWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type PostcodeUncheckedUpdateManyWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityCreateManyNationalityInput = {
+    lga_nationality_id?: number
+    lga_code: number
+    count: number
+  }
+
+  export type LgaNationalityUpdateWithoutNationalityInput = {
+    count?: IntFieldUpdateOperationsInput | number
+    lga?: LgaUpdateOneRequiredWithoutLga_nationalitiesNestedInput
+  }
+
+  export type LgaNationalityUncheckedUpdateWithoutNationalityInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityUncheckedUpdateManyWithoutNationalityInput = {
+    lga_nationality_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaLanguageProficiencyCreateManyLanguageInput = {
+    lga_language_prof_id?: number
+    lga_code: number
+    english_profiency_level: string
+    count: number
+  }
+
+  export type LgaLanguageProficiencyUpdateWithoutLanguageInput = {
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    lga?: LgaUpdateOneRequiredWithoutLanguage_proficienciesNestedInput
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateWithoutLanguageInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaLanguageProficiencyUncheckedUpdateManyWithoutLanguageInput = {
+    lga_language_prof_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    english_profiency_level?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
   }
 
 
