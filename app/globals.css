@@ -1,15 +1,197 @@
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css" layer(utilities);
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
+
+  --custom-green: #b8ff12;
+  --custom-yellow: #fff544;
+  --custom-orange: #ff972e;
+  --custom-pink: #ea37d5;
+  --custom-blue: #5e26e4;
+  --custom-dark: #27262f;
+  --custom-gray: #707576;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
-} 
+}
+
+@layer utilities {
+  .bg-custom-green {
+    background-color: var(--custom-green);
+  }
+  .bg-custom-yellow {
+    background-color: var(--custom-yellow);
+  }
+  .bg-custom-orange {
+    background-color: var(--custom-orange);
+  }
+  .bg-custom-pink {
+    background-color: var(--custom-pink);
+  }
+  .bg-custom-blue {
+    background-color: var(--custom-blue);
+  }
+  .bg-custom-dark {
+    background-color: var(--custom-dark);
+  }
+}
+
+/* Animations */
+@layer utilities {
+  /* Text slide up animations */
+  .animate-slide-up-1 {
+    animation: slide-up-1 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-up-2 {
+    animation: slide-up-2 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-down-1 {
+    animation: slide-down-1 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-down-2 {
+    animation: slide-down-2 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  
+  /* Circle slide animations */
+  .animate-slide-right-1 {
+    animation: slide-right-1 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-right-2 {
+    animation: slide-right-2 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-left-1 {
+    animation: slide-left-1 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .animate-slide-left-2 {
+    animation: slide-left-2 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  
+  /* Origin points */
+  .origin-top-center {
+    transform-origin: top center;
+  }
+  .origin-bottom-center {
+    transform-origin: bottom center;
+  }
+  .origin-left-center {
+    transform-origin: left center;
+  }
+  .origin-right-center {
+    transform-origin: right center;
+  }
+}
+
+/* Keyframes */
+@keyframes slide-up-1 {
+  0% {
+    transform: translateY(100%) scaleY(1);
+  }
+  25%, 50% {
+    transform: translateY(0%) scaleY(1);
+  }
+  75%, 100% {
+    transform: translateY(0%) scaleY(0);
+  }
+}
+
+@keyframes slide-up-2 {
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+  25%, 50% {
+    transform: translateY(0) scaleY(0);
+  }
+  50.001% {
+    transform: translateY(100%) scaleY(1);
+  }
+  75%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes slide-down-1 {
+  0% {
+    transform: translateY(-100%) scaleY(1);
+  }
+  25%, 50% {
+    transform: translateY(0%) scaleY(1);
+  }
+  75%, 100% {
+    transform: translateY(0%) scaleY(0);
+  }
+}
+
+@keyframes slide-down-2 {
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+  25%, 50% {
+    transform: translateY(0) scaleY(0);
+  }
+  50.001% {
+    transform: translateY(-100%) scaleY(1);
+  }
+  75%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes slide-right-1 {
+  0% {
+    transform: translateX(100%) scaleX(1);
+  }
+  25%, 50% {
+    transform: translateX(0%) scaleX(1);
+  }
+  75%, 100% {
+    transform: translateX(0%) scaleX(0);
+  }
+}
+
+@keyframes slide-right-2 {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  25%, 50% {
+    transform: translateX(0) scaleX(0);
+  }
+  50.001% {
+    transform: translateX(100%) scaleX(1);
+  }
+  75%, 100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes slide-left-1 {
+  0% {
+    transform: translateX(-100%) scaleX(1);
+  }
+  25%, 50% {
+    transform: translateX(0%) scaleX(1);
+  }
+  75%, 100% {
+    transform: translateX(0%) scaleX(0);
+  }
+}
+
+@keyframes slide-left-2 {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  25%, 50% {
+    transform: translateX(0) scaleX(0);
+  }
+  50.001% {
+    transform: translateX(-100%) scaleX(1);
+  }
+  75%, 100% {
+    transform: translateX(0) scaleX(1);
+  }
+}

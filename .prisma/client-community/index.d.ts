@@ -451,8 +451,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -3329,7 +3329,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Venue model
-   */ 
+   */
   interface VenueFieldRefs {
     readonly venue_id: FieldRef<"Venue", 'String'>
     readonly venue_name: FieldRef<"Venue", 'String'>
@@ -4365,7 +4365,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Category model
-   */ 
+   */
   interface CategoryFieldRefs {
     readonly category_id: FieldRef<"Category", 'String'>
     readonly category_name: FieldRef<"Category", 'String'>
@@ -5408,7 +5408,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Organizer model
-   */ 
+   */
   interface OrganizerFieldRefs {
     readonly organizer_id: FieldRef<"Organizer", 'String'>
     readonly organizer_name: FieldRef<"Organizer", 'String'>
@@ -6522,7 +6522,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Logo model
-   */ 
+   */
   interface LogoFieldRefs {
     readonly logo_id: FieldRef<"Logo", 'BigInt'>
     readonly logo_url: FieldRef<"Logo", 'String'>
@@ -7780,7 +7780,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Event model
-   */ 
+   */
   interface EventFieldRefs {
     readonly event_id: FieldRef<"Event", 'String'>
     readonly event_name: FieldRef<"Event", 'String'>
@@ -8912,7 +8912,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Website model
-   */ 
+   */
   interface WebsiteFieldRefs {
     readonly event_url: FieldRef<"Website", 'String'>
     readonly event_id: FieldRef<"Website", 'String'>
@@ -10041,7 +10041,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Provider model
-   */ 
+   */
   interface ProviderFieldRefs {
     readonly provider_id: FieldRef<"Provider", 'Int'>
     readonly provider_name: FieldRef<"Provider", 'String'>
@@ -11252,7 +11252,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Location model
-   */ 
+   */
   interface LocationFieldRefs {
     readonly geographic_id: FieldRef<"Location", 'Int'>
     readonly provider_id: FieldRef<"Location", 'Int'>
@@ -12437,7 +12437,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Course model
-   */ 
+   */
   interface CourseFieldRefs {
     readonly course_id: FieldRef<"Course", 'Int'>
     readonly provider_id: FieldRef<"Course", 'Int'>
@@ -13512,7 +13512,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Lga model
-   */ 
+   */
   interface LgaFieldRefs {
     readonly lga_code: FieldRef<"Lga", 'Int'>
     readonly lga_name: FieldRef<"Lga", 'String'>
@@ -14663,7 +14663,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Nationality model
-   */ 
+   */
   interface NationalityFieldRefs {
     readonly nationality_id: FieldRef<"Nationality", 'Int'>
     readonly nationality: FieldRef<"Nationality", 'String'>
@@ -15776,7 +15776,7 @@ export namespace Prisma {
 
   /**
    * Fields of the LgaNationality model
-   */ 
+   */
   interface LgaNationalityFieldRefs {
     readonly lga_nationality_id: FieldRef<"LgaNationality", 'Int'>
     readonly lga_code: FieldRef<"LgaNationality", 'Int'>
@@ -16919,7 +16919,7 @@ export namespace Prisma {
 
   /**
    * Fields of the CouncilInfo model
-   */ 
+   */
   interface CouncilInfoFieldRefs {
     readonly lga_code: FieldRef<"CouncilInfo", 'Int'>
     readonly council_name: FieldRef<"CouncilInfo", 'String'>
@@ -18027,7 +18027,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Postcode model
-   */ 
+   */
   interface PostcodeFieldRefs {
     readonly postcode: FieldRef<"Postcode", 'Int'>
     readonly suburb: FieldRef<"Postcode", 'String'>
@@ -19079,7 +19079,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Language model
-   */ 
+   */
   interface LanguageFieldRefs {
     readonly language_id: FieldRef<"Language", 'Int'>
     readonly language: FieldRef<"Language", 'String'>
@@ -20204,7 +20204,7 @@ export namespace Prisma {
 
   /**
    * Fields of the LgaLanguageProficiency model
-   */ 
+   */
   interface LgaLanguageProficiencyFieldRefs {
     readonly lga_language_prof_id: FieldRef<"LgaLanguageProficiency", 'Int'>
     readonly lga_code: FieldRef<"LgaLanguageProficiency", 'Int'>
@@ -21472,7 +21472,7 @@ export namespace Prisma {
 
   /**
    * Fields of the LgaStatistics model
-   */ 
+   */
   interface LgaStatisticsFieldRefs {
     readonly lga_code: FieldRef<"LgaStatistics", 'Int'>
     readonly total_businesses: FieldRef<"LgaStatistics", 'Int'>
@@ -22152,7 +22152,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 

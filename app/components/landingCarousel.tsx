@@ -7,6 +7,7 @@ import WorkshopSearch from "@/app/components/workshop/WorkshopSearch";
 import LgaMap from "@/app/components/map/LgaMap";
 import { Feature } from 'geojson';
 
+
 type ExplorationTypes = "events" | "workshops" | "community";
 
 const images = [
@@ -139,8 +140,8 @@ export default function LandingCarousel() {
                 <div className="max-w-4xl mx-auto px-4">
                     {activeType === "events" && <EventSearch />}
                     {activeType === "workshops" && <WorkshopSearch />}
-                    {activeType === "community" && <LgaMap
-                        onSuburbSelect={(lgaCode) => {
+                    {activeType === "community" && <LgaMap 
+                        onLgaSelect={(lgaCode) => {
                             setSelectedLga(lgaCode);
                             console.log("User clicked suburb with LGA_CODE:", lgaCode);
                         }}
