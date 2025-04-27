@@ -5,11 +5,6 @@ import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
 
-interface PageContent {
-    original: string;
-    translated: string;
-}
-
 export default function PdfUploader() {
     useEffect(() => {
         // Initialize PDF.js worker in useEffect to avoid SSR issues
@@ -17,9 +12,8 @@ export default function PdfUploader() {
         pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
     }, []);
 
-    const [pageContents, setPageContents] = useState<PageContent[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    const [extractedText, setExtractedText] = useState<string>("");
+    const [translatedText, setTranslatedText] = useState<string>("");
     const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
     const [isLoading, setIsLoading] = useState(false);
     const [isTranslating, setIsTranslating] = useState(false);
@@ -68,7 +62,31 @@ export default function PdfUploader() {
         return formattedText;
     };
 
+    const extractTextFromPdf = async (file: File) => {
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+
+            let fullText = "";
+            // Extract text from all pages
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const textContent = await page.getTextContent();
+                const pageText = formatExtractedText(textContent.items);
+
+                // Add page separator
+                fullText += `[Page ${pageNum}]\n${pageText}\n`;
+            }
+            return fullText;
+        } catch (error) {
+            throw new Error("Failed to extract text from PDF");
+        }
+    };
+
     const translateText = async (text: string, targetLanguage: string) => {
+        setIsTranslating(true);
+        setError("");
+
         try {
             const selectedLangName =
                 languages.find((lang) => lang.code === targetLanguage)?.name ||
@@ -77,48 +95,10 @@ export default function PdfUploader() {
                 text,
                 selectedLangName
             );
-            return translation;
+            setTranslatedText(translation);
         } catch (error) {
-            console.error("Translation error:", error);
-            throw error;
-        }
-    };
-
-    const extractTextFromPdf = async (file: File) => {
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-            setTotalPages(pdf.numPages);
-
-            const contents: PageContent[] = [];
-            setIsTranslating(true);
-
-            // Extract and translate text page by page
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                const page = await pdf.getPage(pageNum);
-                const textContent = await page.getTextContent();
-                const pageText = formatExtractedText(textContent.items);
-
-                try {
-                    const translatedText = await translateText(
-                        pageText,
-                        selectedLanguage
-                    );
-                    contents.push({
-                        original: pageText,
-                        translated: translatedText,
-                    });
-                } catch (error) {
-                    contents.push({
-                        original: pageText,
-                        translated: "Translation failed for this page",
-                    });
-                }
-            }
-
-            return contents;
-        } catch (error) {
-            throw new Error("Failed to extract text from PDF");
+            setError("Failed to translate text. Please try again.");
+            console.error(error);
         } finally {
             setIsTranslating(false);
         }
@@ -137,13 +117,15 @@ export default function PdfUploader() {
             setIsLoading(true);
             setError("");
             setCopySuccess(false);
-            setPageContents([]);
+            setTranslatedText("");
             setFileName(file.name);
-            setCurrentPage(1);
 
             try {
-                const contents = await extractTextFromPdf(file);
-                setPageContents(contents);
+                const text = await extractTextFromPdf(file);
+                setExtractedText(text);
+
+                // Automatically start translation
+                await translateText(text, selectedLanguage);
             } catch (error) {
                 setError("Failed to process PDF file");
                 console.error(error);
@@ -159,25 +141,8 @@ export default function PdfUploader() {
     ) => {
         const newLanguage = event.target.value;
         setSelectedLanguage(newLanguage);
-
-        if (pageContents.length > 0) {
-            setIsTranslating(true);
-            try {
-                const newContents = await Promise.all(
-                    pageContents.map(async (content) => ({
-                        original: content.original,
-                        translated: await translateText(
-                            content.original,
-                            newLanguage
-                        ),
-                    }))
-                );
-                setPageContents(newContents);
-            } catch (error) {
-                setError("Failed to translate text. Please try again.");
-            } finally {
-                setIsTranslating(false);
-            }
+        if (extractedText) {
+            await translateText(extractedText, newLanguage);
         }
     };
 
@@ -189,17 +154,6 @@ export default function PdfUploader() {
         } catch (err) {
             setError("Failed to copy text");
         }
-    };
-
-    const handlePageChange = (newPage: number) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-        }
-    };
-
-    const currentContent = pageContents[currentPage - 1] || {
-        original: "",
-        translated: "",
     };
 
     return (
@@ -270,25 +224,21 @@ export default function PdfUploader() {
                 </div>
             )}
 
-            {pageContents.length > 0 && (
+            {(extractedText || translatedText) && (
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">
-                            Page {currentPage} of {totalPages}
+                            Extracted and Translated Text:
                         </h3>
                         <div className="flex gap-2">
                             <button
-                                onClick={() =>
-                                    handleCopyText(currentContent.original)
-                                }
+                                onClick={() => handleCopyText(extractedText)}
                                 className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                             >
                                 Copy Original
                             </button>
                             <button
-                                onClick={() =>
-                                    handleCopyText(currentContent.translated)
-                                }
+                                onClick={() => handleCopyText(translatedText)}
                                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                             >
                                 Copy Translation
@@ -302,7 +252,7 @@ export default function PdfUploader() {
                             </h4>
                             <div className="h-[400px] overflow-y-auto">
                                 <p className="whitespace-pre-wrap pr-4">
-                                    {currentContent.original}
+                                    {extractedText}
                                 </p>
                             </div>
                         </div>
@@ -312,29 +262,11 @@ export default function PdfUploader() {
                             </h4>
                             <div className="h-[400px] overflow-y-auto">
                                 <p className="whitespace-pre-wrap pr-4">
-                                    {currentContent.translated}
+                                    {translatedText ||
+                                        "Translation in progress..."}
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex justify-center items-center gap-4 mt-4">
-                        <button
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            Previous Page
-                        </button>
-                        <span className="text-sm text-gray-600">
-                            Page {currentPage} of {totalPages}
-                        </span>
-                        <button
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage === totalPages}
-                            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            Next Page
-                        </button>
                     </div>
                 </div>
             )}
