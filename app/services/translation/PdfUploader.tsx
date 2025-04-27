@@ -5,6 +5,11 @@ import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
 
+interface PageContent {
+    original: string;
+    translated: string;
+}
+
 export default function PdfUploader() {
     useEffect(() => {
         // Initialize PDF.js worker in useEffect to avoid SSR issues
@@ -12,15 +17,14 @@ export default function PdfUploader() {
         pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
     }, []);
 
-    const [extractedText, setExtractedText] = useState<string>("");
-    const [translatedText, setTranslatedText] = useState<string>("");
+    const [pageContents, setPageContents] = useState<PageContent[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
     const [isLoading, setIsLoading] = useState(false);
     const [isTranslating, setIsTranslating] = useState(false);
     const [error, setError] = useState<string>("");
-    const [pdfUrl, setPdfUrl] = useState<string>("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    const [fileName, setFileName] = useState<string>("");
     const [copySuccess, setCopySuccess] = useState(false);
 
     const formatExtractedText = (items: any[]) => {
@@ -64,36 +68,7 @@ export default function PdfUploader() {
         return formattedText;
     };
 
-    const extractTextFromPdf = async (file: File) => {
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-            setTotalPages(pdf.numPages);
-
-            let fullText = "";
-            // Extract text from all pages
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                const page = await pdf.getPage(pageNum);
-                const textContent = await page.getTextContent();
-                const pageText = formatExtractedText(textContent.items);
-
-                // Add page separator only if there's more than one page
-                if (pdf.numPages > 1) {
-                    fullText += `Page ${pageNum}:\n${pageText}\n`;
-                } else {
-                    fullText += pageText;
-                }
-            }
-            return fullText;
-        } catch (error) {
-            throw new Error("Failed to extract text from PDF");
-        }
-    };
-
     const translateText = async (text: string, targetLanguage: string) => {
-        setIsTranslating(true);
-        setError("");
-
         try {
             const selectedLangName =
                 languages.find((lang) => lang.code === targetLanguage)?.name ||
@@ -102,10 +77,48 @@ export default function PdfUploader() {
                 text,
                 selectedLangName
             );
-            setTranslatedText(translation);
+            return translation;
         } catch (error) {
-            setError("Failed to translate text. Please try again.");
-            console.error(error);
+            console.error("Translation error:", error);
+            throw error;
+        }
+    };
+
+    const extractTextFromPdf = async (file: File) => {
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+            setTotalPages(pdf.numPages);
+
+            const contents: PageContent[] = [];
+            setIsTranslating(true);
+
+            // Extract and translate text page by page
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const textContent = await page.getTextContent();
+                const pageText = formatExtractedText(textContent.items);
+
+                try {
+                    const translatedText = await translateText(
+                        pageText,
+                        selectedLanguage
+                    );
+                    contents.push({
+                        original: pageText,
+                        translated: translatedText,
+                    });
+                } catch (error) {
+                    contents.push({
+                        original: pageText,
+                        translated: "Translation failed for this page",
+                    });
+                }
+            }
+
+            return contents;
+        } catch (error) {
+            throw new Error("Failed to extract text from PDF");
         } finally {
             setIsTranslating(false);
         }
@@ -124,19 +137,13 @@ export default function PdfUploader() {
             setIsLoading(true);
             setError("");
             setCopySuccess(false);
-            setTranslatedText("");
+            setPageContents([]);
+            setFileName(file.name);
+            setCurrentPage(1);
 
             try {
-                // Create URL for PDF preview
-                const fileUrl = URL.createObjectURL(file);
-                setPdfUrl(fileUrl);
-
-                const text = await extractTextFromPdf(file);
-                setExtractedText(text);
-                setCurrentPage(1);
-
-                // Automatically start translation
-                await translateText(text, selectedLanguage);
+                const contents = await extractTextFromPdf(file);
+                setPageContents(contents);
             } catch (error) {
                 setError("Failed to process PDF file");
                 console.error(error);
@@ -152,8 +159,25 @@ export default function PdfUploader() {
     ) => {
         const newLanguage = event.target.value;
         setSelectedLanguage(newLanguage);
-        if (extractedText) {
-            await translateText(extractedText, newLanguage);
+
+        if (pageContents.length > 0) {
+            setIsTranslating(true);
+            try {
+                const newContents = await Promise.all(
+                    pageContents.map(async (content) => ({
+                        original: content.original,
+                        translated: await translateText(
+                            content.original,
+                            newLanguage
+                        ),
+                    }))
+                );
+                setPageContents(newContents);
+            } catch (error) {
+                setError("Failed to translate text. Please try again.");
+            } finally {
+                setIsTranslating(false);
+            }
         }
     };
 
@@ -167,14 +191,16 @@ export default function PdfUploader() {
         }
     };
 
-    // Cleanup URL on unmount
-    useEffect(() => {
-        return () => {
-            if (pdfUrl) {
-                URL.revokeObjectURL(pdfUrl);
-            }
-        };
-    }, [pdfUrl]);
+    const handlePageChange = (newPage: number) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+        }
+    };
+
+    const currentContent = pageContents[currentPage - 1] || {
+        original: "",
+        translated: "",
+    };
 
     return (
         <div className="space-y-4">
@@ -235,37 +261,34 @@ export default function PdfUploader() {
 
             {error && <div className="text-center text-red-500">{error}</div>}
 
-            {pdfUrl && !isLoading && (
-                <div className="mt-4">
-                    <h3 className="text-lg font-semibold mb-2">PDF Preview:</h3>
-                    <div className="w-full max-w-2xl mx-auto h-[500px] border border-gray-200 rounded-lg overflow-hidden">
-                        <iframe
-                            src={pdfUrl}
-                            className="w-full h-full"
-                            title="PDF Preview"
-                        />
-                    </div>
-                    <p className="text-sm text-gray-500 text-center mt-2">
-                        Page {currentPage} of {totalPages}
+            {fileName && (
+                <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-600">
+                        Current file:{" "}
+                        <span className="font-medium">{fileName}</span>
                     </p>
                 </div>
             )}
 
-            {(extractedText || translatedText) && (
+            {pageContents.length > 0 && (
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">
-                            Extracted and Translated Text:
+                            Page {currentPage} of {totalPages}
                         </h3>
                         <div className="flex gap-2">
                             <button
-                                onClick={() => handleCopyText(extractedText)}
+                                onClick={() =>
+                                    handleCopyText(currentContent.original)
+                                }
                                 className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                             >
                                 Copy Original
                             </button>
                             <button
-                                onClick={() => handleCopyText(translatedText)}
+                                onClick={() =>
+                                    handleCopyText(currentContent.translated)
+                                }
                                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                             >
                                 Copy Translation
@@ -277,18 +300,41 @@ export default function PdfUploader() {
                             <h4 className="font-medium text-gray-700 mb-2">
                                 Original Text:
                             </h4>
-                            <p className="whitespace-pre-wrap">
-                                {extractedText}
-                            </p>
+                            <div className="h-[400px] overflow-y-auto">
+                                <p className="whitespace-pre-wrap pr-4">
+                                    {currentContent.original}
+                                </p>
+                            </div>
                         </div>
                         <div className="p-4 bg-white rounded-lg border border-gray-200">
                             <h4 className="font-medium text-gray-700 mb-2">
                                 Translated Text:
                             </h4>
-                            <p className="whitespace-pre-wrap">
-                                {translatedText || "Translation in progress..."}
-                            </p>
+                            <div className="h-[400px] overflow-y-auto">
+                                <p className="whitespace-pre-wrap pr-4">
+                                    {currentContent.translated}
+                                </p>
+                            </div>
                         </div>
+                    </div>
+                    <div className="flex justify-center items-center gap-4 mt-4">
+                        <button
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Previous Page
+                        </button>
+                        <span className="text-sm text-gray-600">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <button
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Next Page
+                        </button>
                     </div>
                 </div>
             )}

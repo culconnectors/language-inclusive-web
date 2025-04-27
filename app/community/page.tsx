@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import LgaMap from "@/app/components/map/LgaMap";
 
 export default function CommunityPage() {
     const [selectedStatistic, setSelectedStatistic] = useState<string>();
+    const [selectedLga, setSelectedLga] = useState<string>();
+
+    const handleLgaSelect = (lgaCode: string) => {
+        setSelectedLga(lgaCode);
+        console.log("Selected LGA:", lgaCode);
+    };
 
     return (
         <main className="min-h-screen bg-gray-50">
@@ -16,10 +22,11 @@ export default function CommunityPage() {
                         Community Explorer
                     </h1>
                     <p className="text-lg text-gray-600 text-center mb-8">
-                        Explore Victorian Local Government Areas and their demographics
+                        Explore Victorian Local Government Areas and their
+                        demographics
                     </p>
                     <div className="mb-8">
-                        <LgaMap onSuburbSelect={handleLgaClick}/>
+                        <LgaMap onLgaSelect={handleLgaSelect} />
                     </div>
                 </div>
             </section>
