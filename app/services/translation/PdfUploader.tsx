@@ -23,6 +23,47 @@ export default function PdfUploader() {
     const [totalPages, setTotalPages] = useState(0);
     const [copySuccess, setCopySuccess] = useState(false);
 
+    const formatExtractedText = (items: any[]) => {
+        let formattedText = "";
+        let lastY = -1;
+        let lineText = "";
+
+        // Sort items by Y position (top to bottom) and then X position (left to right)
+        const sortedItems = [...items].sort((a, b) => {
+            if (Math.abs(a.transform[5] - b.transform[5]) > 5) {
+                return b.transform[5] - a.transform[5]; // Y position
+            }
+            return a.transform[4] - b.transform[4]; // X position
+        });
+
+        for (const item of sortedItems) {
+            const y = item.transform[5];
+            const text = item.str.trim();
+
+            if (!text) continue;
+
+            // If this is a new line (Y position differs significantly)
+            if (lastY !== -1 && Math.abs(y - lastY) > 5) {
+                formattedText += lineText.trim() + "\n";
+                lineText = "";
+            }
+
+            // Add appropriate spacing between words
+            if (lineText && !lineText.endsWith("-")) {
+                lineText += " ";
+            }
+            lineText += text;
+            lastY = y;
+        }
+
+        // Add the last line
+        if (lineText) {
+            formattedText += lineText.trim() + "\n";
+        }
+
+        return formattedText;
+    };
+
     const extractTextFromPdf = async (file: File) => {
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -34,10 +75,14 @@ export default function PdfUploader() {
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 const page = await pdf.getPage(pageNum);
                 const textContent = await page.getTextContent();
-                const pageText = textContent.items
-                    .map((item: any) => item.str)
-                    .join(" ");
-                fullText += `Page ${pageNum}:\n${pageText}\n\n`;
+                const pageText = formatExtractedText(textContent.items);
+
+                // Add page separator only if there's more than one page
+                if (pdf.numPages > 1) {
+                    fullText += `Page ${pageNum}:\n${pageText}\n`;
+                } else {
+                    fullText += pageText;
+                }
             }
             return fullText;
         } catch (error) {
@@ -112,9 +157,9 @@ export default function PdfUploader() {
         }
     };
 
-    const handleCopyText = async () => {
+    const handleCopyText = async (text: string) => {
         try {
-            await navigator.clipboard.writeText(translatedText);
+            await navigator.clipboard.writeText(text);
             setCopySuccess(true);
             setTimeout(() => setCopySuccess(false), 2000);
         } catch (err) {
@@ -206,21 +251,44 @@ export default function PdfUploader() {
                 </div>
             )}
 
-            {translatedText && (
+            {(extractedText || translatedText) && (
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">
-                            Translated Text:
+                            Extracted and Translated Text:
                         </h3>
-                        <button
-                            onClick={handleCopyText}
-                            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-                        >
-                            {copySuccess ? "Copied!" : "Copy Text"}
-                        </button>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => handleCopyText(extractedText)}
+                                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                            >
+                                Copy Original
+                            </button>
+                            <button
+                                onClick={() => handleCopyText(translatedText)}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                            >
+                                Copy Translation
+                            </button>
+                        </div>
                     </div>
-                    <div className="p-4 bg-white rounded-lg border border-gray-200">
-                        <p className="whitespace-pre-wrap">{translatedText}</p>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h4 className="font-medium text-gray-700 mb-2">
+                                Original Text:
+                            </h4>
+                            <p className="whitespace-pre-wrap">
+                                {extractedText}
+                            </p>
+                        </div>
+                        <div className="p-4 bg-white rounded-lg border border-gray-200">
+                            <h4 className="font-medium text-gray-700 mb-2">
+                                Translated Text:
+                            </h4>
+                            <p className="whitespace-pre-wrap">
+                                {translatedText || "Translation in progress..."}
+                            </p>
+                        </div>
                     </div>
                 </div>
             )}
