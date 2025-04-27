@@ -11,31 +11,38 @@ interface Workshop {
     id: string;
     name: string;
     provider_name: string;
+    description: string;
     url: string;
-    logo?: {
-        url: string;
-    };
+}
+
+interface Pagination {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    hasMore: boolean;
 }
 
 interface WorkshopListProps {
     coordinates: Coordinates | null;
     workshops: Workshop[];
+    pagination: Pagination;
     isLoading: boolean;
+    onPageChange: (page: number) => void;
 }
 
 function LoadingSkeleton() {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, index) => (
+        <div className="space-y-4">
+            {[...Array(3)].map((_, index) => (
                 <div
                     key={index}
                     className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse"
                 >
-                    <div className="h-48 bg-gray-200" />
-                    <div className="p-4 space-y-4">
+                    <div className="p-6 space-y-4">
                         <div className="h-6 bg-gray-200 rounded w-3/4" />
                         <div className="h-4 bg-gray-200 rounded w-1/2" />
-                        <div className="h-10 bg-gray-200 rounded" />
+                        <div className="h-16 bg-gray-200 rounded" />
+                        <div className="h-10 bg-gray-200 rounded w-32" />
                     </div>
                 </div>
             ))}
@@ -46,7 +53,9 @@ function LoadingSkeleton() {
 export default function WorkshopList({
     coordinates,
     workshops,
+    pagination,
     isLoading,
+    onPageChange,
 }: WorkshopListProps) {
     if (!coordinates) {
         return (
@@ -76,7 +85,7 @@ export default function WorkshopList({
                     Select a Location
                 </h2>
                 <p className="text-gray-600">
-                    Choose a location to find workshops near you.
+                    Choose a location to find courses near you.
                 </p>
             </div>
         );
@@ -105,20 +114,44 @@ export default function WorkshopList({
                     </svg>
                 </div>
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                    No Workshops Found
+                    No Courses Found
                 </h2>
                 <p className="text-gray-600">
-                    Try adjusting your search or location to find workshops.
+                    Try adjusting your search or location to find courses.
                 </p>
             </div>
         );
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {workshops.map((workshop) => (
-                <WorkshopCard key={workshop.id} workshop={workshop} />
-            ))}
+        <div>
+            <div className="space-y-4 mb-8">
+                {workshops.map((workshop) => (
+                    <WorkshopCard key={workshop.id} workshop={workshop} />
+                ))}
+            </div>
+
+            {pagination.totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2">
+                    <button
+                        onClick={() => onPageChange(pagination.currentPage - 1)}
+                        disabled={pagination.currentPage === 1}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                    >
+                        Previous
+                    </button>
+                    <span className="text-sm text-gray-600">
+                        Page {pagination.currentPage} of {pagination.totalPages}
+                    </span>
+                    <button
+                        onClick={() => onPageChange(pagination.currentPage + 1)}
+                        disabled={!pagination.hasMore}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

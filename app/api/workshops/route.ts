@@ -5,6 +5,7 @@ interface Workshop {
     id: string;
     name: string;
     provider_name: string;
+    description: string;
     url: string;
     location: {
         latitude: number;
@@ -17,10 +18,12 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const lat = parseFloat(searchParams.get("lat") || "0");
         const lng = parseFloat(searchParams.get("lng") || "0");
+        const page = parseInt(searchParams.get("page") || "1");
         const radius = 20; // 20km radius
+        const pageSize = 20;
 
         // Using Prisma's query builder with relations
-        const workshops = await workshopClient.provider.findMany({
+        const providers = await workshopClient.provider.findMany({
             where: {
                 courses: {
                     some: {
@@ -49,7 +52,7 @@ export async function GET(request: Request) {
         // Filter and format workshops based on distance
         const formattedWorkshops: Workshop[] = [];
 
-        workshops.forEach((provider) => {
+        providers.forEach((provider) => {
             provider.locations.forEach((location) => {
                 const distance = calculateDistance(
                     lat,
@@ -64,6 +67,7 @@ export async function GET(request: Request) {
                             id: `${provider.provider_id}${location.geographic_id}${course.course_id}`,
                             name: course.course_title,
                             provider_name: provider.provider_name,
+                            description: course.description,
                             url: provider.url || "",
                             location: {
                                 latitude: location.latitude,
@@ -75,8 +79,8 @@ export async function GET(request: Request) {
             });
         });
 
-        // Sort by distance
-        formattedWorkshops.sort((a, b) => {
+        // Sort by distance and apply pagination
+        const sortedWorkshops = formattedWorkshops.sort((a, b) => {
             const distanceA = calculateDistance(
                 lat,
                 lng,
@@ -92,7 +96,22 @@ export async function GET(request: Request) {
             return distanceA - distanceB;
         });
 
-        return NextResponse.json(formattedWorkshops);
+        const startIndex = (page - 1) * pageSize;
+        const paginatedWorkshops = sortedWorkshops.slice(
+            startIndex,
+            startIndex + pageSize
+        );
+        const totalPages = Math.ceil(sortedWorkshops.length / pageSize);
+
+        return NextResponse.json({
+            workshops: paginatedWorkshops,
+            pagination: {
+                currentPage: page,
+                totalPages,
+                totalItems: sortedWorkshops.length,
+                hasMore: page < totalPages,
+            },
+        });
     } catch (error) {
         console.error("Error fetching workshops:", error);
         return NextResponse.json(
