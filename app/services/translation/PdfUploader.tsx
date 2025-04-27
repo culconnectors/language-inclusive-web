@@ -2,6 +2,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import * as pdfjs from "pdfjs-dist";
+import { languages } from "./languages";
+import { translateWithGemini } from "./gemini";
 
 export default function PdfUploader() {
     useEffect(() => {
@@ -11,7 +13,10 @@ export default function PdfUploader() {
     }, []);
 
     const [extractedText, setExtractedText] = useState<string>("");
+    const [translatedText, setTranslatedText] = useState<string>("");
+    const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
     const [isLoading, setIsLoading] = useState(false);
+    const [isTranslating, setIsTranslating] = useState(false);
     const [error, setError] = useState<string>("");
     const [pdfUrl, setPdfUrl] = useState<string>("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +45,27 @@ export default function PdfUploader() {
         }
     };
 
+    const translateText = async (text: string, targetLanguage: string) => {
+        setIsTranslating(true);
+        setError("");
+
+        try {
+            const selectedLangName =
+                languages.find((lang) => lang.code === targetLanguage)?.name ||
+                targetLanguage;
+            const translation = await translateWithGemini(
+                text,
+                selectedLangName
+            );
+            setTranslatedText(translation);
+        } catch (error) {
+            setError("Failed to translate text. Please try again.");
+            console.error(error);
+        } finally {
+            setIsTranslating(false);
+        }
+    };
+
     const handleFileUpload = useCallback(
         async (event: React.ChangeEvent<HTMLInputElement>) => {
             const file = event.target.files?.[0];
@@ -53,6 +79,7 @@ export default function PdfUploader() {
             setIsLoading(true);
             setError("");
             setCopySuccess(false);
+            setTranslatedText("");
 
             try {
                 // Create URL for PDF preview
@@ -62,6 +89,9 @@ export default function PdfUploader() {
                 const text = await extractTextFromPdf(file);
                 setExtractedText(text);
                 setCurrentPage(1);
+
+                // Automatically start translation
+                await translateText(text, selectedLanguage);
             } catch (error) {
                 setError("Failed to process PDF file");
                 console.error(error);
@@ -69,14 +99,24 @@ export default function PdfUploader() {
                 setIsLoading(false);
             }
         },
-        []
+        [selectedLanguage]
     );
+
+    const handleLanguageChange = async (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        const newLanguage = event.target.value;
+        setSelectedLanguage(newLanguage);
+        if (extractedText) {
+            await translateText(extractedText, newLanguage);
+        }
+    };
 
     const handleCopyText = async () => {
         try {
-            await navigator.clipboard.writeText(extractedText);
+            await navigator.clipboard.writeText(translatedText);
             setCopySuccess(true);
-            setTimeout(() => setCopySuccess(false), 2000); // Reset success message after 2 seconds
+            setTimeout(() => setCopySuccess(false), 2000);
         } catch (err) {
             setError("Failed to copy text");
         }
@@ -94,6 +134,27 @@ export default function PdfUploader() {
     return (
         <div className="space-y-4">
             <div className="flex flex-col items-center justify-center w-full">
+                <div className="w-full max-w-md mb-4">
+                    <label
+                        htmlFor="language-select"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Select Target Language
+                    </label>
+                    <select
+                        id="language-select"
+                        value={selectedLanguage}
+                        onChange={handleLanguageChange}
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                        {languages.map((lang) => (
+                            <option key={lang.code} value={lang.code}>
+                                {lang.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <label
                     htmlFor="pdf-upload"
                     className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
@@ -117,9 +178,13 @@ export default function PdfUploader() {
                 </label>
             </div>
 
-            {isLoading && (
+            {(isLoading || isTranslating) && (
                 <div className="text-center">
-                    <p className="text-gray-600">Processing PDF...</p>
+                    <p className="text-gray-600">
+                        {isLoading
+                            ? "Processing PDF..."
+                            : "Translating text..."}
+                    </p>
                 </div>
             )}
 
@@ -141,21 +206,21 @@ export default function PdfUploader() {
                 </div>
             )}
 
-            {extractedText && (
+            {translatedText && (
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">
-                            Extracted Text:
+                            Translated Text:
                         </h3>
                         <button
                             onClick={handleCopyText}
                             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                         >
-                            {copySuccess ? "Copied!" : "Copy All Text"}
+                            {copySuccess ? "Copied!" : "Copy Text"}
                         </button>
                     </div>
                     <div className="p-4 bg-white rounded-lg border border-gray-200">
-                        <p className="whitespace-pre-wrap">{extractedText}</p>
+                        <p className="whitespace-pre-wrap">{translatedText}</p>
                     </div>
                 </div>
             )}
