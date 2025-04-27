@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { MapPin, Navigation } from "lucide-react";
-import { useState } from "react";
+import { MapPin, Navigation, RefreshCw } from "lucide-react";
+import { useState, useMemo } from "react";
 import WorkshopList from "./WorkshopList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
@@ -28,6 +28,9 @@ interface PaginatedResponse {
 
 export default function WorkshopSearch() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedProviders, setSelectedProviders] = useState<Set<string>>(
+        new Set()
+    );
     const {
         locationTerm,
         setLocationTerm,
@@ -72,6 +75,38 @@ export default function WorkshopSearch() {
         enabled: !!selectedLocation,
     });
 
+    // Extract unique provider names from workshops
+    const providerNames = useMemo(() => {
+        if (!data?.workshops) return [];
+        return [
+            ...new Set(
+                data.workshops.map((workshop) => workshop.provider_name)
+            ),
+        ].sort();
+    }, [data?.workshops]);
+
+    // Handle checkbox toggle
+    const handleProviderToggle = (providerName: string) => {
+        setSelectedProviders((prev) => {
+            const newSet = new Set(prev);
+            if (newSet.has(providerName)) {
+                newSet.delete(providerName);
+            } else {
+                newSet.add(providerName);
+            }
+            return newSet;
+        });
+    };
+
+    // Filter workshops based on selected providers
+    const filteredWorkshops = useMemo(() => {
+        if (!data?.workshops) return [];
+        if (selectedProviders.size === 0) return data.workshops;
+        return data.workshops.filter((workshop) =>
+            selectedProviders.has(workshop.provider_name)
+        );
+    }, [data?.workshops, selectedProviders]);
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -79,34 +114,72 @@ export default function WorkshopSearch() {
     return (
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                <LocationSearch
-                    locationTerm={locationTerm}
-                    onLocationTermChange={setLocationTerm}
-                    predictions={predictions}
-                    loading={isLoadingLocation}
-                    onPredictionSelect={handlePredictionSelect}
-                    onLocationSelect={() => {}}
-                />
+                <div className="flex-1">
+                    <LocationSearch
+                        locationTerm={locationTerm}
+                        onLocationTermChange={setLocationTerm}
+                        predictions={predictions}
+                        loading={isLoadingLocation}
+                        onPredictionSelect={handlePredictionSelect}
+                        onLocationSelect={() => {}}
+                    />
+                </div>
                 <button
                     onClick={getCurrentLocation}
-                    disabled={isLoadingLocation}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-300 flex items-center gap-2"
                 >
                     <Navigation className="w-4 h-4" />
-                    <span>Use my location</span>
+                    Current Location
+                </button>
+                <button
+                    onClick={resetLocation}
+                    className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
+                >
+                    <RefreshCw className="w-4 h-4" />
+                    New Search
                 </button>
             </div>
 
             {selectedLocation && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-gray-600">
                     <MapPin className="w-4 h-4" />
-                    <span>Showing courses near {locationTerm}</span>
+                    <span>
+                        Showing courses within 20km of selected location
+                    </span>
+                </div>
+            )}
+
+            {providerNames.length > 0 && (
+                <div className="bg-white p-4 rounded-lg shadow">
+                    <h3 className="text-lg font-semibold mb-3">
+                        Filter by Provider
+                    </h3>
+                    <div className="space-y-2">
+                        {providerNames.map((provider) => (
+                            <label
+                                key={provider}
+                                className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={selectedProviders.has(provider)}
+                                    onChange={() =>
+                                        handleProviderToggle(provider)
+                                    }
+                                    className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                />
+                                <span className="text-gray-700">
+                                    {provider}
+                                </span>
+                            </label>
+                        ))}
+                    </div>
                 </div>
             )}
 
             <WorkshopList
                 coordinates={selectedLocation}
-                workshops={data?.workshops || []}
+                workshops={filteredWorkshops}
                 pagination={
                     data?.pagination || {
                         currentPage: 1,
