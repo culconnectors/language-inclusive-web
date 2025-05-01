@@ -151,6 +151,7 @@ model Lga {
   council_info           CouncilInfo?
   language_proficiencies LgaLanguageProficiency[]
   lga_nationalities      LgaNationality[]
+  LgaNationalityYear     LgaNationalityYear[]
   statistics             LgaStatistics?
   postcodes              Postcode[]
 
@@ -158,9 +159,10 @@ model Lga {
 }
 
 model Nationality {
-  nationality_id    Int              @id @default(autoincrement())
-  nationality       String           @unique
-  lga_nationalities LgaNationality[]
+  nationality_id     Int                  @id @default(autoincrement())
+  nationality        String               @unique
+  lga_nationalities  LgaNationality[]
+  LgaNationalityYear LgaNationalityYear[]
 
   @@schema("lga_map")
 }
@@ -223,22 +225,34 @@ model LgaLanguageProficiency {
 }
 
 model LgaStatistics {
-  lga_code                          Int    @id
-  total_businesses                  Int?
-  total_employed_over_15            Int?
-  born_overseas                     Int?
-  pct_arrived_within_5_years        Float?
-  pct_proficient_english            Float?
-  percent_speaks_other_lang_at_home Float?
-  median_age_years                  Float?
-  pct_completed_year_12             Float?
-  pct_certificate                   Float?
-  pct_bachelor_degree               Float?
-  pct_postgraduate                  Float?
-  pct_managers                      Float?
-  pct_professionals                 Float?
-  pct_labourers                     Float?
-  lga                               Lga    @relation(fields: [lga_code], references: [lga_code])
+  lga_code                      Int    @id
+  total_businesses              Int?
+  total_employed_over_15        Int?
+  born_overseas                 Int?
+  pct_arrived_within_5_years    Float?
+  pct_proficient_english        Float?
+  pct_speaks_other_lang_at_home Float?
+  median_age_years              Float?
+  pct_completed_year_12         Float?
+  pct_certificate               Float?
+  pct_bachelor_degree           Float?
+  pct_postgraduate              Float?
+  pct_managers                  Float?
+  pct_professionals             Float?
+  pct_labourers                 Float?
+  lga                           Lga    @relation(fields: [lga_code], references: [lga_code])
+
+  @@schema("lga_map")
+}
+
+model LgaNationalityYear {
+  lga_nationality_year_id Int         @id @default(autoincrement())
+  lga_code                Int
+  nationality_id          Int
+  year                    Int
+  count                   Int
+  Lga                     Lga         @relation(fields: [lga_code], references: [lga_code])
+  Nationality             Nationality @relation(fields: [nationality_id], references: [nationality_id])
 
   @@schema("lga_map")
 }

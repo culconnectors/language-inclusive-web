@@ -265,7 +265,7 @@ exports.Prisma.LgaStatisticsScalarFieldEnum = {
   born_overseas: 'born_overseas',
   pct_arrived_within_5_years: 'pct_arrived_within_5_years',
   pct_proficient_english: 'pct_proficient_english',
-  percent_speaks_other_lang_at_home: 'percent_speaks_other_lang_at_home',
+  pct_speaks_other_lang_at_home: 'pct_speaks_other_lang_at_home',
   median_age_years: 'median_age_years',
   pct_completed_year_12: 'pct_completed_year_12',
   pct_certificate: 'pct_certificate',
@@ -274,6 +274,14 @@ exports.Prisma.LgaStatisticsScalarFieldEnum = {
   pct_managers: 'pct_managers',
   pct_professionals: 'pct_professionals',
   pct_labourers: 'pct_labourers'
+};
+
+exports.Prisma.LgaNationalityYearScalarFieldEnum = {
+  lga_nationality_year_id: 'lga_nationality_year_id',
+  lga_code: 'lga_code',
+  nationality_id: 'nationality_id',
+  year: 'year',
+  count: 'count'
 };
 
 exports.Prisma.SortOrder = {
@@ -309,7 +317,8 @@ exports.Prisma.ModelName = {
   Postcode: 'Postcode',
   Language: 'Language',
   LgaLanguageProficiency: 'LgaLanguageProficiency',
-  LgaStatistics: 'LgaStatistics'
+  LgaStatistics: 'LgaStatistics',
+  LgaNationalityYear: 'LgaNationalityYear'
 };
 
 /**

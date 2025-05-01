@@ -1,27 +1,31 @@
 import { NextResponse } from 'next/server';
-import { lgaClient } from '@/lib/prisma';
+import { lgaClient } from "@/lib/prisma";
 
 export async function GET(
   request: Request,
   { params }: { params: { lgaCode: string } }
 ) {
   try {
-    const { lgaCode } = params;
+    const lgaCode = parseInt(params.lgaCode);
 
-    if (!lgaCode || isNaN(Number(lgaCode))) {
+    if (isNaN(lgaCode)) {
       return NextResponse.json(
         { error: 'Invalid LGA code' },
         { status: 400 }
       );
     }
 
-    const councilInfo = await lgaClient.$queryRaw`
-      SELECT *
-      FROM "CouncilInfo"
-      WHERE lga_code = ${Number(lgaCode)}
-    `;
+    // Fetch council info using Prisma
+    const councilInfo = await lgaClient.councilInfo.findUnique({
+      where: {
+        lga_code: lgaCode,
+      },
+      include: {
+        lga: true, // Include related LGA data
+      },
+    });
 
-    if (!councilInfo || (Array.isArray(councilInfo) && councilInfo.length === 0)) {
+    if (!councilInfo) {
       return NextResponse.json(
         { error: 'No council information found for that LGA code' },
         { status: 404 }
@@ -35,7 +39,5 @@ export async function GET(
       { error: 'Internal server error' },
       { status: 500 }
     );
-  } finally {
-    await lgaClient.$disconnect();
   }
 } 

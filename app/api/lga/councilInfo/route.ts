@@ -1,25 +1,27 @@
 import { NextResponse } from 'next/server';
-import { lgaClient } from '@/lib/prisma';
+import { lgaClient } from "@/lib/prisma";
 
 export async function GET(
   request: Request,
   { params }: { params: { lgaCode: string } }
 ) {
   try {
+    // Extract LGA code from URL
     const url = new URL(request.url);
-    const lgaCode = url.pathname.split('/').pop();
+    const lgaCode = parseInt(url.pathname.split('/').pop() || '');
 
-    if (!lgaCode || isNaN(Number(lgaCode))) {
+    if (isNaN(lgaCode)) {
       return NextResponse.json(
         { error: 'Invalid LGA code' },
         { status: 400 }
       );
     }
 
-    const councilInfo = await lgaClient.councilInfo.findFirst({
+    // Fetch council info using Prisma
+    const councilInfo = await lgaClient.councilInfo.findUnique({
       where: {
-        lga_code: Number(lgaCode)
-      }
+        lga_code: lgaCode,
+      },
     });
 
     if (!councilInfo) {

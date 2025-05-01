@@ -9,6 +9,7 @@ import ChartGenerator from './chartGenerator';
 import LgaSidebar from './LgaSidebar';
 import EnglishProficiencyChart from './englishProficiencyChart';
 import { bbox, center } from '@turf/turf';
+import CouncilInfoCard from './CouncilInfoCard';
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
@@ -43,6 +44,7 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [selectedLgaCode, setSelectedLgaCode] = useState<string | null>(null);
   const [selectedLgaName, setSelectedLgaName] = useState<string>('');
+  const [showCouncilInfo, setShowCouncilInfo] = useState(false);
 
   // Fetch statistic data when statistic changes
   useEffect(() => {
@@ -147,6 +149,7 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
           console.debug('LGA selected:', { lgaCode, lgaName });
           setSelectedLgaCode(lgaCode);
           setSelectedLgaName(lgaName);
+          setShowCouncilInfo(true);
           onLgaSelect?.(lgaCode);
 
           // Calculate the bounding box and center of the feature
@@ -188,9 +191,9 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
         onModeChange={(newMode) => {
           console.debug('Mode changed:', { newMode, currentMode: mode });
           setMode(newMode);
-          // Reset selected LGA when changing modes to prevent data mismatch
           setSelectedLgaCode(null);
           setSelectedLgaName('');
+          setShowCouncilInfo(false);
         }}
         onStatisticSelect={setSelectedStatistic}
       />
@@ -283,6 +286,12 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
           </div>
         )}
       </div>
+
+      {/* Council Info Card */}
+      <CouncilInfoCard
+        lgaCode={showCouncilInfo ? selectedLgaCode : null}
+        onClose={() => setShowCouncilInfo(false)}
+      />
     </div>
   );
 };

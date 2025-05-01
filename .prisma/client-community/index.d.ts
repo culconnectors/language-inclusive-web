@@ -98,6 +98,11 @@ export type LgaLanguageProficiency = $Result.DefaultSelection<Prisma.$LgaLanguag
  * 
  */
 export type LgaStatistics = $Result.DefaultSelection<Prisma.$LgaStatisticsPayload>
+/**
+ * Model LgaNationalityYear
+ * 
+ */
+export type LgaNationalityYear = $Result.DefaultSelection<Prisma.$LgaNationalityYearPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -393,6 +398,16 @@ export class PrismaClient<
     * ```
     */
   get lgaStatistics(): Prisma.LgaStatisticsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lgaNationalityYear`: Exposes CRUD operations for the **LgaNationalityYear** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LgaNationalityYears
+    * const lgaNationalityYears = await prisma.lgaNationalityYear.findMany()
+    * ```
+    */
+  get lgaNationalityYear(): Prisma.LgaNationalityYearDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -849,7 +864,8 @@ export namespace Prisma {
     Postcode: 'Postcode',
     Language: 'Language',
     LgaLanguageProficiency: 'LgaLanguageProficiency',
-    LgaStatistics: 'LgaStatistics'
+    LgaStatistics: 'LgaStatistics',
+    LgaNationalityYear: 'LgaNationalityYear'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -868,7 +884,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course" | "lga" | "nationality" | "lgaNationality" | "councilInfo" | "postcode" | "language" | "lgaLanguageProficiency" | "lgaStatistics"
+      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course" | "lga" | "nationality" | "lgaNationality" | "councilInfo" | "postcode" | "language" | "lgaLanguageProficiency" | "lgaStatistics" | "lgaNationalityYear"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2130,6 +2146,80 @@ export namespace Prisma {
           }
         }
       }
+      LgaNationalityYear: {
+        payload: Prisma.$LgaNationalityYearPayload<ExtArgs>
+        fields: Prisma.LgaNationalityYearFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LgaNationalityYearFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LgaNationalityYearFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          findFirst: {
+            args: Prisma.LgaNationalityYearFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LgaNationalityYearFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          findMany: {
+            args: Prisma.LgaNationalityYearFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>[]
+          }
+          create: {
+            args: Prisma.LgaNationalityYearCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          createMany: {
+            args: Prisma.LgaNationalityYearCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LgaNationalityYearCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>[]
+          }
+          delete: {
+            args: Prisma.LgaNationalityYearDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          update: {
+            args: Prisma.LgaNationalityYearUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          deleteMany: {
+            args: Prisma.LgaNationalityYearDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LgaNationalityYearUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LgaNationalityYearUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>[]
+          }
+          upsert: {
+            args: Prisma.LgaNationalityYearUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LgaNationalityYearPayload>
+          }
+          aggregate: {
+            args: Prisma.LgaNationalityYearAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLgaNationalityYear>
+          }
+          groupBy: {
+            args: Prisma.LgaNationalityYearGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LgaNationalityYearGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LgaNationalityYearCountArgs<ExtArgs>
+            result: $Utils.Optional<LgaNationalityYearCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2231,6 +2321,7 @@ export namespace Prisma {
     language?: LanguageOmit
     lgaLanguageProficiency?: LgaLanguageProficiencyOmit
     lgaStatistics?: LgaStatisticsOmit
+    lgaNationalityYear?: LgaNationalityYearOmit
   }
 
   /* Types for Logging */
@@ -2522,12 +2613,14 @@ export namespace Prisma {
   export type LgaCountOutputType = {
     language_proficiencies: number
     lga_nationalities: number
+    LgaNationalityYear: number
     postcodes: number
   }
 
   export type LgaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     language_proficiencies?: boolean | LgaCountOutputTypeCountLanguage_proficienciesArgs
     lga_nationalities?: boolean | LgaCountOutputTypeCountLga_nationalitiesArgs
+    LgaNationalityYear?: boolean | LgaCountOutputTypeCountLgaNationalityYearArgs
     postcodes?: boolean | LgaCountOutputTypeCountPostcodesArgs
   }
 
@@ -2559,6 +2652,13 @@ export namespace Prisma {
   /**
    * LgaCountOutputType without action
    */
+  export type LgaCountOutputTypeCountLgaNationalityYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityYearWhereInput
+  }
+
+  /**
+   * LgaCountOutputType without action
+   */
   export type LgaCountOutputTypeCountPostcodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PostcodeWhereInput
   }
@@ -2570,10 +2670,12 @@ export namespace Prisma {
 
   export type NationalityCountOutputType = {
     lga_nationalities: number
+    LgaNationalityYear: number
   }
 
   export type NationalityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lga_nationalities?: boolean | NationalityCountOutputTypeCountLga_nationalitiesArgs
+    LgaNationalityYear?: boolean | NationalityCountOutputTypeCountLgaNationalityYearArgs
   }
 
   // Custom InputTypes
@@ -2592,6 +2694,13 @@ export namespace Prisma {
    */
   export type NationalityCountOutputTypeCountLga_nationalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LgaNationalityWhereInput
+  }
+
+  /**
+   * NationalityCountOutputType without action
+   */
+  export type NationalityCountOutputTypeCountLgaNationalityYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityYearWhereInput
   }
 
 
@@ -13042,6 +13151,7 @@ export namespace Prisma {
     council_info?: boolean | Lga$council_infoArgs<ExtArgs>
     language_proficiencies?: boolean | Lga$language_proficienciesArgs<ExtArgs>
     lga_nationalities?: boolean | Lga$lga_nationalitiesArgs<ExtArgs>
+    LgaNationalityYear?: boolean | Lga$LgaNationalityYearArgs<ExtArgs>
     statistics?: boolean | Lga$statisticsArgs<ExtArgs>
     postcodes?: boolean | Lga$postcodesArgs<ExtArgs>
     _count?: boolean | LgaCountOutputTypeDefaultArgs<ExtArgs>
@@ -13067,6 +13177,7 @@ export namespace Prisma {
     council_info?: boolean | Lga$council_infoArgs<ExtArgs>
     language_proficiencies?: boolean | Lga$language_proficienciesArgs<ExtArgs>
     lga_nationalities?: boolean | Lga$lga_nationalitiesArgs<ExtArgs>
+    LgaNationalityYear?: boolean | Lga$LgaNationalityYearArgs<ExtArgs>
     statistics?: boolean | Lga$statisticsArgs<ExtArgs>
     postcodes?: boolean | Lga$postcodesArgs<ExtArgs>
     _count?: boolean | LgaCountOutputTypeDefaultArgs<ExtArgs>
@@ -13080,6 +13191,7 @@ export namespace Prisma {
       council_info: Prisma.$CouncilInfoPayload<ExtArgs> | null
       language_proficiencies: Prisma.$LgaLanguageProficiencyPayload<ExtArgs>[]
       lga_nationalities: Prisma.$LgaNationalityPayload<ExtArgs>[]
+      LgaNationalityYear: Prisma.$LgaNationalityYearPayload<ExtArgs>[]
       statistics: Prisma.$LgaStatisticsPayload<ExtArgs> | null
       postcodes: Prisma.$PostcodePayload<ExtArgs>[]
     }
@@ -13483,6 +13595,7 @@ export namespace Prisma {
     council_info<T extends Lga$council_infoArgs<ExtArgs> = {}>(args?: Subset<T, Lga$council_infoArgs<ExtArgs>>): Prisma__CouncilInfoClient<$Result.GetResult<Prisma.$CouncilInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     language_proficiencies<T extends Lga$language_proficienciesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$language_proficienciesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaLanguageProficiencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     lga_nationalities<T extends Lga$lga_nationalitiesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$lga_nationalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LgaNationalityYear<T extends Lga$LgaNationalityYearArgs<ExtArgs> = {}>(args?: Subset<T, Lga$LgaNationalityYearArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     statistics<T extends Lga$statisticsArgs<ExtArgs> = {}>(args?: Subset<T, Lga$statisticsArgs<ExtArgs>>): Prisma__LgaStatisticsClient<$Result.GetResult<Prisma.$LgaStatisticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     postcodes<T extends Lga$postcodesArgs<ExtArgs> = {}>(args?: Subset<T, Lga$postcodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostcodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -13971,6 +14084,30 @@ export namespace Prisma {
   }
 
   /**
+   * Lga.LgaNationalityYear
+   */
+  export type Lga$LgaNationalityYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    where?: LgaNationalityYearWhereInput
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    cursor?: LgaNationalityYearWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaNationalityYearScalarFieldEnum | LgaNationalityYearScalarFieldEnum[]
+  }
+
+  /**
    * Lga.statistics
    */
   export type Lga$statisticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14207,6 +14344,7 @@ export namespace Prisma {
     nationality_id?: boolean
     nationality?: boolean
     lga_nationalities?: boolean | Nationality$lga_nationalitiesArgs<ExtArgs>
+    LgaNationalityYear?: boolean | Nationality$LgaNationalityYearArgs<ExtArgs>
     _count?: boolean | NationalityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["nationality"]>
 
@@ -14228,6 +14366,7 @@ export namespace Prisma {
   export type NationalityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nationality_id" | "nationality", ExtArgs["result"]["nationality"]>
   export type NationalityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lga_nationalities?: boolean | Nationality$lga_nationalitiesArgs<ExtArgs>
+    LgaNationalityYear?: boolean | Nationality$LgaNationalityYearArgs<ExtArgs>
     _count?: boolean | NationalityCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type NationalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -14237,6 +14376,7 @@ export namespace Prisma {
     name: "Nationality"
     objects: {
       lga_nationalities: Prisma.$LgaNationalityPayload<ExtArgs>[]
+      LgaNationalityYear: Prisma.$LgaNationalityYearPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       nationality_id: number
@@ -14636,6 +14776,7 @@ export namespace Prisma {
   export interface Prisma__NationalityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     lga_nationalities<T extends Nationality$lga_nationalitiesArgs<ExtArgs> = {}>(args?: Subset<T, Nationality$lga_nationalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LgaNationalityYear<T extends Nationality$LgaNationalityYearArgs<ExtArgs> = {}>(args?: Subset<T, Nationality$LgaNationalityYearArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15076,6 +15217,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LgaNationalityScalarFieldEnum | LgaNationalityScalarFieldEnum[]
+  }
+
+  /**
+   * Nationality.LgaNationalityYear
+   */
+  export type Nationality$LgaNationalityYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    where?: LgaNationalityYearWhereInput
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    cursor?: LgaNationalityYearWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LgaNationalityYearScalarFieldEnum | LgaNationalityYearScalarFieldEnum[]
   }
 
   /**
@@ -20644,7 +20809,7 @@ export namespace Prisma {
     born_overseas: number | null
     pct_arrived_within_5_years: number | null
     pct_proficient_english: number | null
-    percent_speaks_other_lang_at_home: number | null
+    pct_speaks_other_lang_at_home: number | null
     median_age_years: number | null
     pct_completed_year_12: number | null
     pct_certificate: number | null
@@ -20662,7 +20827,7 @@ export namespace Prisma {
     born_overseas: number | null
     pct_arrived_within_5_years: number | null
     pct_proficient_english: number | null
-    percent_speaks_other_lang_at_home: number | null
+    pct_speaks_other_lang_at_home: number | null
     median_age_years: number | null
     pct_completed_year_12: number | null
     pct_certificate: number | null
@@ -20680,7 +20845,7 @@ export namespace Prisma {
     born_overseas: number | null
     pct_arrived_within_5_years: number | null
     pct_proficient_english: number | null
-    percent_speaks_other_lang_at_home: number | null
+    pct_speaks_other_lang_at_home: number | null
     median_age_years: number | null
     pct_completed_year_12: number | null
     pct_certificate: number | null
@@ -20698,7 +20863,7 @@ export namespace Prisma {
     born_overseas: number | null
     pct_arrived_within_5_years: number | null
     pct_proficient_english: number | null
-    percent_speaks_other_lang_at_home: number | null
+    pct_speaks_other_lang_at_home: number | null
     median_age_years: number | null
     pct_completed_year_12: number | null
     pct_certificate: number | null
@@ -20716,7 +20881,7 @@ export namespace Prisma {
     born_overseas: number
     pct_arrived_within_5_years: number
     pct_proficient_english: number
-    percent_speaks_other_lang_at_home: number
+    pct_speaks_other_lang_at_home: number
     median_age_years: number
     pct_completed_year_12: number
     pct_certificate: number
@@ -20736,7 +20901,7 @@ export namespace Prisma {
     born_overseas?: true
     pct_arrived_within_5_years?: true
     pct_proficient_english?: true
-    percent_speaks_other_lang_at_home?: true
+    pct_speaks_other_lang_at_home?: true
     median_age_years?: true
     pct_completed_year_12?: true
     pct_certificate?: true
@@ -20754,7 +20919,7 @@ export namespace Prisma {
     born_overseas?: true
     pct_arrived_within_5_years?: true
     pct_proficient_english?: true
-    percent_speaks_other_lang_at_home?: true
+    pct_speaks_other_lang_at_home?: true
     median_age_years?: true
     pct_completed_year_12?: true
     pct_certificate?: true
@@ -20772,7 +20937,7 @@ export namespace Prisma {
     born_overseas?: true
     pct_arrived_within_5_years?: true
     pct_proficient_english?: true
-    percent_speaks_other_lang_at_home?: true
+    pct_speaks_other_lang_at_home?: true
     median_age_years?: true
     pct_completed_year_12?: true
     pct_certificate?: true
@@ -20790,7 +20955,7 @@ export namespace Prisma {
     born_overseas?: true
     pct_arrived_within_5_years?: true
     pct_proficient_english?: true
-    percent_speaks_other_lang_at_home?: true
+    pct_speaks_other_lang_at_home?: true
     median_age_years?: true
     pct_completed_year_12?: true
     pct_certificate?: true
@@ -20808,7 +20973,7 @@ export namespace Prisma {
     born_overseas?: true
     pct_arrived_within_5_years?: true
     pct_proficient_english?: true
-    percent_speaks_other_lang_at_home?: true
+    pct_speaks_other_lang_at_home?: true
     median_age_years?: true
     pct_completed_year_12?: true
     pct_certificate?: true
@@ -20913,7 +21078,7 @@ export namespace Prisma {
     born_overseas: number | null
     pct_arrived_within_5_years: number | null
     pct_proficient_english: number | null
-    percent_speaks_other_lang_at_home: number | null
+    pct_speaks_other_lang_at_home: number | null
     median_age_years: number | null
     pct_completed_year_12: number | null
     pct_certificate: number | null
@@ -20950,7 +21115,7 @@ export namespace Prisma {
     born_overseas?: boolean
     pct_arrived_within_5_years?: boolean
     pct_proficient_english?: boolean
-    percent_speaks_other_lang_at_home?: boolean
+    pct_speaks_other_lang_at_home?: boolean
     median_age_years?: boolean
     pct_completed_year_12?: boolean
     pct_certificate?: boolean
@@ -20969,7 +21134,7 @@ export namespace Prisma {
     born_overseas?: boolean
     pct_arrived_within_5_years?: boolean
     pct_proficient_english?: boolean
-    percent_speaks_other_lang_at_home?: boolean
+    pct_speaks_other_lang_at_home?: boolean
     median_age_years?: boolean
     pct_completed_year_12?: boolean
     pct_certificate?: boolean
@@ -20988,7 +21153,7 @@ export namespace Prisma {
     born_overseas?: boolean
     pct_arrived_within_5_years?: boolean
     pct_proficient_english?: boolean
-    percent_speaks_other_lang_at_home?: boolean
+    pct_speaks_other_lang_at_home?: boolean
     median_age_years?: boolean
     pct_completed_year_12?: boolean
     pct_certificate?: boolean
@@ -21007,7 +21172,7 @@ export namespace Prisma {
     born_overseas?: boolean
     pct_arrived_within_5_years?: boolean
     pct_proficient_english?: boolean
-    percent_speaks_other_lang_at_home?: boolean
+    pct_speaks_other_lang_at_home?: boolean
     median_age_years?: boolean
     pct_completed_year_12?: boolean
     pct_certificate?: boolean
@@ -21018,7 +21183,7 @@ export namespace Prisma {
     pct_labourers?: boolean
   }
 
-  export type LgaStatisticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "total_businesses" | "total_employed_over_15" | "born_overseas" | "pct_arrived_within_5_years" | "pct_proficient_english" | "percent_speaks_other_lang_at_home" | "median_age_years" | "pct_completed_year_12" | "pct_certificate" | "pct_bachelor_degree" | "pct_postgraduate" | "pct_managers" | "pct_professionals" | "pct_labourers", ExtArgs["result"]["lgaStatistics"]>
+  export type LgaStatisticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "total_businesses" | "total_employed_over_15" | "born_overseas" | "pct_arrived_within_5_years" | "pct_proficient_english" | "pct_speaks_other_lang_at_home" | "median_age_years" | "pct_completed_year_12" | "pct_certificate" | "pct_bachelor_degree" | "pct_postgraduate" | "pct_managers" | "pct_professionals" | "pct_labourers", ExtArgs["result"]["lgaStatistics"]>
   export type LgaStatisticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lga?: boolean | LgaDefaultArgs<ExtArgs>
   }
@@ -21041,7 +21206,7 @@ export namespace Prisma {
       born_overseas: number | null
       pct_arrived_within_5_years: number | null
       pct_proficient_english: number | null
-      percent_speaks_other_lang_at_home: number | null
+      pct_speaks_other_lang_at_home: number | null
       median_age_years: number | null
       pct_completed_year_12: number | null
       pct_certificate: number | null
@@ -21480,7 +21645,7 @@ export namespace Prisma {
     readonly born_overseas: FieldRef<"LgaStatistics", 'Int'>
     readonly pct_arrived_within_5_years: FieldRef<"LgaStatistics", 'Float'>
     readonly pct_proficient_english: FieldRef<"LgaStatistics", 'Float'>
-    readonly percent_speaks_other_lang_at_home: FieldRef<"LgaStatistics", 'Float'>
+    readonly pct_speaks_other_lang_at_home: FieldRef<"LgaStatistics", 'Float'>
     readonly median_age_years: FieldRef<"LgaStatistics", 'Float'>
     readonly pct_completed_year_12: FieldRef<"LgaStatistics", 'Float'>
     readonly pct_certificate: FieldRef<"LgaStatistics", 'Float'>
@@ -21904,6 +22069,1122 @@ export namespace Prisma {
 
 
   /**
+   * Model LgaNationalityYear
+   */
+
+  export type AggregateLgaNationalityYear = {
+    _count: LgaNationalityYearCountAggregateOutputType | null
+    _avg: LgaNationalityYearAvgAggregateOutputType | null
+    _sum: LgaNationalityYearSumAggregateOutputType | null
+    _min: LgaNationalityYearMinAggregateOutputType | null
+    _max: LgaNationalityYearMaxAggregateOutputType | null
+  }
+
+  export type LgaNationalityYearAvgAggregateOutputType = {
+    lga_nationality_year_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    year: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityYearSumAggregateOutputType = {
+    lga_nationality_year_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    year: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityYearMinAggregateOutputType = {
+    lga_nationality_year_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    year: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityYearMaxAggregateOutputType = {
+    lga_nationality_year_id: number | null
+    lga_code: number | null
+    nationality_id: number | null
+    year: number | null
+    count: number | null
+  }
+
+  export type LgaNationalityYearCountAggregateOutputType = {
+    lga_nationality_year_id: number
+    lga_code: number
+    nationality_id: number
+    year: number
+    count: number
+    _all: number
+  }
+
+
+  export type LgaNationalityYearAvgAggregateInputType = {
+    lga_nationality_year_id?: true
+    lga_code?: true
+    nationality_id?: true
+    year?: true
+    count?: true
+  }
+
+  export type LgaNationalityYearSumAggregateInputType = {
+    lga_nationality_year_id?: true
+    lga_code?: true
+    nationality_id?: true
+    year?: true
+    count?: true
+  }
+
+  export type LgaNationalityYearMinAggregateInputType = {
+    lga_nationality_year_id?: true
+    lga_code?: true
+    nationality_id?: true
+    year?: true
+    count?: true
+  }
+
+  export type LgaNationalityYearMaxAggregateInputType = {
+    lga_nationality_year_id?: true
+    lga_code?: true
+    nationality_id?: true
+    year?: true
+    count?: true
+  }
+
+  export type LgaNationalityYearCountAggregateInputType = {
+    lga_nationality_year_id?: true
+    lga_code?: true
+    nationality_id?: true
+    year?: true
+    count?: true
+    _all?: true
+  }
+
+  export type LgaNationalityYearAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaNationalityYear to aggregate.
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalityYears to fetch.
+     */
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LgaNationalityYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalityYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalityYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LgaNationalityYears
+    **/
+    _count?: true | LgaNationalityYearCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LgaNationalityYearAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LgaNationalityYearSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LgaNationalityYearMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LgaNationalityYearMaxAggregateInputType
+  }
+
+  export type GetLgaNationalityYearAggregateType<T extends LgaNationalityYearAggregateArgs> = {
+        [P in keyof T & keyof AggregateLgaNationalityYear]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLgaNationalityYear[P]>
+      : GetScalarType<T[P], AggregateLgaNationalityYear[P]>
+  }
+
+
+
+
+  export type LgaNationalityYearGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LgaNationalityYearWhereInput
+    orderBy?: LgaNationalityYearOrderByWithAggregationInput | LgaNationalityYearOrderByWithAggregationInput[]
+    by: LgaNationalityYearScalarFieldEnum[] | LgaNationalityYearScalarFieldEnum
+    having?: LgaNationalityYearScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LgaNationalityYearCountAggregateInputType | true
+    _avg?: LgaNationalityYearAvgAggregateInputType
+    _sum?: LgaNationalityYearSumAggregateInputType
+    _min?: LgaNationalityYearMinAggregateInputType
+    _max?: LgaNationalityYearMaxAggregateInputType
+  }
+
+  export type LgaNationalityYearGroupByOutputType = {
+    lga_nationality_year_id: number
+    lga_code: number
+    nationality_id: number
+    year: number
+    count: number
+    _count: LgaNationalityYearCountAggregateOutputType | null
+    _avg: LgaNationalityYearAvgAggregateOutputType | null
+    _sum: LgaNationalityYearSumAggregateOutputType | null
+    _min: LgaNationalityYearMinAggregateOutputType | null
+    _max: LgaNationalityYearMaxAggregateOutputType | null
+  }
+
+  type GetLgaNationalityYearGroupByPayload<T extends LgaNationalityYearGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LgaNationalityYearGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LgaNationalityYearGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LgaNationalityYearGroupByOutputType[P]>
+            : GetScalarType<T[P], LgaNationalityYearGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LgaNationalityYearSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_year_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    year?: boolean
+    count?: boolean
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationalityYear"]>
+
+  export type LgaNationalityYearSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_year_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    year?: boolean
+    count?: boolean
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationalityYear"]>
+
+  export type LgaNationalityYearSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_nationality_year_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    year?: boolean
+    count?: boolean
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lgaNationalityYear"]>
+
+  export type LgaNationalityYearSelectScalar = {
+    lga_nationality_year_id?: boolean
+    lga_code?: boolean
+    nationality_id?: boolean
+    year?: boolean
+    count?: boolean
+  }
+
+  export type LgaNationalityYearOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_nationality_year_id" | "lga_code" | "nationality_id" | "year" | "count", ExtArgs["result"]["lgaNationalityYear"]>
+  export type LgaNationalityYearInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+  export type LgaNationalityYearIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+  export type LgaNationalityYearIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lga?: boolean | LgaDefaultArgs<ExtArgs>
+    Nationality?: boolean | NationalityDefaultArgs<ExtArgs>
+  }
+
+  export type $LgaNationalityYearPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LgaNationalityYear"
+    objects: {
+      Lga: Prisma.$LgaPayload<ExtArgs>
+      Nationality: Prisma.$NationalityPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_nationality_year_id: number
+      lga_code: number
+      nationality_id: number
+      year: number
+      count: number
+    }, ExtArgs["result"]["lgaNationalityYear"]>
+    composites: {}
+  }
+
+  type LgaNationalityYearGetPayload<S extends boolean | null | undefined | LgaNationalityYearDefaultArgs> = $Result.GetResult<Prisma.$LgaNationalityYearPayload, S>
+
+  type LgaNationalityYearCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LgaNationalityYearFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LgaNationalityYearCountAggregateInputType | true
+    }
+
+  export interface LgaNationalityYearDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LgaNationalityYear'], meta: { name: 'LgaNationalityYear' } }
+    /**
+     * Find zero or one LgaNationalityYear that matches the filter.
+     * @param {LgaNationalityYearFindUniqueArgs} args - Arguments to find a LgaNationalityYear
+     * @example
+     * // Get one LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LgaNationalityYearFindUniqueArgs>(args: SelectSubset<T, LgaNationalityYearFindUniqueArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LgaNationalityYear that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LgaNationalityYearFindUniqueOrThrowArgs} args - Arguments to find a LgaNationalityYear
+     * @example
+     * // Get one LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LgaNationalityYearFindUniqueOrThrowArgs>(args: SelectSubset<T, LgaNationalityYearFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaNationalityYear that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearFindFirstArgs} args - Arguments to find a LgaNationalityYear
+     * @example
+     * // Get one LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LgaNationalityYearFindFirstArgs>(args?: SelectSubset<T, LgaNationalityYearFindFirstArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LgaNationalityYear that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearFindFirstOrThrowArgs} args - Arguments to find a LgaNationalityYear
+     * @example
+     * // Get one LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LgaNationalityYearFindFirstOrThrowArgs>(args?: SelectSubset<T, LgaNationalityYearFindFirstOrThrowArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LgaNationalityYears that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LgaNationalityYears
+     * const lgaNationalityYears = await prisma.lgaNationalityYear.findMany()
+     * 
+     * // Get first 10 LgaNationalityYears
+     * const lgaNationalityYears = await prisma.lgaNationalityYear.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_nationality_year_id`
+     * const lgaNationalityYearWithLga_nationality_year_idOnly = await prisma.lgaNationalityYear.findMany({ select: { lga_nationality_year_id: true } })
+     * 
+     */
+    findMany<T extends LgaNationalityYearFindManyArgs>(args?: SelectSubset<T, LgaNationalityYearFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LgaNationalityYear.
+     * @param {LgaNationalityYearCreateArgs} args - Arguments to create a LgaNationalityYear.
+     * @example
+     * // Create one LgaNationalityYear
+     * const LgaNationalityYear = await prisma.lgaNationalityYear.create({
+     *   data: {
+     *     // ... data to create a LgaNationalityYear
+     *   }
+     * })
+     * 
+     */
+    create<T extends LgaNationalityYearCreateArgs>(args: SelectSubset<T, LgaNationalityYearCreateArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LgaNationalityYears.
+     * @param {LgaNationalityYearCreateManyArgs} args - Arguments to create many LgaNationalityYears.
+     * @example
+     * // Create many LgaNationalityYears
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LgaNationalityYearCreateManyArgs>(args?: SelectSubset<T, LgaNationalityYearCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LgaNationalityYears and returns the data saved in the database.
+     * @param {LgaNationalityYearCreateManyAndReturnArgs} args - Arguments to create many LgaNationalityYears.
+     * @example
+     * // Create many LgaNationalityYears
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LgaNationalityYears and only return the `lga_nationality_year_id`
+     * const lgaNationalityYearWithLga_nationality_year_idOnly = await prisma.lgaNationalityYear.createManyAndReturn({
+     *   select: { lga_nationality_year_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LgaNationalityYearCreateManyAndReturnArgs>(args?: SelectSubset<T, LgaNationalityYearCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LgaNationalityYear.
+     * @param {LgaNationalityYearDeleteArgs} args - Arguments to delete one LgaNationalityYear.
+     * @example
+     * // Delete one LgaNationalityYear
+     * const LgaNationalityYear = await prisma.lgaNationalityYear.delete({
+     *   where: {
+     *     // ... filter to delete one LgaNationalityYear
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LgaNationalityYearDeleteArgs>(args: SelectSubset<T, LgaNationalityYearDeleteArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LgaNationalityYear.
+     * @param {LgaNationalityYearUpdateArgs} args - Arguments to update one LgaNationalityYear.
+     * @example
+     * // Update one LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LgaNationalityYearUpdateArgs>(args: SelectSubset<T, LgaNationalityYearUpdateArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LgaNationalityYears.
+     * @param {LgaNationalityYearDeleteManyArgs} args - Arguments to filter LgaNationalityYears to delete.
+     * @example
+     * // Delete a few LgaNationalityYears
+     * const { count } = await prisma.lgaNationalityYear.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LgaNationalityYearDeleteManyArgs>(args?: SelectSubset<T, LgaNationalityYearDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaNationalityYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LgaNationalityYears
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LgaNationalityYearUpdateManyArgs>(args: SelectSubset<T, LgaNationalityYearUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LgaNationalityYears and returns the data updated in the database.
+     * @param {LgaNationalityYearUpdateManyAndReturnArgs} args - Arguments to update many LgaNationalityYears.
+     * @example
+     * // Update many LgaNationalityYears
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LgaNationalityYears and only return the `lga_nationality_year_id`
+     * const lgaNationalityYearWithLga_nationality_year_idOnly = await prisma.lgaNationalityYear.updateManyAndReturn({
+     *   select: { lga_nationality_year_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LgaNationalityYearUpdateManyAndReturnArgs>(args: SelectSubset<T, LgaNationalityYearUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LgaNationalityYear.
+     * @param {LgaNationalityYearUpsertArgs} args - Arguments to update or create a LgaNationalityYear.
+     * @example
+     * // Update or create a LgaNationalityYear
+     * const lgaNationalityYear = await prisma.lgaNationalityYear.upsert({
+     *   create: {
+     *     // ... data to create a LgaNationalityYear
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LgaNationalityYear we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LgaNationalityYearUpsertArgs>(args: SelectSubset<T, LgaNationalityYearUpsertArgs<ExtArgs>>): Prisma__LgaNationalityYearClient<$Result.GetResult<Prisma.$LgaNationalityYearPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LgaNationalityYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearCountArgs} args - Arguments to filter LgaNationalityYears to count.
+     * @example
+     * // Count the number of LgaNationalityYears
+     * const count = await prisma.lgaNationalityYear.count({
+     *   where: {
+     *     // ... the filter for the LgaNationalityYears we want to count
+     *   }
+     * })
+    **/
+    count<T extends LgaNationalityYearCountArgs>(
+      args?: Subset<T, LgaNationalityYearCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LgaNationalityYearCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LgaNationalityYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LgaNationalityYearAggregateArgs>(args: Subset<T, LgaNationalityYearAggregateArgs>): Prisma.PrismaPromise<GetLgaNationalityYearAggregateType<T>>
+
+    /**
+     * Group by LgaNationalityYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LgaNationalityYearGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LgaNationalityYearGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LgaNationalityYearGroupByArgs['orderBy'] }
+        : { orderBy?: LgaNationalityYearGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LgaNationalityYearGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLgaNationalityYearGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LgaNationalityYear model
+   */
+  readonly fields: LgaNationalityYearFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LgaNationalityYear.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LgaNationalityYearClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Lga<T extends LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LgaDefaultArgs<ExtArgs>>): Prisma__LgaClient<$Result.GetResult<Prisma.$LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Nationality<T extends NationalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, NationalityDefaultArgs<ExtArgs>>): Prisma__NationalityClient<$Result.GetResult<Prisma.$NationalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LgaNationalityYear model
+   */
+  interface LgaNationalityYearFieldRefs {
+    readonly lga_nationality_year_id: FieldRef<"LgaNationalityYear", 'Int'>
+    readonly lga_code: FieldRef<"LgaNationalityYear", 'Int'>
+    readonly nationality_id: FieldRef<"LgaNationalityYear", 'Int'>
+    readonly year: FieldRef<"LgaNationalityYear", 'Int'>
+    readonly count: FieldRef<"LgaNationalityYear", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LgaNationalityYear findUnique
+   */
+  export type LgaNationalityYearFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalityYear to fetch.
+     */
+    where: LgaNationalityYearWhereUniqueInput
+  }
+
+  /**
+   * LgaNationalityYear findUniqueOrThrow
+   */
+  export type LgaNationalityYearFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalityYear to fetch.
+     */
+    where: LgaNationalityYearWhereUniqueInput
+  }
+
+  /**
+   * LgaNationalityYear findFirst
+   */
+  export type LgaNationalityYearFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalityYear to fetch.
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalityYears to fetch.
+     */
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaNationalityYears.
+     */
+    cursor?: LgaNationalityYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalityYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalityYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaNationalityYears.
+     */
+    distinct?: LgaNationalityYearScalarFieldEnum | LgaNationalityYearScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationalityYear findFirstOrThrow
+   */
+  export type LgaNationalityYearFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalityYear to fetch.
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalityYears to fetch.
+     */
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LgaNationalityYears.
+     */
+    cursor?: LgaNationalityYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalityYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalityYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LgaNationalityYears.
+     */
+    distinct?: LgaNationalityYearScalarFieldEnum | LgaNationalityYearScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationalityYear findMany
+   */
+  export type LgaNationalityYearFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter, which LgaNationalityYears to fetch.
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LgaNationalityYears to fetch.
+     */
+    orderBy?: LgaNationalityYearOrderByWithRelationInput | LgaNationalityYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LgaNationalityYears.
+     */
+    cursor?: LgaNationalityYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LgaNationalityYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LgaNationalityYears.
+     */
+    skip?: number
+    distinct?: LgaNationalityYearScalarFieldEnum | LgaNationalityYearScalarFieldEnum[]
+  }
+
+  /**
+   * LgaNationalityYear create
+   */
+  export type LgaNationalityYearCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LgaNationalityYear.
+     */
+    data: XOR<LgaNationalityYearCreateInput, LgaNationalityYearUncheckedCreateInput>
+  }
+
+  /**
+   * LgaNationalityYear createMany
+   */
+  export type LgaNationalityYearCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LgaNationalityYears.
+     */
+    data: LgaNationalityYearCreateManyInput | LgaNationalityYearCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LgaNationalityYear createManyAndReturn
+   */
+  export type LgaNationalityYearCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * The data used to create many LgaNationalityYears.
+     */
+    data: LgaNationalityYearCreateManyInput | LgaNationalityYearCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaNationalityYear update
+   */
+  export type LgaNationalityYearUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LgaNationalityYear.
+     */
+    data: XOR<LgaNationalityYearUpdateInput, LgaNationalityYearUncheckedUpdateInput>
+    /**
+     * Choose, which LgaNationalityYear to update.
+     */
+    where: LgaNationalityYearWhereUniqueInput
+  }
+
+  /**
+   * LgaNationalityYear updateMany
+   */
+  export type LgaNationalityYearUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LgaNationalityYears.
+     */
+    data: XOR<LgaNationalityYearUpdateManyMutationInput, LgaNationalityYearUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaNationalityYears to update
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * Limit how many LgaNationalityYears to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaNationalityYear updateManyAndReturn
+   */
+  export type LgaNationalityYearUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * The data used to update LgaNationalityYears.
+     */
+    data: XOR<LgaNationalityYearUpdateManyMutationInput, LgaNationalityYearUncheckedUpdateManyInput>
+    /**
+     * Filter which LgaNationalityYears to update
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * Limit how many LgaNationalityYears to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LgaNationalityYear upsert
+   */
+  export type LgaNationalityYearUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LgaNationalityYear to update in case it exists.
+     */
+    where: LgaNationalityYearWhereUniqueInput
+    /**
+     * In case the LgaNationalityYear found by the `where` argument doesn't exist, create a new LgaNationalityYear with this data.
+     */
+    create: XOR<LgaNationalityYearCreateInput, LgaNationalityYearUncheckedCreateInput>
+    /**
+     * In case the LgaNationalityYear was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LgaNationalityYearUpdateInput, LgaNationalityYearUncheckedUpdateInput>
+  }
+
+  /**
+   * LgaNationalityYear delete
+   */
+  export type LgaNationalityYearDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+    /**
+     * Filter which LgaNationalityYear to delete.
+     */
+    where: LgaNationalityYearWhereUniqueInput
+  }
+
+  /**
+   * LgaNationalityYear deleteMany
+   */
+  export type LgaNationalityYearDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LgaNationalityYears to delete
+     */
+    where?: LgaNationalityYearWhereInput
+    /**
+     * Limit how many LgaNationalityYears to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LgaNationalityYear without action
+   */
+  export type LgaNationalityYearDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LgaNationalityYear
+     */
+    select?: LgaNationalityYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LgaNationalityYear
+     */
+    omit?: LgaNationalityYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LgaNationalityYearInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -22113,7 +23394,7 @@ export namespace Prisma {
     born_overseas: 'born_overseas',
     pct_arrived_within_5_years: 'pct_arrived_within_5_years',
     pct_proficient_english: 'pct_proficient_english',
-    percent_speaks_other_lang_at_home: 'percent_speaks_other_lang_at_home',
+    pct_speaks_other_lang_at_home: 'pct_speaks_other_lang_at_home',
     median_age_years: 'median_age_years',
     pct_completed_year_12: 'pct_completed_year_12',
     pct_certificate: 'pct_certificate',
@@ -22125,6 +23406,17 @@ export namespace Prisma {
   };
 
   export type LgaStatisticsScalarFieldEnum = (typeof LgaStatisticsScalarFieldEnum)[keyof typeof LgaStatisticsScalarFieldEnum]
+
+
+  export const LgaNationalityYearScalarFieldEnum: {
+    lga_nationality_year_id: 'lga_nationality_year_id',
+    lga_code: 'lga_code',
+    nationality_id: 'nationality_id',
+    year: 'year',
+    count: 'count'
+  };
+
+  export type LgaNationalityYearScalarFieldEnum = (typeof LgaNationalityYearScalarFieldEnum)[keyof typeof LgaNationalityYearScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22862,6 +24154,7 @@ export namespace Prisma {
     council_info?: XOR<CouncilInfoNullableScalarRelationFilter, CouncilInfoWhereInput> | null
     language_proficiencies?: LgaLanguageProficiencyListRelationFilter
     lga_nationalities?: LgaNationalityListRelationFilter
+    LgaNationalityYear?: LgaNationalityYearListRelationFilter
     statistics?: XOR<LgaStatisticsNullableScalarRelationFilter, LgaStatisticsWhereInput> | null
     postcodes?: PostcodeListRelationFilter
   }
@@ -22872,6 +24165,7 @@ export namespace Prisma {
     council_info?: CouncilInfoOrderByWithRelationInput
     language_proficiencies?: LgaLanguageProficiencyOrderByRelationAggregateInput
     lga_nationalities?: LgaNationalityOrderByRelationAggregateInput
+    LgaNationalityYear?: LgaNationalityYearOrderByRelationAggregateInput
     statistics?: LgaStatisticsOrderByWithRelationInput
     postcodes?: PostcodeOrderByRelationAggregateInput
   }
@@ -22885,6 +24179,7 @@ export namespace Prisma {
     council_info?: XOR<CouncilInfoNullableScalarRelationFilter, CouncilInfoWhereInput> | null
     language_proficiencies?: LgaLanguageProficiencyListRelationFilter
     lga_nationalities?: LgaNationalityListRelationFilter
+    LgaNationalityYear?: LgaNationalityYearListRelationFilter
     statistics?: XOR<LgaStatisticsNullableScalarRelationFilter, LgaStatisticsWhereInput> | null
     postcodes?: PostcodeListRelationFilter
   }, "lga_code">
@@ -22914,12 +24209,14 @@ export namespace Prisma {
     nationality_id?: IntFilter<"Nationality"> | number
     nationality?: StringFilter<"Nationality"> | string
     lga_nationalities?: LgaNationalityListRelationFilter
+    LgaNationalityYear?: LgaNationalityYearListRelationFilter
   }
 
   export type NationalityOrderByWithRelationInput = {
     nationality_id?: SortOrder
     nationality?: SortOrder
     lga_nationalities?: LgaNationalityOrderByRelationAggregateInput
+    LgaNationalityYear?: LgaNationalityYearOrderByRelationAggregateInput
   }
 
   export type NationalityWhereUniqueInput = Prisma.AtLeast<{
@@ -22929,6 +24226,7 @@ export namespace Prisma {
     OR?: NationalityWhereInput[]
     NOT?: NationalityWhereInput | NationalityWhereInput[]
     lga_nationalities?: LgaNationalityListRelationFilter
+    LgaNationalityYear?: LgaNationalityYearListRelationFilter
   }, "nationality_id" | "nationality">
 
   export type NationalityOrderByWithAggregationInput = {
@@ -23250,7 +24548,7 @@ export namespace Prisma {
     born_overseas?: IntNullableFilter<"LgaStatistics"> | number | null
     pct_arrived_within_5_years?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_proficient_english?: FloatNullableFilter<"LgaStatistics"> | number | null
-    percent_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
     median_age_years?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_completed_year_12?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_certificate?: FloatNullableFilter<"LgaStatistics"> | number | null
@@ -23269,7 +24567,7 @@ export namespace Prisma {
     born_overseas?: SortOrderInput | SortOrder
     pct_arrived_within_5_years?: SortOrderInput | SortOrder
     pct_proficient_english?: SortOrderInput | SortOrder
-    percent_speaks_other_lang_at_home?: SortOrderInput | SortOrder
+    pct_speaks_other_lang_at_home?: SortOrderInput | SortOrder
     median_age_years?: SortOrderInput | SortOrder
     pct_completed_year_12?: SortOrderInput | SortOrder
     pct_certificate?: SortOrderInput | SortOrder
@@ -23291,7 +24589,7 @@ export namespace Prisma {
     born_overseas?: IntNullableFilter<"LgaStatistics"> | number | null
     pct_arrived_within_5_years?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_proficient_english?: FloatNullableFilter<"LgaStatistics"> | number | null
-    percent_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
+    pct_speaks_other_lang_at_home?: FloatNullableFilter<"LgaStatistics"> | number | null
     median_age_years?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_completed_year_12?: FloatNullableFilter<"LgaStatistics"> | number | null
     pct_certificate?: FloatNullableFilter<"LgaStatistics"> | number | null
@@ -23310,7 +24608,7 @@ export namespace Prisma {
     born_overseas?: SortOrderInput | SortOrder
     pct_arrived_within_5_years?: SortOrderInput | SortOrder
     pct_proficient_english?: SortOrderInput | SortOrder
-    percent_speaks_other_lang_at_home?: SortOrderInput | SortOrder
+    pct_speaks_other_lang_at_home?: SortOrderInput | SortOrder
     median_age_years?: SortOrderInput | SortOrder
     pct_completed_year_12?: SortOrderInput | SortOrder
     pct_certificate?: SortOrderInput | SortOrder
@@ -23336,7 +24634,7 @@ export namespace Prisma {
     born_overseas?: IntNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_arrived_within_5_years?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_proficient_english?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
-    percent_speaks_other_lang_at_home?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+    pct_speaks_other_lang_at_home?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     median_age_years?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_completed_year_12?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_certificate?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
@@ -23345,6 +24643,66 @@ export namespace Prisma {
     pct_managers?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_professionals?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
     pct_labourers?: FloatNullableWithAggregatesFilter<"LgaStatistics"> | number | null
+  }
+
+  export type LgaNationalityYearWhereInput = {
+    AND?: LgaNationalityYearWhereInput | LgaNationalityYearWhereInput[]
+    OR?: LgaNationalityYearWhereInput[]
+    NOT?: LgaNationalityYearWhereInput | LgaNationalityYearWhereInput[]
+    lga_nationality_year_id?: IntFilter<"LgaNationalityYear"> | number
+    lga_code?: IntFilter<"LgaNationalityYear"> | number
+    nationality_id?: IntFilter<"LgaNationalityYear"> | number
+    year?: IntFilter<"LgaNationalityYear"> | number
+    count?: IntFilter<"LgaNationalityYear"> | number
+    Lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+    Nationality?: XOR<NationalityScalarRelationFilter, NationalityWhereInput>
+  }
+
+  export type LgaNationalityYearOrderByWithRelationInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+    Lga?: LgaOrderByWithRelationInput
+    Nationality?: NationalityOrderByWithRelationInput
+  }
+
+  export type LgaNationalityYearWhereUniqueInput = Prisma.AtLeast<{
+    lga_nationality_year_id?: number
+    AND?: LgaNationalityYearWhereInput | LgaNationalityYearWhereInput[]
+    OR?: LgaNationalityYearWhereInput[]
+    NOT?: LgaNationalityYearWhereInput | LgaNationalityYearWhereInput[]
+    lga_code?: IntFilter<"LgaNationalityYear"> | number
+    nationality_id?: IntFilter<"LgaNationalityYear"> | number
+    year?: IntFilter<"LgaNationalityYear"> | number
+    count?: IntFilter<"LgaNationalityYear"> | number
+    Lga?: XOR<LgaScalarRelationFilter, LgaWhereInput>
+    Nationality?: XOR<NationalityScalarRelationFilter, NationalityWhereInput>
+  }, "lga_nationality_year_id">
+
+  export type LgaNationalityYearOrderByWithAggregationInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+    _count?: LgaNationalityYearCountOrderByAggregateInput
+    _avg?: LgaNationalityYearAvgOrderByAggregateInput
+    _max?: LgaNationalityYearMaxOrderByAggregateInput
+    _min?: LgaNationalityYearMinOrderByAggregateInput
+    _sum?: LgaNationalityYearSumOrderByAggregateInput
+  }
+
+  export type LgaNationalityYearScalarWhereWithAggregatesInput = {
+    AND?: LgaNationalityYearScalarWhereWithAggregatesInput | LgaNationalityYearScalarWhereWithAggregatesInput[]
+    OR?: LgaNationalityYearScalarWhereWithAggregatesInput[]
+    NOT?: LgaNationalityYearScalarWhereWithAggregatesInput | LgaNationalityYearScalarWhereWithAggregatesInput[]
+    lga_nationality_year_id?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
+    lga_code?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
+    nationality_id?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
+    year?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
+    count?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
   }
 
   export type VenueCreateInput = {
@@ -24011,6 +25369,7 @@ export namespace Prisma {
     council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeCreateNestedManyWithoutLgaInput
   }
@@ -24021,6 +25380,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
   }
@@ -24031,6 +25391,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
   }
@@ -24041,6 +25402,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
   }
@@ -24063,23 +25425,27 @@ export namespace Prisma {
   export type NationalityCreateInput = {
     nationality: string
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutNationalityInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutNationalityInput
   }
 
   export type NationalityUncheckedCreateInput = {
     nationality_id?: number
     nationality: string
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutNationalityInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutNationalityInput
   }
 
   export type NationalityUpdateInput = {
     nationality?: StringFieldUpdateOperationsInput | string
     lga_nationalities?: LgaNationalityUpdateManyWithoutNationalityNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutNationalityNestedInput
   }
 
   export type NationalityUncheckedUpdateInput = {
     nationality_id?: IntFieldUpdateOperationsInput | number
     nationality?: StringFieldUpdateOperationsInput | string
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutNationalityNestedInput
   }
 
   export type NationalityCreateManyInput = {
@@ -24371,7 +25737,7 @@ export namespace Prisma {
     born_overseas?: number | null
     pct_arrived_within_5_years?: number | null
     pct_proficient_english?: number | null
-    percent_speaks_other_lang_at_home?: number | null
+    pct_speaks_other_lang_at_home?: number | null
     median_age_years?: number | null
     pct_completed_year_12?: number | null
     pct_certificate?: number | null
@@ -24390,7 +25756,7 @@ export namespace Prisma {
     born_overseas?: number | null
     pct_arrived_within_5_years?: number | null
     pct_proficient_english?: number | null
-    percent_speaks_other_lang_at_home?: number | null
+    pct_speaks_other_lang_at_home?: number | null
     median_age_years?: number | null
     pct_completed_year_12?: number | null
     pct_certificate?: number | null
@@ -24407,7 +25773,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24426,7 +25792,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24444,7 +25810,7 @@ export namespace Prisma {
     born_overseas?: number | null
     pct_arrived_within_5_years?: number | null
     pct_proficient_english?: number | null
-    percent_speaks_other_lang_at_home?: number | null
+    pct_speaks_other_lang_at_home?: number | null
     median_age_years?: number | null
     pct_completed_year_12?: number | null
     pct_certificate?: number | null
@@ -24461,7 +25827,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24479,7 +25845,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24488,6 +25854,57 @@ export namespace Prisma {
     pct_managers?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_professionals?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_labourers?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LgaNationalityYearCreateInput = {
+    year: number
+    count: number
+    Lga: LgaCreateNestedOneWithoutLgaNationalityYearInput
+    Nationality: NationalityCreateNestedOneWithoutLgaNationalityYearInput
+  }
+
+  export type LgaNationalityYearUncheckedCreateInput = {
+    lga_nationality_year_id?: number
+    lga_code: number
+    nationality_id: number
+    year: number
+    count: number
+  }
+
+  export type LgaNationalityYearUpdateInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+    Lga?: LgaUpdateOneRequiredWithoutLgaNationalityYearNestedInput
+    Nationality?: NationalityUpdateOneRequiredWithoutLgaNationalityYearNestedInput
+  }
+
+  export type LgaNationalityYearUncheckedUpdateInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityYearCreateManyInput = {
+    lga_nationality_year_id?: number
+    lga_code: number
+    nationality_id: number
+    year: number
+    count: number
+  }
+
+  export type LgaNationalityYearUpdateManyMutationInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityYearUncheckedUpdateManyInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -25137,6 +26554,12 @@ export namespace Prisma {
     none?: LgaNationalityWhereInput
   }
 
+  export type LgaNationalityYearListRelationFilter = {
+    every?: LgaNationalityYearWhereInput
+    some?: LgaNationalityYearWhereInput
+    none?: LgaNationalityYearWhereInput
+  }
+
   export type LgaStatisticsNullableScalarRelationFilter = {
     is?: LgaStatisticsWhereInput | null
     isNot?: LgaStatisticsWhereInput | null
@@ -25153,6 +26576,10 @@ export namespace Prisma {
   }
 
   export type LgaNationalityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LgaNationalityYearOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25446,7 +26873,7 @@ export namespace Prisma {
     born_overseas?: SortOrder
     pct_arrived_within_5_years?: SortOrder
     pct_proficient_english?: SortOrder
-    percent_speaks_other_lang_at_home?: SortOrder
+    pct_speaks_other_lang_at_home?: SortOrder
     median_age_years?: SortOrder
     pct_completed_year_12?: SortOrder
     pct_certificate?: SortOrder
@@ -25464,7 +26891,7 @@ export namespace Prisma {
     born_overseas?: SortOrder
     pct_arrived_within_5_years?: SortOrder
     pct_proficient_english?: SortOrder
-    percent_speaks_other_lang_at_home?: SortOrder
+    pct_speaks_other_lang_at_home?: SortOrder
     median_age_years?: SortOrder
     pct_completed_year_12?: SortOrder
     pct_certificate?: SortOrder
@@ -25482,7 +26909,7 @@ export namespace Prisma {
     born_overseas?: SortOrder
     pct_arrived_within_5_years?: SortOrder
     pct_proficient_english?: SortOrder
-    percent_speaks_other_lang_at_home?: SortOrder
+    pct_speaks_other_lang_at_home?: SortOrder
     median_age_years?: SortOrder
     pct_completed_year_12?: SortOrder
     pct_certificate?: SortOrder
@@ -25500,7 +26927,7 @@ export namespace Prisma {
     born_overseas?: SortOrder
     pct_arrived_within_5_years?: SortOrder
     pct_proficient_english?: SortOrder
-    percent_speaks_other_lang_at_home?: SortOrder
+    pct_speaks_other_lang_at_home?: SortOrder
     median_age_years?: SortOrder
     pct_completed_year_12?: SortOrder
     pct_certificate?: SortOrder
@@ -25518,7 +26945,7 @@ export namespace Prisma {
     born_overseas?: SortOrder
     pct_arrived_within_5_years?: SortOrder
     pct_proficient_english?: SortOrder
-    percent_speaks_other_lang_at_home?: SortOrder
+    pct_speaks_other_lang_at_home?: SortOrder
     median_age_years?: SortOrder
     pct_completed_year_12?: SortOrder
     pct_certificate?: SortOrder
@@ -25543,6 +26970,46 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type LgaNationalityYearCountOrderByAggregateInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityYearAvgOrderByAggregateInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityYearMaxOrderByAggregateInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityYearMinOrderByAggregateInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
+  }
+
+  export type LgaNationalityYearSumOrderByAggregateInput = {
+    lga_nationality_year_id?: SortOrder
+    lga_code?: SortOrder
+    nationality_id?: SortOrder
+    year?: SortOrder
+    count?: SortOrder
   }
 
   export type EventCreateNestedManyWithoutVenueInput = {
@@ -26013,6 +27480,13 @@ export namespace Prisma {
     connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
   }
 
+  export type LgaNationalityYearCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput> | LgaNationalityYearCreateWithoutLgaInput[] | LgaNationalityYearUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutLgaInput | LgaNationalityYearCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaNationalityYearCreateManyLgaInputEnvelope
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+  }
+
   export type LgaStatisticsCreateNestedOneWithoutLgaInput = {
     create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
     connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
@@ -26044,6 +27518,13 @@ export namespace Prisma {
     connectOrCreate?: LgaNationalityCreateOrConnectWithoutLgaInput | LgaNationalityCreateOrConnectWithoutLgaInput[]
     createMany?: LgaNationalityCreateManyLgaInputEnvelope
     connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput> | LgaNationalityYearCreateWithoutLgaInput[] | LgaNationalityYearUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutLgaInput | LgaNationalityYearCreateOrConnectWithoutLgaInput[]
+    createMany?: LgaNationalityYearCreateManyLgaInputEnvelope
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
   }
 
   export type LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput = {
@@ -26095,6 +27576,20 @@ export namespace Prisma {
     update?: LgaNationalityUpdateWithWhereUniqueWithoutLgaInput | LgaNationalityUpdateWithWhereUniqueWithoutLgaInput[]
     updateMany?: LgaNationalityUpdateManyWithWhereWithoutLgaInput | LgaNationalityUpdateManyWithWhereWithoutLgaInput[]
     deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaNationalityYearUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput> | LgaNationalityYearCreateWithoutLgaInput[] | LgaNationalityYearUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutLgaInput | LgaNationalityYearCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaNationalityYearUpsertWithWhereUniqueWithoutLgaInput | LgaNationalityYearUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaNationalityYearCreateManyLgaInputEnvelope
+    set?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    disconnect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    delete?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    update?: LgaNationalityYearUpdateWithWhereUniqueWithoutLgaInput | LgaNationalityYearUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaNationalityYearUpdateManyWithWhereWithoutLgaInput | LgaNationalityYearUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
   }
 
   export type LgaStatisticsUpdateOneWithoutLgaNestedInput = {
@@ -26159,6 +27654,20 @@ export namespace Prisma {
     deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
   }
 
+  export type LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput> | LgaNationalityYearCreateWithoutLgaInput[] | LgaNationalityYearUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutLgaInput | LgaNationalityYearCreateOrConnectWithoutLgaInput[]
+    upsert?: LgaNationalityYearUpsertWithWhereUniqueWithoutLgaInput | LgaNationalityYearUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LgaNationalityYearCreateManyLgaInputEnvelope
+    set?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    disconnect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    delete?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    update?: LgaNationalityYearUpdateWithWhereUniqueWithoutLgaInput | LgaNationalityYearUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LgaNationalityYearUpdateManyWithWhereWithoutLgaInput | LgaNationalityYearUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
+  }
+
   export type LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput = {
     create?: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
     connectOrCreate?: LgaStatisticsCreateOrConnectWithoutLgaInput
@@ -26190,11 +27699,25 @@ export namespace Prisma {
     connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
   }
 
+  export type LgaNationalityYearCreateNestedManyWithoutNationalityInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput> | LgaNationalityYearCreateWithoutNationalityInput[] | LgaNationalityYearUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutNationalityInput | LgaNationalityYearCreateOrConnectWithoutNationalityInput[]
+    createMany?: LgaNationalityYearCreateManyNationalityInputEnvelope
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+  }
+
   export type LgaNationalityUncheckedCreateNestedManyWithoutNationalityInput = {
     create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
     connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
     createMany?: LgaNationalityCreateManyNationalityInputEnvelope
     connect?: LgaNationalityWhereUniqueInput | LgaNationalityWhereUniqueInput[]
+  }
+
+  export type LgaNationalityYearUncheckedCreateNestedManyWithoutNationalityInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput> | LgaNationalityYearCreateWithoutNationalityInput[] | LgaNationalityYearUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutNationalityInput | LgaNationalityYearCreateOrConnectWithoutNationalityInput[]
+    createMany?: LgaNationalityYearCreateManyNationalityInputEnvelope
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
   }
 
   export type LgaNationalityUpdateManyWithoutNationalityNestedInput = {
@@ -26211,6 +27734,20 @@ export namespace Prisma {
     deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
   }
 
+  export type LgaNationalityYearUpdateManyWithoutNationalityNestedInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput> | LgaNationalityYearCreateWithoutNationalityInput[] | LgaNationalityYearUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutNationalityInput | LgaNationalityYearCreateOrConnectWithoutNationalityInput[]
+    upsert?: LgaNationalityYearUpsertWithWhereUniqueWithoutNationalityInput | LgaNationalityYearUpsertWithWhereUniqueWithoutNationalityInput[]
+    createMany?: LgaNationalityYearCreateManyNationalityInputEnvelope
+    set?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    disconnect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    delete?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    update?: LgaNationalityYearUpdateWithWhereUniqueWithoutNationalityInput | LgaNationalityYearUpdateWithWhereUniqueWithoutNationalityInput[]
+    updateMany?: LgaNationalityYearUpdateManyWithWhereWithoutNationalityInput | LgaNationalityYearUpdateManyWithWhereWithoutNationalityInput[]
+    deleteMany?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
+  }
+
   export type LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput = {
     create?: XOR<LgaNationalityCreateWithoutNationalityInput, LgaNationalityUncheckedCreateWithoutNationalityInput> | LgaNationalityCreateWithoutNationalityInput[] | LgaNationalityUncheckedCreateWithoutNationalityInput[]
     connectOrCreate?: LgaNationalityCreateOrConnectWithoutNationalityInput | LgaNationalityCreateOrConnectWithoutNationalityInput[]
@@ -26223,6 +27760,20 @@ export namespace Prisma {
     update?: LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput | LgaNationalityUpdateWithWhereUniqueWithoutNationalityInput[]
     updateMany?: LgaNationalityUpdateManyWithWhereWithoutNationalityInput | LgaNationalityUpdateManyWithWhereWithoutNationalityInput[]
     deleteMany?: LgaNationalityScalarWhereInput | LgaNationalityScalarWhereInput[]
+  }
+
+  export type LgaNationalityYearUncheckedUpdateManyWithoutNationalityNestedInput = {
+    create?: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput> | LgaNationalityYearCreateWithoutNationalityInput[] | LgaNationalityYearUncheckedCreateWithoutNationalityInput[]
+    connectOrCreate?: LgaNationalityYearCreateOrConnectWithoutNationalityInput | LgaNationalityYearCreateOrConnectWithoutNationalityInput[]
+    upsert?: LgaNationalityYearUpsertWithWhereUniqueWithoutNationalityInput | LgaNationalityYearUpsertWithWhereUniqueWithoutNationalityInput[]
+    createMany?: LgaNationalityYearCreateManyNationalityInputEnvelope
+    set?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    disconnect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    delete?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    connect?: LgaNationalityYearWhereUniqueInput | LgaNationalityYearWhereUniqueInput[]
+    update?: LgaNationalityYearUpdateWithWhereUniqueWithoutNationalityInput | LgaNationalityYearUpdateWithWhereUniqueWithoutNationalityInput[]
+    updateMany?: LgaNationalityYearUpdateManyWithWhereWithoutNationalityInput | LgaNationalityYearUpdateManyWithWhereWithoutNationalityInput[]
+    deleteMany?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
   }
 
   export type LgaCreateNestedOneWithoutLga_nationalitiesInput = {
@@ -26379,6 +27930,34 @@ export namespace Prisma {
     upsert?: LgaUpsertWithoutStatisticsInput
     connect?: LgaWhereUniqueInput
     update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutStatisticsInput, LgaUpdateWithoutStatisticsInput>, LgaUncheckedUpdateWithoutStatisticsInput>
+  }
+
+  export type LgaCreateNestedOneWithoutLgaNationalityYearInput = {
+    create?: XOR<LgaCreateWithoutLgaNationalityYearInput, LgaUncheckedCreateWithoutLgaNationalityYearInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLgaNationalityYearInput
+    connect?: LgaWhereUniqueInput
+  }
+
+  export type NationalityCreateNestedOneWithoutLgaNationalityYearInput = {
+    create?: XOR<NationalityCreateWithoutLgaNationalityYearInput, NationalityUncheckedCreateWithoutLgaNationalityYearInput>
+    connectOrCreate?: NationalityCreateOrConnectWithoutLgaNationalityYearInput
+    connect?: NationalityWhereUniqueInput
+  }
+
+  export type LgaUpdateOneRequiredWithoutLgaNationalityYearNestedInput = {
+    create?: XOR<LgaCreateWithoutLgaNationalityYearInput, LgaUncheckedCreateWithoutLgaNationalityYearInput>
+    connectOrCreate?: LgaCreateOrConnectWithoutLgaNationalityYearInput
+    upsert?: LgaUpsertWithoutLgaNationalityYearInput
+    connect?: LgaWhereUniqueInput
+    update?: XOR<XOR<LgaUpdateToOneWithWhereWithoutLgaNationalityYearInput, LgaUpdateWithoutLgaNationalityYearInput>, LgaUncheckedUpdateWithoutLgaNationalityYearInput>
+  }
+
+  export type NationalityUpdateOneRequiredWithoutLgaNationalityYearNestedInput = {
+    create?: XOR<NationalityCreateWithoutLgaNationalityYearInput, NationalityUncheckedCreateWithoutLgaNationalityYearInput>
+    connectOrCreate?: NationalityCreateOrConnectWithoutLgaNationalityYearInput
+    upsert?: NationalityUpsertWithoutLgaNationalityYearInput
+    connect?: NationalityWhereUniqueInput
+    update?: XOR<XOR<NationalityUpdateToOneWithWhereWithoutLgaNationalityYearInput, NationalityUpdateWithoutLgaNationalityYearInput>, NationalityUncheckedUpdateWithoutLgaNationalityYearInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -27559,13 +29138,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LgaNationalityYearCreateWithoutLgaInput = {
+    year: number
+    count: number
+    Nationality: NationalityCreateNestedOneWithoutLgaNationalityYearInput
+  }
+
+  export type LgaNationalityYearUncheckedCreateWithoutLgaInput = {
+    lga_nationality_year_id?: number
+    nationality_id: number
+    year: number
+    count: number
+  }
+
+  export type LgaNationalityYearCreateOrConnectWithoutLgaInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    create: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaNationalityYearCreateManyLgaInputEnvelope = {
+    data: LgaNationalityYearCreateManyLgaInput | LgaNationalityYearCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type LgaStatisticsCreateWithoutLgaInput = {
     total_businesses?: number | null
     total_employed_over_15?: number | null
     born_overseas?: number | null
     pct_arrived_within_5_years?: number | null
     pct_proficient_english?: number | null
-    percent_speaks_other_lang_at_home?: number | null
+    pct_speaks_other_lang_at_home?: number | null
     median_age_years?: number | null
     pct_completed_year_12?: number | null
     pct_certificate?: number | null
@@ -27582,7 +29184,7 @@ export namespace Prisma {
     born_overseas?: number | null
     pct_arrived_within_5_years?: number | null
     pct_proficient_english?: number | null
-    percent_speaks_other_lang_at_home?: number | null
+    pct_speaks_other_lang_at_home?: number | null
     median_age_years?: number | null
     pct_completed_year_12?: number | null
     pct_certificate?: number | null
@@ -27708,6 +29310,33 @@ export namespace Prisma {
     count?: IntFilter<"LgaNationality"> | number
   }
 
+  export type LgaNationalityYearUpsertWithWhereUniqueWithoutLgaInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    update: XOR<LgaNationalityYearUpdateWithoutLgaInput, LgaNationalityYearUncheckedUpdateWithoutLgaInput>
+    create: XOR<LgaNationalityYearCreateWithoutLgaInput, LgaNationalityYearUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LgaNationalityYearUpdateWithWhereUniqueWithoutLgaInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    data: XOR<LgaNationalityYearUpdateWithoutLgaInput, LgaNationalityYearUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LgaNationalityYearUpdateManyWithWhereWithoutLgaInput = {
+    where: LgaNationalityYearScalarWhereInput
+    data: XOR<LgaNationalityYearUpdateManyMutationInput, LgaNationalityYearUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type LgaNationalityYearScalarWhereInput = {
+    AND?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
+    OR?: LgaNationalityYearScalarWhereInput[]
+    NOT?: LgaNationalityYearScalarWhereInput | LgaNationalityYearScalarWhereInput[]
+    lga_nationality_year_id?: IntFilter<"LgaNationalityYear"> | number
+    lga_code?: IntFilter<"LgaNationalityYear"> | number
+    nationality_id?: IntFilter<"LgaNationalityYear"> | number
+    year?: IntFilter<"LgaNationalityYear"> | number
+    count?: IntFilter<"LgaNationalityYear"> | number
+  }
+
   export type LgaStatisticsUpsertWithoutLgaInput = {
     update: XOR<LgaStatisticsUpdateWithoutLgaInput, LgaStatisticsUncheckedUpdateWithoutLgaInput>
     create: XOR<LgaStatisticsCreateWithoutLgaInput, LgaStatisticsUncheckedCreateWithoutLgaInput>
@@ -27725,7 +29354,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -27742,7 +29371,7 @@ export namespace Prisma {
     born_overseas?: NullableIntFieldUpdateOperationsInput | number | null
     pct_arrived_within_5_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_proficient_english?: NullableFloatFieldUpdateOperationsInput | number | null
-    percent_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
+    pct_speaks_other_lang_at_home?: NullableFloatFieldUpdateOperationsInput | number | null
     median_age_years?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_completed_year_12?: NullableFloatFieldUpdateOperationsInput | number | null
     pct_certificate?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -27801,6 +29430,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LgaNationalityYearCreateWithoutNationalityInput = {
+    year: number
+    count: number
+    Lga: LgaCreateNestedOneWithoutLgaNationalityYearInput
+  }
+
+  export type LgaNationalityYearUncheckedCreateWithoutNationalityInput = {
+    lga_nationality_year_id?: number
+    lga_code: number
+    year: number
+    count: number
+  }
+
+  export type LgaNationalityYearCreateOrConnectWithoutNationalityInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    create: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityYearCreateManyNationalityInputEnvelope = {
+    data: LgaNationalityYearCreateManyNationalityInput | LgaNationalityYearCreateManyNationalityInput[]
+    skipDuplicates?: boolean
+  }
+
   export type LgaNationalityUpsertWithWhereUniqueWithoutNationalityInput = {
     where: LgaNationalityWhereUniqueInput
     update: XOR<LgaNationalityUpdateWithoutNationalityInput, LgaNationalityUncheckedUpdateWithoutNationalityInput>
@@ -27817,11 +29469,28 @@ export namespace Prisma {
     data: XOR<LgaNationalityUpdateManyMutationInput, LgaNationalityUncheckedUpdateManyWithoutNationalityInput>
   }
 
+  export type LgaNationalityYearUpsertWithWhereUniqueWithoutNationalityInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    update: XOR<LgaNationalityYearUpdateWithoutNationalityInput, LgaNationalityYearUncheckedUpdateWithoutNationalityInput>
+    create: XOR<LgaNationalityYearCreateWithoutNationalityInput, LgaNationalityYearUncheckedCreateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityYearUpdateWithWhereUniqueWithoutNationalityInput = {
+    where: LgaNationalityYearWhereUniqueInput
+    data: XOR<LgaNationalityYearUpdateWithoutNationalityInput, LgaNationalityYearUncheckedUpdateWithoutNationalityInput>
+  }
+
+  export type LgaNationalityYearUpdateManyWithWhereWithoutNationalityInput = {
+    where: LgaNationalityYearScalarWhereInput
+    data: XOR<LgaNationalityYearUpdateManyMutationInput, LgaNationalityYearUncheckedUpdateManyWithoutNationalityInput>
+  }
+
   export type LgaCreateWithoutLga_nationalitiesInput = {
     lga_code: number
     lga_name: string
     council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeCreateNestedManyWithoutLgaInput
   }
@@ -27831,6 +29500,7 @@ export namespace Prisma {
     lga_name: string
     council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
   }
@@ -27842,11 +29512,13 @@ export namespace Prisma {
 
   export type NationalityCreateWithoutLga_nationalitiesInput = {
     nationality: string
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutNationalityInput
   }
 
   export type NationalityUncheckedCreateWithoutLga_nationalitiesInput = {
     nationality_id?: number
     nationality: string
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutNationalityInput
   }
 
   export type NationalityCreateOrConnectWithoutLga_nationalitiesInput = {
@@ -27870,6 +29542,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
   }
@@ -27879,6 +29552,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
   }
@@ -27896,11 +29570,13 @@ export namespace Prisma {
 
   export type NationalityUpdateWithoutLga_nationalitiesInput = {
     nationality?: StringFieldUpdateOperationsInput | string
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutNationalityNestedInput
   }
 
   export type NationalityUncheckedUpdateWithoutLga_nationalitiesInput = {
     nationality_id?: IntFieldUpdateOperationsInput | number
     nationality?: StringFieldUpdateOperationsInput | string
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutNationalityNestedInput
   }
 
   export type LgaCreateWithoutCouncil_infoInput = {
@@ -27908,6 +29584,7 @@ export namespace Prisma {
     lga_name: string
     language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeCreateNestedManyWithoutLgaInput
   }
@@ -27917,6 +29594,7 @@ export namespace Prisma {
     lga_name: string
     language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
   }
@@ -27942,6 +29620,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
   }
@@ -27951,6 +29630,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
   }
@@ -27961,6 +29641,7 @@ export namespace Prisma {
     council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
   }
 
@@ -27970,6 +29651,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
   }
 
@@ -27995,6 +29677,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
   }
 
@@ -28004,6 +29687,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
   }
 
@@ -28065,6 +29749,7 @@ export namespace Prisma {
     lga_name: string
     council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeCreateNestedManyWithoutLgaInput
   }
@@ -28074,6 +29759,7 @@ export namespace Prisma {
     lga_name: string
     council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
     postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
   }
@@ -28119,6 +29805,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
   }
@@ -28128,6 +29815,7 @@ export namespace Prisma {
     lga_name?: StringFieldUpdateOperationsInput | string
     council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
     postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
   }
@@ -28138,6 +29826,7 @@ export namespace Prisma {
     council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearCreateNestedManyWithoutLgaInput
     postcodes?: PostcodeCreateNestedManyWithoutLgaInput
   }
 
@@ -28147,6 +29836,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
     lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedCreateNestedManyWithoutLgaInput
     postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
   }
 
@@ -28172,6 +29862,7 @@ export namespace Prisma {
     council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUpdateManyWithoutLgaNestedInput
     postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
   }
 
@@ -28181,7 +29872,102 @@ export namespace Prisma {
     council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
     language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    LgaNationalityYear?: LgaNationalityYearUncheckedUpdateManyWithoutLgaNestedInput
     postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaCreateWithoutLgaNationalityYearInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaUncheckedCreateWithoutLgaNationalityYearInput = {
+    lga_code: number
+    lga_name: string
+    council_info?: CouncilInfoUncheckedCreateNestedOneWithoutLgaInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedCreateNestedManyWithoutLgaInput
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutLgaInput
+    statistics?: LgaStatisticsUncheckedCreateNestedOneWithoutLgaInput
+    postcodes?: PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type LgaCreateOrConnectWithoutLgaNationalityYearInput = {
+    where: LgaWhereUniqueInput
+    create: XOR<LgaCreateWithoutLgaNationalityYearInput, LgaUncheckedCreateWithoutLgaNationalityYearInput>
+  }
+
+  export type NationalityCreateWithoutLgaNationalityYearInput = {
+    nationality: string
+    lga_nationalities?: LgaNationalityCreateNestedManyWithoutNationalityInput
+  }
+
+  export type NationalityUncheckedCreateWithoutLgaNationalityYearInput = {
+    nationality_id?: number
+    nationality: string
+    lga_nationalities?: LgaNationalityUncheckedCreateNestedManyWithoutNationalityInput
+  }
+
+  export type NationalityCreateOrConnectWithoutLgaNationalityYearInput = {
+    where: NationalityWhereUniqueInput
+    create: XOR<NationalityCreateWithoutLgaNationalityYearInput, NationalityUncheckedCreateWithoutLgaNationalityYearInput>
+  }
+
+  export type LgaUpsertWithoutLgaNationalityYearInput = {
+    update: XOR<LgaUpdateWithoutLgaNationalityYearInput, LgaUncheckedUpdateWithoutLgaNationalityYearInput>
+    create: XOR<LgaCreateWithoutLgaNationalityYearInput, LgaUncheckedCreateWithoutLgaNationalityYearInput>
+    where?: LgaWhereInput
+  }
+
+  export type LgaUpdateToOneWithWhereWithoutLgaNationalityYearInput = {
+    where?: LgaWhereInput
+    data: XOR<LgaUpdateWithoutLgaNationalityYearInput, LgaUncheckedUpdateWithoutLgaNationalityYearInput>
+  }
+
+  export type LgaUpdateWithoutLgaNationalityYearInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LgaUncheckedUpdateWithoutLgaNationalityYearInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    council_info?: CouncilInfoUncheckedUpdateOneWithoutLgaNestedInput
+    language_proficiencies?: LgaLanguageProficiencyUncheckedUpdateManyWithoutLgaNestedInput
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutLgaNestedInput
+    statistics?: LgaStatisticsUncheckedUpdateOneWithoutLgaNestedInput
+    postcodes?: PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type NationalityUpsertWithoutLgaNationalityYearInput = {
+    update: XOR<NationalityUpdateWithoutLgaNationalityYearInput, NationalityUncheckedUpdateWithoutLgaNationalityYearInput>
+    create: XOR<NationalityCreateWithoutLgaNationalityYearInput, NationalityUncheckedCreateWithoutLgaNationalityYearInput>
+    where?: NationalityWhereInput
+  }
+
+  export type NationalityUpdateToOneWithWhereWithoutLgaNationalityYearInput = {
+    where?: NationalityWhereInput
+    data: XOR<NationalityUpdateWithoutLgaNationalityYearInput, NationalityUncheckedUpdateWithoutLgaNationalityYearInput>
+  }
+
+  export type NationalityUpdateWithoutLgaNationalityYearInput = {
+    nationality?: StringFieldUpdateOperationsInput | string
+    lga_nationalities?: LgaNationalityUpdateManyWithoutNationalityNestedInput
+  }
+
+  export type NationalityUncheckedUpdateWithoutLgaNationalityYearInput = {
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    nationality?: StringFieldUpdateOperationsInput | string
+    lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput
   }
 
   export type EventCreateManyVenueInput = {
@@ -28597,6 +30383,13 @@ export namespace Prisma {
     count: number
   }
 
+  export type LgaNationalityYearCreateManyLgaInput = {
+    lga_nationality_year_id?: number
+    nationality_id: number
+    year: number
+    count: number
+  }
+
   export type PostcodeCreateManyLgaInput = {
     postcode: number
     suburb: string
@@ -28641,6 +30434,26 @@ export namespace Prisma {
     count?: IntFieldUpdateOperationsInput | number
   }
 
+  export type LgaNationalityYearUpdateWithoutLgaInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+    Nationality?: NationalityUpdateOneRequiredWithoutLgaNationalityYearNestedInput
+  }
+
+  export type LgaNationalityYearUncheckedUpdateWithoutLgaInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityYearUncheckedUpdateManyWithoutLgaInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    nationality_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
   export type PostcodeUpdateWithoutLgaInput = {
     postcode?: IntFieldUpdateOperationsInput | number
     suburb?: StringFieldUpdateOperationsInput | string
@@ -28668,6 +30481,13 @@ export namespace Prisma {
     count: number
   }
 
+  export type LgaNationalityYearCreateManyNationalityInput = {
+    lga_nationality_year_id?: number
+    lga_code: number
+    year: number
+    count: number
+  }
+
   export type LgaNationalityUpdateWithoutNationalityInput = {
     count?: IntFieldUpdateOperationsInput | number
     lga?: LgaUpdateOneRequiredWithoutLga_nationalitiesNestedInput
@@ -28682,6 +30502,26 @@ export namespace Prisma {
   export type LgaNationalityUncheckedUpdateManyWithoutNationalityInput = {
     lga_nationality_id?: IntFieldUpdateOperationsInput | number
     lga_code?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityYearUpdateWithoutNationalityInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+    Lga?: LgaUpdateOneRequiredWithoutLgaNationalityYearNestedInput
+  }
+
+  export type LgaNationalityYearUncheckedUpdateWithoutNationalityInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LgaNationalityYearUncheckedUpdateManyWithoutNationalityInput = {
+    lga_nationality_year_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
     count?: IntFieldUpdateOperationsInput | number
   }
 
