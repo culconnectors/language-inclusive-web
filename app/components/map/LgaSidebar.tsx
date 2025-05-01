@@ -41,14 +41,13 @@ const LgaSidebar = ({ onModeChange, onStatisticSelect }: LgaSidebarProps) => {
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="" disabled>Choose a statistic</option>
-            <option value="born_overseas">Born Overseas</option>
+        <option value="born_overseas">Born Overseas</option>
             <option value="pct_proficient_english">English Proficiency</option>
             <option value="pct_arrived_within_5_years">Recent Arrivals</option>
-            <option value="percent_speaks_other_lang_at_home">Other Language at Home</option>
             <option value="pct_completed_year_12">Completed Year 12</option>
             <option value="pct_bachelor_degree">Bachelor Degree</option>
             <option value="pct_postgraduate">Postgraduate</option>
-          </select>
+      </select>
         )}
         <button
           onClick={() => handleModeChange('nationalities')}
@@ -68,7 +67,7 @@ const LgaSidebar = ({ onModeChange, onStatisticSelect }: LgaSidebarProps) => {
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
-          Languages
+          English Proficiency
         </button>
       </div>
     </div>

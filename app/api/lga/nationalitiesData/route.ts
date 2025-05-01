@@ -15,18 +15,36 @@ export async function GET(request: Request) {
 
     const nationalityData = await lgaClient.lgaNationality.findMany({
       where: {
-        lga_code: parseInt(lgaCode, 10)
+        lga_code: parseInt(lgaCode, 10),
+        nationality: {
+          NOT: {
+            nationality: {
+              in: ['Australia', 'New Zealand', 'England']
+            }
+          }
+        }
       },
       select: {
-        nationality: true,
+        nationality: {
+          select: {
+            nationality: true
+          }
+        },
         count: true
       },
       orderBy: {
         count: 'desc'
-      }
+      },
+      take: 10
     });
 
-    return NextResponse.json(nationalityData);
+    // Transform the data to match the expected format
+    const formattedData = nationalityData.map(item => ({
+      nationality: item.nationality.nationality,
+      count: item.count
+    }));
+
+    return NextResponse.json(formattedData);
   } catch (error) {
     console.error('Error fetching nationality data:', error);
     return NextResponse.json(

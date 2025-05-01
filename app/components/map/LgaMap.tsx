@@ -1,11 +1,14 @@
 'use client';
 
-import Map, { Layer, Source, Popup } from 'react-map-gl';
+import Map, { Layer, Source, Popup, MapRef } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import * as turf from '@turf/turf';
 import { StatisticsMap } from './statisticsMap';
 import ChartGenerator from './chartGenerator';
 import LgaSidebar from './LgaSidebar';
+import EnglishProficiencyChart from './englishProficiencyChart';
+import { bbox, center } from '@turf/turf';
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
@@ -32,12 +35,14 @@ interface LgaMapProps {
 }
 
 const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
+  const mapRef = useRef<MapRef>(null);
   const [hoveredLgaInfo, setHoveredLgaInfo] = useState<HoverInfo | null>(null);
   const [mode, setMode] = useState<'statistics' | 'nationalities' | 'language'>('statistics');
   const [selectedStatistic, setSelectedStatistic] = useState('');
   const [statisticData, setStatisticData] = useState<StatisticData[]>([]);
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [selectedLgaCode, setSelectedLgaCode] = useState<string | null>(null);
+  const [selectedLgaName, setSelectedLgaName] = useState<string>('');
 
   // Fetch statistic data when statistic changes
   useEffect(() => {
@@ -59,15 +64,32 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
   // Fetch chart data when LGA is selected and mode is nationalities/language
   useEffect(() => {
     const fetchChartData = async () => {
-      if (!selectedLgaCode || mode === 'statistics') return;
+      if (!selectedLgaCode || mode === 'statistics') {
+        console.debug('Skipping chart data fetch:', { selectedLgaCode, mode });
+        return;
+      }
       
       try {
-        const endpoint = mode === 'nationalities' ? 'nationalitiesData' : 'languagesData';
+        console.debug('Fetching chart data:', { selectedLgaCode, mode });
+        let endpoint;
+        switch (mode) {
+          case 'nationalities':
+            endpoint = 'nationalitiesData';
+            break;
+          case 'language':
+            endpoint = 'languagesData';
+            break;
+          default:
+            console.warn('Unknown mode:', mode);
+            return;
+        }
+        
         const response = await fetch(`/api/lga/${endpoint}?lgaCode=${selectedLgaCode}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        console.debug('Chart data received:', { dataLength: data.length, firstItem: data[0] });
         setChartData(data);
       } catch (error) {
         console.error(`Failed to fetch ${mode} data:`, error);
@@ -77,6 +99,17 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
 
     fetchChartData();
   }, [selectedLgaCode, mode]);
+
+  // Add debug logging for render conditions
+  useEffect(() => {
+    console.debug('Chart render conditions:', {
+      hasSelectedLgaCode: !!selectedLgaCode,
+      mode,
+      chartDataLength: chartData.length,
+      selectedLgaName,
+      shouldShowChart: selectedLgaCode && mode !== 'statistics' && chartData.length > 0
+    });
+  }, [selectedLgaCode, mode, chartData, selectedLgaName]);
 
   const handleMapLoad = useCallback((event: mapboxgl.MapboxEvent) => {
     const map = event.target;
@@ -108,10 +141,42 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
       if (e.features?.length) {
         const feature = e.features[0];
         const lgaCode = feature.properties?.lga_code || feature.properties?.LGA_CODE;
+        const lgaName = feature.properties?.lga_name || feature.properties?.LGA_NAME;
 
-        if (lgaCode) {
+        if (lgaCode && lgaName) {
+          console.debug('LGA selected:', { lgaCode, lgaName });
           setSelectedLgaCode(lgaCode);
+          setSelectedLgaName(lgaName);
           onLgaSelect?.(lgaCode);
+
+          // Calculate the bounding box and center of the feature
+          if (feature.geometry) {
+            try {
+              const geoFeature = turf.feature(feature.geometry);
+              const bounds = turf.bbox(geoFeature);
+              const centerPoint = turf.center(geoFeature);
+    
+              if (mapRef.current) {
+                mapRef.current.resize(); // ensure it adapts to current grid size
+                mapRef.current.fitBounds(
+                  [
+                    [bounds[0], bounds[1]],
+                    [bounds[2], bounds[3]]
+                  ],
+                  {
+                    padding: 80,
+                    duration: 1200,
+                    essential: true
+                  }
+                );
+              }
+              
+            } catch (error) {
+              console.error('Error computing bounds or center:', error);
+            }
+          } else {
+            console.warn('Missing geometry in clicked feature:', feature);
+          }
         }
       }
     });
@@ -119,14 +184,21 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <LgaSidebar 
-        onModeChange={setMode}
+      <LgaSidebar
+        onModeChange={(newMode) => {
+          console.debug('Mode changed:', { newMode, currentMode: mode });
+          setMode(newMode);
+          // Reset selected LGA when changing modes to prevent data mismatch
+          setSelectedLgaCode(null);
+          setSelectedLgaName('');
+        }}
         onStatisticSelect={setSelectedStatistic}
       />
-      
-      <div className="flex flex-col gap-4">
-        <div className="w-full h-[600px] rounded-lg overflow-hidden shadow-lg relative">
+
+      <div className={`w-full ${selectedLgaCode && mode !== 'statistics' && chartData.length > 0 ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}`}>
+        <div className={`${selectedLgaCode && mode !== 'statistics' && chartData.length > 0 ? 'h-[600px]' : 'w-full h-[600px]'} rounded-lg overflow-hidden shadow-lg relative`}>
           <Map
+            ref={mapRef}
             initialViewState={{ latitude: -37.5, longitude: 144.5, zoom: 6 }}
             mapStyle="mapbox://styles/mlee-0159/cm9tzg62f00fu01sp105a9d5v"
             mapboxAccessToken={MAPBOX_TOKEN}
@@ -136,6 +208,22 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
           >
             {mode === 'statistics' && selectedStatistic && (
               <StatisticsMap statKey={selectedStatistic} />
+            )}
+
+            {/* Selected LGA highlight layer */}
+            {selectedLgaCode && (
+              <Layer
+                id="selected-lga"
+                type="fill"
+                source="composite"
+                source-layer="vic_lga_cleaned-5yz92t"
+                paint={{
+                  'fill-color': '#4A90E2',
+                  'fill-outline-color': '#2171C7',
+                  'fill-opacity': 0.6
+                }}
+                filter={['==', ['get', 'lga_code'], selectedLgaCode]}
+              />
             )}
 
             {hoveredLgaInfo && (
@@ -152,7 +240,7 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
                   }}
                   filter={['==', ['get', 'lga_code'], hoveredLgaInfo.lgaCode]}
                 />
-                <div 
+                <div
                   style={{
                     position: 'absolute',
                     left: hoveredLgaInfo.x,
@@ -178,12 +266,20 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
           </Map>
         </div>
 
-        {selectedLgaCode && mode !== 'statistics' && chartData.length > 0 && (
-          <div className="w-full bg-white rounded-lg shadow-lg p-4">
-            <ChartGenerator 
-              data={chartData}
-              title={`${mode === 'nationalities' ? 'Nationalities' : 'Languages'} in ${hoveredLgaInfo?.lgaName || ''}`}
-            />
+        {/* Chart Section */}
+        {selectedLgaCode && mode !== 'statistics' && (
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            {mode === 'language' ? (
+              <EnglishProficiencyChart 
+                lgaCode={selectedLgaCode} 
+                lgaName={selectedLgaName} 
+              />
+            ) : (
+              <ChartGenerator
+                data={chartData}
+                title={`${mode === 'nationalities' ? 'Nationalities' : 'Languages'} in ${selectedLgaName}`}
+              />
+            )}
           </div>
         )}
       </div>

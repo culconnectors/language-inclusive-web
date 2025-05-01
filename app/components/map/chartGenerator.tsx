@@ -6,7 +6,6 @@ interface ChartData {
   nationality?: string;
   language?: string;
   count: number;
-  percentage?: number;
 }
 
 interface ChartGeneratorProps {
@@ -15,142 +14,187 @@ interface ChartGeneratorProps {
 }
 
 const ChartGenerator = ({ data, title }: ChartGeneratorProps) => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
+  const containerRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!data || !svgRef.current) return;
+    if (!containerRef.current || !data || data.length === 0) return;
 
-    // Sort and slice top 10 entries
-    const chartData = [...data]
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 10)
-      .map(d => ({
-        ...d,
-        label: d.nationality || d.language || 'Unknown'
-      }));
+    // Clear any existing chart and tooltips
+    d3.select(containerRef.current).selectAll('svg').remove();
+    d3.select(containerRef.current).selectAll('.tooltip').remove();
 
-    // Clear previous chart
-    d3.select(svgRef.current).selectAll('*').remove();
+    // Get container dimensions
+    // Set width to container width or max 800px
+    const containerWidth = Math.min(containerRef.current.clientWidth || 800, 800);
+    const aspectRatio = 4 / 3;
+    const containerHeight = containerWidth / aspectRatio;
 
-    // Chart dimensions
-    const margin = { top: 30, right: 120, bottom: 40, left: 200 };
-    const width = 800 - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    // Define margins
+    const margin = { top: 60, right: 90, bottom: 60, left: 150 };
+    const width = containerWidth - margin.left - margin.right;
+    const height = containerHeight - margin.top - margin.bottom;
 
-    // Create SVG container
-    const svg = d3.select(svgRef.current)
-      .attr('width', '100%')
-      .attr('height', height + margin.top + margin.bottom)
-      .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
-      .attr('preserveAspectRatio', 'xMidYMid meet')
-      .append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
+    // Create tooltip div
+    const tooltip = d3.select(containerRef.current)
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('background', 'white')
+      .style('padding', '8px')
+      .style('border-radius', '4px')
+      .style('box-shadow', '0 2px 4px rgba(0,0,0,0.1)')
+      .style('pointer-events', 'none')
+      .style('opacity', 0)
+      .style('z-index', 10);
+
+    // Sort data
+    const sortedData = [...data]
+      .sort((a, b) => {
+        const countDiff = b.count - a.count;
+        if (countDiff !== 0) return countDiff;
+        const aLabel = (a.nationality || a.language || '').toString();
+        const bLabel = (b.nationality || b.language || '').toString();
+        return aLabel.localeCompare(bLabel);
+      })
+      .slice(0, 10);
+
+        // Create SVG with scaled size
+    const svg = d3.select(containerRef.current)
+    .append('svg')
+    .attr('width', containerWidth)
+    .attr('height', containerHeight)
+    .attr('viewBox', `0 0 ${containerWidth} ${containerHeight}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    const g = svg.append('g')
+    .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Create scales
-    const y = d3.scaleBand()
-      .domain(chartData.map(d => d.label))
-      .range([0, height])
-      .padding(0.2);
-
     const x = d3.scaleLinear()
-      .domain([0, d3.max(chartData, d => d.count) || 0])
+      .domain([0, d3.max(sortedData, d => d.count) || 0])
       .nice()
       .range([0, width]);
 
-    // Create and style the bars
-    svg.selectAll('rect')
-      .data(chartData)
-      .join('rect')
-      .attr('y', d => y(d.label) || 0)
+    const y = d3.scaleBand()
+      .domain(sortedData.map(d => d.nationality || d.language || 'Unknown'))
+      .range([0, height])
+      .padding(0.1);
+
+    // Use a categorical color scale
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    // Add bars with transitions and interactivity
+    const bars = g.selectAll('rect')
+      .data(sortedData)
+      .enter()
+      .append('rect')
+      .attr('y', d => y(d.nationality || d.language || 'Unknown') || 0)
       .attr('height', y.bandwidth())
-      .attr('x', 0)
-      .attr('width', d => x(d.count))
-      .attr('fill', '#6366f1')
+      .attr('fill', d => color(d.nationality || d.language || 'Unknown'))
       .attr('rx', 4)
-      .transition()
-      .duration(500)
+      .attr('ry', 4)
+      .attr('width', 0)
+      .style('opacity', 1);
+
+    // Add bar transitions
+    bars.transition()
+      .duration(750)
+      .delay((_, i) => i * 50)
       .attr('width', d => x(d.count));
 
-    // Add value labels
-    svg.selectAll('.value-label')
-      .data(chartData)
-      .join('text')
-      .attr('class', 'value-label')
-      .attr('y', d => (y(d.label) || 0) + y.bandwidth() / 2)
-      .attr('x', d => x(d.count) + 5)
-      .attr('dy', '0.35em')
-      .text(d => {
-        if (d.percentage !== undefined) {
-          return `${d.count} (${d.percentage.toFixed(1)}%)`;
-        }
-        return d.count.toString();
-      })
-      .style('font-size', '12px')
-      .style('fill', '#4b5563');
+    // Add hover effects
+    bars.on('mouseover', function(event, d) {
+      bars.style('opacity', 0.2);
+      d3.select(this).style('opacity', 1);
+      
+      const containerBounds = containerRef.current!.getBoundingClientRect();
+      const barBounds = (this as SVGRectElement).getBoundingClientRect();
+      
+      tooltip.html(`
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16">
+            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" fill="currentColor"/>
+          </svg>
+          <strong>Population</strong>
+        </div>
+        ${d.count.toLocaleString()}
+      `)
+        .style('left', `${barBounds.right - containerBounds.left + 8}px`)
+        .style('top', `${barBounds.top - containerBounds.top + barBounds.height / 2 - 12}px`)
+        .style('opacity', 1);
+    })
+    .on('mouseout', function() {
+      bars.style('opacity', 1);
+      tooltip.style('opacity', 0);
+    });
 
-    // Add y-axis with labels
-    svg.append('g')
-      .attr('class', 'y-axis')
+    // Add value labels with transitions
+    const labels = g.selectAll('.value-label')
+      .data(sortedData)
+      .enter()
+      .append('text')
+      .attr('class', 'value-label')
+      .attr('x', d => x(d.count) + 5)
+      .attr('y', d => (y(d.nationality || d.language || 'Unknown') || 0) + y.bandwidth() / 2)
+      .attr('dy', '0.35em')
+      .text(d => d.count.toLocaleString())
+      .style('opacity', 0);
+
+    // Animate labels
+    labels.transition()
+      .duration(750)
+      .delay((_, i) => i * 50)
+      .style('opacity', 1);
+
+    // Add y-axis
+    g.append('g')
       .call(d3.axisLeft(y))
       .selectAll('text')
       .style('font-size', '12px')
-      .call(wrap, margin.left - 10);
+      .style('font-family', 'sans-serif');
 
-    // Add x-axis
-    svg.append('g')
-      .attr('class', 'x-axis')
+    // Add x-axis with grid lines
+    const xAxis = g.append('g')
       .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(x).ticks(5))
-      .selectAll('text')
-      .style('font-size', '12px');
+      .call(d3.axisBottom(x)
+        .ticks(5)
+        .tickFormat(d => d3.format(',')(d as number))
+      );
 
-    // Add title
-    svg.append('text')
-      .attr('class', 'chart-title')
-      .attr('x', width / 2)
-      .attr('y', -margin.top / 2)
-      .attr('text-anchor', 'middle')
-      .style('font-size', '16px')
-      .style('font-weight', 'bold')
-      .text(title);
+    xAxis.selectAll('text')
+      .style('font-size', '12px')
+      .style('font-family', 'sans-serif');
+
+    // Add grid lines
+    g.append('g')
+      .attr('class', 'grid')
+      .call(d3.axisLeft(y)
+        .tickSize(-width)
+        .tickFormat(() => '')
+      )
+      .style('stroke-opacity', 0.1);
 
   }, [data, title]);
 
-  // Helper function to wrap long text
-  function wrap(text: d3.Selection<d3.BaseType, unknown, SVGGElement, unknown>, width: number) {
-    text.each(function() {
-      const text = d3.select(this);
-      const words = text.text().split(/\s+/);
-      let line: string[] = [];
-      let lineNumber = 0;
-      const lineHeight = 1.1;
-      const y = text.attr('y');
-      const dy = parseFloat(text.attr('dy') || '0');
-      let tspan = text.text(null).append('tspan')
-        .attr('x', -10)
-        .attr('y', y)
-        .attr('dy', dy + 'em');
-
-      words.forEach(word => {
-        line.push(word);
-        tspan.text(line.join(' '));
-        if ((tspan.node()?.getComputedTextLength() || 0) > width) {
-          line.pop();
-          tspan.text(line.join(' '));
-          line = [word];
-          tspan = text.append('tspan')
-            .attr('x', -10)
-            .attr('y', y)
-            .attr('dy', ++lineNumber * lineHeight + dy + 'em')
-            .text(word);
-        }
-      });
-    });
-  }
-
   return (
-    <div className="w-full overflow-x-auto">
-      <svg ref={svgRef} className="w-full"></svg>
+    <div className="w-full max-w-[800px] mx-auto p-4">
+      <h2 className="text-xl font-bold text-center mb-4">{title}</h2>
+  
+      <div className="relative w-full aspect-[4/3]">
+        <svg ref={containerRef} className="absolute top-0 left-0 w-full h-full" />
+      </div>
+  
+      <div className="mt-4 text-sm text-center text-gray-500">
+        Data Source:&nbsp;
+        <a
+          href="https://www.abs.gov.au/census/find-census-data/datapacks"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          ABS Census DataPacks
+        </a>
+      </div>
     </div>
   );
 };

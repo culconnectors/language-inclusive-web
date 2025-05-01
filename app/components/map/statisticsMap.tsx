@@ -53,9 +53,20 @@ export const StatisticsMap = ({ statKey }: Props) => {
 
         // Generate legend data
         const thresholds = colorScale.thresholds();
+        const formatNumber = (num: number) => {
+          if (statKey.toLowerCase().includes('pct') || statKey.toLowerCase().includes('percent')) {
+            return num.toFixed(1) + '%';
+          }
+          // Format numbers in thousands
+          if (num >= 1000) {
+            return (Math.round(num/1000) * 1000).toLocaleString();
+          }
+          return Math.round(num).toLocaleString();
+        };
+
         const legendItems = d3.pairs([min, ...thresholds, max]).map(([start, end], i) => ({
           color: colorScale(start),
-          range: `${Math.round(start)}-${Math.round(end)}`
+          range: `${formatNumber(start)}-${formatNumber(end)}`
         }));
         
         setLegendData(legendItems);
@@ -85,12 +96,16 @@ export const StatisticsMap = ({ statKey }: Props) => {
         }}
       />
       <div className="absolute bottom-8 right-8 bg-white p-4 rounded-lg shadow-lg">
-        <h3 className="text-sm font-semibold mb-2">{statKey.replace(/_/g, ' ').toUpperCase()}</h3>
-        <div className="space-y-2">
+        <h3 className="text-sm font-semibold mb-2">
+          {statKey.replace(/_/g, ' ')
+            .replace(/pct/gi, 'Percent')
+            .toUpperCase()}
+        </h3>
+        <div className="flex flex-col gap-2">
           {legendData.map((item, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div 
-                className="w-4 h-4" 
+              <div
+                className="w-4 h-4 rounded"
                 style={{ backgroundColor: item.color }}
               />
               <span className="text-xs">{item.range}</span>
