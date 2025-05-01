@@ -11,18 +11,18 @@ const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
 
 export async function translateWithGemini(
     text: string,
-    targetLanguage: string
+    targetLanguage: string,
+    customPrompt: string
 ) {
     const geminiModel = "gemini-2.0-flash-lite";
     try {
         // Get the generative model
         const model = genAI.getGenerativeModel({ model: geminiModel });
 
-        // Create the prompt
-        const prompt = `Please translate this text into ${targetLanguage} language. Maintain the original formatting and page structure. Here's the text:\n\n${text}`;
+        console.log("Gemini received prompt:", customPrompt); // Debug log
 
-        // Generate content
-        const result = await model.generateContent(prompt);
+        // Generate content using the provided prompt directly
+        const result = await model.generateContent(customPrompt);
         const response = await result.response;
         const translation = response.text();
 

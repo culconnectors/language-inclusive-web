@@ -5,6 +5,8 @@ import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
 
+type Service = "translate" | "summarise";
+
 export default function PdfUploader() {
     useEffect(() => {
         // Initialize PDF.js worker in useEffect to avoid SSR issues
@@ -15,11 +17,14 @@ export default function PdfUploader() {
     const [extractedText, setExtractedText] = useState<string>("");
     const [translatedText, setTranslatedText] = useState<string>("");
     const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
+    const [selectedService, setSelectedService] =
+        useState<Service>("translate");
     const [isLoading, setIsLoading] = useState(false);
     const [isTranslating, setIsTranslating] = useState(false);
     const [error, setError] = useState<string>("");
     const [fileName, setFileName] = useState<string>("");
     const [copySuccess, setCopySuccess] = useState(false);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const formatExtractedText = (items: any[]) => {
         let formattedText = "";
@@ -83,58 +88,94 @@ export default function PdfUploader() {
         }
     };
 
-    const translateText = async (text: string, targetLanguage: string) => {
+    const getGeminiPrompt = (
+        text: string,
+        targetLanguage: string,
+        service: Service
+    ) => {
+        console.log("Service selected:", service); // Debug log
+        const prompt =
+            service === "translate"
+                ? `Translate the following text into ${targetLanguage}, using a style similar to Google Translate. Preserve the original formatting and page structure exactly. Output only the translated text—do not include any additional commentary. Please write the output in plain text only. Do not use any special formatting like Markdown symbols (e.g., bold, italics, # headings). Just use normal capitalization and spacing for emphasis or headings. Here is the text: ${text}`
+                : `Summarize the following text concisely in ${targetLanguage}, using simple and easy-to-understand language. Begin the summary with a brief description, in one or two sentences, of what the text is about. Maintain the original formatting and page structure. Do not include any additional commentary—only output the summary. Please write the output in plain text only. Do not use any special formatting like Markdown symbols (e.g., bold, italics, # headings). Just use normal capitalization and spacing for emphasis or headings. Here is the text: ${text}`;
+        console.log("Generated prompt:", prompt); // Debug log
+        return prompt;
+    };
+
+    const processText = async (
+        text: string,
+        targetLanguage: string,
+        service: Service
+    ) => {
         setIsTranslating(true);
         setError("");
+        console.log("Processing text with service:", service); // Debug log
 
         try {
             const selectedLangName =
                 languages.find((lang) => lang.code === targetLanguage)?.name ||
                 targetLanguage;
-            const translation = await translateWithGemini(
+            const prompt = getGeminiPrompt(text, selectedLangName, service);
+            console.log("Using prompt:", prompt); // Debug log
+            const result = await translateWithGemini(
                 text,
-                selectedLangName
+                selectedLangName,
+                prompt
             );
-            setTranslatedText(translation);
+            setTranslatedText(result);
         } catch (error) {
-            setError("Failed to translate text. Please try again.");
+            setError("Failed to process text. Please try again.");
             console.error(error);
         } finally {
             setIsTranslating(false);
         }
     };
 
-    const handleFileUpload = useCallback(
-        async (event: React.ChangeEvent<HTMLInputElement>) => {
-            const file = event.target.files?.[0];
-            if (!file) return;
+    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
 
-            if (file.type !== "application/pdf") {
-                setError("Please upload a PDF file");
-                return;
-            }
+        if (file.type !== "application/pdf") {
+            setError("Please upload a PDF file");
+            return;
+        }
 
-            setIsLoading(true);
-            setError("");
-            setCopySuccess(false);
-            setTranslatedText("");
-            setFileName(file.name);
+        setSelectedFile(file);
+        setFileName(file.name);
+        setError("");
+    };
 
-            try {
-                const text = await extractTextFromPdf(file);
-                setExtractedText(text);
+    const handleSubmit = async () => {
+        // Validation
+        if (!selectedFile) {
+            setError("Please upload a PDF file first");
+            return;
+        }
+        if (!selectedLanguage) {
+            setError("Please select a target language");
+            return;
+        }
+        if (!selectedService) {
+            setError("Please select a service (translate or summarise)");
+            return;
+        }
 
-                // Automatically start translation
-                await translateText(text, selectedLanguage);
-            } catch (error) {
-                setError("Failed to process PDF file");
-                console.error(error);
-            } finally {
-                setIsLoading(false);
-            }
-        },
-        [selectedLanguage]
-    );
+        setIsLoading(true);
+        setError("");
+        setCopySuccess(false);
+        setTranslatedText("");
+
+        try {
+            const text = await extractTextFromPdf(selectedFile);
+            setExtractedText(text);
+            await processText(text, selectedLanguage, selectedService);
+        } catch (error) {
+            setError("Failed to process PDF file");
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleLanguageChange = async (
         event: React.ChangeEvent<HTMLSelectElement>
@@ -142,7 +183,17 @@ export default function PdfUploader() {
         const newLanguage = event.target.value;
         setSelectedLanguage(newLanguage);
         if (extractedText) {
-            await translateText(extractedText, newLanguage);
+            await processText(extractedText, newLanguage, selectedService);
+        }
+    };
+
+    const handleServiceChange = async (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        const newService = event.target.value as Service;
+        setSelectedService(newService);
+        if (extractedText) {
+            await processText(extractedText, selectedLanguage, newService);
         }
     };
 
@@ -159,59 +210,83 @@ export default function PdfUploader() {
     return (
         <div className="space-y-4">
             <div className="flex flex-col items-center justify-center w-full">
-                <div className="w-full max-w-md mb-4">
-                    <label
-                        htmlFor="language-select"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                        Select Target Language
-                    </label>
-                    <select
-                        id="language-select"
-                        value={selectedLanguage}
-                        onChange={handleLanguageChange}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    >
-                        {languages.map((lang) => (
-                            <option key={lang.code} value={lang.code}>
-                                {lang.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <label
-                    htmlFor="pdf-upload"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
-                >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <p className="mb-2 text-sm text-gray-500">
-                            <span className="font-semibold">
-                                Click to upload
-                            </span>{" "}
-                            or drag and drop
-                        </p>
-                        <p className="text-xs text-gray-500">PDF files only</p>
+                <div className="w-full max-w-md space-y-4">
+                    <div>
+                        <label
+                            htmlFor="language-select"
+                            className="block text-sm font-medium text-gray-700 mb-2"
+                        >
+                            Select Target Language
+                        </label>
+                        <select
+                            id="language-select"
+                            value={selectedLanguage}
+                            onChange={handleLanguageChange}
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        >
+                            {languages.map((lang) => (
+                                <option key={lang.code} value={lang.code}>
+                                    {lang.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                    <input
-                        id="pdf-upload"
-                        type="file"
-                        className="hidden"
-                        accept=".pdf"
-                        onChange={handleFileUpload}
-                    />
-                </label>
-            </div>
 
-            {(isLoading || isTranslating) && (
-                <div className="text-center">
-                    <p className="text-gray-600">
-                        {isLoading
-                            ? "Processing PDF..."
-                            : "Translating text..."}
-                    </p>
+                    <div>
+                        <label
+                            htmlFor="service-select"
+                            className="block text-sm font-medium text-gray-700 mb-2"
+                        >
+                            Select Service
+                        </label>
+                        <select
+                            id="service-select"
+                            value={selectedService}
+                            onChange={handleServiceChange}
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        >
+                            <option value="translate">Translate</option>
+                            <option value="summarise">Summarise</option>
+                        </select>
+                    </div>
                 </div>
-            )}
+
+                <div className="w-full mt-4">
+                    <label
+                        htmlFor="pdf-upload"
+                        className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+                    >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <p className="mb-2 text-sm text-gray-500">
+                                <span className="font-semibold">
+                                    Click to upload
+                                </span>{" "}
+                                or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-500">
+                                PDF files only
+                            </p>
+                        </div>
+                        <input
+                            id="pdf-upload"
+                            type="file"
+                            className="hidden"
+                            accept=".pdf"
+                            onChange={handleFileSelect}
+                        />
+                    </label>
+                </div>
+
+                <button
+                    onClick={handleSubmit}
+                    disabled={isLoading || isTranslating}
+                    className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    {isLoading || isTranslating
+                        ? "Processing..."
+                        : "Process PDF"}
+                </button>
+            </div>
 
             {error && <div className="text-center text-red-500">{error}</div>}
 
@@ -228,7 +303,9 @@ export default function PdfUploader() {
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">
-                            Extracted and Translated Text:
+                            {selectedService === "translate"
+                                ? "Extracted and Translated Text:"
+                                : "Original and Summarised Text:"}
                         </h3>
                         <div className="flex gap-2">
                             <button
@@ -241,7 +318,9 @@ export default function PdfUploader() {
                                 onClick={() => handleCopyText(translatedText)}
                                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                             >
-                                Copy Translation
+                                {selectedService === "translate"
+                                    ? "Copy Translation"
+                                    : "Copy Summary"}
                             </button>
                         </div>
                     </div>
@@ -258,12 +337,14 @@ export default function PdfUploader() {
                         </div>
                         <div className="p-4 bg-white rounded-lg border border-gray-200">
                             <h4 className="font-medium text-gray-700 mb-2">
-                                Translated Text:
+                                {selectedService === "translate"
+                                    ? "Translated Text:"
+                                    : "Summarised Text:"}
                             </h4>
                             <div className="h-[400px] overflow-y-auto">
                                 <p className="whitespace-pre-wrap pr-4">
                                     {translatedText ||
-                                        "Translation in progress..."}
+                                        (isTranslating ? "Processing..." : "")}
                                 </p>
                             </div>
                         </div>
