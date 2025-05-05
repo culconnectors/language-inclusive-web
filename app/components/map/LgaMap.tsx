@@ -289,7 +289,7 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps = {}) => {
 
       {/* Council Info Card */}
       <CouncilInfoCard
-        lgaCode={showCouncilInfo ? selectedLgaCode : null}
+        lgaCode={showCouncilInfo && mode === 'statistics' ? selectedLgaCode : null}
         onClose={() => setShowCouncilInfo(false)}
       />
     </div>
