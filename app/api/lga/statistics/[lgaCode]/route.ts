@@ -1,12 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { lgaClient } from "@/lib/prisma";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { lgaCode: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
-    const lgaCode = parseInt(params.lgaCode);
+    // Extract lgaCode from the URL path
+    const url = new URL(request.url);
+    const lgaCode = parseInt(url.pathname.split("/").pop() || "");
 
     if (isNaN(lgaCode)) {
       return NextResponse.json(
