@@ -18,6 +18,22 @@ export default function TranslationPage() {
                         </p>
                         <PdfUploader />
                     </div>
+                    <div className="max-w-3xl mx-auto mt-8">
+                        <p className="text-lg text-gray-600 text-center mb-8">
+                            If you need professional translation service, please
+                            visit
+                            <br className="my-2" />
+                            <a
+                                href="https://translating.homeaffairs.gov.au/en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 underline"
+                            >
+                                Free Translating Service - Department of Home
+                                Affairs
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </section>
         </main>
