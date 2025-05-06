@@ -1,0 +1,30 @@
+name: fit5120-neon-archive
+
+on:
+  schedule:
+    - cron: '0 1 * * *' # 11 AM AEST
+  workflow_dispatch:
+
+permissions:
+  contents: read     
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create today’s archive branch
+        id: create
+        uses: neondatabase/create-branch-action@v5
+        with:
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
+          api_key:     ${{ secrets.NEON_API_KEY }}
+          parent:      main                    # fork from main branch
+          branch_name: archive-${{ github.run_number }}
+          username:    neondb_owner            
+          database:    neondb               
+
+      - name: Output new branch info
+        run: |
+          echo "Branch ID: ${{ steps.create.outputs.branch_id }}"
+          echo "Connect URL: ${{ steps.create.outputs.db_url }}"
