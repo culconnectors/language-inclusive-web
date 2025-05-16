@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { lgaClient } from "@/lib/prisma";
 
+/**
+ * GET handler for fetching council information for a specific LGA.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} JSON response with council info or error.
+ *
+ * - Extracts lgaCode from the URL path.
+ * - Returns council info and related LGA data if found.
+ * - Returns 400 for invalid code, 404 if not found, 500 for server error.
+ */
 export async function GET(request: NextRequest) {
     try {
         // Get lgaCode from URL pattern

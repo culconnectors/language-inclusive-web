@@ -103,6 +103,36 @@ export type LgaStatistics = $Result.DefaultSelection<Prisma.$LgaStatisticsPayloa
  * 
  */
 export type LgaNationalityYear = $Result.DefaultSelection<Prisma.$LgaNationalityYearPayload>
+/**
+ * Model Destination
+ * Static descriptive info for each top-10 destination
+ */
+export type Destination = $Result.DefaultSelection<Prisma.$DestinationPayload>
+/**
+ * Model DestinationCount
+ * Yearly visitor counts per destination & LGA
+ */
+export type DestinationCount = $Result.DefaultSelection<Prisma.$DestinationCountPayload>
+/**
+ * Model LandmarkType
+ * Lookup table for landmark categories (e.g. "Museum", "Park")
+ */
+export type LandmarkType = $Result.DefaultSelection<Prisma.$LandmarkTypePayload>
+/**
+ * Model Landmark
+ * Individual cultural landmarks in an LGA
+ */
+export type Landmark = $Result.DefaultSelection<Prisma.$LandmarkPayload>
+/**
+ * Model landmarks_Lga
+ * 
+ */
+export type landmarks_Lga = $Result.DefaultSelection<Prisma.$landmarks_LgaPayload>
+/**
+ * Model landmarks_Postcode
+ * 
+ */
+export type landmarks_Postcode = $Result.DefaultSelection<Prisma.$landmarks_PostcodePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -408,6 +438,66 @@ export class PrismaClient<
     * ```
     */
   get lgaNationalityYear(): Prisma.LgaNationalityYearDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.destination`: Exposes CRUD operations for the **Destination** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Destinations
+    * const destinations = await prisma.destination.findMany()
+    * ```
+    */
+  get destination(): Prisma.DestinationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.destinationCount`: Exposes CRUD operations for the **DestinationCount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DestinationCounts
+    * const destinationCounts = await prisma.destinationCount.findMany()
+    * ```
+    */
+  get destinationCount(): Prisma.DestinationCountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.landmarkType`: Exposes CRUD operations for the **LandmarkType** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LandmarkTypes
+    * const landmarkTypes = await prisma.landmarkType.findMany()
+    * ```
+    */
+  get landmarkType(): Prisma.LandmarkTypeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.landmark`: Exposes CRUD operations for the **Landmark** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Landmarks
+    * const landmarks = await prisma.landmark.findMany()
+    * ```
+    */
+  get landmark(): Prisma.LandmarkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.landmarks_Lga`: Exposes CRUD operations for the **landmarks_Lga** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Landmarks_Lgas
+    * const landmarks_Lgas = await prisma.landmarks_Lga.findMany()
+    * ```
+    */
+  get landmarks_Lga(): Prisma.landmarks_LgaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.landmarks_Postcode`: Exposes CRUD operations for the **landmarks_Postcode** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Landmarks_Postcodes
+    * const landmarks_Postcodes = await prisma.landmarks_Postcode.findMany()
+    * ```
+    */
+  get landmarks_Postcode(): Prisma.landmarks_PostcodeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -865,7 +955,13 @@ export namespace Prisma {
     Language: 'Language',
     LgaLanguageProficiency: 'LgaLanguageProficiency',
     LgaStatistics: 'LgaStatistics',
-    LgaNationalityYear: 'LgaNationalityYear'
+    LgaNationalityYear: 'LgaNationalityYear',
+    Destination: 'Destination',
+    DestinationCount: 'DestinationCount',
+    LandmarkType: 'LandmarkType',
+    Landmark: 'Landmark',
+    landmarks_Lga: 'landmarks_Lga',
+    landmarks_Postcode: 'landmarks_Postcode'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -884,7 +980,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course" | "lga" | "nationality" | "lgaNationality" | "councilInfo" | "postcode" | "language" | "lgaLanguageProficiency" | "lgaStatistics" | "lgaNationalityYear"
+      modelProps: "venue" | "category" | "organizer" | "logo" | "event" | "website" | "provider" | "location" | "course" | "lga" | "nationality" | "lgaNationality" | "councilInfo" | "postcode" | "language" | "lgaLanguageProficiency" | "lgaStatistics" | "lgaNationalityYear" | "destination" | "destinationCount" | "landmarkType" | "landmark" | "landmarks_Lga" | "landmarks_Postcode"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2220,6 +2316,450 @@ export namespace Prisma {
           }
         }
       }
+      Destination: {
+        payload: Prisma.$DestinationPayload<ExtArgs>
+        fields: Prisma.DestinationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DestinationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DestinationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          findFirst: {
+            args: Prisma.DestinationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DestinationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          findMany: {
+            args: Prisma.DestinationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          create: {
+            args: Prisma.DestinationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          createMany: {
+            args: Prisma.DestinationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DestinationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          delete: {
+            args: Prisma.DestinationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          update: {
+            args: Prisma.DestinationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          deleteMany: {
+            args: Prisma.DestinationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DestinationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DestinationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          upsert: {
+            args: Prisma.DestinationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          aggregate: {
+            args: Prisma.DestinationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDestination>
+          }
+          groupBy: {
+            args: Prisma.DestinationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DestinationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DestinationCountArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCountAggregateOutputType> | number
+          }
+        }
+      }
+      DestinationCount: {
+        payload: Prisma.$DestinationCountPayload<ExtArgs>
+        fields: Prisma.DestinationCountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DestinationCountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DestinationCountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          findFirst: {
+            args: Prisma.DestinationCountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DestinationCountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          findMany: {
+            args: Prisma.DestinationCountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>[]
+          }
+          create: {
+            args: Prisma.DestinationCountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          createMany: {
+            args: Prisma.DestinationCountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DestinationCountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>[]
+          }
+          delete: {
+            args: Prisma.DestinationCountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          update: {
+            args: Prisma.DestinationCountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          deleteMany: {
+            args: Prisma.DestinationCountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DestinationCountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DestinationCountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>[]
+          }
+          upsert: {
+            args: Prisma.DestinationCountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationCountPayload>
+          }
+          aggregate: {
+            args: Prisma.DestinationCountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDestinationCount>
+          }
+          groupBy: {
+            args: Prisma.DestinationCountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DestinationCountCountArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCountCountAggregateOutputType> | number
+          }
+        }
+      }
+      LandmarkType: {
+        payload: Prisma.$LandmarkTypePayload<ExtArgs>
+        fields: Prisma.LandmarkTypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LandmarkTypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LandmarkTypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          findFirst: {
+            args: Prisma.LandmarkTypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LandmarkTypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          findMany: {
+            args: Prisma.LandmarkTypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>[]
+          }
+          create: {
+            args: Prisma.LandmarkTypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          createMany: {
+            args: Prisma.LandmarkTypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LandmarkTypeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>[]
+          }
+          delete: {
+            args: Prisma.LandmarkTypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          update: {
+            args: Prisma.LandmarkTypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          deleteMany: {
+            args: Prisma.LandmarkTypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LandmarkTypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LandmarkTypeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>[]
+          }
+          upsert: {
+            args: Prisma.LandmarkTypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkTypePayload>
+          }
+          aggregate: {
+            args: Prisma.LandmarkTypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLandmarkType>
+          }
+          groupBy: {
+            args: Prisma.LandmarkTypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LandmarkTypeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LandmarkTypeCountArgs<ExtArgs>
+            result: $Utils.Optional<LandmarkTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      Landmark: {
+        payload: Prisma.$LandmarkPayload<ExtArgs>
+        fields: Prisma.LandmarkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LandmarkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LandmarkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          findFirst: {
+            args: Prisma.LandmarkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LandmarkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          findMany: {
+            args: Prisma.LandmarkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>[]
+          }
+          create: {
+            args: Prisma.LandmarkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          createMany: {
+            args: Prisma.LandmarkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LandmarkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>[]
+          }
+          delete: {
+            args: Prisma.LandmarkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          update: {
+            args: Prisma.LandmarkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          deleteMany: {
+            args: Prisma.LandmarkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LandmarkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LandmarkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>[]
+          }
+          upsert: {
+            args: Prisma.LandmarkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LandmarkPayload>
+          }
+          aggregate: {
+            args: Prisma.LandmarkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLandmark>
+          }
+          groupBy: {
+            args: Prisma.LandmarkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LandmarkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LandmarkCountArgs<ExtArgs>
+            result: $Utils.Optional<LandmarkCountAggregateOutputType> | number
+          }
+        }
+      }
+      landmarks_Lga: {
+        payload: Prisma.$landmarks_LgaPayload<ExtArgs>
+        fields: Prisma.landmarks_LgaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.landmarks_LgaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.landmarks_LgaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          findFirst: {
+            args: Prisma.landmarks_LgaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.landmarks_LgaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          findMany: {
+            args: Prisma.landmarks_LgaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>[]
+          }
+          create: {
+            args: Prisma.landmarks_LgaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          createMany: {
+            args: Prisma.landmarks_LgaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.landmarks_LgaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>[]
+          }
+          delete: {
+            args: Prisma.landmarks_LgaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          update: {
+            args: Prisma.landmarks_LgaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          deleteMany: {
+            args: Prisma.landmarks_LgaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.landmarks_LgaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.landmarks_LgaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>[]
+          }
+          upsert: {
+            args: Prisma.landmarks_LgaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_LgaPayload>
+          }
+          aggregate: {
+            args: Prisma.Landmarks_LgaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLandmarks_Lga>
+          }
+          groupBy: {
+            args: Prisma.landmarks_LgaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Landmarks_LgaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.landmarks_LgaCountArgs<ExtArgs>
+            result: $Utils.Optional<Landmarks_LgaCountAggregateOutputType> | number
+          }
+        }
+      }
+      landmarks_Postcode: {
+        payload: Prisma.$landmarks_PostcodePayload<ExtArgs>
+        fields: Prisma.landmarks_PostcodeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.landmarks_PostcodeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.landmarks_PostcodeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          findFirst: {
+            args: Prisma.landmarks_PostcodeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.landmarks_PostcodeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          findMany: {
+            args: Prisma.landmarks_PostcodeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>[]
+          }
+          create: {
+            args: Prisma.landmarks_PostcodeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          createMany: {
+            args: Prisma.landmarks_PostcodeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.landmarks_PostcodeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>[]
+          }
+          delete: {
+            args: Prisma.landmarks_PostcodeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          update: {
+            args: Prisma.landmarks_PostcodeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          deleteMany: {
+            args: Prisma.landmarks_PostcodeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.landmarks_PostcodeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.landmarks_PostcodeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>[]
+          }
+          upsert: {
+            args: Prisma.landmarks_PostcodeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$landmarks_PostcodePayload>
+          }
+          aggregate: {
+            args: Prisma.Landmarks_PostcodeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLandmarks_Postcode>
+          }
+          groupBy: {
+            args: Prisma.landmarks_PostcodeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Landmarks_PostcodeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.landmarks_PostcodeCountArgs<ExtArgs>
+            result: $Utils.Optional<Landmarks_PostcodeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2322,6 +2862,12 @@ export namespace Prisma {
     lgaLanguageProficiency?: LgaLanguageProficiencyOmit
     lgaStatistics?: LgaStatisticsOmit
     lgaNationalityYear?: LgaNationalityYearOmit
+    destination?: DestinationOmit
+    destinationCount?: DestinationCountOmit
+    landmarkType?: LandmarkTypeOmit
+    landmark?: LandmarkOmit
+    landmarks_Lga?: landmarks_LgaOmit
+    landmarks_Postcode?: landmarks_PostcodeOmit
   }
 
   /* Types for Logging */
@@ -2732,6 +3278,148 @@ export namespace Prisma {
    */
   export type LanguageCountOutputTypeCountProficienciesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LgaLanguageProficiencyWhereInput
+  }
+
+
+  /**
+   * Count Type DestinationCountOutputType
+   */
+
+  export type DestinationCountOutputType = {
+    counts: number
+  }
+
+  export type DestinationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    counts?: boolean | DestinationCountOutputTypeCountCountsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCountOutputType
+     */
+    select?: DestinationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeCountCountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCountWhereInput
+  }
+
+
+  /**
+   * Count Type LandmarkTypeCountOutputType
+   */
+
+  export type LandmarkTypeCountOutputType = {
+    landmarks: number
+  }
+
+  export type LandmarkTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    landmarks?: boolean | LandmarkTypeCountOutputTypeCountLandmarksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LandmarkTypeCountOutputType without action
+   */
+  export type LandmarkTypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkTypeCountOutputType
+     */
+    select?: LandmarkTypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LandmarkTypeCountOutputType without action
+   */
+  export type LandmarkTypeCountOutputTypeCountLandmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandmarkWhereInput
+  }
+
+
+  /**
+   * Count Type Landmarks_LgaCountOutputType
+   */
+
+  export type Landmarks_LgaCountOutputType = {
+    destinationCounts: number
+    landmarks: number
+    Postcode: number
+  }
+
+  export type Landmarks_LgaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinationCounts?: boolean | Landmarks_LgaCountOutputTypeCountDestinationCountsArgs
+    landmarks?: boolean | Landmarks_LgaCountOutputTypeCountLandmarksArgs
+    Postcode?: boolean | Landmarks_LgaCountOutputTypeCountPostcodeArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Landmarks_LgaCountOutputType without action
+   */
+  export type Landmarks_LgaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmarks_LgaCountOutputType
+     */
+    select?: Landmarks_LgaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Landmarks_LgaCountOutputType without action
+   */
+  export type Landmarks_LgaCountOutputTypeCountDestinationCountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCountWhereInput
+  }
+
+  /**
+   * Landmarks_LgaCountOutputType without action
+   */
+  export type Landmarks_LgaCountOutputTypeCountLandmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandmarkWhereInput
+  }
+
+  /**
+   * Landmarks_LgaCountOutputType without action
+   */
+  export type Landmarks_LgaCountOutputTypeCountPostcodeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: landmarks_PostcodeWhereInput
+  }
+
+
+  /**
+   * Count Type Landmarks_PostcodeCountOutputType
+   */
+
+  export type Landmarks_PostcodeCountOutputType = {
+    landmarks: number
+  }
+
+  export type Landmarks_PostcodeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    landmarks?: boolean | Landmarks_PostcodeCountOutputTypeCountLandmarksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Landmarks_PostcodeCountOutputType without action
+   */
+  export type Landmarks_PostcodeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmarks_PostcodeCountOutputType
+     */
+    select?: Landmarks_PostcodeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Landmarks_PostcodeCountOutputType without action
+   */
+  export type Landmarks_PostcodeCountOutputTypeCountLandmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandmarkWhereInput
   }
 
 
@@ -23185,6 +23873,6807 @@ export namespace Prisma {
 
 
   /**
+   * Model Destination
+   */
+
+  export type AggregateDestination = {
+    _count: DestinationCountAggregateOutputType | null
+    _avg: DestinationAvgAggregateOutputType | null
+    _sum: DestinationSumAggregateOutputType | null
+    _min: DestinationMinAggregateOutputType | null
+    _max: DestinationMaxAggregateOutputType | null
+  }
+
+  export type DestinationAvgAggregateOutputType = {
+    destination_id: number | null
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type DestinationSumAggregateOutputType = {
+    destination_id: number | null
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type DestinationMinAggregateOutputType = {
+    destination_id: number | null
+    destination_name: string | null
+    description: string | null
+    postcode: number | null
+    website: string | null
+    image_url: string | null
+    image_attribution: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type DestinationMaxAggregateOutputType = {
+    destination_id: number | null
+    destination_name: string | null
+    description: string | null
+    postcode: number | null
+    website: string | null
+    image_url: string | null
+    image_attribution: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type DestinationCountAggregateOutputType = {
+    destination_id: number
+    destination_name: number
+    description: number
+    postcode: number
+    website: number
+    image_url: number
+    image_attribution: number
+    latitude: number
+    longitude: number
+    _all: number
+  }
+
+
+  export type DestinationAvgAggregateInputType = {
+    destination_id?: true
+    postcode?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type DestinationSumAggregateInputType = {
+    destination_id?: true
+    postcode?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type DestinationMinAggregateInputType = {
+    destination_id?: true
+    destination_name?: true
+    description?: true
+    postcode?: true
+    website?: true
+    image_url?: true
+    image_attribution?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type DestinationMaxAggregateInputType = {
+    destination_id?: true
+    destination_name?: true
+    description?: true
+    postcode?: true
+    website?: true
+    image_url?: true
+    image_attribution?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type DestinationCountAggregateInputType = {
+    destination_id?: true
+    destination_name?: true
+    description?: true
+    postcode?: true
+    website?: true
+    image_url?: true
+    image_attribution?: true
+    latitude?: true
+    longitude?: true
+    _all?: true
+  }
+
+  export type DestinationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Destination to aggregate.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Destinations
+    **/
+    _count?: true | DestinationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DestinationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DestinationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DestinationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DestinationMaxAggregateInputType
+  }
+
+  export type GetDestinationAggregateType<T extends DestinationAggregateArgs> = {
+        [P in keyof T & keyof AggregateDestination]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDestination[P]>
+      : GetScalarType<T[P], AggregateDestination[P]>
+  }
+
+
+
+
+  export type DestinationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationWhereInput
+    orderBy?: DestinationOrderByWithAggregationInput | DestinationOrderByWithAggregationInput[]
+    by: DestinationScalarFieldEnum[] | DestinationScalarFieldEnum
+    having?: DestinationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DestinationCountAggregateInputType | true
+    _avg?: DestinationAvgAggregateInputType
+    _sum?: DestinationSumAggregateInputType
+    _min?: DestinationMinAggregateInputType
+    _max?: DestinationMaxAggregateInputType
+  }
+
+  export type DestinationGroupByOutputType = {
+    destination_id: number
+    destination_name: string
+    description: string | null
+    postcode: number
+    website: string | null
+    image_url: string | null
+    image_attribution: string | null
+    latitude: number
+    longitude: number
+    _count: DestinationCountAggregateOutputType | null
+    _avg: DestinationAvgAggregateOutputType | null
+    _sum: DestinationSumAggregateOutputType | null
+    _min: DestinationMinAggregateOutputType | null
+    _max: DestinationMaxAggregateOutputType | null
+  }
+
+  type GetDestinationGroupByPayload<T extends DestinationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DestinationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DestinationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DestinationGroupByOutputType[P]>
+            : GetScalarType<T[P], DestinationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DestinationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_id?: boolean
+    destination_name?: boolean
+    description?: boolean
+    postcode?: boolean
+    website?: boolean
+    image_url?: boolean
+    image_attribution?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    counts?: boolean | Destination$countsArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_id?: boolean
+    destination_name?: boolean
+    description?: boolean
+    postcode?: boolean
+    website?: boolean
+    image_url?: boolean
+    image_attribution?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_id?: boolean
+    destination_name?: boolean
+    description?: boolean
+    postcode?: boolean
+    website?: boolean
+    image_url?: boolean
+    image_attribution?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectScalar = {
+    destination_id?: boolean
+    destination_name?: boolean
+    description?: boolean
+    postcode?: boolean
+    website?: boolean
+    image_url?: boolean
+    image_attribution?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }
+
+  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"destination_id" | "destination_name" | "description" | "postcode" | "website" | "image_url" | "image_attribution" | "latitude" | "longitude", ExtArgs["result"]["destination"]>
+  export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    counts?: boolean | Destination$countsArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DestinationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DestinationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DestinationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Destination"
+    objects: {
+      counts: Prisma.$DestinationCountPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      destination_id: number
+      destination_name: string
+      description: string | null
+      postcode: number
+      website: string | null
+      image_url: string | null
+      image_attribution: string | null
+      latitude: number
+      longitude: number
+    }, ExtArgs["result"]["destination"]>
+    composites: {}
+  }
+
+  type DestinationGetPayload<S extends boolean | null | undefined | DestinationDefaultArgs> = $Result.GetResult<Prisma.$DestinationPayload, S>
+
+  type DestinationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DestinationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DestinationCountAggregateInputType | true
+    }
+
+  export interface DestinationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Destination'], meta: { name: 'Destination' } }
+    /**
+     * Find zero or one Destination that matches the filter.
+     * @param {DestinationFindUniqueArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DestinationFindUniqueArgs>(args: SelectSubset<T, DestinationFindUniqueArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Destination that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DestinationFindUniqueOrThrowArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DestinationFindUniqueOrThrowArgs>(args: SelectSubset<T, DestinationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindFirstArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DestinationFindFirstArgs>(args?: SelectSubset<T, DestinationFindFirstArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindFirstOrThrowArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DestinationFindFirstOrThrowArgs>(args?: SelectSubset<T, DestinationFindFirstOrThrowArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Destinations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Destinations
+     * const destinations = await prisma.destination.findMany()
+     * 
+     * // Get first 10 Destinations
+     * const destinations = await prisma.destination.findMany({ take: 10 })
+     * 
+     * // Only select the `destination_id`
+     * const destinationWithDestination_idOnly = await prisma.destination.findMany({ select: { destination_id: true } })
+     * 
+     */
+    findMany<T extends DestinationFindManyArgs>(args?: SelectSubset<T, DestinationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Destination.
+     * @param {DestinationCreateArgs} args - Arguments to create a Destination.
+     * @example
+     * // Create one Destination
+     * const Destination = await prisma.destination.create({
+     *   data: {
+     *     // ... data to create a Destination
+     *   }
+     * })
+     * 
+     */
+    create<T extends DestinationCreateArgs>(args: SelectSubset<T, DestinationCreateArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Destinations.
+     * @param {DestinationCreateManyArgs} args - Arguments to create many Destinations.
+     * @example
+     * // Create many Destinations
+     * const destination = await prisma.destination.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DestinationCreateManyArgs>(args?: SelectSubset<T, DestinationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Destinations and returns the data saved in the database.
+     * @param {DestinationCreateManyAndReturnArgs} args - Arguments to create many Destinations.
+     * @example
+     * // Create many Destinations
+     * const destination = await prisma.destination.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Destinations and only return the `destination_id`
+     * const destinationWithDestination_idOnly = await prisma.destination.createManyAndReturn({
+     *   select: { destination_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DestinationCreateManyAndReturnArgs>(args?: SelectSubset<T, DestinationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Destination.
+     * @param {DestinationDeleteArgs} args - Arguments to delete one Destination.
+     * @example
+     * // Delete one Destination
+     * const Destination = await prisma.destination.delete({
+     *   where: {
+     *     // ... filter to delete one Destination
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DestinationDeleteArgs>(args: SelectSubset<T, DestinationDeleteArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Destination.
+     * @param {DestinationUpdateArgs} args - Arguments to update one Destination.
+     * @example
+     * // Update one Destination
+     * const destination = await prisma.destination.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DestinationUpdateArgs>(args: SelectSubset<T, DestinationUpdateArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Destinations.
+     * @param {DestinationDeleteManyArgs} args - Arguments to filter Destinations to delete.
+     * @example
+     * // Delete a few Destinations
+     * const { count } = await prisma.destination.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DestinationDeleteManyArgs>(args?: SelectSubset<T, DestinationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destinations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Destinations
+     * const destination = await prisma.destination.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DestinationUpdateManyArgs>(args: SelectSubset<T, DestinationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destinations and returns the data updated in the database.
+     * @param {DestinationUpdateManyAndReturnArgs} args - Arguments to update many Destinations.
+     * @example
+     * // Update many Destinations
+     * const destination = await prisma.destination.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Destinations and only return the `destination_id`
+     * const destinationWithDestination_idOnly = await prisma.destination.updateManyAndReturn({
+     *   select: { destination_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DestinationUpdateManyAndReturnArgs>(args: SelectSubset<T, DestinationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Destination.
+     * @param {DestinationUpsertArgs} args - Arguments to update or create a Destination.
+     * @example
+     * // Update or create a Destination
+     * const destination = await prisma.destination.upsert({
+     *   create: {
+     *     // ... data to create a Destination
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Destination we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DestinationUpsertArgs>(args: SelectSubset<T, DestinationUpsertArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Destinations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountArgs} args - Arguments to filter Destinations to count.
+     * @example
+     * // Count the number of Destinations
+     * const count = await prisma.destination.count({
+     *   where: {
+     *     // ... the filter for the Destinations we want to count
+     *   }
+     * })
+    **/
+    count<T extends DestinationCountArgs>(
+      args?: Subset<T, DestinationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DestinationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Destination.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DestinationAggregateArgs>(args: Subset<T, DestinationAggregateArgs>): Prisma.PrismaPromise<GetDestinationAggregateType<T>>
+
+    /**
+     * Group by Destination.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DestinationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DestinationGroupByArgs['orderBy'] }
+        : { orderBy?: DestinationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DestinationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDestinationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Destination model
+   */
+  readonly fields: DestinationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Destination.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DestinationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    counts<T extends Destination$countsArgs<ExtArgs> = {}>(args?: Subset<T, Destination$countsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Destination model
+   */
+  interface DestinationFieldRefs {
+    readonly destination_id: FieldRef<"Destination", 'Int'>
+    readonly destination_name: FieldRef<"Destination", 'String'>
+    readonly description: FieldRef<"Destination", 'String'>
+    readonly postcode: FieldRef<"Destination", 'Int'>
+    readonly website: FieldRef<"Destination", 'String'>
+    readonly image_url: FieldRef<"Destination", 'String'>
+    readonly image_attribution: FieldRef<"Destination", 'String'>
+    readonly latitude: FieldRef<"Destination", 'Float'>
+    readonly longitude: FieldRef<"Destination", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Destination findUnique
+   */
+  export type DestinationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination findUniqueOrThrow
+   */
+  export type DestinationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination findFirst
+   */
+  export type DestinationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Destinations.
+     */
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination findFirstOrThrow
+   */
+  export type DestinationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Destinations.
+     */
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination findMany
+   */
+  export type DestinationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destinations to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination create
+   */
+  export type DestinationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Destination.
+     */
+    data: XOR<DestinationCreateInput, DestinationUncheckedCreateInput>
+  }
+
+  /**
+   * Destination createMany
+   */
+  export type DestinationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Destinations.
+     */
+    data: DestinationCreateManyInput | DestinationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Destination createManyAndReturn
+   */
+  export type DestinationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Destinations.
+     */
+    data: DestinationCreateManyInput | DestinationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Destination update
+   */
+  export type DestinationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Destination.
+     */
+    data: XOR<DestinationUpdateInput, DestinationUncheckedUpdateInput>
+    /**
+     * Choose, which Destination to update.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination updateMany
+   */
+  export type DestinationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Destinations.
+     */
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyInput>
+    /**
+     * Filter which Destinations to update
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination updateManyAndReturn
+   */
+  export type DestinationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * The data used to update Destinations.
+     */
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyInput>
+    /**
+     * Filter which Destinations to update
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination upsert
+   */
+  export type DestinationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Destination to update in case it exists.
+     */
+    where: DestinationWhereUniqueInput
+    /**
+     * In case the Destination found by the `where` argument doesn't exist, create a new Destination with this data.
+     */
+    create: XOR<DestinationCreateInput, DestinationUncheckedCreateInput>
+    /**
+     * In case the Destination was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DestinationUpdateInput, DestinationUncheckedUpdateInput>
+  }
+
+  /**
+   * Destination delete
+   */
+  export type DestinationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter which Destination to delete.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination deleteMany
+   */
+  export type DestinationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Destinations to delete
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination.counts
+   */
+  export type Destination$countsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    where?: DestinationCountWhereInput
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    cursor?: DestinationCountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationCountScalarFieldEnum | DestinationCountScalarFieldEnum[]
+  }
+
+  /**
+   * Destination without action
+   */
+  export type DestinationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DestinationCount
+   */
+
+  export type AggregateDestinationCount = {
+    _count: DestinationCountCountAggregateOutputType | null
+    _avg: DestinationCountAvgAggregateOutputType | null
+    _sum: DestinationCountSumAggregateOutputType | null
+    _min: DestinationCountMinAggregateOutputType | null
+    _max: DestinationCountMaxAggregateOutputType | null
+  }
+
+  export type DestinationCountAvgAggregateOutputType = {
+    destination_year_type_id: number | null
+    destination_id: number | null
+    lga_code: number | null
+    year: number | null
+    total_stay_counts: number | null
+    pct_change_yoy: number | null
+  }
+
+  export type DestinationCountSumAggregateOutputType = {
+    destination_year_type_id: number | null
+    destination_id: number | null
+    lga_code: number | null
+    year: number | null
+    total_stay_counts: number | null
+    pct_change_yoy: number | null
+  }
+
+  export type DestinationCountMinAggregateOutputType = {
+    destination_year_type_id: number | null
+    destination_id: number | null
+    lga_code: number | null
+    year: number | null
+    total_stay_counts: number | null
+    pct_change_yoy: number | null
+  }
+
+  export type DestinationCountMaxAggregateOutputType = {
+    destination_year_type_id: number | null
+    destination_id: number | null
+    lga_code: number | null
+    year: number | null
+    total_stay_counts: number | null
+    pct_change_yoy: number | null
+  }
+
+  export type DestinationCountCountAggregateOutputType = {
+    destination_year_type_id: number
+    destination_id: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy: number
+    _all: number
+  }
+
+
+  export type DestinationCountAvgAggregateInputType = {
+    destination_year_type_id?: true
+    destination_id?: true
+    lga_code?: true
+    year?: true
+    total_stay_counts?: true
+    pct_change_yoy?: true
+  }
+
+  export type DestinationCountSumAggregateInputType = {
+    destination_year_type_id?: true
+    destination_id?: true
+    lga_code?: true
+    year?: true
+    total_stay_counts?: true
+    pct_change_yoy?: true
+  }
+
+  export type DestinationCountMinAggregateInputType = {
+    destination_year_type_id?: true
+    destination_id?: true
+    lga_code?: true
+    year?: true
+    total_stay_counts?: true
+    pct_change_yoy?: true
+  }
+
+  export type DestinationCountMaxAggregateInputType = {
+    destination_year_type_id?: true
+    destination_id?: true
+    lga_code?: true
+    year?: true
+    total_stay_counts?: true
+    pct_change_yoy?: true
+  }
+
+  export type DestinationCountCountAggregateInputType = {
+    destination_year_type_id?: true
+    destination_id?: true
+    lga_code?: true
+    year?: true
+    total_stay_counts?: true
+    pct_change_yoy?: true
+    _all?: true
+  }
+
+  export type DestinationCountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DestinationCount to aggregate.
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCounts to fetch.
+     */
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DestinationCountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DestinationCounts
+    **/
+    _count?: true | DestinationCountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DestinationCountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DestinationCountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DestinationCountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DestinationCountMaxAggregateInputType
+  }
+
+  export type GetDestinationCountAggregateType<T extends DestinationCountAggregateArgs> = {
+        [P in keyof T & keyof AggregateDestinationCount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDestinationCount[P]>
+      : GetScalarType<T[P], AggregateDestinationCount[P]>
+  }
+
+
+
+
+  export type DestinationCountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationCountWhereInput
+    orderBy?: DestinationCountOrderByWithAggregationInput | DestinationCountOrderByWithAggregationInput[]
+    by: DestinationCountScalarFieldEnum[] | DestinationCountScalarFieldEnum
+    having?: DestinationCountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DestinationCountCountAggregateInputType | true
+    _avg?: DestinationCountAvgAggregateInputType
+    _sum?: DestinationCountSumAggregateInputType
+    _min?: DestinationCountMinAggregateInputType
+    _max?: DestinationCountMaxAggregateInputType
+  }
+
+  export type DestinationCountGroupByOutputType = {
+    destination_year_type_id: number
+    destination_id: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy: number | null
+    _count: DestinationCountCountAggregateOutputType | null
+    _avg: DestinationCountAvgAggregateOutputType | null
+    _sum: DestinationCountSumAggregateOutputType | null
+    _min: DestinationCountMinAggregateOutputType | null
+    _max: DestinationCountMaxAggregateOutputType | null
+  }
+
+  type GetDestinationCountGroupByPayload<T extends DestinationCountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DestinationCountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DestinationCountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DestinationCountGroupByOutputType[P]>
+            : GetScalarType<T[P], DestinationCountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DestinationCountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_year_type_id?: boolean
+    destination_id?: boolean
+    lga_code?: boolean
+    year?: boolean
+    total_stay_counts?: boolean
+    pct_change_yoy?: boolean
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCount"]>
+
+  export type DestinationCountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_year_type_id?: boolean
+    destination_id?: boolean
+    lga_code?: boolean
+    year?: boolean
+    total_stay_counts?: boolean
+    pct_change_yoy?: boolean
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCount"]>
+
+  export type DestinationCountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    destination_year_type_id?: boolean
+    destination_id?: boolean
+    lga_code?: boolean
+    year?: boolean
+    total_stay_counts?: boolean
+    pct_change_yoy?: boolean
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destinationCount"]>
+
+  export type DestinationCountSelectScalar = {
+    destination_year_type_id?: boolean
+    destination_id?: boolean
+    lga_code?: boolean
+    year?: boolean
+    total_stay_counts?: boolean
+    pct_change_yoy?: boolean
+  }
+
+  export type DestinationCountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"destination_year_type_id" | "destination_id" | "lga_code" | "year" | "total_stay_counts" | "pct_change_yoy", ExtArgs["result"]["destinationCount"]>
+  export type DestinationCountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }
+  export type DestinationCountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }
+  export type DestinationCountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $DestinationCountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DestinationCount"
+    objects: {
+      destination: Prisma.$DestinationPayload<ExtArgs>
+      lga: Prisma.$landmarks_LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      destination_year_type_id: number
+      destination_id: number
+      lga_code: number
+      year: number
+      total_stay_counts: number
+      pct_change_yoy: number | null
+    }, ExtArgs["result"]["destinationCount"]>
+    composites: {}
+  }
+
+  type DestinationCountGetPayload<S extends boolean | null | undefined | DestinationCountDefaultArgs> = $Result.GetResult<Prisma.$DestinationCountPayload, S>
+
+  type DestinationCountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DestinationCountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DestinationCountCountAggregateInputType | true
+    }
+
+  export interface DestinationCountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DestinationCount'], meta: { name: 'DestinationCount' } }
+    /**
+     * Find zero or one DestinationCount that matches the filter.
+     * @param {DestinationCountFindUniqueArgs} args - Arguments to find a DestinationCount
+     * @example
+     * // Get one DestinationCount
+     * const destinationCount = await prisma.destinationCount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DestinationCountFindUniqueArgs>(args: SelectSubset<T, DestinationCountFindUniqueArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DestinationCount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DestinationCountFindUniqueOrThrowArgs} args - Arguments to find a DestinationCount
+     * @example
+     * // Get one DestinationCount
+     * const destinationCount = await prisma.destinationCount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DestinationCountFindUniqueOrThrowArgs>(args: SelectSubset<T, DestinationCountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DestinationCount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountFindFirstArgs} args - Arguments to find a DestinationCount
+     * @example
+     * // Get one DestinationCount
+     * const destinationCount = await prisma.destinationCount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DestinationCountFindFirstArgs>(args?: SelectSubset<T, DestinationCountFindFirstArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DestinationCount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountFindFirstOrThrowArgs} args - Arguments to find a DestinationCount
+     * @example
+     * // Get one DestinationCount
+     * const destinationCount = await prisma.destinationCount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DestinationCountFindFirstOrThrowArgs>(args?: SelectSubset<T, DestinationCountFindFirstOrThrowArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DestinationCounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DestinationCounts
+     * const destinationCounts = await prisma.destinationCount.findMany()
+     * 
+     * // Get first 10 DestinationCounts
+     * const destinationCounts = await prisma.destinationCount.findMany({ take: 10 })
+     * 
+     * // Only select the `destination_year_type_id`
+     * const destinationCountWithDestination_year_type_idOnly = await prisma.destinationCount.findMany({ select: { destination_year_type_id: true } })
+     * 
+     */
+    findMany<T extends DestinationCountFindManyArgs>(args?: SelectSubset<T, DestinationCountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DestinationCount.
+     * @param {DestinationCountCreateArgs} args - Arguments to create a DestinationCount.
+     * @example
+     * // Create one DestinationCount
+     * const DestinationCount = await prisma.destinationCount.create({
+     *   data: {
+     *     // ... data to create a DestinationCount
+     *   }
+     * })
+     * 
+     */
+    create<T extends DestinationCountCreateArgs>(args: SelectSubset<T, DestinationCountCreateArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DestinationCounts.
+     * @param {DestinationCountCreateManyArgs} args - Arguments to create many DestinationCounts.
+     * @example
+     * // Create many DestinationCounts
+     * const destinationCount = await prisma.destinationCount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DestinationCountCreateManyArgs>(args?: SelectSubset<T, DestinationCountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DestinationCounts and returns the data saved in the database.
+     * @param {DestinationCountCreateManyAndReturnArgs} args - Arguments to create many DestinationCounts.
+     * @example
+     * // Create many DestinationCounts
+     * const destinationCount = await prisma.destinationCount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DestinationCounts and only return the `destination_year_type_id`
+     * const destinationCountWithDestination_year_type_idOnly = await prisma.destinationCount.createManyAndReturn({
+     *   select: { destination_year_type_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DestinationCountCreateManyAndReturnArgs>(args?: SelectSubset<T, DestinationCountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DestinationCount.
+     * @param {DestinationCountDeleteArgs} args - Arguments to delete one DestinationCount.
+     * @example
+     * // Delete one DestinationCount
+     * const DestinationCount = await prisma.destinationCount.delete({
+     *   where: {
+     *     // ... filter to delete one DestinationCount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DestinationCountDeleteArgs>(args: SelectSubset<T, DestinationCountDeleteArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DestinationCount.
+     * @param {DestinationCountUpdateArgs} args - Arguments to update one DestinationCount.
+     * @example
+     * // Update one DestinationCount
+     * const destinationCount = await prisma.destinationCount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DestinationCountUpdateArgs>(args: SelectSubset<T, DestinationCountUpdateArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DestinationCounts.
+     * @param {DestinationCountDeleteManyArgs} args - Arguments to filter DestinationCounts to delete.
+     * @example
+     * // Delete a few DestinationCounts
+     * const { count } = await prisma.destinationCount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DestinationCountDeleteManyArgs>(args?: SelectSubset<T, DestinationCountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DestinationCounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DestinationCounts
+     * const destinationCount = await prisma.destinationCount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DestinationCountUpdateManyArgs>(args: SelectSubset<T, DestinationCountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DestinationCounts and returns the data updated in the database.
+     * @param {DestinationCountUpdateManyAndReturnArgs} args - Arguments to update many DestinationCounts.
+     * @example
+     * // Update many DestinationCounts
+     * const destinationCount = await prisma.destinationCount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DestinationCounts and only return the `destination_year_type_id`
+     * const destinationCountWithDestination_year_type_idOnly = await prisma.destinationCount.updateManyAndReturn({
+     *   select: { destination_year_type_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DestinationCountUpdateManyAndReturnArgs>(args: SelectSubset<T, DestinationCountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DestinationCount.
+     * @param {DestinationCountUpsertArgs} args - Arguments to update or create a DestinationCount.
+     * @example
+     * // Update or create a DestinationCount
+     * const destinationCount = await prisma.destinationCount.upsert({
+     *   create: {
+     *     // ... data to create a DestinationCount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DestinationCount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DestinationCountUpsertArgs>(args: SelectSubset<T, DestinationCountUpsertArgs<ExtArgs>>): Prisma__DestinationCountClient<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DestinationCounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountCountArgs} args - Arguments to filter DestinationCounts to count.
+     * @example
+     * // Count the number of DestinationCounts
+     * const count = await prisma.destinationCount.count({
+     *   where: {
+     *     // ... the filter for the DestinationCounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends DestinationCountCountArgs>(
+      args?: Subset<T, DestinationCountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DestinationCountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DestinationCount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DestinationCountAggregateArgs>(args: Subset<T, DestinationCountAggregateArgs>): Prisma.PrismaPromise<GetDestinationCountAggregateType<T>>
+
+    /**
+     * Group by DestinationCount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DestinationCountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DestinationCountGroupByArgs['orderBy'] }
+        : { orderBy?: DestinationCountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DestinationCountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDestinationCountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DestinationCount model
+   */
+  readonly fields: DestinationCountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DestinationCount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DestinationCountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    destination<T extends DestinationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DestinationDefaultArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lga<T extends landmarks_LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_LgaDefaultArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DestinationCount model
+   */
+  interface DestinationCountFieldRefs {
+    readonly destination_year_type_id: FieldRef<"DestinationCount", 'Int'>
+    readonly destination_id: FieldRef<"DestinationCount", 'Int'>
+    readonly lga_code: FieldRef<"DestinationCount", 'Int'>
+    readonly year: FieldRef<"DestinationCount", 'Int'>
+    readonly total_stay_counts: FieldRef<"DestinationCount", 'Int'>
+    readonly pct_change_yoy: FieldRef<"DestinationCount", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DestinationCount findUnique
+   */
+  export type DestinationCountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCount to fetch.
+     */
+    where: DestinationCountWhereUniqueInput
+  }
+
+  /**
+   * DestinationCount findUniqueOrThrow
+   */
+  export type DestinationCountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCount to fetch.
+     */
+    where: DestinationCountWhereUniqueInput
+  }
+
+  /**
+   * DestinationCount findFirst
+   */
+  export type DestinationCountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCount to fetch.
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCounts to fetch.
+     */
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DestinationCounts.
+     */
+    cursor?: DestinationCountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DestinationCounts.
+     */
+    distinct?: DestinationCountScalarFieldEnum | DestinationCountScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCount findFirstOrThrow
+   */
+  export type DestinationCountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCount to fetch.
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCounts to fetch.
+     */
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DestinationCounts.
+     */
+    cursor?: DestinationCountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DestinationCounts.
+     */
+    distinct?: DestinationCountScalarFieldEnum | DestinationCountScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCount findMany
+   */
+  export type DestinationCountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter, which DestinationCounts to fetch.
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DestinationCounts to fetch.
+     */
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DestinationCounts.
+     */
+    cursor?: DestinationCountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DestinationCounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DestinationCounts.
+     */
+    skip?: number
+    distinct?: DestinationCountScalarFieldEnum | DestinationCountScalarFieldEnum[]
+  }
+
+  /**
+   * DestinationCount create
+   */
+  export type DestinationCountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DestinationCount.
+     */
+    data: XOR<DestinationCountCreateInput, DestinationCountUncheckedCreateInput>
+  }
+
+  /**
+   * DestinationCount createMany
+   */
+  export type DestinationCountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DestinationCounts.
+     */
+    data: DestinationCountCreateManyInput | DestinationCountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DestinationCount createManyAndReturn
+   */
+  export type DestinationCountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * The data used to create many DestinationCounts.
+     */
+    data: DestinationCountCreateManyInput | DestinationCountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCount update
+   */
+  export type DestinationCountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DestinationCount.
+     */
+    data: XOR<DestinationCountUpdateInput, DestinationCountUncheckedUpdateInput>
+    /**
+     * Choose, which DestinationCount to update.
+     */
+    where: DestinationCountWhereUniqueInput
+  }
+
+  /**
+   * DestinationCount updateMany
+   */
+  export type DestinationCountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DestinationCounts.
+     */
+    data: XOR<DestinationCountUpdateManyMutationInput, DestinationCountUncheckedUpdateManyInput>
+    /**
+     * Filter which DestinationCounts to update
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * Limit how many DestinationCounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DestinationCount updateManyAndReturn
+   */
+  export type DestinationCountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * The data used to update DestinationCounts.
+     */
+    data: XOR<DestinationCountUpdateManyMutationInput, DestinationCountUncheckedUpdateManyInput>
+    /**
+     * Filter which DestinationCounts to update
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * Limit how many DestinationCounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCount upsert
+   */
+  export type DestinationCountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DestinationCount to update in case it exists.
+     */
+    where: DestinationCountWhereUniqueInput
+    /**
+     * In case the DestinationCount found by the `where` argument doesn't exist, create a new DestinationCount with this data.
+     */
+    create: XOR<DestinationCountCreateInput, DestinationCountUncheckedCreateInput>
+    /**
+     * In case the DestinationCount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DestinationCountUpdateInput, DestinationCountUncheckedUpdateInput>
+  }
+
+  /**
+   * DestinationCount delete
+   */
+  export type DestinationCountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    /**
+     * Filter which DestinationCount to delete.
+     */
+    where: DestinationCountWhereUniqueInput
+  }
+
+  /**
+   * DestinationCount deleteMany
+   */
+  export type DestinationCountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DestinationCounts to delete
+     */
+    where?: DestinationCountWhereInput
+    /**
+     * Limit how many DestinationCounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DestinationCount without action
+   */
+  export type DestinationCountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LandmarkType
+   */
+
+  export type AggregateLandmarkType = {
+    _count: LandmarkTypeCountAggregateOutputType | null
+    _avg: LandmarkTypeAvgAggregateOutputType | null
+    _sum: LandmarkTypeSumAggregateOutputType | null
+    _min: LandmarkTypeMinAggregateOutputType | null
+    _max: LandmarkTypeMaxAggregateOutputType | null
+  }
+
+  export type LandmarkTypeAvgAggregateOutputType = {
+    landmark_type_id: number | null
+  }
+
+  export type LandmarkTypeSumAggregateOutputType = {
+    landmark_type_id: number | null
+  }
+
+  export type LandmarkTypeMinAggregateOutputType = {
+    landmark_type_id: number | null
+    landmark_type: string | null
+  }
+
+  export type LandmarkTypeMaxAggregateOutputType = {
+    landmark_type_id: number | null
+    landmark_type: string | null
+  }
+
+  export type LandmarkTypeCountAggregateOutputType = {
+    landmark_type_id: number
+    landmark_type: number
+    _all: number
+  }
+
+
+  export type LandmarkTypeAvgAggregateInputType = {
+    landmark_type_id?: true
+  }
+
+  export type LandmarkTypeSumAggregateInputType = {
+    landmark_type_id?: true
+  }
+
+  export type LandmarkTypeMinAggregateInputType = {
+    landmark_type_id?: true
+    landmark_type?: true
+  }
+
+  export type LandmarkTypeMaxAggregateInputType = {
+    landmark_type_id?: true
+    landmark_type?: true
+  }
+
+  export type LandmarkTypeCountAggregateInputType = {
+    landmark_type_id?: true
+    landmark_type?: true
+    _all?: true
+  }
+
+  export type LandmarkTypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LandmarkType to aggregate.
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LandmarkTypes to fetch.
+     */
+    orderBy?: LandmarkTypeOrderByWithRelationInput | LandmarkTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LandmarkTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LandmarkTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LandmarkTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LandmarkTypes
+    **/
+    _count?: true | LandmarkTypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LandmarkTypeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LandmarkTypeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LandmarkTypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LandmarkTypeMaxAggregateInputType
+  }
+
+  export type GetLandmarkTypeAggregateType<T extends LandmarkTypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateLandmarkType]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLandmarkType[P]>
+      : GetScalarType<T[P], AggregateLandmarkType[P]>
+  }
+
+
+
+
+  export type LandmarkTypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandmarkTypeWhereInput
+    orderBy?: LandmarkTypeOrderByWithAggregationInput | LandmarkTypeOrderByWithAggregationInput[]
+    by: LandmarkTypeScalarFieldEnum[] | LandmarkTypeScalarFieldEnum
+    having?: LandmarkTypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LandmarkTypeCountAggregateInputType | true
+    _avg?: LandmarkTypeAvgAggregateInputType
+    _sum?: LandmarkTypeSumAggregateInputType
+    _min?: LandmarkTypeMinAggregateInputType
+    _max?: LandmarkTypeMaxAggregateInputType
+  }
+
+  export type LandmarkTypeGroupByOutputType = {
+    landmark_type_id: number
+    landmark_type: string
+    _count: LandmarkTypeCountAggregateOutputType | null
+    _avg: LandmarkTypeAvgAggregateOutputType | null
+    _sum: LandmarkTypeSumAggregateOutputType | null
+    _min: LandmarkTypeMinAggregateOutputType | null
+    _max: LandmarkTypeMaxAggregateOutputType | null
+  }
+
+  type GetLandmarkTypeGroupByPayload<T extends LandmarkTypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LandmarkTypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LandmarkTypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LandmarkTypeGroupByOutputType[P]>
+            : GetScalarType<T[P], LandmarkTypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LandmarkTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_type_id?: boolean
+    landmark_type?: boolean
+    landmarks?: boolean | LandmarkType$landmarksArgs<ExtArgs>
+    _count?: boolean | LandmarkTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmarkType"]>
+
+  export type LandmarkTypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_type_id?: boolean
+    landmark_type?: boolean
+  }, ExtArgs["result"]["landmarkType"]>
+
+  export type LandmarkTypeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_type_id?: boolean
+    landmark_type?: boolean
+  }, ExtArgs["result"]["landmarkType"]>
+
+  export type LandmarkTypeSelectScalar = {
+    landmark_type_id?: boolean
+    landmark_type?: boolean
+  }
+
+  export type LandmarkTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"landmark_type_id" | "landmark_type", ExtArgs["result"]["landmarkType"]>
+  export type LandmarkTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    landmarks?: boolean | LandmarkType$landmarksArgs<ExtArgs>
+    _count?: boolean | LandmarkTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LandmarkTypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LandmarkTypeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $LandmarkTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LandmarkType"
+    objects: {
+      landmarks: Prisma.$LandmarkPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      landmark_type_id: number
+      landmark_type: string
+    }, ExtArgs["result"]["landmarkType"]>
+    composites: {}
+  }
+
+  type LandmarkTypeGetPayload<S extends boolean | null | undefined | LandmarkTypeDefaultArgs> = $Result.GetResult<Prisma.$LandmarkTypePayload, S>
+
+  type LandmarkTypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LandmarkTypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LandmarkTypeCountAggregateInputType | true
+    }
+
+  export interface LandmarkTypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LandmarkType'], meta: { name: 'LandmarkType' } }
+    /**
+     * Find zero or one LandmarkType that matches the filter.
+     * @param {LandmarkTypeFindUniqueArgs} args - Arguments to find a LandmarkType
+     * @example
+     * // Get one LandmarkType
+     * const landmarkType = await prisma.landmarkType.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LandmarkTypeFindUniqueArgs>(args: SelectSubset<T, LandmarkTypeFindUniqueArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LandmarkType that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LandmarkTypeFindUniqueOrThrowArgs} args - Arguments to find a LandmarkType
+     * @example
+     * // Get one LandmarkType
+     * const landmarkType = await prisma.landmarkType.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LandmarkTypeFindUniqueOrThrowArgs>(args: SelectSubset<T, LandmarkTypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LandmarkType that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeFindFirstArgs} args - Arguments to find a LandmarkType
+     * @example
+     * // Get one LandmarkType
+     * const landmarkType = await prisma.landmarkType.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LandmarkTypeFindFirstArgs>(args?: SelectSubset<T, LandmarkTypeFindFirstArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LandmarkType that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeFindFirstOrThrowArgs} args - Arguments to find a LandmarkType
+     * @example
+     * // Get one LandmarkType
+     * const landmarkType = await prisma.landmarkType.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LandmarkTypeFindFirstOrThrowArgs>(args?: SelectSubset<T, LandmarkTypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LandmarkTypes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LandmarkTypes
+     * const landmarkTypes = await prisma.landmarkType.findMany()
+     * 
+     * // Get first 10 LandmarkTypes
+     * const landmarkTypes = await prisma.landmarkType.findMany({ take: 10 })
+     * 
+     * // Only select the `landmark_type_id`
+     * const landmarkTypeWithLandmark_type_idOnly = await prisma.landmarkType.findMany({ select: { landmark_type_id: true } })
+     * 
+     */
+    findMany<T extends LandmarkTypeFindManyArgs>(args?: SelectSubset<T, LandmarkTypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LandmarkType.
+     * @param {LandmarkTypeCreateArgs} args - Arguments to create a LandmarkType.
+     * @example
+     * // Create one LandmarkType
+     * const LandmarkType = await prisma.landmarkType.create({
+     *   data: {
+     *     // ... data to create a LandmarkType
+     *   }
+     * })
+     * 
+     */
+    create<T extends LandmarkTypeCreateArgs>(args: SelectSubset<T, LandmarkTypeCreateArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LandmarkTypes.
+     * @param {LandmarkTypeCreateManyArgs} args - Arguments to create many LandmarkTypes.
+     * @example
+     * // Create many LandmarkTypes
+     * const landmarkType = await prisma.landmarkType.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LandmarkTypeCreateManyArgs>(args?: SelectSubset<T, LandmarkTypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LandmarkTypes and returns the data saved in the database.
+     * @param {LandmarkTypeCreateManyAndReturnArgs} args - Arguments to create many LandmarkTypes.
+     * @example
+     * // Create many LandmarkTypes
+     * const landmarkType = await prisma.landmarkType.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LandmarkTypes and only return the `landmark_type_id`
+     * const landmarkTypeWithLandmark_type_idOnly = await prisma.landmarkType.createManyAndReturn({
+     *   select: { landmark_type_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LandmarkTypeCreateManyAndReturnArgs>(args?: SelectSubset<T, LandmarkTypeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LandmarkType.
+     * @param {LandmarkTypeDeleteArgs} args - Arguments to delete one LandmarkType.
+     * @example
+     * // Delete one LandmarkType
+     * const LandmarkType = await prisma.landmarkType.delete({
+     *   where: {
+     *     // ... filter to delete one LandmarkType
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LandmarkTypeDeleteArgs>(args: SelectSubset<T, LandmarkTypeDeleteArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LandmarkType.
+     * @param {LandmarkTypeUpdateArgs} args - Arguments to update one LandmarkType.
+     * @example
+     * // Update one LandmarkType
+     * const landmarkType = await prisma.landmarkType.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LandmarkTypeUpdateArgs>(args: SelectSubset<T, LandmarkTypeUpdateArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LandmarkTypes.
+     * @param {LandmarkTypeDeleteManyArgs} args - Arguments to filter LandmarkTypes to delete.
+     * @example
+     * // Delete a few LandmarkTypes
+     * const { count } = await prisma.landmarkType.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LandmarkTypeDeleteManyArgs>(args?: SelectSubset<T, LandmarkTypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LandmarkTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LandmarkTypes
+     * const landmarkType = await prisma.landmarkType.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LandmarkTypeUpdateManyArgs>(args: SelectSubset<T, LandmarkTypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LandmarkTypes and returns the data updated in the database.
+     * @param {LandmarkTypeUpdateManyAndReturnArgs} args - Arguments to update many LandmarkTypes.
+     * @example
+     * // Update many LandmarkTypes
+     * const landmarkType = await prisma.landmarkType.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LandmarkTypes and only return the `landmark_type_id`
+     * const landmarkTypeWithLandmark_type_idOnly = await prisma.landmarkType.updateManyAndReturn({
+     *   select: { landmark_type_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LandmarkTypeUpdateManyAndReturnArgs>(args: SelectSubset<T, LandmarkTypeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LandmarkType.
+     * @param {LandmarkTypeUpsertArgs} args - Arguments to update or create a LandmarkType.
+     * @example
+     * // Update or create a LandmarkType
+     * const landmarkType = await prisma.landmarkType.upsert({
+     *   create: {
+     *     // ... data to create a LandmarkType
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LandmarkType we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LandmarkTypeUpsertArgs>(args: SelectSubset<T, LandmarkTypeUpsertArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LandmarkTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeCountArgs} args - Arguments to filter LandmarkTypes to count.
+     * @example
+     * // Count the number of LandmarkTypes
+     * const count = await prisma.landmarkType.count({
+     *   where: {
+     *     // ... the filter for the LandmarkTypes we want to count
+     *   }
+     * })
+    **/
+    count<T extends LandmarkTypeCountArgs>(
+      args?: Subset<T, LandmarkTypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LandmarkTypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LandmarkType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LandmarkTypeAggregateArgs>(args: Subset<T, LandmarkTypeAggregateArgs>): Prisma.PrismaPromise<GetLandmarkTypeAggregateType<T>>
+
+    /**
+     * Group by LandmarkType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkTypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LandmarkTypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LandmarkTypeGroupByArgs['orderBy'] }
+        : { orderBy?: LandmarkTypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LandmarkTypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLandmarkTypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LandmarkType model
+   */
+  readonly fields: LandmarkTypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LandmarkType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LandmarkTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    landmarks<T extends LandmarkType$landmarksArgs<ExtArgs> = {}>(args?: Subset<T, LandmarkType$landmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LandmarkType model
+   */
+  interface LandmarkTypeFieldRefs {
+    readonly landmark_type_id: FieldRef<"LandmarkType", 'Int'>
+    readonly landmark_type: FieldRef<"LandmarkType", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LandmarkType findUnique
+   */
+  export type LandmarkTypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which LandmarkType to fetch.
+     */
+    where: LandmarkTypeWhereUniqueInput
+  }
+
+  /**
+   * LandmarkType findUniqueOrThrow
+   */
+  export type LandmarkTypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which LandmarkType to fetch.
+     */
+    where: LandmarkTypeWhereUniqueInput
+  }
+
+  /**
+   * LandmarkType findFirst
+   */
+  export type LandmarkTypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which LandmarkType to fetch.
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LandmarkTypes to fetch.
+     */
+    orderBy?: LandmarkTypeOrderByWithRelationInput | LandmarkTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LandmarkTypes.
+     */
+    cursor?: LandmarkTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LandmarkTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LandmarkTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LandmarkTypes.
+     */
+    distinct?: LandmarkTypeScalarFieldEnum | LandmarkTypeScalarFieldEnum[]
+  }
+
+  /**
+   * LandmarkType findFirstOrThrow
+   */
+  export type LandmarkTypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which LandmarkType to fetch.
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LandmarkTypes to fetch.
+     */
+    orderBy?: LandmarkTypeOrderByWithRelationInput | LandmarkTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LandmarkTypes.
+     */
+    cursor?: LandmarkTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LandmarkTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LandmarkTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LandmarkTypes.
+     */
+    distinct?: LandmarkTypeScalarFieldEnum | LandmarkTypeScalarFieldEnum[]
+  }
+
+  /**
+   * LandmarkType findMany
+   */
+  export type LandmarkTypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which LandmarkTypes to fetch.
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LandmarkTypes to fetch.
+     */
+    orderBy?: LandmarkTypeOrderByWithRelationInput | LandmarkTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LandmarkTypes.
+     */
+    cursor?: LandmarkTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LandmarkTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LandmarkTypes.
+     */
+    skip?: number
+    distinct?: LandmarkTypeScalarFieldEnum | LandmarkTypeScalarFieldEnum[]
+  }
+
+  /**
+   * LandmarkType create
+   */
+  export type LandmarkTypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LandmarkType.
+     */
+    data: XOR<LandmarkTypeCreateInput, LandmarkTypeUncheckedCreateInput>
+  }
+
+  /**
+   * LandmarkType createMany
+   */
+  export type LandmarkTypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LandmarkTypes.
+     */
+    data: LandmarkTypeCreateManyInput | LandmarkTypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LandmarkType createManyAndReturn
+   */
+  export type LandmarkTypeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * The data used to create many LandmarkTypes.
+     */
+    data: LandmarkTypeCreateManyInput | LandmarkTypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LandmarkType update
+   */
+  export type LandmarkTypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LandmarkType.
+     */
+    data: XOR<LandmarkTypeUpdateInput, LandmarkTypeUncheckedUpdateInput>
+    /**
+     * Choose, which LandmarkType to update.
+     */
+    where: LandmarkTypeWhereUniqueInput
+  }
+
+  /**
+   * LandmarkType updateMany
+   */
+  export type LandmarkTypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LandmarkTypes.
+     */
+    data: XOR<LandmarkTypeUpdateManyMutationInput, LandmarkTypeUncheckedUpdateManyInput>
+    /**
+     * Filter which LandmarkTypes to update
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * Limit how many LandmarkTypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LandmarkType updateManyAndReturn
+   */
+  export type LandmarkTypeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * The data used to update LandmarkTypes.
+     */
+    data: XOR<LandmarkTypeUpdateManyMutationInput, LandmarkTypeUncheckedUpdateManyInput>
+    /**
+     * Filter which LandmarkTypes to update
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * Limit how many LandmarkTypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LandmarkType upsert
+   */
+  export type LandmarkTypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LandmarkType to update in case it exists.
+     */
+    where: LandmarkTypeWhereUniqueInput
+    /**
+     * In case the LandmarkType found by the `where` argument doesn't exist, create a new LandmarkType with this data.
+     */
+    create: XOR<LandmarkTypeCreateInput, LandmarkTypeUncheckedCreateInput>
+    /**
+     * In case the LandmarkType was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LandmarkTypeUpdateInput, LandmarkTypeUncheckedUpdateInput>
+  }
+
+  /**
+   * LandmarkType delete
+   */
+  export type LandmarkTypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+    /**
+     * Filter which LandmarkType to delete.
+     */
+    where: LandmarkTypeWhereUniqueInput
+  }
+
+  /**
+   * LandmarkType deleteMany
+   */
+  export type LandmarkTypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LandmarkTypes to delete
+     */
+    where?: LandmarkTypeWhereInput
+    /**
+     * Limit how many LandmarkTypes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LandmarkType.landmarks
+   */
+  export type LandmarkType$landmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    where?: LandmarkWhereInput
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    cursor?: LandmarkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * LandmarkType without action
+   */
+  export type LandmarkTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LandmarkType
+     */
+    select?: LandmarkTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LandmarkType
+     */
+    omit?: LandmarkTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkTypeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Landmark
+   */
+
+  export type AggregateLandmark = {
+    _count: LandmarkCountAggregateOutputType | null
+    _avg: LandmarkAvgAggregateOutputType | null
+    _sum: LandmarkSumAggregateOutputType | null
+    _min: LandmarkMinAggregateOutputType | null
+    _max: LandmarkMaxAggregateOutputType | null
+  }
+
+  export type LandmarkAvgAggregateOutputType = {
+    landmark_id: number | null
+    landmark_type_id: number | null
+    latitude: number | null
+    longitude: number | null
+    postcode: number | null
+    lga_code: number | null
+  }
+
+  export type LandmarkSumAggregateOutputType = {
+    landmark_id: number | null
+    landmark_type_id: number | null
+    latitude: number | null
+    longitude: number | null
+    postcode: number | null
+    lga_code: number | null
+  }
+
+  export type LandmarkMinAggregateOutputType = {
+    landmark_id: number | null
+    landmark_name: string | null
+    landmark_description: string | null
+    landmark_type_id: number | null
+    ilms_url: string | null
+    latitude: number | null
+    longitude: number | null
+    postcode: number | null
+    lga_code: number | null
+  }
+
+  export type LandmarkMaxAggregateOutputType = {
+    landmark_id: number | null
+    landmark_name: string | null
+    landmark_description: string | null
+    landmark_type_id: number | null
+    ilms_url: string | null
+    latitude: number | null
+    longitude: number | null
+    postcode: number | null
+    lga_code: number | null
+  }
+
+  export type LandmarkCountAggregateOutputType = {
+    landmark_id: number
+    landmark_name: number
+    landmark_description: number
+    landmark_type_id: number
+    ilms_url: number
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+    _all: number
+  }
+
+
+  export type LandmarkAvgAggregateInputType = {
+    landmark_id?: true
+    landmark_type_id?: true
+    latitude?: true
+    longitude?: true
+    postcode?: true
+    lga_code?: true
+  }
+
+  export type LandmarkSumAggregateInputType = {
+    landmark_id?: true
+    landmark_type_id?: true
+    latitude?: true
+    longitude?: true
+    postcode?: true
+    lga_code?: true
+  }
+
+  export type LandmarkMinAggregateInputType = {
+    landmark_id?: true
+    landmark_name?: true
+    landmark_description?: true
+    landmark_type_id?: true
+    ilms_url?: true
+    latitude?: true
+    longitude?: true
+    postcode?: true
+    lga_code?: true
+  }
+
+  export type LandmarkMaxAggregateInputType = {
+    landmark_id?: true
+    landmark_name?: true
+    landmark_description?: true
+    landmark_type_id?: true
+    ilms_url?: true
+    latitude?: true
+    longitude?: true
+    postcode?: true
+    lga_code?: true
+  }
+
+  export type LandmarkCountAggregateInputType = {
+    landmark_id?: true
+    landmark_name?: true
+    landmark_description?: true
+    landmark_type_id?: true
+    ilms_url?: true
+    latitude?: true
+    longitude?: true
+    postcode?: true
+    lga_code?: true
+    _all?: true
+  }
+
+  export type LandmarkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Landmark to aggregate.
+     */
+    where?: LandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Landmarks to fetch.
+     */
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Landmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Landmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Landmarks
+    **/
+    _count?: true | LandmarkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LandmarkAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LandmarkSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LandmarkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LandmarkMaxAggregateInputType
+  }
+
+  export type GetLandmarkAggregateType<T extends LandmarkAggregateArgs> = {
+        [P in keyof T & keyof AggregateLandmark]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLandmark[P]>
+      : GetScalarType<T[P], AggregateLandmark[P]>
+  }
+
+
+
+
+  export type LandmarkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandmarkWhereInput
+    orderBy?: LandmarkOrderByWithAggregationInput | LandmarkOrderByWithAggregationInput[]
+    by: LandmarkScalarFieldEnum[] | LandmarkScalarFieldEnum
+    having?: LandmarkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LandmarkCountAggregateInputType | true
+    _avg?: LandmarkAvgAggregateInputType
+    _sum?: LandmarkSumAggregateInputType
+    _min?: LandmarkMinAggregateInputType
+    _max?: LandmarkMaxAggregateInputType
+  }
+
+  export type LandmarkGroupByOutputType = {
+    landmark_id: number
+    landmark_name: string
+    landmark_description: string | null
+    landmark_type_id: number
+    ilms_url: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+    _count: LandmarkCountAggregateOutputType | null
+    _avg: LandmarkAvgAggregateOutputType | null
+    _sum: LandmarkSumAggregateOutputType | null
+    _min: LandmarkMinAggregateOutputType | null
+    _max: LandmarkMaxAggregateOutputType | null
+  }
+
+  type GetLandmarkGroupByPayload<T extends LandmarkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LandmarkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LandmarkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LandmarkGroupByOutputType[P]>
+            : GetScalarType<T[P], LandmarkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LandmarkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_id?: boolean
+    landmark_name?: boolean
+    landmark_description?: boolean
+    landmark_type_id?: boolean
+    ilms_url?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    postcode?: boolean
+    lga_code?: boolean
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmark"]>
+
+  export type LandmarkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_id?: boolean
+    landmark_name?: boolean
+    landmark_description?: boolean
+    landmark_type_id?: boolean
+    ilms_url?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    postcode?: boolean
+    lga_code?: boolean
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmark"]>
+
+  export type LandmarkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    landmark_id?: boolean
+    landmark_name?: boolean
+    landmark_description?: boolean
+    landmark_type_id?: boolean
+    ilms_url?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    postcode?: boolean
+    lga_code?: boolean
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmark"]>
+
+  export type LandmarkSelectScalar = {
+    landmark_id?: boolean
+    landmark_name?: boolean
+    landmark_description?: boolean
+    landmark_type_id?: boolean
+    ilms_url?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    postcode?: boolean
+    lga_code?: boolean
+  }
+
+  export type LandmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"landmark_id" | "landmark_name" | "landmark_description" | "landmark_type_id" | "ilms_url" | "latitude" | "longitude" | "postcode" | "lga_code", ExtArgs["result"]["landmark"]>
+  export type LandmarkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }
+  export type LandmarkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }
+  export type LandmarkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | LandmarkTypeDefaultArgs<ExtArgs>
+    lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    postcodeRel?: boolean | landmarks_PostcodeDefaultArgs<ExtArgs>
+  }
+
+  export type $LandmarkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Landmark"
+    objects: {
+      type: Prisma.$LandmarkTypePayload<ExtArgs>
+      lga: Prisma.$landmarks_LgaPayload<ExtArgs>
+      postcodeRel: Prisma.$landmarks_PostcodePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      landmark_id: number
+      landmark_name: string
+      landmark_description: string | null
+      landmark_type_id: number
+      ilms_url: string | null
+      latitude: number
+      longitude: number
+      postcode: number
+      lga_code: number
+    }, ExtArgs["result"]["landmark"]>
+    composites: {}
+  }
+
+  type LandmarkGetPayload<S extends boolean | null | undefined | LandmarkDefaultArgs> = $Result.GetResult<Prisma.$LandmarkPayload, S>
+
+  type LandmarkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LandmarkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LandmarkCountAggregateInputType | true
+    }
+
+  export interface LandmarkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Landmark'], meta: { name: 'Landmark' } }
+    /**
+     * Find zero or one Landmark that matches the filter.
+     * @param {LandmarkFindUniqueArgs} args - Arguments to find a Landmark
+     * @example
+     * // Get one Landmark
+     * const landmark = await prisma.landmark.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LandmarkFindUniqueArgs>(args: SelectSubset<T, LandmarkFindUniqueArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Landmark that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LandmarkFindUniqueOrThrowArgs} args - Arguments to find a Landmark
+     * @example
+     * // Get one Landmark
+     * const landmark = await prisma.landmark.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LandmarkFindUniqueOrThrowArgs>(args: SelectSubset<T, LandmarkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmark that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkFindFirstArgs} args - Arguments to find a Landmark
+     * @example
+     * // Get one Landmark
+     * const landmark = await prisma.landmark.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LandmarkFindFirstArgs>(args?: SelectSubset<T, LandmarkFindFirstArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmark that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkFindFirstOrThrowArgs} args - Arguments to find a Landmark
+     * @example
+     * // Get one Landmark
+     * const landmark = await prisma.landmark.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LandmarkFindFirstOrThrowArgs>(args?: SelectSubset<T, LandmarkFindFirstOrThrowArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Landmarks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Landmarks
+     * const landmarks = await prisma.landmark.findMany()
+     * 
+     * // Get first 10 Landmarks
+     * const landmarks = await prisma.landmark.findMany({ take: 10 })
+     * 
+     * // Only select the `landmark_id`
+     * const landmarkWithLandmark_idOnly = await prisma.landmark.findMany({ select: { landmark_id: true } })
+     * 
+     */
+    findMany<T extends LandmarkFindManyArgs>(args?: SelectSubset<T, LandmarkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Landmark.
+     * @param {LandmarkCreateArgs} args - Arguments to create a Landmark.
+     * @example
+     * // Create one Landmark
+     * const Landmark = await prisma.landmark.create({
+     *   data: {
+     *     // ... data to create a Landmark
+     *   }
+     * })
+     * 
+     */
+    create<T extends LandmarkCreateArgs>(args: SelectSubset<T, LandmarkCreateArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Landmarks.
+     * @param {LandmarkCreateManyArgs} args - Arguments to create many Landmarks.
+     * @example
+     * // Create many Landmarks
+     * const landmark = await prisma.landmark.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LandmarkCreateManyArgs>(args?: SelectSubset<T, LandmarkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Landmarks and returns the data saved in the database.
+     * @param {LandmarkCreateManyAndReturnArgs} args - Arguments to create many Landmarks.
+     * @example
+     * // Create many Landmarks
+     * const landmark = await prisma.landmark.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Landmarks and only return the `landmark_id`
+     * const landmarkWithLandmark_idOnly = await prisma.landmark.createManyAndReturn({
+     *   select: { landmark_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LandmarkCreateManyAndReturnArgs>(args?: SelectSubset<T, LandmarkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Landmark.
+     * @param {LandmarkDeleteArgs} args - Arguments to delete one Landmark.
+     * @example
+     * // Delete one Landmark
+     * const Landmark = await prisma.landmark.delete({
+     *   where: {
+     *     // ... filter to delete one Landmark
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LandmarkDeleteArgs>(args: SelectSubset<T, LandmarkDeleteArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Landmark.
+     * @param {LandmarkUpdateArgs} args - Arguments to update one Landmark.
+     * @example
+     * // Update one Landmark
+     * const landmark = await prisma.landmark.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LandmarkUpdateArgs>(args: SelectSubset<T, LandmarkUpdateArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Landmarks.
+     * @param {LandmarkDeleteManyArgs} args - Arguments to filter Landmarks to delete.
+     * @example
+     * // Delete a few Landmarks
+     * const { count } = await prisma.landmark.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LandmarkDeleteManyArgs>(args?: SelectSubset<T, LandmarkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Landmarks
+     * const landmark = await prisma.landmark.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LandmarkUpdateManyArgs>(args: SelectSubset<T, LandmarkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks and returns the data updated in the database.
+     * @param {LandmarkUpdateManyAndReturnArgs} args - Arguments to update many Landmarks.
+     * @example
+     * // Update many Landmarks
+     * const landmark = await prisma.landmark.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Landmarks and only return the `landmark_id`
+     * const landmarkWithLandmark_idOnly = await prisma.landmark.updateManyAndReturn({
+     *   select: { landmark_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LandmarkUpdateManyAndReturnArgs>(args: SelectSubset<T, LandmarkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Landmark.
+     * @param {LandmarkUpsertArgs} args - Arguments to update or create a Landmark.
+     * @example
+     * // Update or create a Landmark
+     * const landmark = await prisma.landmark.upsert({
+     *   create: {
+     *     // ... data to create a Landmark
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Landmark we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LandmarkUpsertArgs>(args: SelectSubset<T, LandmarkUpsertArgs<ExtArgs>>): Prisma__LandmarkClient<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Landmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkCountArgs} args - Arguments to filter Landmarks to count.
+     * @example
+     * // Count the number of Landmarks
+     * const count = await prisma.landmark.count({
+     *   where: {
+     *     // ... the filter for the Landmarks we want to count
+     *   }
+     * })
+    **/
+    count<T extends LandmarkCountArgs>(
+      args?: Subset<T, LandmarkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LandmarkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Landmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LandmarkAggregateArgs>(args: Subset<T, LandmarkAggregateArgs>): Prisma.PrismaPromise<GetLandmarkAggregateType<T>>
+
+    /**
+     * Group by Landmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LandmarkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LandmarkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LandmarkGroupByArgs['orderBy'] }
+        : { orderBy?: LandmarkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LandmarkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLandmarkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Landmark model
+   */
+  readonly fields: LandmarkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Landmark.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LandmarkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    type<T extends LandmarkTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LandmarkTypeDefaultArgs<ExtArgs>>): Prisma__LandmarkTypeClient<$Result.GetResult<Prisma.$LandmarkTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lga<T extends landmarks_LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_LgaDefaultArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    postcodeRel<T extends landmarks_PostcodeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_PostcodeDefaultArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Landmark model
+   */
+  interface LandmarkFieldRefs {
+    readonly landmark_id: FieldRef<"Landmark", 'Int'>
+    readonly landmark_name: FieldRef<"Landmark", 'String'>
+    readonly landmark_description: FieldRef<"Landmark", 'String'>
+    readonly landmark_type_id: FieldRef<"Landmark", 'Int'>
+    readonly ilms_url: FieldRef<"Landmark", 'String'>
+    readonly latitude: FieldRef<"Landmark", 'Float'>
+    readonly longitude: FieldRef<"Landmark", 'Float'>
+    readonly postcode: FieldRef<"Landmark", 'Int'>
+    readonly lga_code: FieldRef<"Landmark", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Landmark findUnique
+   */
+  export type LandmarkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Landmark to fetch.
+     */
+    where: LandmarkWhereUniqueInput
+  }
+
+  /**
+   * Landmark findUniqueOrThrow
+   */
+  export type LandmarkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Landmark to fetch.
+     */
+    where: LandmarkWhereUniqueInput
+  }
+
+  /**
+   * Landmark findFirst
+   */
+  export type LandmarkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Landmark to fetch.
+     */
+    where?: LandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Landmarks to fetch.
+     */
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Landmarks.
+     */
+    cursor?: LandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Landmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Landmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Landmarks.
+     */
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Landmark findFirstOrThrow
+   */
+  export type LandmarkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Landmark to fetch.
+     */
+    where?: LandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Landmarks to fetch.
+     */
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Landmarks.
+     */
+    cursor?: LandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Landmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Landmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Landmarks.
+     */
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Landmark findMany
+   */
+  export type LandmarkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which Landmarks to fetch.
+     */
+    where?: LandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Landmarks to fetch.
+     */
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Landmarks.
+     */
+    cursor?: LandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Landmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Landmarks.
+     */
+    skip?: number
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Landmark create
+   */
+  export type LandmarkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Landmark.
+     */
+    data: XOR<LandmarkCreateInput, LandmarkUncheckedCreateInput>
+  }
+
+  /**
+   * Landmark createMany
+   */
+  export type LandmarkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Landmarks.
+     */
+    data: LandmarkCreateManyInput | LandmarkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Landmark createManyAndReturn
+   */
+  export type LandmarkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * The data used to create many Landmarks.
+     */
+    data: LandmarkCreateManyInput | LandmarkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Landmark update
+   */
+  export type LandmarkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Landmark.
+     */
+    data: XOR<LandmarkUpdateInput, LandmarkUncheckedUpdateInput>
+    /**
+     * Choose, which Landmark to update.
+     */
+    where: LandmarkWhereUniqueInput
+  }
+
+  /**
+   * Landmark updateMany
+   */
+  export type LandmarkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Landmarks.
+     */
+    data: XOR<LandmarkUpdateManyMutationInput, LandmarkUncheckedUpdateManyInput>
+    /**
+     * Filter which Landmarks to update
+     */
+    where?: LandmarkWhereInput
+    /**
+     * Limit how many Landmarks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Landmark updateManyAndReturn
+   */
+  export type LandmarkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * The data used to update Landmarks.
+     */
+    data: XOR<LandmarkUpdateManyMutationInput, LandmarkUncheckedUpdateManyInput>
+    /**
+     * Filter which Landmarks to update
+     */
+    where?: LandmarkWhereInput
+    /**
+     * Limit how many Landmarks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Landmark upsert
+   */
+  export type LandmarkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Landmark to update in case it exists.
+     */
+    where: LandmarkWhereUniqueInput
+    /**
+     * In case the Landmark found by the `where` argument doesn't exist, create a new Landmark with this data.
+     */
+    create: XOR<LandmarkCreateInput, LandmarkUncheckedCreateInput>
+    /**
+     * In case the Landmark was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LandmarkUpdateInput, LandmarkUncheckedUpdateInput>
+  }
+
+  /**
+   * Landmark delete
+   */
+  export type LandmarkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    /**
+     * Filter which Landmark to delete.
+     */
+    where: LandmarkWhereUniqueInput
+  }
+
+  /**
+   * Landmark deleteMany
+   */
+  export type LandmarkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Landmarks to delete
+     */
+    where?: LandmarkWhereInput
+    /**
+     * Limit how many Landmarks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Landmark without action
+   */
+  export type LandmarkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model landmarks_Lga
+   */
+
+  export type AggregateLandmarks_Lga = {
+    _count: Landmarks_LgaCountAggregateOutputType | null
+    _avg: Landmarks_LgaAvgAggregateOutputType | null
+    _sum: Landmarks_LgaSumAggregateOutputType | null
+    _min: Landmarks_LgaMinAggregateOutputType | null
+    _max: Landmarks_LgaMaxAggregateOutputType | null
+  }
+
+  export type Landmarks_LgaAvgAggregateOutputType = {
+    lga_code: number | null
+  }
+
+  export type Landmarks_LgaSumAggregateOutputType = {
+    lga_code: number | null
+  }
+
+  export type Landmarks_LgaMinAggregateOutputType = {
+    lga_code: number | null
+    lga_name: string | null
+  }
+
+  export type Landmarks_LgaMaxAggregateOutputType = {
+    lga_code: number | null
+    lga_name: string | null
+  }
+
+  export type Landmarks_LgaCountAggregateOutputType = {
+    lga_code: number
+    lga_name: number
+    _all: number
+  }
+
+
+  export type Landmarks_LgaAvgAggregateInputType = {
+    lga_code?: true
+  }
+
+  export type Landmarks_LgaSumAggregateInputType = {
+    lga_code?: true
+  }
+
+  export type Landmarks_LgaMinAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+  }
+
+  export type Landmarks_LgaMaxAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+  }
+
+  export type Landmarks_LgaCountAggregateInputType = {
+    lga_code?: true
+    lga_name?: true
+    _all?: true
+  }
+
+  export type Landmarks_LgaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which landmarks_Lga to aggregate.
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Lgas to fetch.
+     */
+    orderBy?: landmarks_LgaOrderByWithRelationInput | landmarks_LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: landmarks_LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned landmarks_Lgas
+    **/
+    _count?: true | Landmarks_LgaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Landmarks_LgaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Landmarks_LgaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Landmarks_LgaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Landmarks_LgaMaxAggregateInputType
+  }
+
+  export type GetLandmarks_LgaAggregateType<T extends Landmarks_LgaAggregateArgs> = {
+        [P in keyof T & keyof AggregateLandmarks_Lga]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLandmarks_Lga[P]>
+      : GetScalarType<T[P], AggregateLandmarks_Lga[P]>
+  }
+
+
+
+
+  export type landmarks_LgaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: landmarks_LgaWhereInput
+    orderBy?: landmarks_LgaOrderByWithAggregationInput | landmarks_LgaOrderByWithAggregationInput[]
+    by: Landmarks_LgaScalarFieldEnum[] | Landmarks_LgaScalarFieldEnum
+    having?: landmarks_LgaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Landmarks_LgaCountAggregateInputType | true
+    _avg?: Landmarks_LgaAvgAggregateInputType
+    _sum?: Landmarks_LgaSumAggregateInputType
+    _min?: Landmarks_LgaMinAggregateInputType
+    _max?: Landmarks_LgaMaxAggregateInputType
+  }
+
+  export type Landmarks_LgaGroupByOutputType = {
+    lga_code: number
+    lga_name: string
+    _count: Landmarks_LgaCountAggregateOutputType | null
+    _avg: Landmarks_LgaAvgAggregateOutputType | null
+    _sum: Landmarks_LgaSumAggregateOutputType | null
+    _min: Landmarks_LgaMinAggregateOutputType | null
+    _max: Landmarks_LgaMaxAggregateOutputType | null
+  }
+
+  type GetLandmarks_LgaGroupByPayload<T extends landmarks_LgaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Landmarks_LgaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Landmarks_LgaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Landmarks_LgaGroupByOutputType[P]>
+            : GetScalarType<T[P], Landmarks_LgaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type landmarks_LgaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+    destinationCounts?: boolean | landmarks_Lga$destinationCountsArgs<ExtArgs>
+    landmarks?: boolean | landmarks_Lga$landmarksArgs<ExtArgs>
+    Postcode?: boolean | landmarks_Lga$PostcodeArgs<ExtArgs>
+    _count?: boolean | Landmarks_LgaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmarks_Lga"]>
+
+  export type landmarks_LgaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+  }, ExtArgs["result"]["landmarks_Lga"]>
+
+  export type landmarks_LgaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    lga_code?: boolean
+    lga_name?: boolean
+  }, ExtArgs["result"]["landmarks_Lga"]>
+
+  export type landmarks_LgaSelectScalar = {
+    lga_code?: boolean
+    lga_name?: boolean
+  }
+
+  export type landmarks_LgaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"lga_code" | "lga_name", ExtArgs["result"]["landmarks_Lga"]>
+  export type landmarks_LgaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinationCounts?: boolean | landmarks_Lga$destinationCountsArgs<ExtArgs>
+    landmarks?: boolean | landmarks_Lga$landmarksArgs<ExtArgs>
+    Postcode?: boolean | landmarks_Lga$PostcodeArgs<ExtArgs>
+    _count?: boolean | Landmarks_LgaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type landmarks_LgaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type landmarks_LgaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $landmarks_LgaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "landmarks_Lga"
+    objects: {
+      destinationCounts: Prisma.$DestinationCountPayload<ExtArgs>[]
+      landmarks: Prisma.$LandmarkPayload<ExtArgs>[]
+      Postcode: Prisma.$landmarks_PostcodePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      lga_code: number
+      lga_name: string
+    }, ExtArgs["result"]["landmarks_Lga"]>
+    composites: {}
+  }
+
+  type landmarks_LgaGetPayload<S extends boolean | null | undefined | landmarks_LgaDefaultArgs> = $Result.GetResult<Prisma.$landmarks_LgaPayload, S>
+
+  type landmarks_LgaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<landmarks_LgaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Landmarks_LgaCountAggregateInputType | true
+    }
+
+  export interface landmarks_LgaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['landmarks_Lga'], meta: { name: 'landmarks_Lga' } }
+    /**
+     * Find zero or one Landmarks_Lga that matches the filter.
+     * @param {landmarks_LgaFindUniqueArgs} args - Arguments to find a Landmarks_Lga
+     * @example
+     * // Get one Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends landmarks_LgaFindUniqueArgs>(args: SelectSubset<T, landmarks_LgaFindUniqueArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Landmarks_Lga that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {landmarks_LgaFindUniqueOrThrowArgs} args - Arguments to find a Landmarks_Lga
+     * @example
+     * // Get one Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends landmarks_LgaFindUniqueOrThrowArgs>(args: SelectSubset<T, landmarks_LgaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmarks_Lga that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaFindFirstArgs} args - Arguments to find a Landmarks_Lga
+     * @example
+     * // Get one Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends landmarks_LgaFindFirstArgs>(args?: SelectSubset<T, landmarks_LgaFindFirstArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmarks_Lga that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaFindFirstOrThrowArgs} args - Arguments to find a Landmarks_Lga
+     * @example
+     * // Get one Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends landmarks_LgaFindFirstOrThrowArgs>(args?: SelectSubset<T, landmarks_LgaFindFirstOrThrowArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Landmarks_Lgas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Landmarks_Lgas
+     * const landmarks_Lgas = await prisma.landmarks_Lga.findMany()
+     * 
+     * // Get first 10 Landmarks_Lgas
+     * const landmarks_Lgas = await prisma.landmarks_Lga.findMany({ take: 10 })
+     * 
+     * // Only select the `lga_code`
+     * const landmarks_LgaWithLga_codeOnly = await prisma.landmarks_Lga.findMany({ select: { lga_code: true } })
+     * 
+     */
+    findMany<T extends landmarks_LgaFindManyArgs>(args?: SelectSubset<T, landmarks_LgaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Landmarks_Lga.
+     * @param {landmarks_LgaCreateArgs} args - Arguments to create a Landmarks_Lga.
+     * @example
+     * // Create one Landmarks_Lga
+     * const Landmarks_Lga = await prisma.landmarks_Lga.create({
+     *   data: {
+     *     // ... data to create a Landmarks_Lga
+     *   }
+     * })
+     * 
+     */
+    create<T extends landmarks_LgaCreateArgs>(args: SelectSubset<T, landmarks_LgaCreateArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Landmarks_Lgas.
+     * @param {landmarks_LgaCreateManyArgs} args - Arguments to create many Landmarks_Lgas.
+     * @example
+     * // Create many Landmarks_Lgas
+     * const landmarks_Lga = await prisma.landmarks_Lga.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends landmarks_LgaCreateManyArgs>(args?: SelectSubset<T, landmarks_LgaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Landmarks_Lgas and returns the data saved in the database.
+     * @param {landmarks_LgaCreateManyAndReturnArgs} args - Arguments to create many Landmarks_Lgas.
+     * @example
+     * // Create many Landmarks_Lgas
+     * const landmarks_Lga = await prisma.landmarks_Lga.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Landmarks_Lgas and only return the `lga_code`
+     * const landmarks_LgaWithLga_codeOnly = await prisma.landmarks_Lga.createManyAndReturn({
+     *   select: { lga_code: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends landmarks_LgaCreateManyAndReturnArgs>(args?: SelectSubset<T, landmarks_LgaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Landmarks_Lga.
+     * @param {landmarks_LgaDeleteArgs} args - Arguments to delete one Landmarks_Lga.
+     * @example
+     * // Delete one Landmarks_Lga
+     * const Landmarks_Lga = await prisma.landmarks_Lga.delete({
+     *   where: {
+     *     // ... filter to delete one Landmarks_Lga
+     *   }
+     * })
+     * 
+     */
+    delete<T extends landmarks_LgaDeleteArgs>(args: SelectSubset<T, landmarks_LgaDeleteArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Landmarks_Lga.
+     * @param {landmarks_LgaUpdateArgs} args - Arguments to update one Landmarks_Lga.
+     * @example
+     * // Update one Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends landmarks_LgaUpdateArgs>(args: SelectSubset<T, landmarks_LgaUpdateArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Landmarks_Lgas.
+     * @param {landmarks_LgaDeleteManyArgs} args - Arguments to filter Landmarks_Lgas to delete.
+     * @example
+     * // Delete a few Landmarks_Lgas
+     * const { count } = await prisma.landmarks_Lga.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends landmarks_LgaDeleteManyArgs>(args?: SelectSubset<T, landmarks_LgaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks_Lgas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Landmarks_Lgas
+     * const landmarks_Lga = await prisma.landmarks_Lga.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends landmarks_LgaUpdateManyArgs>(args: SelectSubset<T, landmarks_LgaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks_Lgas and returns the data updated in the database.
+     * @param {landmarks_LgaUpdateManyAndReturnArgs} args - Arguments to update many Landmarks_Lgas.
+     * @example
+     * // Update many Landmarks_Lgas
+     * const landmarks_Lga = await prisma.landmarks_Lga.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Landmarks_Lgas and only return the `lga_code`
+     * const landmarks_LgaWithLga_codeOnly = await prisma.landmarks_Lga.updateManyAndReturn({
+     *   select: { lga_code: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends landmarks_LgaUpdateManyAndReturnArgs>(args: SelectSubset<T, landmarks_LgaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Landmarks_Lga.
+     * @param {landmarks_LgaUpsertArgs} args - Arguments to update or create a Landmarks_Lga.
+     * @example
+     * // Update or create a Landmarks_Lga
+     * const landmarks_Lga = await prisma.landmarks_Lga.upsert({
+     *   create: {
+     *     // ... data to create a Landmarks_Lga
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Landmarks_Lga we want to update
+     *   }
+     * })
+     */
+    upsert<T extends landmarks_LgaUpsertArgs>(args: SelectSubset<T, landmarks_LgaUpsertArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Landmarks_Lgas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaCountArgs} args - Arguments to filter Landmarks_Lgas to count.
+     * @example
+     * // Count the number of Landmarks_Lgas
+     * const count = await prisma.landmarks_Lga.count({
+     *   where: {
+     *     // ... the filter for the Landmarks_Lgas we want to count
+     *   }
+     * })
+    **/
+    count<T extends landmarks_LgaCountArgs>(
+      args?: Subset<T, landmarks_LgaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Landmarks_LgaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Landmarks_Lga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Landmarks_LgaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Landmarks_LgaAggregateArgs>(args: Subset<T, Landmarks_LgaAggregateArgs>): Prisma.PrismaPromise<GetLandmarks_LgaAggregateType<T>>
+
+    /**
+     * Group by Landmarks_Lga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_LgaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends landmarks_LgaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: landmarks_LgaGroupByArgs['orderBy'] }
+        : { orderBy?: landmarks_LgaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, landmarks_LgaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLandmarks_LgaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the landmarks_Lga model
+   */
+  readonly fields: landmarks_LgaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for landmarks_Lga.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__landmarks_LgaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    destinationCounts<T extends landmarks_Lga$destinationCountsArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_Lga$destinationCountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationCountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    landmarks<T extends landmarks_Lga$landmarksArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_Lga$landmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Postcode<T extends landmarks_Lga$PostcodeArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_Lga$PostcodeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the landmarks_Lga model
+   */
+  interface landmarks_LgaFieldRefs {
+    readonly lga_code: FieldRef<"landmarks_Lga", 'Int'>
+    readonly lga_name: FieldRef<"landmarks_Lga", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * landmarks_Lga findUnique
+   */
+  export type landmarks_LgaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Lga to fetch.
+     */
+    where: landmarks_LgaWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Lga findUniqueOrThrow
+   */
+  export type landmarks_LgaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Lga to fetch.
+     */
+    where: landmarks_LgaWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Lga findFirst
+   */
+  export type landmarks_LgaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Lga to fetch.
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Lgas to fetch.
+     */
+    orderBy?: landmarks_LgaOrderByWithRelationInput | landmarks_LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for landmarks_Lgas.
+     */
+    cursor?: landmarks_LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of landmarks_Lgas.
+     */
+    distinct?: Landmarks_LgaScalarFieldEnum | Landmarks_LgaScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga findFirstOrThrow
+   */
+  export type landmarks_LgaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Lga to fetch.
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Lgas to fetch.
+     */
+    orderBy?: landmarks_LgaOrderByWithRelationInput | landmarks_LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for landmarks_Lgas.
+     */
+    cursor?: landmarks_LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Lgas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of landmarks_Lgas.
+     */
+    distinct?: Landmarks_LgaScalarFieldEnum | Landmarks_LgaScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga findMany
+   */
+  export type landmarks_LgaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Lgas to fetch.
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Lgas to fetch.
+     */
+    orderBy?: landmarks_LgaOrderByWithRelationInput | landmarks_LgaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing landmarks_Lgas.
+     */
+    cursor?: landmarks_LgaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Lgas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Lgas.
+     */
+    skip?: number
+    distinct?: Landmarks_LgaScalarFieldEnum | Landmarks_LgaScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga create
+   */
+  export type landmarks_LgaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a landmarks_Lga.
+     */
+    data: XOR<landmarks_LgaCreateInput, landmarks_LgaUncheckedCreateInput>
+  }
+
+  /**
+   * landmarks_Lga createMany
+   */
+  export type landmarks_LgaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many landmarks_Lgas.
+     */
+    data: landmarks_LgaCreateManyInput | landmarks_LgaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * landmarks_Lga createManyAndReturn
+   */
+  export type landmarks_LgaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * The data used to create many landmarks_Lgas.
+     */
+    data: landmarks_LgaCreateManyInput | landmarks_LgaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * landmarks_Lga update
+   */
+  export type landmarks_LgaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a landmarks_Lga.
+     */
+    data: XOR<landmarks_LgaUpdateInput, landmarks_LgaUncheckedUpdateInput>
+    /**
+     * Choose, which landmarks_Lga to update.
+     */
+    where: landmarks_LgaWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Lga updateMany
+   */
+  export type landmarks_LgaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update landmarks_Lgas.
+     */
+    data: XOR<landmarks_LgaUpdateManyMutationInput, landmarks_LgaUncheckedUpdateManyInput>
+    /**
+     * Filter which landmarks_Lgas to update
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * Limit how many landmarks_Lgas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * landmarks_Lga updateManyAndReturn
+   */
+  export type landmarks_LgaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * The data used to update landmarks_Lgas.
+     */
+    data: XOR<landmarks_LgaUpdateManyMutationInput, landmarks_LgaUncheckedUpdateManyInput>
+    /**
+     * Filter which landmarks_Lgas to update
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * Limit how many landmarks_Lgas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * landmarks_Lga upsert
+   */
+  export type landmarks_LgaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the landmarks_Lga to update in case it exists.
+     */
+    where: landmarks_LgaWhereUniqueInput
+    /**
+     * In case the landmarks_Lga found by the `where` argument doesn't exist, create a new landmarks_Lga with this data.
+     */
+    create: XOR<landmarks_LgaCreateInput, landmarks_LgaUncheckedCreateInput>
+    /**
+     * In case the landmarks_Lga was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<landmarks_LgaUpdateInput, landmarks_LgaUncheckedUpdateInput>
+  }
+
+  /**
+   * landmarks_Lga delete
+   */
+  export type landmarks_LgaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+    /**
+     * Filter which landmarks_Lga to delete.
+     */
+    where: landmarks_LgaWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Lga deleteMany
+   */
+  export type landmarks_LgaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which landmarks_Lgas to delete
+     */
+    where?: landmarks_LgaWhereInput
+    /**
+     * Limit how many landmarks_Lgas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * landmarks_Lga.destinationCounts
+   */
+  export type landmarks_Lga$destinationCountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCount
+     */
+    select?: DestinationCountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DestinationCount
+     */
+    omit?: DestinationCountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationCountInclude<ExtArgs> | null
+    where?: DestinationCountWhereInput
+    orderBy?: DestinationCountOrderByWithRelationInput | DestinationCountOrderByWithRelationInput[]
+    cursor?: DestinationCountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationCountScalarFieldEnum | DestinationCountScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga.landmarks
+   */
+  export type landmarks_Lga$landmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    where?: LandmarkWhereInput
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    cursor?: LandmarkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga.Postcode
+   */
+  export type landmarks_Lga$PostcodeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    where?: landmarks_PostcodeWhereInput
+    orderBy?: landmarks_PostcodeOrderByWithRelationInput | landmarks_PostcodeOrderByWithRelationInput[]
+    cursor?: landmarks_PostcodeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Landmarks_PostcodeScalarFieldEnum | Landmarks_PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Lga without action
+   */
+  export type landmarks_LgaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Lga
+     */
+    select?: landmarks_LgaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Lga
+     */
+    omit?: landmarks_LgaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_LgaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model landmarks_Postcode
+   */
+
+  export type AggregateLandmarks_Postcode = {
+    _count: Landmarks_PostcodeCountAggregateOutputType | null
+    _avg: Landmarks_PostcodeAvgAggregateOutputType | null
+    _sum: Landmarks_PostcodeSumAggregateOutputType | null
+    _min: Landmarks_PostcodeMinAggregateOutputType | null
+    _max: Landmarks_PostcodeMaxAggregateOutputType | null
+  }
+
+  export type Landmarks_PostcodeAvgAggregateOutputType = {
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type Landmarks_PostcodeSumAggregateOutputType = {
+    postcode: number | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type Landmarks_PostcodeMinAggregateOutputType = {
+    postcode: number | null
+    suburb: string | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type Landmarks_PostcodeMaxAggregateOutputType = {
+    postcode: number | null
+    suburb: string | null
+    latitude: number | null
+    longitude: number | null
+    lga_code: number | null
+  }
+
+  export type Landmarks_PostcodeCountAggregateOutputType = {
+    postcode: number
+    suburb: number
+    latitude: number
+    longitude: number
+    lga_code: number
+    _all: number
+  }
+
+
+  export type Landmarks_PostcodeAvgAggregateInputType = {
+    postcode?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type Landmarks_PostcodeSumAggregateInputType = {
+    postcode?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type Landmarks_PostcodeMinAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type Landmarks_PostcodeMaxAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+  }
+
+  export type Landmarks_PostcodeCountAggregateInputType = {
+    postcode?: true
+    suburb?: true
+    latitude?: true
+    longitude?: true
+    lga_code?: true
+    _all?: true
+  }
+
+  export type Landmarks_PostcodeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which landmarks_Postcode to aggregate.
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Postcodes to fetch.
+     */
+    orderBy?: landmarks_PostcodeOrderByWithRelationInput | landmarks_PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: landmarks_PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned landmarks_Postcodes
+    **/
+    _count?: true | Landmarks_PostcodeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Landmarks_PostcodeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Landmarks_PostcodeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Landmarks_PostcodeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Landmarks_PostcodeMaxAggregateInputType
+  }
+
+  export type GetLandmarks_PostcodeAggregateType<T extends Landmarks_PostcodeAggregateArgs> = {
+        [P in keyof T & keyof AggregateLandmarks_Postcode]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLandmarks_Postcode[P]>
+      : GetScalarType<T[P], AggregateLandmarks_Postcode[P]>
+  }
+
+
+
+
+  export type landmarks_PostcodeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: landmarks_PostcodeWhereInput
+    orderBy?: landmarks_PostcodeOrderByWithAggregationInput | landmarks_PostcodeOrderByWithAggregationInput[]
+    by: Landmarks_PostcodeScalarFieldEnum[] | Landmarks_PostcodeScalarFieldEnum
+    having?: landmarks_PostcodeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Landmarks_PostcodeCountAggregateInputType | true
+    _avg?: Landmarks_PostcodeAvgAggregateInputType
+    _sum?: Landmarks_PostcodeSumAggregateInputType
+    _min?: Landmarks_PostcodeMinAggregateInputType
+    _max?: Landmarks_PostcodeMaxAggregateInputType
+  }
+
+  export type Landmarks_PostcodeGroupByOutputType = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+    _count: Landmarks_PostcodeCountAggregateOutputType | null
+    _avg: Landmarks_PostcodeAvgAggregateOutputType | null
+    _sum: Landmarks_PostcodeSumAggregateOutputType | null
+    _min: Landmarks_PostcodeMinAggregateOutputType | null
+    _max: Landmarks_PostcodeMaxAggregateOutputType | null
+  }
+
+  type GetLandmarks_PostcodeGroupByPayload<T extends landmarks_PostcodeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Landmarks_PostcodeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Landmarks_PostcodeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Landmarks_PostcodeGroupByOutputType[P]>
+            : GetScalarType<T[P], Landmarks_PostcodeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type landmarks_PostcodeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    landmarks?: boolean | landmarks_Postcode$landmarksArgs<ExtArgs>
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    _count?: boolean | Landmarks_PostcodeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmarks_Postcode"]>
+
+  export type landmarks_PostcodeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmarks_Postcode"]>
+
+  export type landmarks_PostcodeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["landmarks_Postcode"]>
+
+  export type landmarks_PostcodeSelectScalar = {
+    postcode?: boolean
+    suburb?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    lga_code?: boolean
+  }
+
+  export type landmarks_PostcodeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"postcode" | "suburb" | "latitude" | "longitude" | "lga_code", ExtArgs["result"]["landmarks_Postcode"]>
+  export type landmarks_PostcodeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    landmarks?: boolean | landmarks_Postcode$landmarksArgs<ExtArgs>
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+    _count?: boolean | Landmarks_PostcodeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type landmarks_PostcodeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }
+  export type landmarks_PostcodeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lga?: boolean | landmarks_LgaDefaultArgs<ExtArgs>
+  }
+
+  export type $landmarks_PostcodePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "landmarks_Postcode"
+    objects: {
+      landmarks: Prisma.$LandmarkPayload<ExtArgs>[]
+      Lga: Prisma.$landmarks_LgaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      postcode: number
+      suburb: string
+      latitude: number
+      longitude: number
+      lga_code: number
+    }, ExtArgs["result"]["landmarks_Postcode"]>
+    composites: {}
+  }
+
+  type landmarks_PostcodeGetPayload<S extends boolean | null | undefined | landmarks_PostcodeDefaultArgs> = $Result.GetResult<Prisma.$landmarks_PostcodePayload, S>
+
+  type landmarks_PostcodeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<landmarks_PostcodeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Landmarks_PostcodeCountAggregateInputType | true
+    }
+
+  export interface landmarks_PostcodeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['landmarks_Postcode'], meta: { name: 'landmarks_Postcode' } }
+    /**
+     * Find zero or one Landmarks_Postcode that matches the filter.
+     * @param {landmarks_PostcodeFindUniqueArgs} args - Arguments to find a Landmarks_Postcode
+     * @example
+     * // Get one Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends landmarks_PostcodeFindUniqueArgs>(args: SelectSubset<T, landmarks_PostcodeFindUniqueArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Landmarks_Postcode that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {landmarks_PostcodeFindUniqueOrThrowArgs} args - Arguments to find a Landmarks_Postcode
+     * @example
+     * // Get one Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends landmarks_PostcodeFindUniqueOrThrowArgs>(args: SelectSubset<T, landmarks_PostcodeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmarks_Postcode that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeFindFirstArgs} args - Arguments to find a Landmarks_Postcode
+     * @example
+     * // Get one Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends landmarks_PostcodeFindFirstArgs>(args?: SelectSubset<T, landmarks_PostcodeFindFirstArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Landmarks_Postcode that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeFindFirstOrThrowArgs} args - Arguments to find a Landmarks_Postcode
+     * @example
+     * // Get one Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends landmarks_PostcodeFindFirstOrThrowArgs>(args?: SelectSubset<T, landmarks_PostcodeFindFirstOrThrowArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Landmarks_Postcodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Landmarks_Postcodes
+     * const landmarks_Postcodes = await prisma.landmarks_Postcode.findMany()
+     * 
+     * // Get first 10 Landmarks_Postcodes
+     * const landmarks_Postcodes = await prisma.landmarks_Postcode.findMany({ take: 10 })
+     * 
+     * // Only select the `postcode`
+     * const landmarks_PostcodeWithPostcodeOnly = await prisma.landmarks_Postcode.findMany({ select: { postcode: true } })
+     * 
+     */
+    findMany<T extends landmarks_PostcodeFindManyArgs>(args?: SelectSubset<T, landmarks_PostcodeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Landmarks_Postcode.
+     * @param {landmarks_PostcodeCreateArgs} args - Arguments to create a Landmarks_Postcode.
+     * @example
+     * // Create one Landmarks_Postcode
+     * const Landmarks_Postcode = await prisma.landmarks_Postcode.create({
+     *   data: {
+     *     // ... data to create a Landmarks_Postcode
+     *   }
+     * })
+     * 
+     */
+    create<T extends landmarks_PostcodeCreateArgs>(args: SelectSubset<T, landmarks_PostcodeCreateArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Landmarks_Postcodes.
+     * @param {landmarks_PostcodeCreateManyArgs} args - Arguments to create many Landmarks_Postcodes.
+     * @example
+     * // Create many Landmarks_Postcodes
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends landmarks_PostcodeCreateManyArgs>(args?: SelectSubset<T, landmarks_PostcodeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Landmarks_Postcodes and returns the data saved in the database.
+     * @param {landmarks_PostcodeCreateManyAndReturnArgs} args - Arguments to create many Landmarks_Postcodes.
+     * @example
+     * // Create many Landmarks_Postcodes
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Landmarks_Postcodes and only return the `postcode`
+     * const landmarks_PostcodeWithPostcodeOnly = await prisma.landmarks_Postcode.createManyAndReturn({
+     *   select: { postcode: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends landmarks_PostcodeCreateManyAndReturnArgs>(args?: SelectSubset<T, landmarks_PostcodeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Landmarks_Postcode.
+     * @param {landmarks_PostcodeDeleteArgs} args - Arguments to delete one Landmarks_Postcode.
+     * @example
+     * // Delete one Landmarks_Postcode
+     * const Landmarks_Postcode = await prisma.landmarks_Postcode.delete({
+     *   where: {
+     *     // ... filter to delete one Landmarks_Postcode
+     *   }
+     * })
+     * 
+     */
+    delete<T extends landmarks_PostcodeDeleteArgs>(args: SelectSubset<T, landmarks_PostcodeDeleteArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Landmarks_Postcode.
+     * @param {landmarks_PostcodeUpdateArgs} args - Arguments to update one Landmarks_Postcode.
+     * @example
+     * // Update one Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends landmarks_PostcodeUpdateArgs>(args: SelectSubset<T, landmarks_PostcodeUpdateArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Landmarks_Postcodes.
+     * @param {landmarks_PostcodeDeleteManyArgs} args - Arguments to filter Landmarks_Postcodes to delete.
+     * @example
+     * // Delete a few Landmarks_Postcodes
+     * const { count } = await prisma.landmarks_Postcode.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends landmarks_PostcodeDeleteManyArgs>(args?: SelectSubset<T, landmarks_PostcodeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks_Postcodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Landmarks_Postcodes
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends landmarks_PostcodeUpdateManyArgs>(args: SelectSubset<T, landmarks_PostcodeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Landmarks_Postcodes and returns the data updated in the database.
+     * @param {landmarks_PostcodeUpdateManyAndReturnArgs} args - Arguments to update many Landmarks_Postcodes.
+     * @example
+     * // Update many Landmarks_Postcodes
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Landmarks_Postcodes and only return the `postcode`
+     * const landmarks_PostcodeWithPostcodeOnly = await prisma.landmarks_Postcode.updateManyAndReturn({
+     *   select: { postcode: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends landmarks_PostcodeUpdateManyAndReturnArgs>(args: SelectSubset<T, landmarks_PostcodeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Landmarks_Postcode.
+     * @param {landmarks_PostcodeUpsertArgs} args - Arguments to update or create a Landmarks_Postcode.
+     * @example
+     * // Update or create a Landmarks_Postcode
+     * const landmarks_Postcode = await prisma.landmarks_Postcode.upsert({
+     *   create: {
+     *     // ... data to create a Landmarks_Postcode
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Landmarks_Postcode we want to update
+     *   }
+     * })
+     */
+    upsert<T extends landmarks_PostcodeUpsertArgs>(args: SelectSubset<T, landmarks_PostcodeUpsertArgs<ExtArgs>>): Prisma__landmarks_PostcodeClient<$Result.GetResult<Prisma.$landmarks_PostcodePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Landmarks_Postcodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeCountArgs} args - Arguments to filter Landmarks_Postcodes to count.
+     * @example
+     * // Count the number of Landmarks_Postcodes
+     * const count = await prisma.landmarks_Postcode.count({
+     *   where: {
+     *     // ... the filter for the Landmarks_Postcodes we want to count
+     *   }
+     * })
+    **/
+    count<T extends landmarks_PostcodeCountArgs>(
+      args?: Subset<T, landmarks_PostcodeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Landmarks_PostcodeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Landmarks_Postcode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Landmarks_PostcodeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Landmarks_PostcodeAggregateArgs>(args: Subset<T, Landmarks_PostcodeAggregateArgs>): Prisma.PrismaPromise<GetLandmarks_PostcodeAggregateType<T>>
+
+    /**
+     * Group by Landmarks_Postcode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {landmarks_PostcodeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends landmarks_PostcodeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: landmarks_PostcodeGroupByArgs['orderBy'] }
+        : { orderBy?: landmarks_PostcodeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, landmarks_PostcodeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLandmarks_PostcodeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the landmarks_Postcode model
+   */
+  readonly fields: landmarks_PostcodeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for landmarks_Postcode.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__landmarks_PostcodeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    landmarks<T extends landmarks_Postcode$landmarksArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_Postcode$landmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Lga<T extends landmarks_LgaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, landmarks_LgaDefaultArgs<ExtArgs>>): Prisma__landmarks_LgaClient<$Result.GetResult<Prisma.$landmarks_LgaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the landmarks_Postcode model
+   */
+  interface landmarks_PostcodeFieldRefs {
+    readonly postcode: FieldRef<"landmarks_Postcode", 'Int'>
+    readonly suburb: FieldRef<"landmarks_Postcode", 'String'>
+    readonly latitude: FieldRef<"landmarks_Postcode", 'Float'>
+    readonly longitude: FieldRef<"landmarks_Postcode", 'Float'>
+    readonly lga_code: FieldRef<"landmarks_Postcode", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * landmarks_Postcode findUnique
+   */
+  export type landmarks_PostcodeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Postcode to fetch.
+     */
+    where: landmarks_PostcodeWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Postcode findUniqueOrThrow
+   */
+  export type landmarks_PostcodeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Postcode to fetch.
+     */
+    where: landmarks_PostcodeWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Postcode findFirst
+   */
+  export type landmarks_PostcodeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Postcode to fetch.
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Postcodes to fetch.
+     */
+    orderBy?: landmarks_PostcodeOrderByWithRelationInput | landmarks_PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for landmarks_Postcodes.
+     */
+    cursor?: landmarks_PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of landmarks_Postcodes.
+     */
+    distinct?: Landmarks_PostcodeScalarFieldEnum | Landmarks_PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Postcode findFirstOrThrow
+   */
+  export type landmarks_PostcodeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Postcode to fetch.
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Postcodes to fetch.
+     */
+    orderBy?: landmarks_PostcodeOrderByWithRelationInput | landmarks_PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for landmarks_Postcodes.
+     */
+    cursor?: landmarks_PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Postcodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of landmarks_Postcodes.
+     */
+    distinct?: Landmarks_PostcodeScalarFieldEnum | Landmarks_PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Postcode findMany
+   */
+  export type landmarks_PostcodeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter, which landmarks_Postcodes to fetch.
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of landmarks_Postcodes to fetch.
+     */
+    orderBy?: landmarks_PostcodeOrderByWithRelationInput | landmarks_PostcodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing landmarks_Postcodes.
+     */
+    cursor?: landmarks_PostcodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` landmarks_Postcodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` landmarks_Postcodes.
+     */
+    skip?: number
+    distinct?: Landmarks_PostcodeScalarFieldEnum | Landmarks_PostcodeScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Postcode create
+   */
+  export type landmarks_PostcodeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a landmarks_Postcode.
+     */
+    data: XOR<landmarks_PostcodeCreateInput, landmarks_PostcodeUncheckedCreateInput>
+  }
+
+  /**
+   * landmarks_Postcode createMany
+   */
+  export type landmarks_PostcodeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many landmarks_Postcodes.
+     */
+    data: landmarks_PostcodeCreateManyInput | landmarks_PostcodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * landmarks_Postcode createManyAndReturn
+   */
+  export type landmarks_PostcodeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * The data used to create many landmarks_Postcodes.
+     */
+    data: landmarks_PostcodeCreateManyInput | landmarks_PostcodeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * landmarks_Postcode update
+   */
+  export type landmarks_PostcodeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a landmarks_Postcode.
+     */
+    data: XOR<landmarks_PostcodeUpdateInput, landmarks_PostcodeUncheckedUpdateInput>
+    /**
+     * Choose, which landmarks_Postcode to update.
+     */
+    where: landmarks_PostcodeWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Postcode updateMany
+   */
+  export type landmarks_PostcodeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update landmarks_Postcodes.
+     */
+    data: XOR<landmarks_PostcodeUpdateManyMutationInput, landmarks_PostcodeUncheckedUpdateManyInput>
+    /**
+     * Filter which landmarks_Postcodes to update
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * Limit how many landmarks_Postcodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * landmarks_Postcode updateManyAndReturn
+   */
+  export type landmarks_PostcodeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * The data used to update landmarks_Postcodes.
+     */
+    data: XOR<landmarks_PostcodeUpdateManyMutationInput, landmarks_PostcodeUncheckedUpdateManyInput>
+    /**
+     * Filter which landmarks_Postcodes to update
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * Limit how many landmarks_Postcodes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * landmarks_Postcode upsert
+   */
+  export type landmarks_PostcodeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the landmarks_Postcode to update in case it exists.
+     */
+    where: landmarks_PostcodeWhereUniqueInput
+    /**
+     * In case the landmarks_Postcode found by the `where` argument doesn't exist, create a new landmarks_Postcode with this data.
+     */
+    create: XOR<landmarks_PostcodeCreateInput, landmarks_PostcodeUncheckedCreateInput>
+    /**
+     * In case the landmarks_Postcode was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<landmarks_PostcodeUpdateInput, landmarks_PostcodeUncheckedUpdateInput>
+  }
+
+  /**
+   * landmarks_Postcode delete
+   */
+  export type landmarks_PostcodeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+    /**
+     * Filter which landmarks_Postcode to delete.
+     */
+    where: landmarks_PostcodeWhereUniqueInput
+  }
+
+  /**
+   * landmarks_Postcode deleteMany
+   */
+  export type landmarks_PostcodeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which landmarks_Postcodes to delete
+     */
+    where?: landmarks_PostcodeWhereInput
+    /**
+     * Limit how many landmarks_Postcodes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * landmarks_Postcode.landmarks
+   */
+  export type landmarks_Postcode$landmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landmark
+     */
+    select?: LandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landmark
+     */
+    omit?: LandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandmarkInclude<ExtArgs> | null
+    where?: LandmarkWhereInput
+    orderBy?: LandmarkOrderByWithRelationInput | LandmarkOrderByWithRelationInput[]
+    cursor?: LandmarkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LandmarkScalarFieldEnum | LandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * landmarks_Postcode without action
+   */
+  export type landmarks_PostcodeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the landmarks_Postcode
+     */
+    select?: landmarks_PostcodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the landmarks_Postcode
+     */
+    omit?: landmarks_PostcodeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: landmarks_PostcodeInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -23417,6 +30906,75 @@ export namespace Prisma {
   };
 
   export type LgaNationalityYearScalarFieldEnum = (typeof LgaNationalityYearScalarFieldEnum)[keyof typeof LgaNationalityYearScalarFieldEnum]
+
+
+  export const DestinationScalarFieldEnum: {
+    destination_id: 'destination_id',
+    destination_name: 'destination_name',
+    description: 'description',
+    postcode: 'postcode',
+    website: 'website',
+    image_url: 'image_url',
+    image_attribution: 'image_attribution',
+    latitude: 'latitude',
+    longitude: 'longitude'
+  };
+
+  export type DestinationScalarFieldEnum = (typeof DestinationScalarFieldEnum)[keyof typeof DestinationScalarFieldEnum]
+
+
+  export const DestinationCountScalarFieldEnum: {
+    destination_year_type_id: 'destination_year_type_id',
+    destination_id: 'destination_id',
+    lga_code: 'lga_code',
+    year: 'year',
+    total_stay_counts: 'total_stay_counts',
+    pct_change_yoy: 'pct_change_yoy'
+  };
+
+  export type DestinationCountScalarFieldEnum = (typeof DestinationCountScalarFieldEnum)[keyof typeof DestinationCountScalarFieldEnum]
+
+
+  export const LandmarkTypeScalarFieldEnum: {
+    landmark_type_id: 'landmark_type_id',
+    landmark_type: 'landmark_type'
+  };
+
+  export type LandmarkTypeScalarFieldEnum = (typeof LandmarkTypeScalarFieldEnum)[keyof typeof LandmarkTypeScalarFieldEnum]
+
+
+  export const LandmarkScalarFieldEnum: {
+    landmark_id: 'landmark_id',
+    landmark_name: 'landmark_name',
+    landmark_description: 'landmark_description',
+    landmark_type_id: 'landmark_type_id',
+    ilms_url: 'ilms_url',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    postcode: 'postcode',
+    lga_code: 'lga_code'
+  };
+
+  export type LandmarkScalarFieldEnum = (typeof LandmarkScalarFieldEnum)[keyof typeof LandmarkScalarFieldEnum]
+
+
+  export const Landmarks_LgaScalarFieldEnum: {
+    lga_code: 'lga_code',
+    lga_name: 'lga_name'
+  };
+
+  export type Landmarks_LgaScalarFieldEnum = (typeof Landmarks_LgaScalarFieldEnum)[keyof typeof Landmarks_LgaScalarFieldEnum]
+
+
+  export const Landmarks_PostcodeScalarFieldEnum: {
+    postcode: 'postcode',
+    suburb: 'suburb',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    lga_code: 'lga_code'
+  };
+
+  export type Landmarks_PostcodeScalarFieldEnum = (typeof Landmarks_PostcodeScalarFieldEnum)[keyof typeof Landmarks_PostcodeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -24705,6 +32263,381 @@ export namespace Prisma {
     count?: IntWithAggregatesFilter<"LgaNationalityYear"> | number
   }
 
+  export type DestinationWhereInput = {
+    AND?: DestinationWhereInput | DestinationWhereInput[]
+    OR?: DestinationWhereInput[]
+    NOT?: DestinationWhereInput | DestinationWhereInput[]
+    destination_id?: IntFilter<"Destination"> | number
+    destination_name?: StringFilter<"Destination"> | string
+    description?: StringNullableFilter<"Destination"> | string | null
+    postcode?: IntFilter<"Destination"> | number
+    website?: StringNullableFilter<"Destination"> | string | null
+    image_url?: StringNullableFilter<"Destination"> | string | null
+    image_attribution?: StringNullableFilter<"Destination"> | string | null
+    latitude?: FloatFilter<"Destination"> | number
+    longitude?: FloatFilter<"Destination"> | number
+    counts?: DestinationCountListRelationFilter
+  }
+
+  export type DestinationOrderByWithRelationInput = {
+    destination_id?: SortOrder
+    destination_name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    postcode?: SortOrder
+    website?: SortOrderInput | SortOrder
+    image_url?: SortOrderInput | SortOrder
+    image_attribution?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    counts?: DestinationCountOrderByRelationAggregateInput
+  }
+
+  export type DestinationWhereUniqueInput = Prisma.AtLeast<{
+    destination_id?: number
+    AND?: DestinationWhereInput | DestinationWhereInput[]
+    OR?: DestinationWhereInput[]
+    NOT?: DestinationWhereInput | DestinationWhereInput[]
+    destination_name?: StringFilter<"Destination"> | string
+    description?: StringNullableFilter<"Destination"> | string | null
+    postcode?: IntFilter<"Destination"> | number
+    website?: StringNullableFilter<"Destination"> | string | null
+    image_url?: StringNullableFilter<"Destination"> | string | null
+    image_attribution?: StringNullableFilter<"Destination"> | string | null
+    latitude?: FloatFilter<"Destination"> | number
+    longitude?: FloatFilter<"Destination"> | number
+    counts?: DestinationCountListRelationFilter
+  }, "destination_id">
+
+  export type DestinationOrderByWithAggregationInput = {
+    destination_id?: SortOrder
+    destination_name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    postcode?: SortOrder
+    website?: SortOrderInput | SortOrder
+    image_url?: SortOrderInput | SortOrder
+    image_attribution?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    _count?: DestinationCountOrderByAggregateInput
+    _avg?: DestinationAvgOrderByAggregateInput
+    _max?: DestinationMaxOrderByAggregateInput
+    _min?: DestinationMinOrderByAggregateInput
+    _sum?: DestinationSumOrderByAggregateInput
+  }
+
+  export type DestinationScalarWhereWithAggregatesInput = {
+    AND?: DestinationScalarWhereWithAggregatesInput | DestinationScalarWhereWithAggregatesInput[]
+    OR?: DestinationScalarWhereWithAggregatesInput[]
+    NOT?: DestinationScalarWhereWithAggregatesInput | DestinationScalarWhereWithAggregatesInput[]
+    destination_id?: IntWithAggregatesFilter<"Destination"> | number
+    destination_name?: StringWithAggregatesFilter<"Destination"> | string
+    description?: StringNullableWithAggregatesFilter<"Destination"> | string | null
+    postcode?: IntWithAggregatesFilter<"Destination"> | number
+    website?: StringNullableWithAggregatesFilter<"Destination"> | string | null
+    image_url?: StringNullableWithAggregatesFilter<"Destination"> | string | null
+    image_attribution?: StringNullableWithAggregatesFilter<"Destination"> | string | null
+    latitude?: FloatWithAggregatesFilter<"Destination"> | number
+    longitude?: FloatWithAggregatesFilter<"Destination"> | number
+  }
+
+  export type DestinationCountWhereInput = {
+    AND?: DestinationCountWhereInput | DestinationCountWhereInput[]
+    OR?: DestinationCountWhereInput[]
+    NOT?: DestinationCountWhereInput | DestinationCountWhereInput[]
+    destination_year_type_id?: IntFilter<"DestinationCount"> | number
+    destination_id?: IntFilter<"DestinationCount"> | number
+    lga_code?: IntFilter<"DestinationCount"> | number
+    year?: IntFilter<"DestinationCount"> | number
+    total_stay_counts?: IntFilter<"DestinationCount"> | number
+    pct_change_yoy?: FloatNullableFilter<"DestinationCount"> | number | null
+    destination?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
+    lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+  }
+
+  export type DestinationCountOrderByWithRelationInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrderInput | SortOrder
+    destination?: DestinationOrderByWithRelationInput
+    lga?: landmarks_LgaOrderByWithRelationInput
+  }
+
+  export type DestinationCountWhereUniqueInput = Prisma.AtLeast<{
+    destination_year_type_id?: number
+    AND?: DestinationCountWhereInput | DestinationCountWhereInput[]
+    OR?: DestinationCountWhereInput[]
+    NOT?: DestinationCountWhereInput | DestinationCountWhereInput[]
+    destination_id?: IntFilter<"DestinationCount"> | number
+    lga_code?: IntFilter<"DestinationCount"> | number
+    year?: IntFilter<"DestinationCount"> | number
+    total_stay_counts?: IntFilter<"DestinationCount"> | number
+    pct_change_yoy?: FloatNullableFilter<"DestinationCount"> | number | null
+    destination?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
+    lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+  }, "destination_year_type_id">
+
+  export type DestinationCountOrderByWithAggregationInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrderInput | SortOrder
+    _count?: DestinationCountCountOrderByAggregateInput
+    _avg?: DestinationCountAvgOrderByAggregateInput
+    _max?: DestinationCountMaxOrderByAggregateInput
+    _min?: DestinationCountMinOrderByAggregateInput
+    _sum?: DestinationCountSumOrderByAggregateInput
+  }
+
+  export type DestinationCountScalarWhereWithAggregatesInput = {
+    AND?: DestinationCountScalarWhereWithAggregatesInput | DestinationCountScalarWhereWithAggregatesInput[]
+    OR?: DestinationCountScalarWhereWithAggregatesInput[]
+    NOT?: DestinationCountScalarWhereWithAggregatesInput | DestinationCountScalarWhereWithAggregatesInput[]
+    destination_year_type_id?: IntWithAggregatesFilter<"DestinationCount"> | number
+    destination_id?: IntWithAggregatesFilter<"DestinationCount"> | number
+    lga_code?: IntWithAggregatesFilter<"DestinationCount"> | number
+    year?: IntWithAggregatesFilter<"DestinationCount"> | number
+    total_stay_counts?: IntWithAggregatesFilter<"DestinationCount"> | number
+    pct_change_yoy?: FloatNullableWithAggregatesFilter<"DestinationCount"> | number | null
+  }
+
+  export type LandmarkTypeWhereInput = {
+    AND?: LandmarkTypeWhereInput | LandmarkTypeWhereInput[]
+    OR?: LandmarkTypeWhereInput[]
+    NOT?: LandmarkTypeWhereInput | LandmarkTypeWhereInput[]
+    landmark_type_id?: IntFilter<"LandmarkType"> | number
+    landmark_type?: StringFilter<"LandmarkType"> | string
+    landmarks?: LandmarkListRelationFilter
+  }
+
+  export type LandmarkTypeOrderByWithRelationInput = {
+    landmark_type_id?: SortOrder
+    landmark_type?: SortOrder
+    landmarks?: LandmarkOrderByRelationAggregateInput
+  }
+
+  export type LandmarkTypeWhereUniqueInput = Prisma.AtLeast<{
+    landmark_type_id?: number
+    AND?: LandmarkTypeWhereInput | LandmarkTypeWhereInput[]
+    OR?: LandmarkTypeWhereInput[]
+    NOT?: LandmarkTypeWhereInput | LandmarkTypeWhereInput[]
+    landmark_type?: StringFilter<"LandmarkType"> | string
+    landmarks?: LandmarkListRelationFilter
+  }, "landmark_type_id">
+
+  export type LandmarkTypeOrderByWithAggregationInput = {
+    landmark_type_id?: SortOrder
+    landmark_type?: SortOrder
+    _count?: LandmarkTypeCountOrderByAggregateInput
+    _avg?: LandmarkTypeAvgOrderByAggregateInput
+    _max?: LandmarkTypeMaxOrderByAggregateInput
+    _min?: LandmarkTypeMinOrderByAggregateInput
+    _sum?: LandmarkTypeSumOrderByAggregateInput
+  }
+
+  export type LandmarkTypeScalarWhereWithAggregatesInput = {
+    AND?: LandmarkTypeScalarWhereWithAggregatesInput | LandmarkTypeScalarWhereWithAggregatesInput[]
+    OR?: LandmarkTypeScalarWhereWithAggregatesInput[]
+    NOT?: LandmarkTypeScalarWhereWithAggregatesInput | LandmarkTypeScalarWhereWithAggregatesInput[]
+    landmark_type_id?: IntWithAggregatesFilter<"LandmarkType"> | number
+    landmark_type?: StringWithAggregatesFilter<"LandmarkType"> | string
+  }
+
+  export type LandmarkWhereInput = {
+    AND?: LandmarkWhereInput | LandmarkWhereInput[]
+    OR?: LandmarkWhereInput[]
+    NOT?: LandmarkWhereInput | LandmarkWhereInput[]
+    landmark_id?: IntFilter<"Landmark"> | number
+    landmark_name?: StringFilter<"Landmark"> | string
+    landmark_description?: StringNullableFilter<"Landmark"> | string | null
+    landmark_type_id?: IntFilter<"Landmark"> | number
+    ilms_url?: StringNullableFilter<"Landmark"> | string | null
+    latitude?: FloatFilter<"Landmark"> | number
+    longitude?: FloatFilter<"Landmark"> | number
+    postcode?: IntFilter<"Landmark"> | number
+    lga_code?: IntFilter<"Landmark"> | number
+    type?: XOR<LandmarkTypeScalarRelationFilter, LandmarkTypeWhereInput>
+    lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+    postcodeRel?: XOR<Landmarks_PostcodeScalarRelationFilter, landmarks_PostcodeWhereInput>
+  }
+
+  export type LandmarkOrderByWithRelationInput = {
+    landmark_id?: SortOrder
+    landmark_name?: SortOrder
+    landmark_description?: SortOrderInput | SortOrder
+    landmark_type_id?: SortOrder
+    ilms_url?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+    type?: LandmarkTypeOrderByWithRelationInput
+    lga?: landmarks_LgaOrderByWithRelationInput
+    postcodeRel?: landmarks_PostcodeOrderByWithRelationInput
+  }
+
+  export type LandmarkWhereUniqueInput = Prisma.AtLeast<{
+    landmark_id?: number
+    AND?: LandmarkWhereInput | LandmarkWhereInput[]
+    OR?: LandmarkWhereInput[]
+    NOT?: LandmarkWhereInput | LandmarkWhereInput[]
+    landmark_name?: StringFilter<"Landmark"> | string
+    landmark_description?: StringNullableFilter<"Landmark"> | string | null
+    landmark_type_id?: IntFilter<"Landmark"> | number
+    ilms_url?: StringNullableFilter<"Landmark"> | string | null
+    latitude?: FloatFilter<"Landmark"> | number
+    longitude?: FloatFilter<"Landmark"> | number
+    postcode?: IntFilter<"Landmark"> | number
+    lga_code?: IntFilter<"Landmark"> | number
+    type?: XOR<LandmarkTypeScalarRelationFilter, LandmarkTypeWhereInput>
+    lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+    postcodeRel?: XOR<Landmarks_PostcodeScalarRelationFilter, landmarks_PostcodeWhereInput>
+  }, "landmark_id">
+
+  export type LandmarkOrderByWithAggregationInput = {
+    landmark_id?: SortOrder
+    landmark_name?: SortOrder
+    landmark_description?: SortOrderInput | SortOrder
+    landmark_type_id?: SortOrder
+    ilms_url?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+    _count?: LandmarkCountOrderByAggregateInput
+    _avg?: LandmarkAvgOrderByAggregateInput
+    _max?: LandmarkMaxOrderByAggregateInput
+    _min?: LandmarkMinOrderByAggregateInput
+    _sum?: LandmarkSumOrderByAggregateInput
+  }
+
+  export type LandmarkScalarWhereWithAggregatesInput = {
+    AND?: LandmarkScalarWhereWithAggregatesInput | LandmarkScalarWhereWithAggregatesInput[]
+    OR?: LandmarkScalarWhereWithAggregatesInput[]
+    NOT?: LandmarkScalarWhereWithAggregatesInput | LandmarkScalarWhereWithAggregatesInput[]
+    landmark_id?: IntWithAggregatesFilter<"Landmark"> | number
+    landmark_name?: StringWithAggregatesFilter<"Landmark"> | string
+    landmark_description?: StringNullableWithAggregatesFilter<"Landmark"> | string | null
+    landmark_type_id?: IntWithAggregatesFilter<"Landmark"> | number
+    ilms_url?: StringNullableWithAggregatesFilter<"Landmark"> | string | null
+    latitude?: FloatWithAggregatesFilter<"Landmark"> | number
+    longitude?: FloatWithAggregatesFilter<"Landmark"> | number
+    postcode?: IntWithAggregatesFilter<"Landmark"> | number
+    lga_code?: IntWithAggregatesFilter<"Landmark"> | number
+  }
+
+  export type landmarks_LgaWhereInput = {
+    AND?: landmarks_LgaWhereInput | landmarks_LgaWhereInput[]
+    OR?: landmarks_LgaWhereInput[]
+    NOT?: landmarks_LgaWhereInput | landmarks_LgaWhereInput[]
+    lga_code?: IntFilter<"landmarks_Lga"> | number
+    lga_name?: StringFilter<"landmarks_Lga"> | string
+    destinationCounts?: DestinationCountListRelationFilter
+    landmarks?: LandmarkListRelationFilter
+    Postcode?: Landmarks_PostcodeListRelationFilter
+  }
+
+  export type landmarks_LgaOrderByWithRelationInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+    destinationCounts?: DestinationCountOrderByRelationAggregateInput
+    landmarks?: LandmarkOrderByRelationAggregateInput
+    Postcode?: landmarks_PostcodeOrderByRelationAggregateInput
+  }
+
+  export type landmarks_LgaWhereUniqueInput = Prisma.AtLeast<{
+    lga_code?: number
+    AND?: landmarks_LgaWhereInput | landmarks_LgaWhereInput[]
+    OR?: landmarks_LgaWhereInput[]
+    NOT?: landmarks_LgaWhereInput | landmarks_LgaWhereInput[]
+    lga_name?: StringFilter<"landmarks_Lga"> | string
+    destinationCounts?: DestinationCountListRelationFilter
+    landmarks?: LandmarkListRelationFilter
+    Postcode?: Landmarks_PostcodeListRelationFilter
+  }, "lga_code">
+
+  export type landmarks_LgaOrderByWithAggregationInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+    _count?: landmarks_LgaCountOrderByAggregateInput
+    _avg?: landmarks_LgaAvgOrderByAggregateInput
+    _max?: landmarks_LgaMaxOrderByAggregateInput
+    _min?: landmarks_LgaMinOrderByAggregateInput
+    _sum?: landmarks_LgaSumOrderByAggregateInput
+  }
+
+  export type landmarks_LgaScalarWhereWithAggregatesInput = {
+    AND?: landmarks_LgaScalarWhereWithAggregatesInput | landmarks_LgaScalarWhereWithAggregatesInput[]
+    OR?: landmarks_LgaScalarWhereWithAggregatesInput[]
+    NOT?: landmarks_LgaScalarWhereWithAggregatesInput | landmarks_LgaScalarWhereWithAggregatesInput[]
+    lga_code?: IntWithAggregatesFilter<"landmarks_Lga"> | number
+    lga_name?: StringWithAggregatesFilter<"landmarks_Lga"> | string
+  }
+
+  export type landmarks_PostcodeWhereInput = {
+    AND?: landmarks_PostcodeWhereInput | landmarks_PostcodeWhereInput[]
+    OR?: landmarks_PostcodeWhereInput[]
+    NOT?: landmarks_PostcodeWhereInput | landmarks_PostcodeWhereInput[]
+    postcode?: IntFilter<"landmarks_Postcode"> | number
+    suburb?: StringFilter<"landmarks_Postcode"> | string
+    latitude?: FloatFilter<"landmarks_Postcode"> | number
+    longitude?: FloatFilter<"landmarks_Postcode"> | number
+    lga_code?: IntFilter<"landmarks_Postcode"> | number
+    landmarks?: LandmarkListRelationFilter
+    Lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+  }
+
+  export type landmarks_PostcodeOrderByWithRelationInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+    landmarks?: LandmarkOrderByRelationAggregateInput
+    Lga?: landmarks_LgaOrderByWithRelationInput
+  }
+
+  export type landmarks_PostcodeWhereUniqueInput = Prisma.AtLeast<{
+    postcode?: number
+    AND?: landmarks_PostcodeWhereInput | landmarks_PostcodeWhereInput[]
+    OR?: landmarks_PostcodeWhereInput[]
+    NOT?: landmarks_PostcodeWhereInput | landmarks_PostcodeWhereInput[]
+    suburb?: StringFilter<"landmarks_Postcode"> | string
+    latitude?: FloatFilter<"landmarks_Postcode"> | number
+    longitude?: FloatFilter<"landmarks_Postcode"> | number
+    lga_code?: IntFilter<"landmarks_Postcode"> | number
+    landmarks?: LandmarkListRelationFilter
+    Lga?: XOR<Landmarks_LgaScalarRelationFilter, landmarks_LgaWhereInput>
+  }, "postcode">
+
+  export type landmarks_PostcodeOrderByWithAggregationInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+    _count?: landmarks_PostcodeCountOrderByAggregateInput
+    _avg?: landmarks_PostcodeAvgOrderByAggregateInput
+    _max?: landmarks_PostcodeMaxOrderByAggregateInput
+    _min?: landmarks_PostcodeMinOrderByAggregateInput
+    _sum?: landmarks_PostcodeSumOrderByAggregateInput
+  }
+
+  export type landmarks_PostcodeScalarWhereWithAggregatesInput = {
+    AND?: landmarks_PostcodeScalarWhereWithAggregatesInput | landmarks_PostcodeScalarWhereWithAggregatesInput[]
+    OR?: landmarks_PostcodeScalarWhereWithAggregatesInput[]
+    NOT?: landmarks_PostcodeScalarWhereWithAggregatesInput | landmarks_PostcodeScalarWhereWithAggregatesInput[]
+    postcode?: IntWithAggregatesFilter<"landmarks_Postcode"> | number
+    suburb?: StringWithAggregatesFilter<"landmarks_Postcode"> | string
+    latitude?: FloatWithAggregatesFilter<"landmarks_Postcode"> | number
+    longitude?: FloatWithAggregatesFilter<"landmarks_Postcode"> | number
+    lga_code?: IntWithAggregatesFilter<"landmarks_Postcode"> | number
+  }
+
   export type VenueCreateInput = {
     venue_id: string
     venue_name: string
@@ -25907,6 +33840,369 @@ export namespace Prisma {
     count?: IntFieldUpdateOperationsInput | number
   }
 
+  export type DestinationCreateInput = {
+    destination_name: string
+    description?: string | null
+    postcode: number
+    website?: string | null
+    image_url?: string | null
+    image_attribution?: string | null
+    latitude: number
+    longitude: number
+    counts?: DestinationCountCreateNestedManyWithoutDestinationInput
+  }
+
+  export type DestinationUncheckedCreateInput = {
+    destination_id?: number
+    destination_name: string
+    description?: string | null
+    postcode: number
+    website?: string | null
+    image_url?: string | null
+    image_attribution?: string | null
+    latitude: number
+    longitude: number
+    counts?: DestinationCountUncheckedCreateNestedManyWithoutDestinationInput
+  }
+
+  export type DestinationUpdateInput = {
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    counts?: DestinationCountUpdateManyWithoutDestinationNestedInput
+  }
+
+  export type DestinationUncheckedUpdateInput = {
+    destination_id?: IntFieldUpdateOperationsInput | number
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    counts?: DestinationCountUncheckedUpdateManyWithoutDestinationNestedInput
+  }
+
+  export type DestinationCreateManyInput = {
+    destination_id?: number
+    destination_name: string
+    description?: string | null
+    postcode: number
+    website?: string | null
+    image_url?: string | null
+    image_attribution?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type DestinationUpdateManyMutationInput = {
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationUncheckedUpdateManyInput = {
+    destination_id?: IntFieldUpdateOperationsInput | number
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationCountCreateInput = {
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+    destination: DestinationCreateNestedOneWithoutCountsInput
+    lga: landmarks_LgaCreateNestedOneWithoutDestinationCountsInput
+  }
+
+  export type DestinationCountUncheckedCreateInput = {
+    destination_year_type_id?: number
+    destination_id: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type DestinationCountUpdateInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination?: DestinationUpdateOneRequiredWithoutCountsNestedInput
+    lga?: landmarks_LgaUpdateOneRequiredWithoutDestinationCountsNestedInput
+  }
+
+  export type DestinationCountUncheckedUpdateInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    destination_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type DestinationCountCreateManyInput = {
+    destination_year_type_id?: number
+    destination_id: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type DestinationCountUpdateManyMutationInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type DestinationCountUncheckedUpdateManyInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    destination_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LandmarkTypeCreateInput = {
+    landmark_type: string
+    landmarks?: LandmarkCreateNestedManyWithoutTypeInput
+  }
+
+  export type LandmarkTypeUncheckedCreateInput = {
+    landmark_type_id?: number
+    landmark_type: string
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutTypeInput
+  }
+
+  export type LandmarkTypeUpdateInput = {
+    landmark_type?: StringFieldUpdateOperationsInput | string
+    landmarks?: LandmarkUpdateManyWithoutTypeNestedInput
+  }
+
+  export type LandmarkTypeUncheckedUpdateInput = {
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    landmark_type?: StringFieldUpdateOperationsInput | string
+    landmarks?: LandmarkUncheckedUpdateManyWithoutTypeNestedInput
+  }
+
+  export type LandmarkTypeCreateManyInput = {
+    landmark_type_id?: number
+    landmark_type: string
+  }
+
+  export type LandmarkTypeUpdateManyMutationInput = {
+    landmark_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LandmarkTypeUncheckedUpdateManyInput = {
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    landmark_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LandmarkCreateInput = {
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    type: LandmarkTypeCreateNestedOneWithoutLandmarksInput
+    lga: landmarks_LgaCreateNestedOneWithoutLandmarksInput
+    postcodeRel: landmarks_PostcodeCreateNestedOneWithoutLandmarksInput
+  }
+
+  export type LandmarkUncheckedCreateInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+  }
+
+  export type LandmarkUpdateInput = {
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    type?: LandmarkTypeUpdateOneRequiredWithoutLandmarksNestedInput
+    lga?: landmarks_LgaUpdateOneRequiredWithoutLandmarksNestedInput
+    postcodeRel?: landmarks_PostcodeUpdateOneRequiredWithoutLandmarksNestedInput
+  }
+
+  export type LandmarkUncheckedUpdateInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkCreateManyInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+  }
+
+  export type LandmarkUpdateManyMutationInput = {
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkUncheckedUpdateManyInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type landmarks_LgaCreateInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountCreateNestedManyWithoutLgaInput
+    landmarks?: LandmarkCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaUncheckedCreateInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountUncheckedCreateNestedManyWithoutLgaInput
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUpdateManyWithoutLgaNestedInput
+    landmarks?: LandmarkUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_LgaUncheckedUpdateInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUncheckedUpdateManyWithoutLgaNestedInput
+    landmarks?: LandmarkUncheckedUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_LgaCreateManyInput = {
+    lga_code: number
+    lga_name: string
+  }
+
+  export type landmarks_LgaUpdateManyMutationInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type landmarks_LgaUncheckedUpdateManyInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type landmarks_PostcodeCreateInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    landmarks?: LandmarkCreateNestedManyWithoutPostcodeRelInput
+    Lga: landmarks_LgaCreateNestedOneWithoutPostcodeInput
+  }
+
+  export type landmarks_PostcodeUncheckedCreateInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutPostcodeRelInput
+  }
+
+  export type landmarks_PostcodeUpdateInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    landmarks?: LandmarkUpdateManyWithoutPostcodeRelNestedInput
+    Lga?: landmarks_LgaUpdateOneRequiredWithoutPostcodeNestedInput
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    landmarks?: LandmarkUncheckedUpdateManyWithoutPostcodeRelNestedInput
+  }
+
+  export type landmarks_PostcodeCreateManyInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type landmarks_PostcodeUpdateManyMutationInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateManyInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -27012,6 +35308,289 @@ export namespace Prisma {
     count?: SortOrder
   }
 
+  export type DestinationCountListRelationFilter = {
+    every?: DestinationCountWhereInput
+    some?: DestinationCountWhereInput
+    none?: DestinationCountWhereInput
+  }
+
+  export type DestinationCountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DestinationCountOrderByAggregateInput = {
+    destination_id?: SortOrder
+    destination_name?: SortOrder
+    description?: SortOrder
+    postcode?: SortOrder
+    website?: SortOrder
+    image_url?: SortOrder
+    image_attribution?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type DestinationAvgOrderByAggregateInput = {
+    destination_id?: SortOrder
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type DestinationMaxOrderByAggregateInput = {
+    destination_id?: SortOrder
+    destination_name?: SortOrder
+    description?: SortOrder
+    postcode?: SortOrder
+    website?: SortOrder
+    image_url?: SortOrder
+    image_attribution?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type DestinationMinOrderByAggregateInput = {
+    destination_id?: SortOrder
+    destination_name?: SortOrder
+    description?: SortOrder
+    postcode?: SortOrder
+    website?: SortOrder
+    image_url?: SortOrder
+    image_attribution?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type DestinationSumOrderByAggregateInput = {
+    destination_id?: SortOrder
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type DestinationScalarRelationFilter = {
+    is?: DestinationWhereInput
+    isNot?: DestinationWhereInput
+  }
+
+  export type Landmarks_LgaScalarRelationFilter = {
+    is?: landmarks_LgaWhereInput
+    isNot?: landmarks_LgaWhereInput
+  }
+
+  export type DestinationCountCountOrderByAggregateInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrder
+  }
+
+  export type DestinationCountAvgOrderByAggregateInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrder
+  }
+
+  export type DestinationCountMaxOrderByAggregateInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrder
+  }
+
+  export type DestinationCountMinOrderByAggregateInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrder
+  }
+
+  export type DestinationCountSumOrderByAggregateInput = {
+    destination_year_type_id?: SortOrder
+    destination_id?: SortOrder
+    lga_code?: SortOrder
+    year?: SortOrder
+    total_stay_counts?: SortOrder
+    pct_change_yoy?: SortOrder
+  }
+
+  export type LandmarkListRelationFilter = {
+    every?: LandmarkWhereInput
+    some?: LandmarkWhereInput
+    none?: LandmarkWhereInput
+  }
+
+  export type LandmarkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LandmarkTypeCountOrderByAggregateInput = {
+    landmark_type_id?: SortOrder
+    landmark_type?: SortOrder
+  }
+
+  export type LandmarkTypeAvgOrderByAggregateInput = {
+    landmark_type_id?: SortOrder
+  }
+
+  export type LandmarkTypeMaxOrderByAggregateInput = {
+    landmark_type_id?: SortOrder
+    landmark_type?: SortOrder
+  }
+
+  export type LandmarkTypeMinOrderByAggregateInput = {
+    landmark_type_id?: SortOrder
+    landmark_type?: SortOrder
+  }
+
+  export type LandmarkTypeSumOrderByAggregateInput = {
+    landmark_type_id?: SortOrder
+  }
+
+  export type LandmarkTypeScalarRelationFilter = {
+    is?: LandmarkTypeWhereInput
+    isNot?: LandmarkTypeWhereInput
+  }
+
+  export type Landmarks_PostcodeScalarRelationFilter = {
+    is?: landmarks_PostcodeWhereInput
+    isNot?: landmarks_PostcodeWhereInput
+  }
+
+  export type LandmarkCountOrderByAggregateInput = {
+    landmark_id?: SortOrder
+    landmark_name?: SortOrder
+    landmark_description?: SortOrder
+    landmark_type_id?: SortOrder
+    ilms_url?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type LandmarkAvgOrderByAggregateInput = {
+    landmark_id?: SortOrder
+    landmark_type_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type LandmarkMaxOrderByAggregateInput = {
+    landmark_id?: SortOrder
+    landmark_name?: SortOrder
+    landmark_description?: SortOrder
+    landmark_type_id?: SortOrder
+    ilms_url?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type LandmarkMinOrderByAggregateInput = {
+    landmark_id?: SortOrder
+    landmark_name?: SortOrder
+    landmark_description?: SortOrder
+    landmark_type_id?: SortOrder
+    ilms_url?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type LandmarkSumOrderByAggregateInput = {
+    landmark_id?: SortOrder
+    landmark_type_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    postcode?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type Landmarks_PostcodeListRelationFilter = {
+    every?: landmarks_PostcodeWhereInput
+    some?: landmarks_PostcodeWhereInput
+    none?: landmarks_PostcodeWhereInput
+  }
+
+  export type landmarks_PostcodeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type landmarks_LgaCountOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type landmarks_LgaAvgOrderByAggregateInput = {
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_LgaMaxOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type landmarks_LgaMinOrderByAggregateInput = {
+    lga_code?: SortOrder
+    lga_name?: SortOrder
+  }
+
+  export type landmarks_LgaSumOrderByAggregateInput = {
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_PostcodeCountOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_PostcodeAvgOrderByAggregateInput = {
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_PostcodeMaxOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_PostcodeMinOrderByAggregateInput = {
+    postcode?: SortOrder
+    suburb?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
+  export type landmarks_PostcodeSumOrderByAggregateInput = {
+    postcode?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    lga_code?: SortOrder
+  }
+
   export type EventCreateNestedManyWithoutVenueInput = {
     create?: XOR<EventCreateWithoutVenueInput, EventUncheckedCreateWithoutVenueInput> | EventCreateWithoutVenueInput[] | EventUncheckedCreateWithoutVenueInput[]
     connectOrCreate?: EventCreateOrConnectWithoutVenueInput | EventCreateOrConnectWithoutVenueInput[]
@@ -27958,6 +36537,342 @@ export namespace Prisma {
     upsert?: NationalityUpsertWithoutLgaNationalityYearInput
     connect?: NationalityWhereUniqueInput
     update?: XOR<XOR<NationalityUpdateToOneWithWhereWithoutLgaNationalityYearInput, NationalityUpdateWithoutLgaNationalityYearInput>, NationalityUncheckedUpdateWithoutLgaNationalityYearInput>
+  }
+
+  export type DestinationCountCreateNestedManyWithoutDestinationInput = {
+    create?: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput> | DestinationCountCreateWithoutDestinationInput[] | DestinationCountUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutDestinationInput | DestinationCountCreateOrConnectWithoutDestinationInput[]
+    createMany?: DestinationCountCreateManyDestinationInputEnvelope
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+  }
+
+  export type DestinationCountUncheckedCreateNestedManyWithoutDestinationInput = {
+    create?: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput> | DestinationCountCreateWithoutDestinationInput[] | DestinationCountUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutDestinationInput | DestinationCountCreateOrConnectWithoutDestinationInput[]
+    createMany?: DestinationCountCreateManyDestinationInputEnvelope
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+  }
+
+  export type DestinationCountUpdateManyWithoutDestinationNestedInput = {
+    create?: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput> | DestinationCountCreateWithoutDestinationInput[] | DestinationCountUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutDestinationInput | DestinationCountCreateOrConnectWithoutDestinationInput[]
+    upsert?: DestinationCountUpsertWithWhereUniqueWithoutDestinationInput | DestinationCountUpsertWithWhereUniqueWithoutDestinationInput[]
+    createMany?: DestinationCountCreateManyDestinationInputEnvelope
+    set?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    disconnect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    delete?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    update?: DestinationCountUpdateWithWhereUniqueWithoutDestinationInput | DestinationCountUpdateWithWhereUniqueWithoutDestinationInput[]
+    updateMany?: DestinationCountUpdateManyWithWhereWithoutDestinationInput | DestinationCountUpdateManyWithWhereWithoutDestinationInput[]
+    deleteMany?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+  }
+
+  export type DestinationCountUncheckedUpdateManyWithoutDestinationNestedInput = {
+    create?: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput> | DestinationCountCreateWithoutDestinationInput[] | DestinationCountUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutDestinationInput | DestinationCountCreateOrConnectWithoutDestinationInput[]
+    upsert?: DestinationCountUpsertWithWhereUniqueWithoutDestinationInput | DestinationCountUpsertWithWhereUniqueWithoutDestinationInput[]
+    createMany?: DestinationCountCreateManyDestinationInputEnvelope
+    set?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    disconnect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    delete?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    update?: DestinationCountUpdateWithWhereUniqueWithoutDestinationInput | DestinationCountUpdateWithWhereUniqueWithoutDestinationInput[]
+    updateMany?: DestinationCountUpdateManyWithWhereWithoutDestinationInput | DestinationCountUpdateManyWithWhereWithoutDestinationInput[]
+    deleteMany?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+  }
+
+  export type DestinationCreateNestedOneWithoutCountsInput = {
+    create?: XOR<DestinationCreateWithoutCountsInput, DestinationUncheckedCreateWithoutCountsInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutCountsInput
+    connect?: DestinationWhereUniqueInput
+  }
+
+  export type landmarks_LgaCreateNestedOneWithoutDestinationCountsInput = {
+    create?: XOR<landmarks_LgaCreateWithoutDestinationCountsInput, landmarks_LgaUncheckedCreateWithoutDestinationCountsInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutDestinationCountsInput
+    connect?: landmarks_LgaWhereUniqueInput
+  }
+
+  export type DestinationUpdateOneRequiredWithoutCountsNestedInput = {
+    create?: XOR<DestinationCreateWithoutCountsInput, DestinationUncheckedCreateWithoutCountsInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutCountsInput
+    upsert?: DestinationUpsertWithoutCountsInput
+    connect?: DestinationWhereUniqueInput
+    update?: XOR<XOR<DestinationUpdateToOneWithWhereWithoutCountsInput, DestinationUpdateWithoutCountsInput>, DestinationUncheckedUpdateWithoutCountsInput>
+  }
+
+  export type landmarks_LgaUpdateOneRequiredWithoutDestinationCountsNestedInput = {
+    create?: XOR<landmarks_LgaCreateWithoutDestinationCountsInput, landmarks_LgaUncheckedCreateWithoutDestinationCountsInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutDestinationCountsInput
+    upsert?: landmarks_LgaUpsertWithoutDestinationCountsInput
+    connect?: landmarks_LgaWhereUniqueInput
+    update?: XOR<XOR<landmarks_LgaUpdateToOneWithWhereWithoutDestinationCountsInput, landmarks_LgaUpdateWithoutDestinationCountsInput>, landmarks_LgaUncheckedUpdateWithoutDestinationCountsInput>
+  }
+
+  export type LandmarkCreateNestedManyWithoutTypeInput = {
+    create?: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput> | LandmarkCreateWithoutTypeInput[] | LandmarkUncheckedCreateWithoutTypeInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutTypeInput | LandmarkCreateOrConnectWithoutTypeInput[]
+    createMany?: LandmarkCreateManyTypeInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type LandmarkUncheckedCreateNestedManyWithoutTypeInput = {
+    create?: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput> | LandmarkCreateWithoutTypeInput[] | LandmarkUncheckedCreateWithoutTypeInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutTypeInput | LandmarkCreateOrConnectWithoutTypeInput[]
+    createMany?: LandmarkCreateManyTypeInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type LandmarkUpdateManyWithoutTypeNestedInput = {
+    create?: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput> | LandmarkCreateWithoutTypeInput[] | LandmarkUncheckedCreateWithoutTypeInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutTypeInput | LandmarkCreateOrConnectWithoutTypeInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutTypeInput | LandmarkUpsertWithWhereUniqueWithoutTypeInput[]
+    createMany?: LandmarkCreateManyTypeInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutTypeInput | LandmarkUpdateWithWhereUniqueWithoutTypeInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutTypeInput | LandmarkUpdateManyWithWhereWithoutTypeInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutTypeNestedInput = {
+    create?: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput> | LandmarkCreateWithoutTypeInput[] | LandmarkUncheckedCreateWithoutTypeInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutTypeInput | LandmarkCreateOrConnectWithoutTypeInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutTypeInput | LandmarkUpsertWithWhereUniqueWithoutTypeInput[]
+    createMany?: LandmarkCreateManyTypeInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutTypeInput | LandmarkUpdateWithWhereUniqueWithoutTypeInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutTypeInput | LandmarkUpdateManyWithWhereWithoutTypeInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+  }
+
+  export type LandmarkTypeCreateNestedOneWithoutLandmarksInput = {
+    create?: XOR<LandmarkTypeCreateWithoutLandmarksInput, LandmarkTypeUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: LandmarkTypeCreateOrConnectWithoutLandmarksInput
+    connect?: LandmarkTypeWhereUniqueInput
+  }
+
+  export type landmarks_LgaCreateNestedOneWithoutLandmarksInput = {
+    create?: XOR<landmarks_LgaCreateWithoutLandmarksInput, landmarks_LgaUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutLandmarksInput
+    connect?: landmarks_LgaWhereUniqueInput
+  }
+
+  export type landmarks_PostcodeCreateNestedOneWithoutLandmarksInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLandmarksInput, landmarks_PostcodeUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLandmarksInput
+    connect?: landmarks_PostcodeWhereUniqueInput
+  }
+
+  export type LandmarkTypeUpdateOneRequiredWithoutLandmarksNestedInput = {
+    create?: XOR<LandmarkTypeCreateWithoutLandmarksInput, LandmarkTypeUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: LandmarkTypeCreateOrConnectWithoutLandmarksInput
+    upsert?: LandmarkTypeUpsertWithoutLandmarksInput
+    connect?: LandmarkTypeWhereUniqueInput
+    update?: XOR<XOR<LandmarkTypeUpdateToOneWithWhereWithoutLandmarksInput, LandmarkTypeUpdateWithoutLandmarksInput>, LandmarkTypeUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type landmarks_LgaUpdateOneRequiredWithoutLandmarksNestedInput = {
+    create?: XOR<landmarks_LgaCreateWithoutLandmarksInput, landmarks_LgaUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutLandmarksInput
+    upsert?: landmarks_LgaUpsertWithoutLandmarksInput
+    connect?: landmarks_LgaWhereUniqueInput
+    update?: XOR<XOR<landmarks_LgaUpdateToOneWithWhereWithoutLandmarksInput, landmarks_LgaUpdateWithoutLandmarksInput>, landmarks_LgaUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type landmarks_PostcodeUpdateOneRequiredWithoutLandmarksNestedInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLandmarksInput, landmarks_PostcodeUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLandmarksInput
+    upsert?: landmarks_PostcodeUpsertWithoutLandmarksInput
+    connect?: landmarks_PostcodeWhereUniqueInput
+    update?: XOR<XOR<landmarks_PostcodeUpdateToOneWithWhereWithoutLandmarksInput, landmarks_PostcodeUpdateWithoutLandmarksInput>, landmarks_PostcodeUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type DestinationCountCreateNestedManyWithoutLgaInput = {
+    create?: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput> | DestinationCountCreateWithoutLgaInput[] | DestinationCountUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutLgaInput | DestinationCountCreateOrConnectWithoutLgaInput[]
+    createMany?: DestinationCountCreateManyLgaInputEnvelope
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+  }
+
+  export type LandmarkCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput> | LandmarkCreateWithoutLgaInput[] | LandmarkUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutLgaInput | LandmarkCreateOrConnectWithoutLgaInput[]
+    createMany?: LandmarkCreateManyLgaInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type landmarks_PostcodeCreateNestedManyWithoutLgaInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput> | landmarks_PostcodeCreateWithoutLgaInput[] | landmarks_PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLgaInput | landmarks_PostcodeCreateOrConnectWithoutLgaInput[]
+    createMany?: landmarks_PostcodeCreateManyLgaInputEnvelope
+    connect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+  }
+
+  export type DestinationCountUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput> | DestinationCountCreateWithoutLgaInput[] | DestinationCountUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutLgaInput | DestinationCountCreateOrConnectWithoutLgaInput[]
+    createMany?: DestinationCountCreateManyLgaInputEnvelope
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+  }
+
+  export type LandmarkUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput> | LandmarkCreateWithoutLgaInput[] | LandmarkUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutLgaInput | LandmarkCreateOrConnectWithoutLgaInput[]
+    createMany?: LandmarkCreateManyLgaInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type landmarks_PostcodeUncheckedCreateNestedManyWithoutLgaInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput> | landmarks_PostcodeCreateWithoutLgaInput[] | landmarks_PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLgaInput | landmarks_PostcodeCreateOrConnectWithoutLgaInput[]
+    createMany?: landmarks_PostcodeCreateManyLgaInputEnvelope
+    connect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+  }
+
+  export type DestinationCountUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput> | DestinationCountCreateWithoutLgaInput[] | DestinationCountUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutLgaInput | DestinationCountCreateOrConnectWithoutLgaInput[]
+    upsert?: DestinationCountUpsertWithWhereUniqueWithoutLgaInput | DestinationCountUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: DestinationCountCreateManyLgaInputEnvelope
+    set?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    disconnect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    delete?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    update?: DestinationCountUpdateWithWhereUniqueWithoutLgaInput | DestinationCountUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: DestinationCountUpdateManyWithWhereWithoutLgaInput | DestinationCountUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+  }
+
+  export type LandmarkUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput> | LandmarkCreateWithoutLgaInput[] | LandmarkUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutLgaInput | LandmarkCreateOrConnectWithoutLgaInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutLgaInput | LandmarkUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LandmarkCreateManyLgaInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutLgaInput | LandmarkUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutLgaInput | LandmarkUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+  }
+
+  export type landmarks_PostcodeUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput> | landmarks_PostcodeCreateWithoutLgaInput[] | landmarks_PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLgaInput | landmarks_PostcodeCreateOrConnectWithoutLgaInput[]
+    upsert?: landmarks_PostcodeUpsertWithWhereUniqueWithoutLgaInput | landmarks_PostcodeUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: landmarks_PostcodeCreateManyLgaInputEnvelope
+    set?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    disconnect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    delete?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    connect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    update?: landmarks_PostcodeUpdateWithWhereUniqueWithoutLgaInput | landmarks_PostcodeUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: landmarks_PostcodeUpdateManyWithWhereWithoutLgaInput | landmarks_PostcodeUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: landmarks_PostcodeScalarWhereInput | landmarks_PostcodeScalarWhereInput[]
+  }
+
+  export type DestinationCountUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput> | DestinationCountCreateWithoutLgaInput[] | DestinationCountUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: DestinationCountCreateOrConnectWithoutLgaInput | DestinationCountCreateOrConnectWithoutLgaInput[]
+    upsert?: DestinationCountUpsertWithWhereUniqueWithoutLgaInput | DestinationCountUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: DestinationCountCreateManyLgaInputEnvelope
+    set?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    disconnect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    delete?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    connect?: DestinationCountWhereUniqueInput | DestinationCountWhereUniqueInput[]
+    update?: DestinationCountUpdateWithWhereUniqueWithoutLgaInput | DestinationCountUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: DestinationCountUpdateManyWithWhereWithoutLgaInput | DestinationCountUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput> | LandmarkCreateWithoutLgaInput[] | LandmarkUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutLgaInput | LandmarkCreateOrConnectWithoutLgaInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutLgaInput | LandmarkUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: LandmarkCreateManyLgaInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutLgaInput | LandmarkUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutLgaInput | LandmarkUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateManyWithoutLgaNestedInput = {
+    create?: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput> | landmarks_PostcodeCreateWithoutLgaInput[] | landmarks_PostcodeUncheckedCreateWithoutLgaInput[]
+    connectOrCreate?: landmarks_PostcodeCreateOrConnectWithoutLgaInput | landmarks_PostcodeCreateOrConnectWithoutLgaInput[]
+    upsert?: landmarks_PostcodeUpsertWithWhereUniqueWithoutLgaInput | landmarks_PostcodeUpsertWithWhereUniqueWithoutLgaInput[]
+    createMany?: landmarks_PostcodeCreateManyLgaInputEnvelope
+    set?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    disconnect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    delete?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    connect?: landmarks_PostcodeWhereUniqueInput | landmarks_PostcodeWhereUniqueInput[]
+    update?: landmarks_PostcodeUpdateWithWhereUniqueWithoutLgaInput | landmarks_PostcodeUpdateWithWhereUniqueWithoutLgaInput[]
+    updateMany?: landmarks_PostcodeUpdateManyWithWhereWithoutLgaInput | landmarks_PostcodeUpdateManyWithWhereWithoutLgaInput[]
+    deleteMany?: landmarks_PostcodeScalarWhereInput | landmarks_PostcodeScalarWhereInput[]
+  }
+
+  export type LandmarkCreateNestedManyWithoutPostcodeRelInput = {
+    create?: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput> | LandmarkCreateWithoutPostcodeRelInput[] | LandmarkUncheckedCreateWithoutPostcodeRelInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutPostcodeRelInput | LandmarkCreateOrConnectWithoutPostcodeRelInput[]
+    createMany?: LandmarkCreateManyPostcodeRelInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type landmarks_LgaCreateNestedOneWithoutPostcodeInput = {
+    create?: XOR<landmarks_LgaCreateWithoutPostcodeInput, landmarks_LgaUncheckedCreateWithoutPostcodeInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutPostcodeInput
+    connect?: landmarks_LgaWhereUniqueInput
+  }
+
+  export type LandmarkUncheckedCreateNestedManyWithoutPostcodeRelInput = {
+    create?: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput> | LandmarkCreateWithoutPostcodeRelInput[] | LandmarkUncheckedCreateWithoutPostcodeRelInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutPostcodeRelInput | LandmarkCreateOrConnectWithoutPostcodeRelInput[]
+    createMany?: LandmarkCreateManyPostcodeRelInputEnvelope
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+  }
+
+  export type LandmarkUpdateManyWithoutPostcodeRelNestedInput = {
+    create?: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput> | LandmarkCreateWithoutPostcodeRelInput[] | LandmarkUncheckedCreateWithoutPostcodeRelInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutPostcodeRelInput | LandmarkCreateOrConnectWithoutPostcodeRelInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutPostcodeRelInput | LandmarkUpsertWithWhereUniqueWithoutPostcodeRelInput[]
+    createMany?: LandmarkCreateManyPostcodeRelInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutPostcodeRelInput | LandmarkUpdateWithWhereUniqueWithoutPostcodeRelInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutPostcodeRelInput | LandmarkUpdateManyWithWhereWithoutPostcodeRelInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+  }
+
+  export type landmarks_LgaUpdateOneRequiredWithoutPostcodeNestedInput = {
+    create?: XOR<landmarks_LgaCreateWithoutPostcodeInput, landmarks_LgaUncheckedCreateWithoutPostcodeInput>
+    connectOrCreate?: landmarks_LgaCreateOrConnectWithoutPostcodeInput
+    upsert?: landmarks_LgaUpsertWithoutPostcodeInput
+    connect?: landmarks_LgaWhereUniqueInput
+    update?: XOR<XOR<landmarks_LgaUpdateToOneWithWhereWithoutPostcodeInput, landmarks_LgaUpdateWithoutPostcodeInput>, landmarks_LgaUncheckedUpdateWithoutPostcodeInput>
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutPostcodeRelNestedInput = {
+    create?: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput> | LandmarkCreateWithoutPostcodeRelInput[] | LandmarkUncheckedCreateWithoutPostcodeRelInput[]
+    connectOrCreate?: LandmarkCreateOrConnectWithoutPostcodeRelInput | LandmarkCreateOrConnectWithoutPostcodeRelInput[]
+    upsert?: LandmarkUpsertWithWhereUniqueWithoutPostcodeRelInput | LandmarkUpsertWithWhereUniqueWithoutPostcodeRelInput[]
+    createMany?: LandmarkCreateManyPostcodeRelInputEnvelope
+    set?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    disconnect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    delete?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    connect?: LandmarkWhereUniqueInput | LandmarkWhereUniqueInput[]
+    update?: LandmarkUpdateWithWhereUniqueWithoutPostcodeRelInput | LandmarkUpdateWithWhereUniqueWithoutPostcodeRelInput[]
+    updateMany?: LandmarkUpdateManyWithWhereWithoutPostcodeRelInput | LandmarkUpdateManyWithWhereWithoutPostcodeRelInput[]
+    deleteMany?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -29970,6 +38885,585 @@ export namespace Prisma {
     lga_nationalities?: LgaNationalityUncheckedUpdateManyWithoutNationalityNestedInput
   }
 
+  export type DestinationCountCreateWithoutDestinationInput = {
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+    lga: landmarks_LgaCreateNestedOneWithoutDestinationCountsInput
+  }
+
+  export type DestinationCountUncheckedCreateWithoutDestinationInput = {
+    destination_year_type_id?: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type DestinationCountCreateOrConnectWithoutDestinationInput = {
+    where: DestinationCountWhereUniqueInput
+    create: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput>
+  }
+
+  export type DestinationCountCreateManyDestinationInputEnvelope = {
+    data: DestinationCountCreateManyDestinationInput | DestinationCountCreateManyDestinationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DestinationCountUpsertWithWhereUniqueWithoutDestinationInput = {
+    where: DestinationCountWhereUniqueInput
+    update: XOR<DestinationCountUpdateWithoutDestinationInput, DestinationCountUncheckedUpdateWithoutDestinationInput>
+    create: XOR<DestinationCountCreateWithoutDestinationInput, DestinationCountUncheckedCreateWithoutDestinationInput>
+  }
+
+  export type DestinationCountUpdateWithWhereUniqueWithoutDestinationInput = {
+    where: DestinationCountWhereUniqueInput
+    data: XOR<DestinationCountUpdateWithoutDestinationInput, DestinationCountUncheckedUpdateWithoutDestinationInput>
+  }
+
+  export type DestinationCountUpdateManyWithWhereWithoutDestinationInput = {
+    where: DestinationCountScalarWhereInput
+    data: XOR<DestinationCountUpdateManyMutationInput, DestinationCountUncheckedUpdateManyWithoutDestinationInput>
+  }
+
+  export type DestinationCountScalarWhereInput = {
+    AND?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+    OR?: DestinationCountScalarWhereInput[]
+    NOT?: DestinationCountScalarWhereInput | DestinationCountScalarWhereInput[]
+    destination_year_type_id?: IntFilter<"DestinationCount"> | number
+    destination_id?: IntFilter<"DestinationCount"> | number
+    lga_code?: IntFilter<"DestinationCount"> | number
+    year?: IntFilter<"DestinationCount"> | number
+    total_stay_counts?: IntFilter<"DestinationCount"> | number
+    pct_change_yoy?: FloatNullableFilter<"DestinationCount"> | number | null
+  }
+
+  export type DestinationCreateWithoutCountsInput = {
+    destination_name: string
+    description?: string | null
+    postcode: number
+    website?: string | null
+    image_url?: string | null
+    image_attribution?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type DestinationUncheckedCreateWithoutCountsInput = {
+    destination_id?: number
+    destination_name: string
+    description?: string | null
+    postcode: number
+    website?: string | null
+    image_url?: string | null
+    image_attribution?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type DestinationCreateOrConnectWithoutCountsInput = {
+    where: DestinationWhereUniqueInput
+    create: XOR<DestinationCreateWithoutCountsInput, DestinationUncheckedCreateWithoutCountsInput>
+  }
+
+  export type landmarks_LgaCreateWithoutDestinationCountsInput = {
+    lga_code: number
+    lga_name: string
+    landmarks?: LandmarkCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaUncheckedCreateWithoutDestinationCountsInput = {
+    lga_code: number
+    lga_name: string
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaCreateOrConnectWithoutDestinationCountsInput = {
+    where: landmarks_LgaWhereUniqueInput
+    create: XOR<landmarks_LgaCreateWithoutDestinationCountsInput, landmarks_LgaUncheckedCreateWithoutDestinationCountsInput>
+  }
+
+  export type DestinationUpsertWithoutCountsInput = {
+    update: XOR<DestinationUpdateWithoutCountsInput, DestinationUncheckedUpdateWithoutCountsInput>
+    create: XOR<DestinationCreateWithoutCountsInput, DestinationUncheckedCreateWithoutCountsInput>
+    where?: DestinationWhereInput
+  }
+
+  export type DestinationUpdateToOneWithWhereWithoutCountsInput = {
+    where?: DestinationWhereInput
+    data: XOR<DestinationUpdateWithoutCountsInput, DestinationUncheckedUpdateWithoutCountsInput>
+  }
+
+  export type DestinationUpdateWithoutCountsInput = {
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationUncheckedUpdateWithoutCountsInput = {
+    destination_id?: IntFieldUpdateOperationsInput | number
+    destination_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postcode?: IntFieldUpdateOperationsInput | number
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_attribution?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type landmarks_LgaUpsertWithoutDestinationCountsInput = {
+    update: XOR<landmarks_LgaUpdateWithoutDestinationCountsInput, landmarks_LgaUncheckedUpdateWithoutDestinationCountsInput>
+    create: XOR<landmarks_LgaCreateWithoutDestinationCountsInput, landmarks_LgaUncheckedCreateWithoutDestinationCountsInput>
+    where?: landmarks_LgaWhereInput
+  }
+
+  export type landmarks_LgaUpdateToOneWithWhereWithoutDestinationCountsInput = {
+    where?: landmarks_LgaWhereInput
+    data: XOR<landmarks_LgaUpdateWithoutDestinationCountsInput, landmarks_LgaUncheckedUpdateWithoutDestinationCountsInput>
+  }
+
+  export type landmarks_LgaUpdateWithoutDestinationCountsInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    landmarks?: LandmarkUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_LgaUncheckedUpdateWithoutDestinationCountsInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    landmarks?: LandmarkUncheckedUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type LandmarkCreateWithoutTypeInput = {
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    lga: landmarks_LgaCreateNestedOneWithoutLandmarksInput
+    postcodeRel: landmarks_PostcodeCreateNestedOneWithoutLandmarksInput
+  }
+
+  export type LandmarkUncheckedCreateWithoutTypeInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+  }
+
+  export type LandmarkCreateOrConnectWithoutTypeInput = {
+    where: LandmarkWhereUniqueInput
+    create: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput>
+  }
+
+  export type LandmarkCreateManyTypeInputEnvelope = {
+    data: LandmarkCreateManyTypeInput | LandmarkCreateManyTypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LandmarkUpsertWithWhereUniqueWithoutTypeInput = {
+    where: LandmarkWhereUniqueInput
+    update: XOR<LandmarkUpdateWithoutTypeInput, LandmarkUncheckedUpdateWithoutTypeInput>
+    create: XOR<LandmarkCreateWithoutTypeInput, LandmarkUncheckedCreateWithoutTypeInput>
+  }
+
+  export type LandmarkUpdateWithWhereUniqueWithoutTypeInput = {
+    where: LandmarkWhereUniqueInput
+    data: XOR<LandmarkUpdateWithoutTypeInput, LandmarkUncheckedUpdateWithoutTypeInput>
+  }
+
+  export type LandmarkUpdateManyWithWhereWithoutTypeInput = {
+    where: LandmarkScalarWhereInput
+    data: XOR<LandmarkUpdateManyMutationInput, LandmarkUncheckedUpdateManyWithoutTypeInput>
+  }
+
+  export type LandmarkScalarWhereInput = {
+    AND?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+    OR?: LandmarkScalarWhereInput[]
+    NOT?: LandmarkScalarWhereInput | LandmarkScalarWhereInput[]
+    landmark_id?: IntFilter<"Landmark"> | number
+    landmark_name?: StringFilter<"Landmark"> | string
+    landmark_description?: StringNullableFilter<"Landmark"> | string | null
+    landmark_type_id?: IntFilter<"Landmark"> | number
+    ilms_url?: StringNullableFilter<"Landmark"> | string | null
+    latitude?: FloatFilter<"Landmark"> | number
+    longitude?: FloatFilter<"Landmark"> | number
+    postcode?: IntFilter<"Landmark"> | number
+    lga_code?: IntFilter<"Landmark"> | number
+  }
+
+  export type LandmarkTypeCreateWithoutLandmarksInput = {
+    landmark_type: string
+  }
+
+  export type LandmarkTypeUncheckedCreateWithoutLandmarksInput = {
+    landmark_type_id?: number
+    landmark_type: string
+  }
+
+  export type LandmarkTypeCreateOrConnectWithoutLandmarksInput = {
+    where: LandmarkTypeWhereUniqueInput
+    create: XOR<LandmarkTypeCreateWithoutLandmarksInput, LandmarkTypeUncheckedCreateWithoutLandmarksInput>
+  }
+
+  export type landmarks_LgaCreateWithoutLandmarksInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaUncheckedCreateWithoutLandmarksInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountUncheckedCreateNestedManyWithoutLgaInput
+    Postcode?: landmarks_PostcodeUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaCreateOrConnectWithoutLandmarksInput = {
+    where: landmarks_LgaWhereUniqueInput
+    create: XOR<landmarks_LgaCreateWithoutLandmarksInput, landmarks_LgaUncheckedCreateWithoutLandmarksInput>
+  }
+
+  export type landmarks_PostcodeCreateWithoutLandmarksInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    Lga: landmarks_LgaCreateNestedOneWithoutPostcodeInput
+  }
+
+  export type landmarks_PostcodeUncheckedCreateWithoutLandmarksInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type landmarks_PostcodeCreateOrConnectWithoutLandmarksInput = {
+    where: landmarks_PostcodeWhereUniqueInput
+    create: XOR<landmarks_PostcodeCreateWithoutLandmarksInput, landmarks_PostcodeUncheckedCreateWithoutLandmarksInput>
+  }
+
+  export type LandmarkTypeUpsertWithoutLandmarksInput = {
+    update: XOR<LandmarkTypeUpdateWithoutLandmarksInput, LandmarkTypeUncheckedUpdateWithoutLandmarksInput>
+    create: XOR<LandmarkTypeCreateWithoutLandmarksInput, LandmarkTypeUncheckedCreateWithoutLandmarksInput>
+    where?: LandmarkTypeWhereInput
+  }
+
+  export type LandmarkTypeUpdateToOneWithWhereWithoutLandmarksInput = {
+    where?: LandmarkTypeWhereInput
+    data: XOR<LandmarkTypeUpdateWithoutLandmarksInput, LandmarkTypeUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type LandmarkTypeUpdateWithoutLandmarksInput = {
+    landmark_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LandmarkTypeUncheckedUpdateWithoutLandmarksInput = {
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    landmark_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type landmarks_LgaUpsertWithoutLandmarksInput = {
+    update: XOR<landmarks_LgaUpdateWithoutLandmarksInput, landmarks_LgaUncheckedUpdateWithoutLandmarksInput>
+    create: XOR<landmarks_LgaCreateWithoutLandmarksInput, landmarks_LgaUncheckedCreateWithoutLandmarksInput>
+    where?: landmarks_LgaWhereInput
+  }
+
+  export type landmarks_LgaUpdateToOneWithWhereWithoutLandmarksInput = {
+    where?: landmarks_LgaWhereInput
+    data: XOR<landmarks_LgaUpdateWithoutLandmarksInput, landmarks_LgaUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type landmarks_LgaUpdateWithoutLandmarksInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_LgaUncheckedUpdateWithoutLandmarksInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUncheckedUpdateManyWithoutLgaNestedInput
+    Postcode?: landmarks_PostcodeUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_PostcodeUpsertWithoutLandmarksInput = {
+    update: XOR<landmarks_PostcodeUpdateWithoutLandmarksInput, landmarks_PostcodeUncheckedUpdateWithoutLandmarksInput>
+    create: XOR<landmarks_PostcodeCreateWithoutLandmarksInput, landmarks_PostcodeUncheckedCreateWithoutLandmarksInput>
+    where?: landmarks_PostcodeWhereInput
+  }
+
+  export type landmarks_PostcodeUpdateToOneWithWhereWithoutLandmarksInput = {
+    where?: landmarks_PostcodeWhereInput
+    data: XOR<landmarks_PostcodeUpdateWithoutLandmarksInput, landmarks_PostcodeUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type landmarks_PostcodeUpdateWithoutLandmarksInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    Lga?: landmarks_LgaUpdateOneRequiredWithoutPostcodeNestedInput
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateWithoutLandmarksInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationCountCreateWithoutLgaInput = {
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+    destination: DestinationCreateNestedOneWithoutCountsInput
+  }
+
+  export type DestinationCountUncheckedCreateWithoutLgaInput = {
+    destination_year_type_id?: number
+    destination_id: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type DestinationCountCreateOrConnectWithoutLgaInput = {
+    where: DestinationCountWhereUniqueInput
+    create: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput>
+  }
+
+  export type DestinationCountCreateManyLgaInputEnvelope = {
+    data: DestinationCountCreateManyLgaInput | DestinationCountCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LandmarkCreateWithoutLgaInput = {
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    type: LandmarkTypeCreateNestedOneWithoutLandmarksInput
+    postcodeRel: landmarks_PostcodeCreateNestedOneWithoutLandmarksInput
+  }
+
+  export type LandmarkUncheckedCreateWithoutLgaInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+  }
+
+  export type LandmarkCreateOrConnectWithoutLgaInput = {
+    where: LandmarkWhereUniqueInput
+    create: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LandmarkCreateManyLgaInputEnvelope = {
+    data: LandmarkCreateManyLgaInput | LandmarkCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type landmarks_PostcodeCreateWithoutLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    landmarks?: LandmarkCreateNestedManyWithoutPostcodeRelInput
+  }
+
+  export type landmarks_PostcodeUncheckedCreateWithoutLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutPostcodeRelInput
+  }
+
+  export type landmarks_PostcodeCreateOrConnectWithoutLgaInput = {
+    where: landmarks_PostcodeWhereUniqueInput
+    create: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput>
+  }
+
+  export type landmarks_PostcodeCreateManyLgaInputEnvelope = {
+    data: landmarks_PostcodeCreateManyLgaInput | landmarks_PostcodeCreateManyLgaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DestinationCountUpsertWithWhereUniqueWithoutLgaInput = {
+    where: DestinationCountWhereUniqueInput
+    update: XOR<DestinationCountUpdateWithoutLgaInput, DestinationCountUncheckedUpdateWithoutLgaInput>
+    create: XOR<DestinationCountCreateWithoutLgaInput, DestinationCountUncheckedCreateWithoutLgaInput>
+  }
+
+  export type DestinationCountUpdateWithWhereUniqueWithoutLgaInput = {
+    where: DestinationCountWhereUniqueInput
+    data: XOR<DestinationCountUpdateWithoutLgaInput, DestinationCountUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type DestinationCountUpdateManyWithWhereWithoutLgaInput = {
+    where: DestinationCountScalarWhereInput
+    data: XOR<DestinationCountUpdateManyMutationInput, DestinationCountUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type LandmarkUpsertWithWhereUniqueWithoutLgaInput = {
+    where: LandmarkWhereUniqueInput
+    update: XOR<LandmarkUpdateWithoutLgaInput, LandmarkUncheckedUpdateWithoutLgaInput>
+    create: XOR<LandmarkCreateWithoutLgaInput, LandmarkUncheckedCreateWithoutLgaInput>
+  }
+
+  export type LandmarkUpdateWithWhereUniqueWithoutLgaInput = {
+    where: LandmarkWhereUniqueInput
+    data: XOR<LandmarkUpdateWithoutLgaInput, LandmarkUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type LandmarkUpdateManyWithWhereWithoutLgaInput = {
+    where: LandmarkScalarWhereInput
+    data: XOR<LandmarkUpdateManyMutationInput, LandmarkUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type landmarks_PostcodeUpsertWithWhereUniqueWithoutLgaInput = {
+    where: landmarks_PostcodeWhereUniqueInput
+    update: XOR<landmarks_PostcodeUpdateWithoutLgaInput, landmarks_PostcodeUncheckedUpdateWithoutLgaInput>
+    create: XOR<landmarks_PostcodeCreateWithoutLgaInput, landmarks_PostcodeUncheckedCreateWithoutLgaInput>
+  }
+
+  export type landmarks_PostcodeUpdateWithWhereUniqueWithoutLgaInput = {
+    where: landmarks_PostcodeWhereUniqueInput
+    data: XOR<landmarks_PostcodeUpdateWithoutLgaInput, landmarks_PostcodeUncheckedUpdateWithoutLgaInput>
+  }
+
+  export type landmarks_PostcodeUpdateManyWithWhereWithoutLgaInput = {
+    where: landmarks_PostcodeScalarWhereInput
+    data: XOR<landmarks_PostcodeUpdateManyMutationInput, landmarks_PostcodeUncheckedUpdateManyWithoutLgaInput>
+  }
+
+  export type landmarks_PostcodeScalarWhereInput = {
+    AND?: landmarks_PostcodeScalarWhereInput | landmarks_PostcodeScalarWhereInput[]
+    OR?: landmarks_PostcodeScalarWhereInput[]
+    NOT?: landmarks_PostcodeScalarWhereInput | landmarks_PostcodeScalarWhereInput[]
+    postcode?: IntFilter<"landmarks_Postcode"> | number
+    suburb?: StringFilter<"landmarks_Postcode"> | string
+    latitude?: FloatFilter<"landmarks_Postcode"> | number
+    longitude?: FloatFilter<"landmarks_Postcode"> | number
+    lga_code?: IntFilter<"landmarks_Postcode"> | number
+  }
+
+  export type LandmarkCreateWithoutPostcodeRelInput = {
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    type: LandmarkTypeCreateNestedOneWithoutLandmarksInput
+    lga: landmarks_LgaCreateNestedOneWithoutLandmarksInput
+  }
+
+  export type LandmarkUncheckedCreateWithoutPostcodeRelInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type LandmarkCreateOrConnectWithoutPostcodeRelInput = {
+    where: LandmarkWhereUniqueInput
+    create: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput>
+  }
+
+  export type LandmarkCreateManyPostcodeRelInputEnvelope = {
+    data: LandmarkCreateManyPostcodeRelInput | LandmarkCreateManyPostcodeRelInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type landmarks_LgaCreateWithoutPostcodeInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountCreateNestedManyWithoutLgaInput
+    landmarks?: LandmarkCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaUncheckedCreateWithoutPostcodeInput = {
+    lga_code: number
+    lga_name: string
+    destinationCounts?: DestinationCountUncheckedCreateNestedManyWithoutLgaInput
+    landmarks?: LandmarkUncheckedCreateNestedManyWithoutLgaInput
+  }
+
+  export type landmarks_LgaCreateOrConnectWithoutPostcodeInput = {
+    where: landmarks_LgaWhereUniqueInput
+    create: XOR<landmarks_LgaCreateWithoutPostcodeInput, landmarks_LgaUncheckedCreateWithoutPostcodeInput>
+  }
+
+  export type LandmarkUpsertWithWhereUniqueWithoutPostcodeRelInput = {
+    where: LandmarkWhereUniqueInput
+    update: XOR<LandmarkUpdateWithoutPostcodeRelInput, LandmarkUncheckedUpdateWithoutPostcodeRelInput>
+    create: XOR<LandmarkCreateWithoutPostcodeRelInput, LandmarkUncheckedCreateWithoutPostcodeRelInput>
+  }
+
+  export type LandmarkUpdateWithWhereUniqueWithoutPostcodeRelInput = {
+    where: LandmarkWhereUniqueInput
+    data: XOR<LandmarkUpdateWithoutPostcodeRelInput, LandmarkUncheckedUpdateWithoutPostcodeRelInput>
+  }
+
+  export type LandmarkUpdateManyWithWhereWithoutPostcodeRelInput = {
+    where: LandmarkScalarWhereInput
+    data: XOR<LandmarkUpdateManyMutationInput, LandmarkUncheckedUpdateManyWithoutPostcodeRelInput>
+  }
+
+  export type landmarks_LgaUpsertWithoutPostcodeInput = {
+    update: XOR<landmarks_LgaUpdateWithoutPostcodeInput, landmarks_LgaUncheckedUpdateWithoutPostcodeInput>
+    create: XOR<landmarks_LgaCreateWithoutPostcodeInput, landmarks_LgaUncheckedCreateWithoutPostcodeInput>
+    where?: landmarks_LgaWhereInput
+  }
+
+  export type landmarks_LgaUpdateToOneWithWhereWithoutPostcodeInput = {
+    where?: landmarks_LgaWhereInput
+    data: XOR<landmarks_LgaUpdateWithoutPostcodeInput, landmarks_LgaUncheckedUpdateWithoutPostcodeInput>
+  }
+
+  export type landmarks_LgaUpdateWithoutPostcodeInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUpdateManyWithoutLgaNestedInput
+    landmarks?: LandmarkUpdateManyWithoutLgaNestedInput
+  }
+
+  export type landmarks_LgaUncheckedUpdateWithoutPostcodeInput = {
+    lga_code?: IntFieldUpdateOperationsInput | number
+    lga_name?: StringFieldUpdateOperationsInput | string
+    destinationCounts?: DestinationCountUncheckedUpdateManyWithoutLgaNestedInput
+    landmarks?: LandmarkUncheckedUpdateManyWithoutLgaNestedInput
+  }
+
   export type EventCreateManyVenueInput = {
     event_id: string
     event_name: string
@@ -30550,6 +40044,227 @@ export namespace Prisma {
     lga_code?: IntFieldUpdateOperationsInput | number
     english_profiency_level?: StringFieldUpdateOperationsInput | string
     count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationCountCreateManyDestinationInput = {
+    destination_year_type_id?: number
+    lga_code: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type DestinationCountUpdateWithoutDestinationInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+    lga?: landmarks_LgaUpdateOneRequiredWithoutDestinationCountsNestedInput
+  }
+
+  export type DestinationCountUncheckedUpdateWithoutDestinationInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type DestinationCountUncheckedUpdateManyWithoutDestinationInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LandmarkCreateManyTypeInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+    lga_code: number
+  }
+
+  export type LandmarkUpdateWithoutTypeInput = {
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga?: landmarks_LgaUpdateOneRequiredWithoutLandmarksNestedInput
+    postcodeRel?: landmarks_PostcodeUpdateOneRequiredWithoutLandmarksNestedInput
+  }
+
+  export type LandmarkUncheckedUpdateWithoutTypeInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutTypeInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DestinationCountCreateManyLgaInput = {
+    destination_year_type_id?: number
+    destination_id: number
+    year: number
+    total_stay_counts: number
+    pct_change_yoy?: number | null
+  }
+
+  export type LandmarkCreateManyLgaInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    postcode: number
+  }
+
+  export type landmarks_PostcodeCreateManyLgaInput = {
+    postcode: number
+    suburb: string
+    latitude: number
+    longitude: number
+  }
+
+  export type DestinationCountUpdateWithoutLgaInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination?: DestinationUpdateOneRequiredWithoutCountsNestedInput
+  }
+
+  export type DestinationCountUncheckedUpdateWithoutLgaInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    destination_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type DestinationCountUncheckedUpdateManyWithoutLgaInput = {
+    destination_year_type_id?: IntFieldUpdateOperationsInput | number
+    destination_id?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    total_stay_counts?: IntFieldUpdateOperationsInput | number
+    pct_change_yoy?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type LandmarkUpdateWithoutLgaInput = {
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    type?: LandmarkTypeUpdateOneRequiredWithoutLandmarksNestedInput
+    postcodeRel?: landmarks_PostcodeUpdateOneRequiredWithoutLandmarksNestedInput
+  }
+
+  export type LandmarkUncheckedUpdateWithoutLgaInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutLgaInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    postcode?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type landmarks_PostcodeUpdateWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    landmarks?: LandmarkUpdateManyWithoutPostcodeRelNestedInput
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    landmarks?: LandmarkUncheckedUpdateManyWithoutPostcodeRelNestedInput
+  }
+
+  export type landmarks_PostcodeUncheckedUpdateManyWithoutLgaInput = {
+    postcode?: IntFieldUpdateOperationsInput | number
+    suburb?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkCreateManyPostcodeRelInput = {
+    landmark_id?: number
+    landmark_name: string
+    landmark_description?: string | null
+    landmark_type_id: number
+    ilms_url?: string | null
+    latitude: number
+    longitude: number
+    lga_code: number
+  }
+
+  export type LandmarkUpdateWithoutPostcodeRelInput = {
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    type?: LandmarkTypeUpdateOneRequiredWithoutLandmarksNestedInput
+    lga?: landmarks_LgaUpdateOneRequiredWithoutLandmarksNestedInput
+  }
+
+  export type LandmarkUncheckedUpdateWithoutPostcodeRelInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LandmarkUncheckedUpdateManyWithoutPostcodeRelInput = {
+    landmark_id?: IntFieldUpdateOperationsInput | number
+    landmark_name?: StringFieldUpdateOperationsInput | string
+    landmark_description?: NullableStringFieldUpdateOperationsInput | string | null
+    landmark_type_id?: IntFieldUpdateOperationsInput | number
+    ilms_url?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    lga_code?: IntFieldUpdateOperationsInput | number
   }
 
 

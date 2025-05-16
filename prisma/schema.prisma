@@ -10,16 +10,22 @@ generator clientEnglish {
   previewFeatures = ["multiSchema"]
 }
 
-generator client {
+generator clientLga {
   provider        = "prisma-client-js"
   output          = "../.prisma/client-lga"
+  previewFeatures = ["multiSchema"]
+}
+
+generator clientLandmarks {
+  provider        = "prisma-client-js"
+  output          = "../.prisma/client-landmarks"
   previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["community_events", "english_courses", "lga_map"]
+  schemas  = ["community_events", "english_courses", "landmarks", "lga_map"]
 }
 
 model Venue {
@@ -255,4 +261,85 @@ model LgaNationalityYear {
   Nationality             Nationality @relation(fields: [nationality_id], references: [nationality_id])
 
   @@schema("lga_map")
+}
+
+/// Static descriptive info for each top-10 destination
+model Destination {
+  destination_id    Int                @id @default(autoincrement())
+  destination_name  String
+  description       String?
+  postcode          Int
+  website           String?
+  image_url         String?
+  image_attribution String?
+  latitude          Float
+  longitude         Float
+  counts            DestinationCount[]
+
+  @@schema("landmarks")
+}
+
+/// Yearly visitor counts per destination & LGA
+model DestinationCount {
+  destination_year_type_id Int           @id @default(autoincrement())
+  destination_id           Int
+  lga_code                 Int
+  year                     Int
+  total_stay_counts        Int
+  pct_change_yoy           Float?
+  destination              Destination   @relation(fields: [destination_id], references: [destination_id])
+  lga                      landmarks_Lga @relation("LgaDestinationCounts", fields: [lga_code], references: [lga_code])
+
+  @@schema("landmarks")
+}
+
+/// Lookup table for landmark categories (e.g. "Museum", "Park")
+model LandmarkType {
+  landmark_type_id Int        @id @default(autoincrement())
+  landmark_type    String
+  landmarks        Landmark[]
+
+  @@schema("landmarks")
+}
+
+/// Individual cultural landmarks in an LGA
+model Landmark {
+  landmark_id          Int                @id @default(autoincrement())
+  landmark_name        String
+  landmark_description String?
+  landmark_type_id     Int
+  ilms_url             String?
+  latitude             Float
+  longitude            Float
+  postcode             Int
+  lga_code             Int
+  type                 LandmarkType       @relation(fields: [landmark_type_id], references: [landmark_type_id])
+  lga                  landmarks_Lga      @relation("LgaLandmarks", fields: [lga_code], references: [lga_code])
+  postcodeRel          landmarks_Postcode @relation("PostcodeLandmarks", fields: [postcode], references: [postcode])
+
+  @@schema("landmarks")
+}
+
+model landmarks_Lga {
+  lga_code          Int                  @id
+  lga_name          String
+  destinationCounts DestinationCount[]   @relation("LgaDestinationCounts")
+  landmarks         Landmark[]           @relation("LgaLandmarks")
+  Postcode          landmarks_Postcode[]
+
+  @@map("Lga")
+  @@schema("landmarks")
+}
+
+model landmarks_Postcode {
+  postcode  Int           @id
+  suburb    String
+  latitude  Float
+  longitude Float
+  lga_code  Int
+  landmarks Landmark[]    @relation("PostcodeLandmarks")
+  Lga       landmarks_Lga @relation(fields: [lga_code], references: [lga_code])
+
+  @@map("Postcode")
+  @@schema("landmarks")
 }

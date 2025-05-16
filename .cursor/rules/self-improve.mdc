@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Self-Improve Rules
+
+This document outlines **when and how to write or improve Cursor rules** to enhance automated coding behavior. It acts as a framework for evolving the rulebase through real-world usage and feedback.
+
+---
+
+## Rule Improvement Triggers
+
+Rules should be created or refined when:
+
+- New code patterns emerge that are not covered by existing rules  
+- Similar implementations are repeated across multiple files  
+- Common error patterns arise that could be avoided with guidance  
+- New libraries or tools are adopted consistently  
+- Emerging best practices surface in the codebase  
+
+---
+
+## Analysis Process
+
+Use the following methods to evaluate when rules need to evolve:
+
+- Compare newly written code to existing rule coverage  
+- Identify patterns that could or should be standardized  
+- Look for references to external documentation or guides  
+- Analyze for repeated error-handling strategies  
+- Monitor test patterns and gaps in test coverage  
+
+---
+
+## Rule Updates
+
+### Add New Rules When:
+
+- A new technology or pattern appears in 3 or more files  
+- A bug pattern emerges that could be prevented  
+- Code reviews frequently mention the same feedback  
+- New security or performance practices appear consistently  
+
+### Modify Existing Rules When:
+
+- Better examples are now present in the codebase  
+- Edge cases that weren’t previously handled are discovered  
+- Related rules have changed, and alignment is needed  
+- Implementation details in the ecosystem have evolved  
+
+---
+
+## Example: Pattern Recognition
+
+### 1. TypeScript - Repeated Query Logic
+
+```ts
+const data = await prisma.user.findMany({
+  select: {
+    id: true,
+    email: true,
+  },
+  where: {
+    status: 'ACTIVE',
+  },
+});

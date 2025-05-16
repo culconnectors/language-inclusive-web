@@ -1,6 +1,16 @@
 import { NextResponse } from 'next/server';
 import { lgaClient } from "@/lib/prisma";
 
+/**
+ * GET handler for fetching top 10 non-Australian nationalities for a given LGA.
+ *
+ * @param {Request} request - The incoming request object.
+ * @returns {Promise<NextResponse>} JSON array of nationality and count or error.
+ *
+ * - Expects `lgaCode` as a query parameter.
+ * - Excludes Australia, New Zealand, England.
+ * - Returns 400 for missing code, 500 for server error.
+ */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);

@@ -5,6 +5,15 @@
 import { NextResponse } from 'next/server';
 import { lgaClient } from "@/lib/prisma";
 
+/**
+ * GET handler for fetching a specific statistic for all LGAs.
+ *
+ * @param {Request} request - The incoming request object.
+ * @returns {Promise<NextResponse>} JSON array of { lga_code, value } or error.
+ *
+ * - Expects `stat` as a query parameter.
+ * - Returns 400 for missing stat, 500 for server error.
+ */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);

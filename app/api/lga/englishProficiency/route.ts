@@ -1,7 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { lgaClient } from "@/lib/prisma";
 
-export async function GET(request: Request) {
+/**
+ * GET handler for fetching detailed statistics for a specific LGA.
+ * 
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} JSON object with statistics or error.
+ * 
+ * - Extracts lgaCode from the URL path.
+ * - Returns formatted statistics and related LGA data if found.
+ * - Returns 400 for invalid code, 404 if not found, 500 for server error.
+ */
+export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const lgaCode = searchParams.get('lgaCode');

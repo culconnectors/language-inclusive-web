@@ -1,0 +1,345 @@
+generator clientEvents {
+  provider        = "prisma-client-js"
+  output          = "../.prisma/client-community"
+  previewFeatures = ["multiSchema"]
+}
+
+generator clientEnglish {
+  provider        = "prisma-client-js"
+  output          = "../.prisma/client-workshop"
+  previewFeatures = ["multiSchema"]
+}
+
+generator clientLga {
+  provider        = "prisma-client-js"
+  output          = "../.prisma/client-lga"
+  previewFeatures = ["multiSchema"]
+}
+
+generator clientLandmarks {
+  provider        = "prisma-client-js"
+  output          = "../.prisma/client-landmarks"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["community_events", "english_courses", "landmarks", "lga_map"]
+}
+
+model Venue {
+  venue_id        String  @id
+  venue_name      String
+  venue_address   String
+  venue_city      String
+  venue_latitude  Float
+  venue_longitude Float
+  venue_postcode  Int
+  events          Event[] @relation("VenueEvents")
+
+  @@schema("community_events")
+}
+
+model Category {
+  category_id   String  @id
+  category_name String
+  events        Event[] @relation("CategoryEvents")
+
+  @@schema("community_events")
+}
+
+model Organizer {
+  organizer_id   String  @id
+  organizer_name String
+  organizer_url  String
+  events         Event[] @relation("OrganizerEvents")
+
+  @@schema("community_events")
+}
+
+model Logo {
+  logo_id           BigInt  @id
+  logo_url          String
+  logo_width        Int
+  logo_height       Int
+  logo_aspect_ratio Float
+  events            Event[] @relation("LogoEvents")
+
+  @@schema("community_events")
+}
+
+model Event {
+  event_id                     String     @id
+  event_name                   String
+  event_description            String
+  start_datetime               DateTime
+  end_datetime                 DateTime
+  event_summary                String
+  category_id                  String?
+  organizer_id                 String?
+  venue_id                     String?
+  logo_id                      BigInt?
+  event_status                 String
+  event_url                    String?
+  is_free_event                Boolean
+  community_friendly           Boolean
+  predicted_community_friendly Boolean
+  category                     Category?  @relation("CategoryEvents", fields: [category_id], references: [category_id])
+  logo                         Logo?      @relation("LogoEvents", fields: [logo_id], references: [logo_id])
+  organizer                    Organizer? @relation("OrganizerEvents", fields: [organizer_id], references: [organizer_id])
+  venue                        Venue?     @relation("VenueEvents", fields: [venue_id], references: [venue_id])
+  websites                     Website[]
+
+  @@schema("community_events")
+}
+
+model Website {
+  event_url String @id
+  event_id  String
+  event     Event  @relation(fields: [event_id], references: [event_id])
+
+  @@schema("community_events")
+}
+
+model Provider {
+  provider_id           Int        @id
+  provider_name         String
+  site_name             String
+  government_subsidised String
+  subsidy_tag           String?
+  asqa_code             Int
+  url                   String?
+  email                 String?
+  courses               Course[]
+  locations             Location[]
+
+  @@schema("english_courses")
+}
+
+model Location {
+  geographic_id              Int      @id
+  provider_id                Int
+  address_line_1             String
+  suburb                     String
+  postcode                   Int
+  latitude                   Float
+  longitude                  Float
+  full_address               String
+  region_name                String
+  local_government_authority String
+  provider                   Provider @relation(fields: [provider_id], references: [provider_id])
+
+  @@schema("english_courses")
+}
+
+model Course {
+  course_id             Int      @id
+  provider_id           Int
+  course_title          String
+  course_code           String
+  qualification_level   String
+  course_type           String
+  government_subsidised Boolean
+  apprenticeship        Boolean
+  traineeship           Boolean
+  entry_requirements    String
+  description           String
+  is_english_course     Boolean
+  provider              Provider @relation(fields: [provider_id], references: [provider_id])
+
+  @@schema("english_courses")
+}
+
+model Lga {
+  lga_code               Int                      @id
+  lga_name               String
+  council_info           CouncilInfo?
+  language_proficiencies LgaLanguageProficiency[]
+  lga_nationalities      LgaNationality[]
+  LgaNationalityYear     LgaNationalityYear[]
+  statistics             LgaStatistics?
+  postcodes              Postcode[]
+
+  @@schema("lga_map")
+}
+
+model Nationality {
+  nationality_id     Int                  @id @default(autoincrement())
+  nationality        String               @unique
+  lga_nationalities  LgaNationality[]
+  LgaNationalityYear LgaNationalityYear[]
+
+  @@schema("lga_map")
+}
+
+model LgaNationality {
+  lga_nationality_id Int         @id @default(autoincrement())
+  lga_code           Int
+  nationality_id     Int
+  count              Int
+  lga                Lga         @relation(fields: [lga_code], references: [lga_code])
+  nationality        Nationality @relation(fields: [nationality_id], references: [nationality_id])
+
+  @@schema("lga_map")
+}
+
+model CouncilInfo {
+  lga_code     Int     @id
+  council_name String?
+  council_info String?
+  address      String?
+  suburb       String?
+  postcode     Int?
+  phone        String?
+  email        String?
+  website      String?
+  lga          Lga     @relation(fields: [lga_code], references: [lga_code])
+
+  @@schema("lga_map")
+}
+
+model Postcode {
+  postcode  Int    @id
+  suburb    String
+  latitude  Float
+  longitude Float
+  lga_code  Int
+  lga       Lga    @relation(fields: [lga_code], references: [lga_code])
+
+  @@schema("lga_map")
+}
+
+model Language {
+  language_id   Int                      @id @default(autoincrement())
+  language      String?
+  proficiencies LgaLanguageProficiency[]
+
+  @@schema("lga_map")
+}
+
+model LgaLanguageProficiency {
+  lga_language_prof_id    Int      @id @default(autoincrement())
+  lga_code                Int
+  language_id             Int
+  english_profiency_level String
+  count                   Int
+  language                Language @relation(fields: [language_id], references: [language_id])
+  lga                     Lga      @relation(fields: [lga_code], references: [lga_code])
+
+  @@schema("lga_map")
+}
+
+model LgaStatistics {
+  lga_code                      Int    @id
+  total_businesses              Int?
+  total_employed_over_15        Int?
+  born_overseas                 Int?
+  pct_arrived_within_5_years    Float?
+  pct_proficient_english        Float?
+  pct_speaks_other_lang_at_home Float?
+  median_age_years              Float?
+  pct_completed_year_12         Float?
+  pct_certificate               Float?
+  pct_bachelor_degree           Float?
+  pct_postgraduate              Float?
+  pct_managers                  Float?
+  pct_professionals             Float?
+  pct_labourers                 Float?
+  lga                           Lga    @relation(fields: [lga_code], references: [lga_code])
+
+  @@schema("lga_map")
+}
+
+model LgaNationalityYear {
+  lga_nationality_year_id Int         @id @default(autoincrement())
+  lga_code                Int
+  nationality_id          Int
+  year                    Int
+  count                   Int
+  Lga                     Lga         @relation(fields: [lga_code], references: [lga_code])
+  Nationality             Nationality @relation(fields: [nationality_id], references: [nationality_id])
+
+  @@schema("lga_map")
+}
+
+/// Static descriptive info for each top-10 destination
+model Destination {
+  destination_id    Int                @id @default(autoincrement())
+  destination_name  String
+  description       String?
+  postcode          Int
+  website           String?
+  image_url         String?
+  image_attribution String?
+  latitude          Float
+  longitude         Float
+  counts            DestinationCount[]
+
+  @@schema("landmarks")
+}
+
+/// Yearly visitor counts per destination & LGA
+model DestinationCount {
+  destination_year_type_id Int           @id @default(autoincrement())
+  destination_id           Int
+  lga_code                 Int
+  year                     Int
+  total_stay_counts        Int
+  pct_change_yoy           Float?
+  destination              Destination   @relation(fields: [destination_id], references: [destination_id])
+  lga                      landmarks_Lga @relation("LgaDestinationCounts", fields: [lga_code], references: [lga_code])
+
+  @@schema("landmarks")
+}
+
+/// Lookup table for landmark categories (e.g. "Museum", "Park")
+model LandmarkType {
+  landmark_type_id Int        @id @default(autoincrement())
+  landmark_type    String
+  landmarks        Landmark[]
+
+  @@schema("landmarks")
+}
+
+/// Individual cultural landmarks in an LGA
+model Landmark {
+  landmark_id          Int                @id @default(autoincrement())
+  landmark_name        String
+  landmark_description String?
+  landmark_type_id     Int
+  ilms_url             String?
+  latitude             Float
+  longitude            Float
+  postcode             Int
+  lga_code             Int
+  type                 LandmarkType       @relation(fields: [landmark_type_id], references: [landmark_type_id])
+  lga                  landmarks_Lga      @relation("LgaLandmarks", fields: [lga_code], references: [lga_code])
+  postcodeRel          landmarks_Postcode @relation("PostcodeLandmarks", fields: [postcode], references: [postcode])
+
+  @@schema("landmarks")
+}
+
+model landmarks_Lga {
+  lga_code          Int                  @id
+  lga_name          String
+  destinationCounts DestinationCount[]   @relation("LgaDestinationCounts")
+  landmarks         Landmark[]           @relation("LgaLandmarks")
+  Postcode          landmarks_Postcode[]
+
+  @@map("Lga")
+  @@schema("landmarks")
+}
+
+model landmarks_Postcode {
+  postcode  Int           @id
+  suburb    String
+  latitude  Float
+  longitude Float
+  lga_code  Int
+  landmarks Landmark[]    @relation("PostcodeLandmarks")
+  Lga       landmarks_Lga @relation(fields: [lga_code], references: [lga_code])
+
+  @@map("Postcode")
+  @@schema("landmarks")
+}

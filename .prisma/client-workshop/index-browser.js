@@ -284,6 +284,57 @@ exports.Prisma.LgaNationalityYearScalarFieldEnum = {
   count: 'count'
 };
 
+exports.Prisma.DestinationScalarFieldEnum = {
+  destination_id: 'destination_id',
+  destination_name: 'destination_name',
+  description: 'description',
+  postcode: 'postcode',
+  website: 'website',
+  image_url: 'image_url',
+  image_attribution: 'image_attribution',
+  latitude: 'latitude',
+  longitude: 'longitude'
+};
+
+exports.Prisma.DestinationCountScalarFieldEnum = {
+  destination_year_type_id: 'destination_year_type_id',
+  destination_id: 'destination_id',
+  lga_code: 'lga_code',
+  year: 'year',
+  total_stay_counts: 'total_stay_counts',
+  pct_change_yoy: 'pct_change_yoy'
+};
+
+exports.Prisma.LandmarkTypeScalarFieldEnum = {
+  landmark_type_id: 'landmark_type_id',
+  landmark_type: 'landmark_type'
+};
+
+exports.Prisma.LandmarkScalarFieldEnum = {
+  landmark_id: 'landmark_id',
+  landmark_name: 'landmark_name',
+  landmark_description: 'landmark_description',
+  landmark_type_id: 'landmark_type_id',
+  ilms_url: 'ilms_url',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  postcode: 'postcode',
+  lga_code: 'lga_code'
+};
+
+exports.Prisma.Landmarks_LgaScalarFieldEnum = {
+  lga_code: 'lga_code',
+  lga_name: 'lga_name'
+};
+
+exports.Prisma.Landmarks_PostcodeScalarFieldEnum = {
+  postcode: 'postcode',
+  suburb: 'suburb',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  lga_code: 'lga_code'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -318,7 +369,13 @@ exports.Prisma.ModelName = {
   Language: 'Language',
   LgaLanguageProficiency: 'LgaLanguageProficiency',
   LgaStatistics: 'LgaStatistics',
-  LgaNationalityYear: 'LgaNationalityYear'
+  LgaNationalityYear: 'LgaNationalityYear',
+  Destination: 'Destination',
+  DestinationCount: 'DestinationCount',
+  LandmarkType: 'LandmarkType',
+  Landmark: 'Landmark',
+  landmarks_Lga: 'landmarks_Lga',
+  landmarks_Postcode: 'landmarks_Postcode'
 };
 
 /**
