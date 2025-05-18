@@ -49,10 +49,10 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link
-                                    href="/translation"
+                                    href="/culconnectorsai"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    Translation
+                                    CulConnectorsAI
                                 </Link>
                             </li>
                         </ul>

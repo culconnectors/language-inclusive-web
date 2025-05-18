@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 import FeaturedEvents from "./FeaturedEvents";
 import FeaturedWorkshops from "./FeaturedWorkshops";
 
-type ExplorationTypes = "events" | "workshops" | "community" | "translation";
+type ExplorationTypes =
+    | "events"
+    | "workshops"
+    | "community"
+    | "culconnectorsai";
 
 const images = [
     {
@@ -52,8 +56,8 @@ export default function LandingCarousel() {
             case "community":
                 router.push("/community");
                 break;
-            case "translation":
-                router.push("/translation");
+            case "culconnectorsai":
+                router.push("/culconnectorsai");
                 break;
         }
     };
@@ -119,8 +123,8 @@ export default function LandingCarousel() {
                                             key: "community",
                                         },
                                         {
-                                            label: "Translation",
-                                            key: "translation",
+                                            label: "CulConnectorsAI",
+                                            key: "culconnectorsai",
                                         },
                                     ].map(({ label, key }) => (
                                         <button

@@ -5,11 +5,11 @@ import ServiceCard from "@/app/components/ServiceCard";
 
 const services = [
     {
-        title: "Translation Services",
+        title: "CulConnectorsAI",
         icon: Languages,
         description:
             "Connect with certified translators who understand your needs and help bridge the language gap.",
-        href: "/services/translation",
+        href: "/culconnectorsai",
     },
     {
         title: "Locally-Run Workshops",

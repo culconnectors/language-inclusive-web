@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+    const pathname = usePathname();
     const navItems = [
         { name: "Home", path: "/" },
         { name: "Events", path: "/events" },
         { name: "Workshops", path: "/workshops" },
         { name: "Community Explorer", path: "/community" },
-        { name: "Translation", path: "/translation" },
+        { name: "CulConnectorsAI", path: "/culconnectorsai" },
     ];
 
     return (
@@ -27,7 +29,11 @@ const Navbar = () => {
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className={`transition-colors ${
+                                    pathname === item.path
+                                        ? "text-[#FABB20] border-b-2 border-[#FABB20]"
+                                        : "text-gray-400 hover:text-white"
+                                }`}
                             >
                                 {item.name}
                             </Link>
