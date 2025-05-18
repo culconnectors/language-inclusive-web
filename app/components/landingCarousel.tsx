@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import FeaturedEvents from "./FeaturedEvents";
+import FeaturedWorkshops from "./FeaturedWorkshops";
 
 type ExplorationTypes = "events" | "workshops" | "community" | "translation";
 
@@ -23,7 +25,9 @@ const images = [
 
 export default function LandingCarousel() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [activeType, setActiveType] = useState<ExplorationTypes>("events");
+    const [activeType, setActiveType] = useState<ExplorationTypes | undefined>(
+        undefined
+    );
     const router = useRouter();
 
     useEffect(() => {
@@ -94,8 +98,8 @@ export default function LandingCarousel() {
                                 <br /> shouldn't be a barrier to opportunities
                             </h1>
                             <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow">
-                                Connect with local support, jobs, events, and
-                                services in your area
+                                Let us connect you to nearby Social Events and
+                                Workshops.
                             </p>
 
                             {/* Exploration Toggle */}
@@ -128,8 +132,8 @@ export default function LandingCarousel() {
                                             }
                                             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-md shadow-lg ${
                                                 activeType === key
-                                                    ? "bg-primary text-white scale-105"
-                                                    : "bg-white/80 text-zinc-800 hover:bg-white/90"
+                                                    ? "bg-[#FABB20] text-white scale-105"
+                                                    : "bg-white/80 text-zinc-800 hover:bg-[#FABB20] hover:text-white"
                                             }`}
                                         >
                                             {label}
@@ -139,6 +143,26 @@ export default function LandingCarousel() {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Featured Events Section */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                            Featured Events
+                        </h2>
+                    </div>
+                    <FeaturedEvents />
+                </div>
+
+                {/* Featured Workshops Section */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gray-50">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                            Featured Workshops
+                        </h2>
+                    </div>
+                    <FeaturedWorkshops />
                 </div>
             </div>
         </section>

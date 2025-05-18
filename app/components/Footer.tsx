@@ -11,9 +11,9 @@ export default function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">About Us</h3>
                         <p className="text-gray-400">
-                            We connect communities through language, breaking
-                            down barriers and creating opportunities for
-                            everyone.
+                            CulConnectors connect communities through language,
+                            breaking down barriers and creating opportunities
+                            for everyone.
                         </p>
                     </div>
 

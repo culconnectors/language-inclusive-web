@@ -126,7 +126,7 @@ export default function WorkshopSearch() {
                 </div>
                 <button
                     onClick={getCurrentLocation}
-                    className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-300 flex items-center gap-2"
+                    className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
                 >
                     <Navigation className="w-4 h-4" />
                     Current Location

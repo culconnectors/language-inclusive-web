@@ -213,13 +213,6 @@ export default function PdfUploader() {
         setSelectedLanguage(newLanguage);
     };
 
-    const handleServiceChange = (
-        event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        const newService = event.target.value as Service;
-        setSelectedService(newService);
-    };
-
     const handleCopyText = async (text: string) => {
         try {
             await navigator.clipboard.writeText(text);
@@ -262,15 +255,28 @@ export default function PdfUploader() {
                         >
                             Select Service
                         </label>
-                        <select
-                            id="service-select"
-                            value={selectedService}
-                            onChange={handleServiceChange}
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        >
-                            <option value="translate">Translate</option>
-                            <option value="summarise">Summarise</option>
-                        </select>
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() => setSelectedService("translate")}
+                                className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                                    selectedService === "translate"
+                                        ? "bg-[#FABB20] text-white"
+                                        : "bg-gray-100 text-gray-700 hover:bg-[#FABB20] hover:text-white"
+                                }`}
+                            >
+                                Translate
+                            </button>
+                            <button
+                                onClick={() => setSelectedService("summarise")}
+                                className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                                    selectedService === "summarise"
+                                        ? "bg-[#FABB20] text-white"
+                                        : "bg-gray-100 text-gray-700 hover:bg-[#FABB20] hover:text-white"
+                                }`}
+                            >
+                                Summarise
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -322,7 +328,7 @@ export default function PdfUploader() {
                 <button
                     onClick={handleSubmit}
                     disabled={isLoading || isTranslating}
-                    className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-4 px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {isLoading || isTranslating
                         ? "Processing..."
@@ -342,11 +348,11 @@ export default function PdfUploader() {
                         </h3>
                         <button
                             onClick={() => handleCopyText(translatedText)}
-                            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                            className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors"
                         >
                             {selectedService === "translate"
-                                ? "Copy Translation"
-                                : "Copy Summary"}
+                                ? "Copy Text"
+                                : "Copy Text"}
                         </button>
                     </div>
                     <div className="p-4 bg-white rounded-lg border border-gray-200">
