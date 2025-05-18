@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface Workshop {
     id: string;
     name: string;
