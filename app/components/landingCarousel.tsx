@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -27,21 +27,42 @@ const images = [
     },
 ];
 
+const languageWords = [
+    { text: "Language", lang: "en", color: "text-blue-400" },
+    { text: "Idioma", lang: "es", color: "text-emerald-400" },
+    { text: "语言", lang: "zh", color: "text-red-400" },
+    { text: "Langue", lang: "fr", color: "text-purple-400" },
+    { text: "भाषा", lang: "hi", color: "text-orange-400" },
+    { text: "言語", lang: "ja", color: "text-pink-400" },
+    { text: "Sprache", lang: "de", color: "text-yellow-400" },
+    { text: "Língua", lang: "pt", color: "text-cyan-400" },
+];
+
 export default function LandingCarousel() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
     const [activeType, setActiveType] = useState<ExplorationTypes | undefined>(
         undefined
     );
     const router = useRouter();
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const imageInterval = setInterval(() => {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
         }, 5000);
 
-        return () => clearInterval(interval);
+        const languageInterval = setInterval(() => {
+            setCurrentLanguageIndex((prevIndex) =>
+                prevIndex === languageWords.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 2000);
+
+        return () => {
+            clearInterval(imageInterval);
+            clearInterval(languageInterval);
+        };
     }, []);
 
     const handleTabClick = (type: ExplorationTypes) => {
@@ -98,7 +119,14 @@ export default function LandingCarousel() {
                     <div className="relative z-20 py-20 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-6xl mx-auto text-center">
                             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg mb-6">
-                                Your Language
+                                Your{" "}
+                                <span
+                                    key={currentLanguageIndex}
+                                    className={`inline-block transition-all duration-300 animate-fade-in ${languageWords[currentLanguageIndex].color}`}
+                                    lang={languageWords[currentLanguageIndex].lang}
+                                >
+                                    {languageWords[currentLanguageIndex].text}
+                                </span>
                                 <br /> shouldn't be a barrier to opportunities
                             </h1>
                             <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow">
