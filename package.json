@@ -13,7 +13,7 @@
         "postinstall": "prisma generate"
     },
     "dependencies": {
-        "@google/generative-ai": "^0.24.0",
+        "@google/generative-ai": "^0.24.1",
         "@neondatabase/serverless": "^0.10.4",
         "@prisma/client": "^6.6.0",
         "@tanstack/react-query": "^5.74.4",
@@ -39,6 +39,7 @@
         "prisma": "^6.6.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
+        "react-dropzone": "^14.3.8",
         "react-icons": "^5.5.0",
         "react-leaflet": "^5.0.0",
         "react-map-gl": "^7.1.9",

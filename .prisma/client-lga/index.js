@@ -361,7 +361,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/monglee/Desktop/IE project/language-inclusive-web/.prisma/client-lga",
+      "value": "/Users/chriswiesanjaya/Documents/GitHub/language-inclusive-web-cul/.prisma/client-lga",
       "fromEnvVar": null
     },
     "config": {
@@ -377,7 +377,7 @@ const config = {
     "previewFeatures": [
       "multiSchema"
     ],
-    "sourceFilePath": "/Users/monglee/Desktop/IE project/language-inclusive-web/prisma/schema.prisma",
+    "sourceFilePath": "/Users/chriswiesanjaya/Documents/GitHub/language-inclusive-web-cul/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -391,7 +391,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

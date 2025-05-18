@@ -2,12 +2,9 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import EventSearch from "@/app/components/event/DataEventSearch";
-import WorkshopSearch from "@/app/components/workshop/WorkshopSearch";
-import LgaMap from "@/app/components/map/LgaMap";
-import { Feature } from 'geojson';
+import { useRouter } from "next/navigation";
 
-type ExplorationTypes = "events" | "workshops" | "community";
+type ExplorationTypes = "events" | "workshops" | "community" | "translation";
 
 const images = [
     {
@@ -27,8 +24,7 @@ const images = [
 export default function LandingCarousel() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [activeType, setActiveType] = useState<ExplorationTypes>("events");
-    const [selectedLga, setSelectedLga] = useState<string | null>(null);
-    const [selectedStatistic, setSelectedStatistic] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -40,11 +36,29 @@ export default function LandingCarousel() {
         return () => clearInterval(interval);
     }, []);
 
+    const handleTabClick = (type: ExplorationTypes) => {
+        setActiveType(type);
+        switch (type) {
+            case "events":
+                router.push("/events");
+                break;
+            case "workshops":
+                router.push("/workshops");
+                break;
+            case "community":
+                router.push("/community");
+                break;
+            case "translation":
+                router.push("/translation");
+                break;
+        }
+    };
+
     return (
         <section className="relative min-h-[calc(100vh-4rem)] flex items-center mt-16">
             <div className="w-full">
                 {/* Hero Content with Background */}
-                <div className="relative overflow-hidden rounded-3xl mx-4 sm:mx-6 lg:mx-8 mb-4">
+                <div className="relative overflow-hidden rounded-3xl mx-4 sm:mx-6 lg:mx-8">
                     {/* Background Carousel */}
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         {images.map((image, index) => (
@@ -100,11 +114,15 @@ export default function LandingCarousel() {
                                             label: "Community Explorer",
                                             key: "community",
                                         },
+                                        {
+                                            label: "Translation",
+                                            key: "translation",
+                                        },
                                     ].map(({ label, key }) => (
                                         <button
                                             key={key}
                                             onClick={() =>
-                                                setActiveType(
+                                                handleTabClick(
                                                     key as ExplorationTypes
                                                 )
                                             }
@@ -121,30 +139,6 @@ export default function LandingCarousel() {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Search Components Section */}
-                <div className={`mx-auto px-4 ${activeType === 'community' ? 'max-w-7xl' : 'max-w-4xl'}`}>
-                    {activeType === "events" && <EventSearch />}
-                    {activeType === "workshops" && <WorkshopSearch />}
-                    {activeType === "community" && (
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="mb-6">
-                                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                                    Community Explorer
-                                </h2>
-                                <p className="text-gray-600">
-                                    Click on a council to explore the information
-                                </p>
-                            </div>
-                            <LgaMap 
-                                onLgaSelect={(lgaCode) => {
-                                    setSelectedLga(lgaCode);
-                                    console.log("User clicked suburb with LGA_CODE:", lgaCode);
-                                }}
-                            />
-                        </div>
-                    )}
                 </div>
             </div>
         </section>
