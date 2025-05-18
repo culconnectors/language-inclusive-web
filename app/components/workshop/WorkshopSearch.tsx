@@ -154,24 +154,19 @@ export default function WorkshopSearch() {
                     <h3 className="text-lg font-semibold mb-3">
                         Filter by Provider
                     </h3>
-                    <div className="space-y-2">
+                    <div className="flex flex-wrap gap-2">
                         {providerNames.map((provider) => (
-                            <label
+                            <button
                                 key={provider}
-                                className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                                onClick={() => handleProviderToggle(provider)}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                    selectedProviders.has(provider)
+                                        ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
                             >
-                                <input
-                                    type="checkbox"
-                                    checked={selectedProviders.has(provider)}
-                                    onChange={() =>
-                                        handleProviderToggle(provider)
-                                    }
-                                    className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <span className="text-gray-700">
-                                    {provider}
-                                </span>
-                            </label>
+                                {provider}
+                            </button>
                         ))}
                     </div>
                 </div>

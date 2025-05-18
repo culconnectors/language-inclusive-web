@@ -144,23 +144,19 @@ export default function DataEventSearch() {
                         <p className="font-medium mb-2">
                             Filter by Categories:
                         </p>
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-wrap gap-2">
                             {allCategories.map((category) => (
-                                <label
+                                <button
                                     key={category}
-                                    className="flex items-center gap-2"
+                                    onClick={() => handleCategoryToggle(category)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                        selectedCategories.has(category)
+                                            ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    }`}
                                 >
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedCategories.has(
-                                            category
-                                        )}
-                                        onChange={() =>
-                                            handleCategoryToggle(category)
-                                        }
-                                    />
-                                    <span>{category}</span>
-                                </label>
+                                    {category}
+                                </button>
                             ))}
                         </div>
                     </div>
