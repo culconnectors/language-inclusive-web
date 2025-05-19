@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "./hooks/useTheme";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
@@ -23,7 +24,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
     return (
         <QueryClientProvider client={queryClient}>
-            {mounted ? children : null}
+            <ThemeProvider>{mounted ? children : null}</ThemeProvider>
         </QueryClientProvider>
     );
 }

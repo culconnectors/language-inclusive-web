@@ -11,7 +11,7 @@ const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { isDarkMode, toggleDarkMode } = useTheme();
+    const { isDarkMode, toggleTheme } = useTheme();
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -38,19 +38,19 @@ const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: 300 }}
             transition={{ type: "spring", damping: 20 }}
-            className="fixed top-0 right-0 h-full w-[250px] bg-gray-900 shadow-lg z-50"
+            className="fixed top-0 right-0 h-full w-[250px] bg-white dark:bg-gray-900 shadow-lg z-50"
         >
             <div className="p-4">
                 <div className="flex justify-between items-center mb-8">
                     <Link
                         href="/"
-                        className="text-2xl font-semibold text-white"
+                        className="text-2xl font-semibold text-gray-900 dark:text-white"
                     >
                         SocialConnect
                     </Link>
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="text-white hover:text-gray-300"
+                        className="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
                     >
                         <X size={24} />
                     </button>
@@ -63,8 +63,8 @@ const Navbar = () => {
                             onClick={() => setIsOpen(false)}
                             className={`transition-colors px-4 py-2 rounded-md ${
                                 pathname === item.path
-                                    ? "text-[#FABB20] bg-gray-800"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                    ? "text-[#FABB20] bg-gray-100 dark:bg-gray-800"
+                                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                             }`}
                         >
                             {item.name}
@@ -77,12 +77,12 @@ const Navbar = () => {
 
     return (
         <>
-            <header className="fixed top-0 w-full bg-gray-900 backdrop-blur-sm z-40">
+            <header className="fixed top-0 w-full bg-white dark:bg-gray-900 backdrop-blur-sm z-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <Link
                             href="/"
-                            className="text-2xl font-semibold text-white"
+                            className="text-2xl font-semibold text-gray-900 dark:text-white"
                         >
                             SocialConnect
                         </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
                                             className={`transition-colors ${
                                                 pathname === item.path
                                                     ? "text-[#FABB20] border-b-2 border-[#FABB20]"
-                                                    : "text-gray-400 hover:text-white"
+                                                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                             }`}
                                         >
                                             {item.name}
@@ -104,8 +104,8 @@ const Navbar = () => {
                                     ))}
                                 </nav>
                                 <button
-                                    onClick={toggleDarkMode}
-                                    className="text-gray-400 hover:text-white transition-colors"
+                                    onClick={toggleTheme}
+                                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                                     aria-label="Toggle dark mode"
                                 >
                                     {isDarkMode ? (
@@ -118,8 +118,8 @@ const Navbar = () => {
                         ) : (
                             <div className="flex items-center space-x-4">
                                 <button
-                                    onClick={toggleDarkMode}
-                                    className="text-gray-400 hover:text-white transition-colors"
+                                    onClick={toggleTheme}
+                                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                                     aria-label="Toggle dark mode"
                                 >
                                     {isDarkMode ? (
@@ -130,7 +130,7 @@ const Navbar = () => {
                                 </button>
                                 <button
                                     onClick={() => setIsOpen(true)}
-                                    className="text-white hover:text-gray-300"
+                                    className="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
                                 >
                                     <Menu size={24} />
                                 </button>
