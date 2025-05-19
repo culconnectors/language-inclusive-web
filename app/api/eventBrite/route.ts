@@ -43,14 +43,15 @@ function calculateDistance(
     return R * c;
 }
 
-
-// This GRT function is used to fetch all events from the EventBrite API based on the user's location, and return them in a specific format. It uses Prisma to query the database 
+// This GRT function is used to fetch all events from the EventBrite API based on the user's location, and return them in a specific format. It uses Prisma to query the database
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const lat = parseFloat(searchParams.get("lat") || "0");
         const lng = parseFloat(searchParams.get("lng") || "0");
-        const radius = 20; // 20km radius
+        const radius = parseFloat(searchParams.get("radius") || "20");
+        const page = parseInt(searchParams.get("page") || "1");
+        const pageSize = 12; // 12 events per page (3x4 grid)
 
         // Using raw SQL query with Prisma
         const events = await communityClient.$queryRaw<RawEventResult[]>`
@@ -116,7 +117,23 @@ export async function GET(request: Request) {
                 : undefined,
         }));
 
-        return NextResponse.json(formattedEvents);
+        // Apply pagination
+        const startIndex = (page - 1) * pageSize;
+        const paginatedEvents = formattedEvents.slice(
+            startIndex,
+            startIndex + pageSize
+        );
+        const totalPages = Math.ceil(formattedEvents.length / pageSize);
+
+        return NextResponse.json({
+            events: paginatedEvents,
+            pagination: {
+                currentPage: page,
+                totalPages,
+                totalItems: formattedEvents.length,
+                hasMore: page < totalPages,
+            },
+        });
     } catch (error) {
         console.error("Error fetching events:", error);
         return NextResponse.json(
@@ -127,4 +144,3 @@ export async function GET(request: Request) {
 }
 
 // GET function to fetch events based on input location and filter by category_name
-

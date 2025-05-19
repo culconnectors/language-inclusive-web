@@ -31,6 +31,8 @@ export default function WorkshopSearch() {
     const [selectedProviders, setSelectedProviders] = useState<Set<string>>(
         new Set()
     );
+    const [distance, setDistance] = useState(20);
+
     const {
         locationTerm,
         setLocationTerm,
@@ -49,6 +51,7 @@ export default function WorkshopSearch() {
             selectedLocation?.lat,
             selectedLocation?.lng,
             currentPage,
+            distance,
         ],
         queryFn: async () => {
             if (!selectedLocation)
@@ -65,6 +68,7 @@ export default function WorkshopSearch() {
                 lat: selectedLocation.lat.toString(),
                 lng: selectedLocation.lng.toString(),
                 page: currentPage.toString(),
+                radius: distance.toString(),
             });
             const response = await fetch(`/api/workshops?${searchParams}`);
             if (!response.ok) {
@@ -141,11 +145,30 @@ export default function WorkshopSearch() {
             </div>
 
             {selectedLocation && (
-                <div className="flex items-center gap-2 text-gray-600">
-                    <MapPin className="w-4 h-4" />
-                    <span>
-                        Showing courses within 20km of selected location
-                    </span>
+                <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-gray-600">
+                        <MapPin className="w-4 h-4" />
+                        <span>
+                            Showing courses within {distance}km of selected
+                            location
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <input
+                            type="range"
+                            min="10"
+                            max="100"
+                            value={distance}
+                            onChange={(e) => {
+                                setDistance(Number(e.target.value));
+                                setCurrentPage(1);
+                            }}
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        />
+                        <span className="text-sm text-gray-600 min-w-[3rem] text-right">
+                            {distance}km
+                        </span>
+                    </div>
                 </div>
             )}
 

@@ -19,8 +19,8 @@ export async function GET(request: Request) {
         const lat = parseFloat(searchParams.get("lat") || "0");
         const lng = parseFloat(searchParams.get("lng") || "0");
         const page = parseInt(searchParams.get("page") || "1");
-        const radius = 20; // 20km radius
-        const pageSize = 20;
+        const radius = parseFloat(searchParams.get("radius") || "20"); // Get radius from query params, default to 20km
+        const pageSize = 10;
 
         // Using Prisma's query builder with relations
         const providers = await workshopClient.provider.findMany({
