@@ -32,7 +32,18 @@ interface EventCardProps {
 
 export default function EventCard({ event }: EventCardProps) {
     const formatDate = (dateString: string) => {
-        return format(new Date(dateString), "MMM d, yyyy h:mm a");
+        // Parse the date string directly without timezone conversion
+        const [datePart, timePart] = dateString.split("T");
+        const [year, month, day] = datePart.split("-");
+        const [hours, minutes] = timePart.split(":");
+        const date = new Date(
+            parseInt(year),
+            parseInt(month) - 1,
+            parseInt(day),
+            parseInt(hours),
+            parseInt(minutes)
+        );
+        return format(date, "MMM d, yyyy h:mm a");
     };
 
     return (
@@ -64,7 +75,7 @@ export default function EventCard({ event }: EventCardProps) {
                     </div>
                 )}
             </div>
-            
+
             <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {event.name}

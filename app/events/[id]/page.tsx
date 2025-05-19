@@ -16,10 +16,19 @@ export default async function EventPage({
     }
 
     const formatDate = (date: Date) => {
-        // Convert to UTC-10
-        const utcDate = new Date(date);
-        const utcMinus10 = new Date(utcDate.getTime() - 10 * 60 * 60 * 1000);
-        return format(utcMinus10, "EEEE, MMMM d, yyyy 'at' h:mm a");
+        // Parse the date string directly without timezone conversion
+        const dateString = date.toISOString();
+        const [datePart, timePart] = dateString.split("T");
+        const [year, month, day] = datePart.split("-");
+        const [hours, minutes] = timePart.split(":");
+        const parsedDate = new Date(
+            parseInt(year),
+            parseInt(month) - 1,
+            parseInt(day),
+            parseInt(hours),
+            parseInt(minutes)
+        );
+        return format(parsedDate, "EEEE, MMMM d, yyyy 'at' h:mm a");
     };
 
     return (
