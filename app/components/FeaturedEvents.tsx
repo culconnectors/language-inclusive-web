@@ -37,13 +37,13 @@ export default function FeaturedEvents() {
         queryKey: ["featuredEvents", melbourneCoords],
         queryFn: async (): Promise<Event[]> => {
             const response = await fetch(
-                `/api/eventBrite?lat=${melbourneCoords.lat}&lng=${melbourneCoords.lng}`
+                `/api/eventBrite?lat=${melbourneCoords.lat}&lng=${melbourneCoords.lng}&radius=20`
             );
             if (!response.ok) {
                 throw new Error("Failed to fetch events");
             }
             const data = await response.json();
-            return data.slice(0, 4); // Only take the first 4 events
+            return data.events.slice(0, 4); // Only take the first 4 events from the paginated response
         },
     });
 

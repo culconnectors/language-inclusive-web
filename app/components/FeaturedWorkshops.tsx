@@ -36,7 +36,7 @@ export default function FeaturedWorkshops() {
         queryKey: ["featuredWorkshops", melbourneCoords],
         queryFn: async (): Promise<Workshop[]> => {
             const response = await fetch(
-                `/api/workshops?lat=${melbourneCoords.lat}&lng=${melbourneCoords.lng}`
+                `/api/workshops?lat=${melbourneCoords.lat}&lng=${melbourneCoords.lng}&radius=20`
             );
             if (!response.ok) {
                 throw new Error("Failed to fetch workshops");

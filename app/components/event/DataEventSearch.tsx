@@ -141,7 +141,7 @@ export default function DataEventSearch() {
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="mb-8">
-                <div className="flex gap-4 mb-4">
+                <div className="flex flex-col gap-4 mb-4">
                     <div className="flex-1">
                         <LocationSearch
                             onLocationSelect={() => {}}
@@ -152,21 +152,22 @@ export default function DataEventSearch() {
                             onPredictionSelect={handlePredictionSelect}
                         />
                     </div>
-                    <button
-                        onClick={getCurrentLocation}
-                        className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
-                    >
-                        <Navigation className="w-4 h-4" />
-                        Current Location
-                    </button>
-                    {/* This button is for resetting the location */}
-                    <button
-                        onClick={resetLocation}
-                        className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
-                    >
-                        <RefreshCw className="w-4 h-4" />
-                        New Search
-                    </button>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={getCurrentLocation}
+                            className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
+                        >
+                            <Navigation className="w-4 h-4" />
+                            Current Location
+                        </button>
+                        <button
+                            onClick={resetLocation}
+                            className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
+                        >
+                            <RefreshCw className="w-4 h-4" />
+                            New Search
+                        </button>
+                    </div>
                 </div>
                 {selectedLocation && (
                     <div className="space-y-4">
