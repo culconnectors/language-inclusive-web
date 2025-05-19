@@ -116,101 +116,105 @@ export default function WorkshopSearch() {
     };
 
     return (
-        <div className="space-y-6">
-            <div className="flex flex-col gap-4">
-                <div className="flex-1">
-                    <LocationSearch
-                        locationTerm={locationTerm}
-                        onLocationTermChange={setLocationTerm}
-                        predictions={predictions}
-                        loading={isLoadingLocation}
-                        onPredictionSelect={handlePredictionSelect}
-                        onLocationSelect={() => {}}
-                    />
+        <div className="container mx-auto px-4 py-8">
+            <div className="mb-8">
+                <div className="flex flex-col gap-4 mb-4">
+                    <div className="flex-1">
+                        <LocationSearch
+                            locationTerm={locationTerm}
+                            onLocationTermChange={setLocationTerm}
+                            predictions={predictions}
+                            loading={isLoadingLocation}
+                            onPredictionSelect={handlePredictionSelect}
+                            onLocationSelect={() => {}}
+                        />
+                    </div>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={getCurrentLocation}
+                            className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
+                        >
+                            <Navigation className="w-4 h-4" />
+                            Current Location
+                        </button>
+                        <button
+                            onClick={resetLocation}
+                            className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
+                        >
+                            <RefreshCw className="w-4 h-4" />
+                            New Search
+                        </button>
+                    </div>
                 </div>
-                <div className="flex gap-4">
-                    <button
-                        onClick={getCurrentLocation}
-                        className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
-                    >
-                        <Navigation className="w-4 h-4" />
-                        Current Location
-                    </button>
-                    <button
-                        onClick={resetLocation}
-                        className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
-                    >
-                        <RefreshCw className="w-4 h-4" />
-                        New Search
-                    </button>
-                </div>
+
+                {selectedLocation && (
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-2 text-gray-600">
+                            <MapPin className="w-4 h-4" />
+                            <span>
+                                Showing courses within {distance}km of selected
+                                location
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <input
+                                type="range"
+                                min="10"
+                                max="100"
+                                value={distance}
+                                onChange={(e) => {
+                                    setDistance(Number(e.target.value));
+                                    setCurrentPage(1);
+                                }}
+                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                            />
+                            <span className="text-sm text-gray-600 min-w-[3rem] text-right">
+                                {distance}km
+                            </span>
+                        </div>
+                    </div>
+                )}
+
+                {providerNames.length > 0 && (
+                    <div className="mb-6">
+                        <p className="font-medium mb-2">Filter by Provider:</p>
+                        <div className="flex flex-wrap gap-2">
+                            {providerNames.map((provider) => (
+                                <button
+                                    key={provider}
+                                    onClick={() =>
+                                        handleProviderToggle(provider)
+                                    }
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                        selectedProviders.has(provider)
+                                            ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    }`}
+                                >
+                                    {provider}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
-            {selectedLocation && (
-                <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-gray-600">
-                        <MapPin className="w-4 h-4" />
-                        <span>
-                            Showing courses within {distance}km of selected
-                            location
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <input
-                            type="range"
-                            min="10"
-                            max="100"
-                            value={distance}
-                            onChange={(e) => {
-                                setDistance(Number(e.target.value));
-                                setCurrentPage(1);
-                            }}
-                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                        />
-                        <span className="text-sm text-gray-600 min-w-[3rem] text-right">
-                            {distance}km
-                        </span>
-                    </div>
-                </div>
-            )}
-
-            {providerNames.length > 0 && (
-                <div className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="text-lg font-semibold mb-3">
-                        Filter by Provider
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                        {providerNames.map((provider) => (
-                            <button
-                                key={provider}
-                                onClick={() => handleProviderToggle(provider)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                    selectedProviders.has(provider)
-                                        ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                }`}
-                            >
-                                {provider}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            <WorkshopList
-                coordinates={selectedLocation}
-                workshops={filteredWorkshops}
-                pagination={
-                    data?.pagination || {
-                        currentPage: 1,
-                        totalPages: 0,
-                        totalItems: 0,
-                        hasMore: false,
+            <div className="space-y-6">
+                <WorkshopList
+                    coordinates={selectedLocation}
+                    workshops={filteredWorkshops}
+                    pagination={
+                        data?.pagination || {
+                            currentPage: 1,
+                            totalPages: 0,
+                            totalItems: 0,
+                            hasMore: false,
+                        }
                     }
-                }
-                isLoading={isLoading}
-                onPageChange={handlePageChange}
-            />
+                    isLoading={isLoading}
+                    onPageChange={handlePageChange}
+                />
+            </div>
         </div>
     );
 }
