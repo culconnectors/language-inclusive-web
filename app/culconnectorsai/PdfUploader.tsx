@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
+import { Brain, Loader2 } from "lucide-react";
 
 type Service = "translate" | "summarise";
 
@@ -328,11 +329,19 @@ export default function PdfUploader() {
                 <button
                     onClick={handleSubmit}
                     disabled={isLoading || isTranslating}
-                    className="mt-4 px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="mt-4 px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
-                    {isLoading || isTranslating
-                        ? "Processing..."
-                        : "Process PDF"}
+                    {isLoading || isTranslating ? (
+                        <>
+                            Processing
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                        </>
+                    ) : (
+                        <>
+                            Process
+                            <Brain className="w-5 h-5" />
+                        </>
+                    )}
                 </button>
             </div>
 
@@ -346,14 +355,21 @@ export default function PdfUploader() {
                                 ? "Translated Text:"
                                 : "Summarised Text:"}
                         </h3>
-                        <button
-                            onClick={() => handleCopyText(translatedText)}
-                            className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors"
-                        >
-                            {selectedService === "translate"
-                                ? "Copy Text"
-                                : "Copy Text"}
-                        </button>
+                        <div className="flex items-center">
+                            {copySuccess && (
+                                <span className="mr-2 text-green-600 font-medium">
+                                    Text copied!
+                                </span>
+                            )}
+                            <button
+                                onClick={() => handleCopyText(translatedText)}
+                                className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 active:bg-[#FABB20]/70 transition-colors"
+                            >
+                                {selectedService === "translate"
+                                    ? "Copy Text"
+                                    : "Copy Text"}
+                            </button>
+                        </div>
                     </div>
                     <div className="p-4 bg-white rounded-lg border border-gray-200">
                         <div className="h-[400px] overflow-y-auto">

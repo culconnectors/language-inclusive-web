@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getEventById } from "@/lib/services/eventService";
+import Navbar from "@/app/components/Navbar";
 
 export default async function EventPage({
     params,
@@ -33,8 +34,9 @@ export default async function EventPage({
 
     return (
         <div className="min-h-screen bg-white">
+            <Navbar />
             {/* Hero Section */}
-            <div className="bg-[#0A0F1D]">
+            <div className="bg-[#0A0F1D] pt-16">
                 {/* Image Section */}
                 <div className="max-w-5xl mx-auto">
                     <div className="relative w-full aspect-video">
