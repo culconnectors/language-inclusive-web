@@ -2,6 +2,7 @@
 
 import { Languages, Briefcase, Users } from "lucide-react";
 import ServiceCard from "@/app/components/ServiceCard";
+import { useTheme } from "@/app/hooks/useTheme";
 
 const services = [
     {
@@ -28,10 +29,20 @@ const services = [
 ];
 
 export default function PopularServices() {
+    const { isDarkMode } = useTheme();
+
     return (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <section
+            className={`py-16 px-4 sm:px-6 lg:px-8 ${
+                isDarkMode ? "bg-gray-800" : "bg-gray-50"
+            }`}
+        >
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+                <h2
+                    className={`text-3xl font-bold ${
+                        isDarkMode ? "text-white" : "text-gray-900"
+                    } text-center mb-12`}
+                >
                     Popular Services
                 </h2>
                 <div className="grid md:grid-cols-3 gap-8">

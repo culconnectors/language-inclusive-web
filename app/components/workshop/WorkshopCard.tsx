@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface Workshop {
     id: string;
@@ -15,16 +15,34 @@ interface WorkshopCardProps {
 }
 
 export default function WorkshopCard({ workshop }: WorkshopCardProps) {
+    const { isDarkMode } = useTheme();
+
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div
+            className={`${
+                isDarkMode ? "bg-gray-800" : "bg-white"
+            } rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300`}
+        >
             <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                <h3
+                    className={`text-xl font-semibold ${
+                        isDarkMode ? "text-gray-100" : "text-gray-900"
+                    } mb-2 line-clamp-2`}
+                >
                     {workshop.name}
                 </h3>
-                <p className="text-sm text-gray-600 mb-2">
+                <p
+                    className={`text-sm ${
+                        isDarkMode ? "text-gray-300" : "text-gray-600"
+                    } mb-2`}
+                >
                     {workshop.provider_name}
                 </p>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                <p
+                    className={`text-sm ${
+                        isDarkMode ? "text-gray-300" : "text-gray-600"
+                    } mb-4 line-clamp-2`}
+                >
                     {workshop.description}
                 </p>
                 <a

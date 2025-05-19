@@ -3,6 +3,7 @@
 import { LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface ServiceCardProps {
     title: string;
@@ -19,10 +20,14 @@ const ServiceCard = ({
     index,
     href,
 }: ServiceCardProps) => {
+    const { isDarkMode } = useTheme();
+
     return (
         <Link href={href} className="h-full">
             <motion.div
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full flex flex-col"
+                className={`p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full flex flex-col ${
+                    isDarkMode ? "bg-gray-700" : "bg-white"
+                }`}
                 whileHover={{ y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -31,10 +36,20 @@ const ServiceCard = ({
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                     <Icon className="text-blue-600" size={24} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3
+                    className={`text-xl font-semibold mb-3 ${
+                        isDarkMode ? "text-white" : "text-gray-900"
+                    }`}
+                >
                     {title}
                 </h3>
-                <p className="text-gray-600 flex-grow">{description}</p>
+                <p
+                    className={`flex-grow ${
+                        isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                >
+                    {description}
+                </p>
             </motion.div>
         </Link>
     );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { format } from "date-fns";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface Event {
     id: string;
@@ -31,6 +32,8 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event }: EventCardProps) {
+    const { isDarkMode } = useTheme();
+
     const formatDate = (dateString: string) => {
         // Parse the date string directly without timezone conversion
         const [datePart, timePart] = dateString.split("T");
@@ -47,7 +50,11 @@ export default function EventCard({ event }: EventCardProps) {
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+        <div
+            className={`${
+                isDarkMode ? "bg-gray-800" : "bg-white"
+            } rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col`}
+        >
             <div className="relative h-48 w-full">
                 {event.logo?.url ? (
                     <Image
@@ -58,9 +65,15 @@ export default function EventCard({ event }: EventCardProps) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <div
+                        className={`w-full h-full ${
+                            isDarkMode ? "bg-gray-700" : "bg-gray-200"
+                        } flex items-center justify-center`}
+                    >
                         <svg
-                            className="w-12 h-12 text-gray-400"
+                            className={`w-12 h-12 ${
+                                isDarkMode ? "text-gray-500" : "text-gray-400"
+                            }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -77,14 +90,26 @@ export default function EventCard({ event }: EventCardProps) {
             </div>
 
             <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                <h3
+                    className={`text-lg font-semibold ${
+                        isDarkMode ? "text-gray-100" : "text-gray-900"
+                    } mb-2 line-clamp-2`}
+                >
                     {event.name}
                 </h3>
                 <div className="mb-4">
-                    <p className="text-sm text-gray-600 mb-1">
+                    <p
+                        className={`text-sm ${
+                            isDarkMode ? "text-gray-300" : "text-gray-600"
+                        } mb-1`}
+                    >
                         {formatDate(event.start.local)}
                     </p>
-                    <p className="text-sm text-gray-600 line-clamp-1">
+                    <p
+                        className={`text-sm ${
+                            isDarkMode ? "text-gray-300" : "text-gray-600"
+                        } line-clamp-1`}
+                    >
                         {event.venue.name}
                     </p>
                 </div>

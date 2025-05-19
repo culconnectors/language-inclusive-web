@@ -1,5 +1,6 @@
 // components/LgaSidebar.tsx
 import { useState } from "react";
+import { useTheme } from "@/app/hooks/useTheme";
 
 /**
  * Props for the LgaSidebar component.
@@ -30,6 +31,7 @@ const LgaSidebar = ({
     showLandmarks,
     onToggleLandmarks,
 }: LgaSidebarProps) => {
+    const { isDarkMode } = useTheme();
     /**
      * State for the currently active mode (statistics, nationalities, or language)
      */
@@ -74,14 +76,20 @@ const LgaSidebar = ({
     };
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-md">
-            <div className="flex gap-4 items-center flex-wrap">
+        <div
+            className={`${
+                isDarkMode ? "bg-gray-800" : "bg-white"
+            } p-4 rounded-lg shadow-md`}
+        >
+            <div className="flex flex-wrap gap-2">
                 {/* Mode selection buttons */}
                 <button
                     onClick={() => handleModeChange("statistics")}
                     className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                         activeMode === "statistics"
                             ? "bg-[#FABB20] text-white"
+                            : isDarkMode
+                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
@@ -92,7 +100,11 @@ const LgaSidebar = ({
                     <select
                         onChange={handleStatisticChange}
                         value={selectedStat}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FABB20]"
+                        className={`px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FABB20] ${
+                            isDarkMode
+                                ? "bg-gray-700 border-gray-600 text-gray-300"
+                                : "bg-white border-gray-300 text-gray-700"
+                        }`}
                     >
                         <option value="" disabled>
                             Choose a statistic
@@ -118,6 +130,8 @@ const LgaSidebar = ({
                     className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                         activeMode === "nationalities"
                             ? "bg-[#FABB20] text-white"
+                            : isDarkMode
+                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
@@ -128,6 +142,8 @@ const LgaSidebar = ({
                     className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                         activeMode === "language"
                             ? "bg-[#FABB20] text-white"
+                            : isDarkMode
+                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
@@ -139,6 +155,8 @@ const LgaSidebar = ({
                     className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                         showLandmarks
                             ? "bg-green-600 text-white"
+                            : isDarkMode
+                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >

@@ -9,6 +9,7 @@ import { MapPin, Navigation, RefreshCw } from "lucide-react";
 import EventList from "./EventList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
+import { useTheme } from "@/app/hooks/useTheme";
 
 // Define the API response type
 interface EventBriteResponse {
@@ -45,6 +46,7 @@ interface PaginatedResponse {
 }
 
 export default function DataEventSearch() {
+    const { isDarkMode } = useTheme();
     const {
         locationTerm,
         setLocationTerm,
@@ -171,7 +173,11 @@ export default function DataEventSearch() {
                 </div>
                 {selectedLocation && (
                     <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-gray-600">
+                        <div
+                            className={`flex items-center gap-2 ${
+                                isDarkMode ? "text-gray-300" : "text-gray-600"
+                            }`}
+                        >
                             <MapPin className="w-4 h-4" />
                             <span>
                                 Showing events within {distance}km of selected
@@ -186,11 +192,19 @@ export default function DataEventSearch() {
                                 value={distance}
                                 onChange={(e) => {
                                     setDistance(Number(e.target.value));
-                                    setCurrentPage(1); // Reset to first page when distance changes
+                                    setCurrentPage(1);
                                 }}
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                className={`w-full h-2 ${
+                                    isDarkMode ? "bg-gray-700" : "bg-gray-200"
+                                } rounded-lg appearance-none cursor-pointer`}
                             />
-                            <span className="text-sm text-gray-600 min-w-[3rem] text-right">
+                            <span
+                                className={`text-sm ${
+                                    isDarkMode
+                                        ? "text-gray-300"
+                                        : "text-gray-600"
+                                } min-w-[3rem] text-right`}
+                            >
                                 {distance}km
                             </span>
                         </div>
@@ -199,7 +213,11 @@ export default function DataEventSearch() {
 
                 {allCategories.length > 0 && (
                     <div className="mb-6">
-                        <p className="font-medium mb-2">
+                        <p
+                            className={`font-medium mb-2 ${
+                                isDarkMode ? "text-gray-200" : "text-gray-900"
+                            }`}
+                        >
                             Filter by Categories:
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -212,6 +230,8 @@ export default function DataEventSearch() {
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                                         selectedCategories.has(category)
                                             ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                            : isDarkMode
+                                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
@@ -237,11 +257,23 @@ export default function DataEventSearch() {
                                 handlePageChange(pagination.currentPage - 1)
                             }
                             disabled={pagination.currentPage === 1}
-                            className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                                isDarkMode
+                                    ? "bg-gray-800 text-gray-100 hover:bg-gray-700 disabled:bg-gray-800/50 disabled:text-gray-500"
+                                    : "bg-white text-gray-900 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                            } border ${
+                                isDarkMode
+                                    ? "border-gray-700"
+                                    : "border-gray-300"
+                            }`}
                         >
                             Previous
                         </button>
-                        <span className="text-sm text-gray-600">
+                        <span
+                            className={`text-sm ${
+                                isDarkMode ? "text-gray-300" : "text-gray-600"
+                            }`}
+                        >
                             Page {pagination.currentPage} of{" "}
                             {pagination.totalPages}
                         </span>
@@ -250,7 +282,15 @@ export default function DataEventSearch() {
                                 handlePageChange(pagination.currentPage + 1)
                             }
                             disabled={!pagination.hasMore}
-                            className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                            className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                                isDarkMode
+                                    ? "bg-gray-800 text-gray-100 hover:bg-gray-700 disabled:bg-gray-800/50 disabled:text-gray-500"
+                                    : "bg-white text-gray-900 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                            } border ${
+                                isDarkMode
+                                    ? "border-gray-700"
+                                    : "border-gray-300"
+                            }`}
                         >
                             Next
                         </button>

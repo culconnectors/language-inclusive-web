@@ -1,6 +1,7 @@
 "use client";
 
 import WorkshopCard from "./WorkshopCard";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface Coordinates {
     lat: number;
@@ -30,25 +31,21 @@ interface WorkshopListProps {
     onPageChange: (page: number) => void;
 }
 
-function LoadingSkeleton() {
-    return (
-        <div className="space-y-4">
-            {[...Array(3)].map((_, index) => (
-                <div
-                    key={index}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse"
-                >
-                    <div className="p-6 space-y-4">
-                        <div className="h-6 bg-gray-200 rounded w-3/4" />
-                        <div className="h-4 bg-gray-200 rounded w-1/2" />
-                        <div className="h-16 bg-gray-200 rounded" />
-                        <div className="h-10 bg-gray-200 rounded w-32" />
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
-}
+const LoadingSkeleton = () => (
+    <div className="space-y-4">
+        {[...Array(3)].map((_, index) => (
+            <div
+                key={index}
+                className="bg-gray-200 rounded-xl p-6 animate-pulse"
+            >
+                <div className="h-6 bg-gray-300 rounded w-3/4 mb-2" />
+                <div className="h-4 bg-gray-300 rounded w-1/2 mb-2" />
+                <div className="h-4 bg-gray-300 rounded w-2/3 mb-4" />
+                <div className="h-10 bg-gray-300 rounded w-1/4" />
+            </div>
+        ))}
+    </div>
+);
 
 export default function WorkshopList({
     coordinates,
@@ -57,6 +54,8 @@ export default function WorkshopList({
     isLoading,
     onPageChange,
 }: WorkshopListProps) {
+    const { isDarkMode } = useTheme();
+
     if (!coordinates) {
         return null;
     }
@@ -83,10 +82,14 @@ export default function WorkshopList({
                         />
                     </svg>
                 </div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                <h2
+                    className={`text-xl font-semibold ${
+                        isDarkMode ? "text-gray-200" : "text-gray-800"
+                    } mb-2`}
+                >
                     No Workshops Found
                 </h2>
-                <p className="text-gray-600">
+                <p className={isDarkMode ? "text-gray-400" : "text-gray-600"}>
                     Try adjusting your search or location to find workshops.
                 </p>
             </div>
@@ -106,17 +109,33 @@ export default function WorkshopList({
                     <button
                         onClick={() => onPageChange(pagination.currentPage - 1)}
                         disabled={pagination.currentPage === 1}
-                        className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                        className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                            isDarkMode
+                                ? "bg-gray-800 text-gray-100 hover:bg-gray-700 disabled:bg-gray-800/50 disabled:text-gray-500"
+                                : "bg-white text-gray-900 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                        } border ${
+                            isDarkMode ? "border-gray-700" : "border-gray-300"
+                        }`}
                     >
                         Previous
                     </button>
-                    <span className="text-sm text-gray-600">
+                    <span
+                        className={`text-sm ${
+                            isDarkMode ? "text-gray-300" : "text-gray-600"
+                        }`}
+                    >
                         Page {pagination.currentPage} of {pagination.totalPages}
                     </span>
                     <button
                         onClick={() => onPageChange(pagination.currentPage + 1)}
                         disabled={!pagination.hasMore}
-                        className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
+                        className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+                            isDarkMode
+                                ? "bg-gray-800 text-gray-100 hover:bg-gray-700 disabled:bg-gray-800/50 disabled:text-gray-500"
+                                : "bg-white text-gray-900 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                        } border ${
+                            isDarkMode ? "border-gray-700" : "border-gray-300"
+                        }`}
                     >
                         Next
                     </button>

@@ -12,6 +12,7 @@ import { bbox, center } from "@turf/turf";
 import CouncilInfoCard from "./CouncilInfoCard";
 import LandmarkContent from "./LandmarkContent";
 import type { MapLayerMouseEvent } from "react-map-gl";
+import { useTheme } from "@/app/hooks/useTheme";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
@@ -71,6 +72,7 @@ interface LgaMapProps {
  * @returns {JSX.Element}
  */
 const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
+    const { isDarkMode } = useTheme();
     // Reference to the Map instance for imperative actions
     const mapRef = useRef<MapRef>(null);
 
@@ -378,24 +380,8 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                 showLandmarks={showLandmarks}
             />
 
-            <div
-                className={`w-full ${
-                    selectedLgaCode &&
-                    mode !== "statistics" &&
-                    chartData.length > 0
-                        ? "grid grid-cols-2 gap-4"
-                        : "flex flex-col gap-4"
-                }`}
-            >
-                <div
-                    className={`${
-                        selectedLgaCode &&
-                        mode !== "statistics" &&
-                        chartData.length > 0
-                            ? "h-[600px]"
-                            : "w-full h-[600px]"
-                    } rounded-lg overflow-hidden shadow-lg relative`}
-                >
+            <div className="w-full flex flex-col gap-4">
+                <div className="w-full h-[600px] rounded-lg overflow-hidden shadow-lg relative">
                     <Map
                         ref={mapRef}
                         initialViewState={{
@@ -557,7 +543,7 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                     </Map>
                 </div>
 
-                {/* Chart Section */}
+                {/* Chart Section - Now below the map */}
                 {selectedLgaCode && mode !== "statistics" && (
                     <div className="bg-white p-4 rounded-lg shadow-lg">
                         {mode === "language" ? (

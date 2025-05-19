@@ -4,10 +4,12 @@ import { useState, useCallback, useEffect } from "react";
 import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
+import { useTheme } from "@/app/hooks/useTheme";
 
 type Service = "translate" | "summarise";
 
 export default function PdfUploader() {
+    const { isDarkMode } = useTheme();
     useEffect(() => {
         // Initialize PDF.js worker in useEffect to avoid SSR issues
         const pdfjsWorker = require("pdfjs-dist/build/pdf.worker.entry");
@@ -230,7 +232,9 @@ export default function PdfUploader() {
                     <div>
                         <label
                             htmlFor="language-select"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className={`block text-sm font-medium ${
+                                isDarkMode ? "text-gray-300" : "text-gray-700"
+                            } mb-2`}
                         >
                             Select Target Language
                         </label>
@@ -238,7 +242,11 @@ export default function PdfUploader() {
                             id="language-select"
                             value={selectedLanguage}
                             onChange={handleLanguageChange}
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            className={`block w-full rounded-md ${
+                                isDarkMode
+                                    ? "bg-gray-800 border-gray-700 text-gray-300"
+                                    : "bg-white border-gray-300 text-gray-700"
+                            } shadow-sm focus:border-blue-500 focus:ring-blue-500`}
                         >
                             {languages.map((lang) => (
                                 <option key={lang.code} value={lang.code}>
@@ -251,7 +259,9 @@ export default function PdfUploader() {
                     <div>
                         <label
                             htmlFor="service-select"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className={`block text-sm font-medium ${
+                                isDarkMode ? "text-gray-300" : "text-gray-700"
+                            } mb-2`}
                         >
                             Select Service
                         </label>
@@ -261,6 +271,8 @@ export default function PdfUploader() {
                                 className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                                     selectedService === "translate"
                                         ? "bg-[#FABB20] text-white"
+                                        : isDarkMode
+                                        ? "bg-gray-800 text-gray-300 hover:bg-[#FABB20] hover:text-white"
                                         : "bg-gray-100 text-gray-700 hover:bg-[#FABB20] hover:text-white"
                                 }`}
                             >
@@ -271,6 +283,8 @@ export default function PdfUploader() {
                                 className={`px-4 py-2 rounded-md transition-colors duration-200 ${
                                     selectedService === "summarise"
                                         ? "bg-[#FABB20] text-white"
+                                        : isDarkMode
+                                        ? "bg-gray-800 text-gray-300 hover:bg-[#FABB20] hover:text-white"
                                         : "bg-gray-100 text-gray-700 hover:bg-[#FABB20] hover:text-white"
                                 }`}
                             >
@@ -283,16 +297,32 @@ export default function PdfUploader() {
                 <div className="w-full mt-4">
                     <label
                         htmlFor="pdf-upload"
-                        className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+                        className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer ${
+                            isDarkMode
+                                ? "border-gray-700 bg-gray-800 hover:bg-gray-700"
+                                : "border-gray-300 bg-gray-50 hover:bg-gray-100"
+                        }`}
                     >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <p className="mb-2 text-sm text-gray-500">
+                            <p
+                                className={`mb-2 text-sm ${
+                                    isDarkMode
+                                        ? "text-gray-400"
+                                        : "text-gray-500"
+                                }`}
+                            >
                                 <span className="font-semibold">
                                     Click to upload
                                 </span>{" "}
                                 or drag and drop
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p
+                                className={`text-xs ${
+                                    isDarkMode
+                                        ? "text-gray-400"
+                                        : "text-gray-500"
+                                }`}
+                            >
                                 PDF files only
                             </p>
                         </div>
@@ -310,7 +340,11 @@ export default function PdfUploader() {
                     <div className="w-full mt-4">
                         <iframe
                             src={`${pdfUrl}`}
-                            className="w-full h-[600px] border border-gray-200 rounded-lg"
+                            className={`w-full h-[600px] border rounded-lg ${
+                                isDarkMode
+                                    ? "border-gray-700"
+                                    : "border-gray-200"
+                            }`}
                             title="PDF Preview"
                         />
                     </div>
@@ -318,7 +352,11 @@ export default function PdfUploader() {
 
                 {fileName && (
                     <div className="mt-4 text-center">
-                        <p className="text-sm text-gray-600">
+                        <p
+                            className={`text-sm ${
+                                isDarkMode ? "text-gray-400" : "text-gray-600"
+                            }`}
+                        >
                             Current file:{" "}
                             <span className="font-medium">{fileName}</span>
                         </p>
@@ -341,7 +379,11 @@ export default function PdfUploader() {
             {(extractedText || translatedText) && (
                 <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-lg font-semibold">
+                        <h3
+                            className={`text-lg font-semibold ${
+                                isDarkMode ? "text-gray-300" : "text-gray-900"
+                            }`}
+                        >
                             {selectedService === "translate"
                                 ? "Translated Text:"
                                 : "Summarised Text:"}
@@ -350,12 +392,16 @@ export default function PdfUploader() {
                             onClick={() => handleCopyText(translatedText)}
                             className="px-4 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors"
                         >
-                            {selectedService === "translate"
-                                ? "Copy Text"
-                                : "Copy Text"}
+                            Copy Text
                         </button>
                     </div>
-                    <div className="p-4 bg-white rounded-lg border border-gray-200">
+                    <div
+                        className={`p-4 rounded-lg border ${
+                            isDarkMode
+                                ? "bg-gray-800 border-gray-700 text-gray-300"
+                                : "bg-white border-gray-200 text-gray-900"
+                        }`}
+                    >
                         <div className="h-[400px] overflow-y-auto">
                             <p className="whitespace-pre-wrap pr-4">
                                 {translatedText ||

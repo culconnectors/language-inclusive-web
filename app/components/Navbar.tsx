@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/app/hooks/useTheme";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const { isDarkMode, toggleDarkMode } = useTheme();
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -85,28 +87,54 @@ const Navbar = () => {
                             SocialConnect
                         </Link>
                         {!isMobile ? (
-                            <nav className="flex space-x-8">
-                                {navItems.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        href={item.path}
-                                        className={`transition-colors ${
-                                            pathname === item.path
-                                                ? "text-[#FABB20] border-b-2 border-[#FABB20]"
-                                                : "text-gray-400 hover:text-white"
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
-                            </nav>
+                            <div className="flex items-center space-x-8">
+                                <nav className="flex space-x-8">
+                                    {navItems.map((item) => (
+                                        <Link
+                                            key={item.name}
+                                            href={item.path}
+                                            className={`transition-colors ${
+                                                pathname === item.path
+                                                    ? "text-[#FABB20] border-b-2 border-[#FABB20]"
+                                                    : "text-gray-400 hover:text-white"
+                                            }`}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    ))}
+                                </nav>
+                                <button
+                                    onClick={toggleDarkMode}
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                    aria-label="Toggle dark mode"
+                                >
+                                    {isDarkMode ? (
+                                        <Sun size={20} />
+                                    ) : (
+                                        <Moon size={20} />
+                                    )}
+                                </button>
+                            </div>
                         ) : (
-                            <button
-                                onClick={() => setIsOpen(true)}
-                                className="text-white hover:text-gray-300"
-                            >
-                                <Menu size={24} />
-                            </button>
+                            <div className="flex items-center space-x-4">
+                                <button
+                                    onClick={toggleDarkMode}
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                    aria-label="Toggle dark mode"
+                                >
+                                    {isDarkMode ? (
+                                        <Sun size={20} />
+                                    ) : (
+                                        <Moon size={20} />
+                                    )}
+                                </button>
+                                <button
+                                    onClick={() => setIsOpen(true)}
+                                    className="text-white hover:text-gray-300"
+                                >
+                                    <Menu size={24} />
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>

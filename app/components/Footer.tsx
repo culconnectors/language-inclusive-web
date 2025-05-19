@@ -1,10 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useTheme } from "@/app/hooks/useTheme";
 
 export default function Footer() {
+    const { isDarkMode } = useTheme();
+
     return (
-        <footer className="bg-gray-900 text-white">
+        <footer
+            className={`${
+                isDarkMode ? "bg-gray-900" : "bg-gray-900"
+            } text-white relative`}
+        >
+            {/* Top Border */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#FABB20]"></div>
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* About Section */}

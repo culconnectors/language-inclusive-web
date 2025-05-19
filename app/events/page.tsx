@@ -2,10 +2,17 @@
 
 import Navbar from "@/app/components/Navbar";
 import EventSearch from "@/app/components/event/DataEventSearch";
+import { useTheme } from "@/app/hooks/useTheme";
 
 export default function Events() {
+    const { isDarkMode } = useTheme();
+
     return (
-        <main className="min-h-screen">
+        <main
+            className={`min-h-screen ${
+                isDarkMode ? "bg-gray-900" : "bg-white"
+            }`}
+        >
             <Navbar />
             <section className="relative flex items-center bg-[#0A0F1D] pt-16">
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -24,12 +31,19 @@ export default function Events() {
                 </div>
 
                 {/* Yellow Wave Divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]" style={{
-                    clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)"
-                }}></div>
+                <div
+                    className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]"
+                    style={{
+                        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)",
+                    }}
+                ></div>
             </section>
 
-            <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+            <section
+                className={`${
+                    isDarkMode ? "bg-gray-900" : "bg-white"
+                } py-12 px-4 sm:px-6 lg:px-8`}
+            >
                 <div className="max-w-7xl mx-auto">
                     <EventSearch />
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface LocationSearchProps {
     onLocationSelect: (coords: { lat: number; lng: number }) => void;
@@ -21,36 +22,49 @@ export default function LocationSearch({
 }: LocationSearchProps) {
     const [inputValue, setInputValue] = useState(locationTerm);
     const [showPredictions, setShowPredictions] = useState(false);
+    const { isDarkMode } = useTheme();
 
     // Sync inputValue with locationTerm
     useEffect(() => {
         setInputValue(locationTerm);
     }, [locationTerm]);
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setInputValue(value);
+        onLocationTermChange(value);
+        setShowPredictions(true);
+    };
+
     const handlePredictionSelect = (placeId: string, description: string) => {
         setInputValue(description);
-        onLocationTermChange(description);
-        setShowPredictions(false);
         onPredictionSelect(placeId, description);
+        setShowPredictions(false);
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative">
             <input
                 type="text"
                 value={inputValue}
-                onChange={(e) => {
-                    setInputValue(e.target.value);
-                    onLocationTermChange(e.target.value);
-
-                    setShowPredictions(true);
-                }}
-                placeholder="Enter your location or postcode"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                onChange={handleInputChange}
+                onFocus={() => setShowPredictions(true)}
+                placeholder="Enter a location"
+                className={`w-full px-4 py-2 rounded-md border ${
+                    isDarkMode
+                        ? "bg-gray-800 border-gray-700 text-gray-100 placeholder-gray-400"
+                        : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
+                } focus:outline-none focus:ring-2 focus:ring-[#FABB20] focus:border-transparent`}
             />
 
             {showPredictions && predictions.length > 0 && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
+                <div
+                    className={`absolute z-10 w-full mt-1 ${
+                        isDarkMode
+                            ? "bg-gray-800 border-gray-700"
+                            : "bg-white border-gray-300"
+                    } border rounded-md shadow-lg`}
+                >
                     {predictions.map((prediction) => (
                         <button
                             key={prediction.place_id}
@@ -60,7 +74,11 @@ export default function LocationSearch({
                                     prediction.description
                                 )
                             }
-                            className="w-full px-4 py-2 text-left hover:bg-gray-100"
+                            className={`w-full px-4 py-2 text-left ${
+                                isDarkMode
+                                    ? "text-gray-100 hover:bg-gray-700"
+                                    : "text-gray-900 hover:bg-gray-100"
+                            }`}
                         >
                             {prediction.description}
                         </button>
@@ -70,7 +88,7 @@ export default function LocationSearch({
 
             {loading && (
                 <div className="absolute right-3 top-3">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-indigo-500"></div>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#FABB20]"></div>
                 </div>
             )}
         </div>

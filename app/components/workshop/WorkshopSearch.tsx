@@ -7,6 +7,7 @@ import WorkshopList from "./WorkshopList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
 import WorkshopCard from "./WorkshopCard";
+import { useTheme } from "@/app/hooks/useTheme";
 
 interface Workshop {
     id: string;
@@ -27,6 +28,7 @@ interface PaginatedResponse {
 }
 
 export default function WorkshopSearch() {
+    const { isDarkMode } = useTheme();
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedProviders, setSelectedProviders] = useState<Set<string>>(
         new Set()
@@ -149,7 +151,11 @@ export default function WorkshopSearch() {
 
                 {selectedLocation && (
                     <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-gray-600">
+                        <div
+                            className={`flex items-center gap-2 ${
+                                isDarkMode ? "text-gray-300" : "text-gray-600"
+                            }`}
+                        >
                             <MapPin className="w-4 h-4" />
                             <span>
                                 Showing courses within {distance}km of selected
@@ -166,9 +172,17 @@ export default function WorkshopSearch() {
                                     setDistance(Number(e.target.value));
                                     setCurrentPage(1);
                                 }}
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                className={`w-full h-2 ${
+                                    isDarkMode ? "bg-gray-700" : "bg-gray-200"
+                                } rounded-lg appearance-none cursor-pointer`}
                             />
-                            <span className="text-sm text-gray-600 min-w-[3rem] text-right">
+                            <span
+                                className={`text-sm ${
+                                    isDarkMode
+                                        ? "text-gray-300"
+                                        : "text-gray-600"
+                                } min-w-[3rem] text-right`}
+                            >
                                 {distance}km
                             </span>
                         </div>
@@ -177,7 +191,13 @@ export default function WorkshopSearch() {
 
                 {providerNames.length > 0 && (
                     <div className="mb-6">
-                        <p className="font-medium mb-2">Filter by Provider:</p>
+                        <p
+                            className={`font-medium mb-2 ${
+                                isDarkMode ? "text-gray-200" : "text-gray-900"
+                            }`}
+                        >
+                            Filter by Provider:
+                        </p>
                         <div className="flex flex-wrap gap-2">
                             {providerNames.map((provider) => (
                                 <button
@@ -188,6 +208,8 @@ export default function WorkshopSearch() {
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                                         selectedProviders.has(provider)
                                             ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                            : isDarkMode
+                                            ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
