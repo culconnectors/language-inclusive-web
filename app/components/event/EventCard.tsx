@@ -47,7 +47,7 @@ export default function EventCard({ event }: EventCardProps) {
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
             <div className="relative h-48 w-full">
                 {event.logo?.url ? (
                     <Image
@@ -76,7 +76,7 @@ export default function EventCard({ event }: EventCardProps) {
                 )}
             </div>
 
-            <div className="p-4">
+            <div className="p-4 flex flex-col flex-grow">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {event.name}
                 </h3>
