@@ -64,7 +64,8 @@ export default function EventCard({ event }: EventCardProps) {
                     </div>
                 )}
             </div>
-            <div className="p-4 flex flex-col h-[200px]">
+            
+            <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {event.name}
                 </h3>
@@ -77,7 +78,7 @@ export default function EventCard({ event }: EventCardProps) {
                     </p>
                 </div>
                 <a
-                    href={event.url}
+                    href={`/events/${event.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto block w-full text-center bg-[#FABB20] text-white py-2 px-4 rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300"
