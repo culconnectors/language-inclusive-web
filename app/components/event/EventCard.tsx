@@ -82,7 +82,7 @@ export default function EventCard({ event }: EventCardProps) {
                 </h3>
                 <div className="mb-4">
                     <p className="text-sm text-gray-600 mb-1">
-                        {formatDate(event.start.local)}
+                        {formatDate(event.end.local)}
                     </p>
                     <p className="text-sm text-gray-600 line-clamp-1">
                         {event.venue.name}

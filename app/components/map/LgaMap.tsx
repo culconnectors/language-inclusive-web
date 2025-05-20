@@ -74,15 +74,17 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
     // Reference to the Map instance for imperative actions
     const mapRef = useRef<MapRef>(null);
 
-    // State for currently hovered LGA info (for tooltip display)
-    const [hoveredLgaInfo, setHoveredLgaInfo] = useState<HoverInfo | null>(
-        null
-    );
+    // Track if map is loaded
+    const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+    // Controls visibility of the landmarks
+    const [showLandmarks, setShowLandmarks] = useState(false);
 
     // Current mode: 'statistics', 'nationalities', or 'language'
-    const [mode, setMode] = useState<
-        "statistics" | "nationalities" | "language"
-    >("statistics");
+    const [mode, setMode] = useState<"statistics" | "nationalities" | "language">("statistics");
+
+    // State for currently hovered LGA info (for tooltip display)
+    const [hoveredLgaInfo, setHoveredLgaInfo] = useState<HoverInfo | null>(null);
 
     // Currently selected statistic key (for statistics mode)
     const [selectedStatistic, setSelectedStatistic] = useState("");
@@ -103,11 +105,67 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
     // Data for the landmarks
     const [landmarks, setLandmarks] = useState<any[]>([]);
 
-    // Controls visibility of the landmarks
-    const [showLandmarks, setShowLandmarks] = useState(false);
-
     // State for selected landmark for popup
     const [selectedLandmark, setSelectedLandmark] = useState<any | null>(null);
+
+    // Debug logs for mode and related states
+    useEffect(() => {
+        console.log('Mode State Debug:', {
+            currentMode: mode,
+            showLandmarks,
+            isMapLoaded,
+            selectedStatistic,
+            showCouncilInfo,
+            hasSelectedLga: !!selectedLgaCode,
+            chartDataLength: chartData.length
+        });
+    }, [mode, showLandmarks, isMapLoaded, selectedStatistic, showCouncilInfo, selectedLgaCode, chartData]);
+
+    // Effect to handle map load
+    useEffect(() => {
+        console.log('Map initialization effect running');
+        const map = mapRef.current?.getMap();
+        
+        if (!map) {
+            console.log('Map reference not available in initialization effect');
+            return;
+        }
+
+        if (map.loaded()) {
+            console.log('Map was already loaded in initialization effect');
+            setIsMapLoaded(true);
+        }
+
+        return () => {
+            console.log('Cleanup of map initialization effect');
+        };
+    }, [mapRef.current]);
+
+    // Initialize mode after confirming showLandmarks and map load state
+    useEffect(() => {
+        if (isMapLoaded) {
+            console.log('Map loaded state:', isMapLoaded);
+            console.log('ShowLandmarks state:', showLandmarks);
+            if (!showLandmarks) {
+                console.log('Setting initial mode to statistics');
+                setMode("statistics");
+                // Reset selectedStatistic to ensure only hover layer is shown
+                setSelectedStatistic("");
+            }
+        }
+    }, [isMapLoaded, showLandmarks]);
+
+    // Reset selectedStatistic when switching to statistics mode
+    useEffect(() => {
+        if (mode === "statistics") {
+            setSelectedStatistic("");
+        }
+    }, [mode]);
+
+    // Debug log for mode changes
+    useEffect(() => {
+        console.log('Current mode:', mode);
+    }, [mode]);
 
     /**
      * Fetches statistic data for the selected statistic when mode/statistic changes.
@@ -269,19 +327,27 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
 
     // Remove handleMapLoad and use useEffect for LGA event handlers
     useEffect(() => {
-        const map = mapRef.current?.getMap?.();
-        if (!map) return;
+        console.log('Interaction setup effect running');
+        const map = mapRef.current?.getMap();
+        
+        if (!map) {
+            console.log('Map reference not available in interaction setup');
+            return;
+        }
+        
+        if (!isMapLoaded) {
+            console.log('Map not yet loaded, waiting for load...');
+            return;
+        }
+
+        console.log('Setting up map interactions, map loaded:', isMapLoaded, 'showLandmarks:', showLandmarks);
 
         // Handler functions
         const mouseMoveHandler = (e: any) => {
             if (e.features?.length && e.point) {
                 const feature = e.features[0];
-                const lgaCode =
-                    feature.properties?.lga_code ||
-                    feature.properties?.LGA_CODE;
-                const lgaName =
-                    feature.properties?.lga_name ||
-                    feature.properties?.LGA_NAME;
+                const lgaCode = feature.properties?.lga_code || feature.properties?.LGA_CODE;
+                const lgaName = feature.properties?.lga_name || feature.properties?.LGA_NAME;
                 if (lgaCode && lgaName) {
                     setHoveredLgaInfo({
                         lgaCode,
@@ -293,10 +359,12 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                 }
             }
         };
+
         const mouseLeaveHandler = () => {
             map.getCanvas().style.cursor = "";
             setHoveredLgaInfo(null);
         };
+
         const clickHandler = (e: any) => {
             if (e.features?.length) {
                 const feature = e.features[0];
@@ -310,13 +378,18 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                     console.debug("LGA selected:", { lgaCode, lgaName });
                     setSelectedLgaCode(lgaCode);
                     setSelectedLgaName(lgaName);
-                    setShowCouncilInfo(true);
+                    
+                    // Only show council info in statistics mode
+                    if (mode === "statistics") {
+                        setShowCouncilInfo(true);
+                    }
+                    
                     onLgaSelect?.(lgaCode);
+                    
                     if (feature.geometry) {
                         try {
                             const geoFeature = turf.feature(feature.geometry);
                             const bounds = turf.bbox(geoFeature);
-                            const centerPoint = turf.center(geoFeature);
                             if (mapRef.current) {
                                 mapRef.current.resize();
                                 mapRef.current.fitBounds(
@@ -333,49 +406,55 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                             }
                         } catch (error) {
                             console.error(
-                                "Error computing bounds or center:",
+                                "Error computing bounds:",
                                 error
                             );
                         }
-                    } else {
-                        console.warn(
-                            "Missing geometry in clicked feature:",
-                            feature
-                        );
                     }
                 }
             }
         };
 
         if (!showLandmarks) {
+            console.log('Attaching hover handlers (showLandmarks is false)');
             map.on("mousemove", "vic-lga-cleaned-5yz92t", mouseMoveHandler);
             map.on("mouseleave", "vic-lga-cleaned-5yz92t", mouseLeaveHandler);
             map.on("click", "vic-lga-cleaned-5yz92t", clickHandler);
+        } else {
+            console.log('Not attaching hover handlers (showLandmarks is true)');
         }
+
         // Cleanup
         return () => {
-            map.off("mousemove", "vic-lga-cleaned-5yz92t", mouseMoveHandler);
-            map.off("mouseleave", "vic-lga-cleaned-5yz92t", mouseLeaveHandler);
-            map.off("click", "vic-lga-cleaned-5yz92t", clickHandler);
+            if (map) {
+                console.log('Cleaning up hover handlers');
+                map.off("mousemove", "vic-lga-cleaned-5yz92t", mouseMoveHandler);
+                map.off("mouseleave", "vic-lga-cleaned-5yz92t", mouseLeaveHandler);
+                map.off("click", "vic-lga-cleaned-5yz92t", clickHandler);
+            }
         };
-    }, [showLandmarks, mapRef, onLgaSelect]);
+    }, [isMapLoaded, showLandmarks, mapRef.current, onLgaSelect]);
 
     return (
         <div className="flex flex-col gap-4">
             <LgaSidebar
                 onModeChange={(newMode) => {
-                    console.debug("Mode changed:", {
-                        newMode,
-                        currentMode: mode,
-                    });
+                    console.log('LgaMap: Handling mode change to:', newMode);
+                    // Reset states when mode changes
+                    if (newMode === "statistics") {
+                        setSelectedStatistic("");
+                    } else {
+                        // Close council info when switching to non-statistics modes
+                        setShowCouncilInfo(false);
+                    }
+                    // Set the new mode after resetting states
                     setMode(newMode);
-                    setSelectedLgaCode(null);
-                    setSelectedLgaName("");
-                    setShowCouncilInfo(false);
                 }}
                 onStatisticSelect={setSelectedStatistic}
                 onToggleLandmarks={setShowLandmarks}
                 showLandmarks={showLandmarks}
+                initialMode={mode}
+                selectedStatistic={selectedStatistic}
             />
 
             <div
@@ -409,8 +488,17 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                         interactiveLayerIds={
                             showLandmarks ? [] : ["vic-lga-cleaned-5yz92t"]
                         }
+                        onLoad={(e) => {
+                            console.log('Map onLoad event fired');
+                            const map = mapRef.current?.getMap();
+                            if (map) {
+                                console.log('Map reference available in onLoad');
+                                map.resize();
+                                setIsMapLoaded(true);
+                            }
+                        }}
                     >
-                        {/* StatisticsMap and LGA highlight layers only when not showing landmarks */}
+                        {/* StatisticsMap layer only when a statistic is selected */}
                         {!showLandmarks &&
                             mode === "statistics" &&
                             selectedStatistic && (
@@ -579,14 +667,10 @@ const LgaMap = ({ onLgaSelect }: LgaMapProps) => {
                 )}
             </div>
 
-            {/* Council Info Card */}
-            {!showLandmarks && (
+            {/* Council Info Card - Only show in statistics mode */}
+            {!showLandmarks && mode === "statistics" && (
                 <CouncilInfoCard
-                    lgaCode={
-                        showCouncilInfo && mode === "statistics"
-                            ? selectedLgaCode
-                            : null
-                    }
+                    lgaCode={showCouncilInfo ? selectedLgaCode : null}
                     onClose={() => setShowCouncilInfo(false)}
                 />
             )}

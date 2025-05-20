@@ -1,5 +1,5 @@
 // components/LgaSidebar.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * Props for the LgaSidebar component.
@@ -14,6 +14,8 @@ interface LgaSidebarProps {
     onStatisticSelect: (stat: string) => void;
     showLandmarks: boolean;
     onToggleLandmarks: (show: boolean) => void;
+    initialMode?: "statistics" | "nationalities" | "language";
+    selectedStatistic: string;
 }
 
 /**
@@ -31,18 +33,18 @@ const LgaSidebar = ({
     onStatisticSelect,
     showLandmarks,
     onToggleLandmarks,
+    initialMode = "statistics",
+    selectedStatistic,
 }: LgaSidebarProps) => {
     /**
      * State for the currently active mode (statistics, nationalities, or language)
      */
-    const [activeMode, setActiveMode] = useState<
-        "statistics" | "nationalities" | "language"
-    >("statistics");
+    const [activeMode, setActiveMode] = useState<"statistics" | "nationalities" | "language">(initialMode);
 
-    /**
-     * State for the currently selected statistic (used in statistics mode)
-     */
-    const [selectedStat, setSelectedStat] = useState("");
+    // Ensure activeMode stays in sync with initialMode
+    useEffect(() => {
+        setActiveMode(initialMode);
+    }, [initialMode]);
 
     /**
      * Handles changing the active mode (statistics, nationalities, language)
@@ -52,6 +54,7 @@ const LgaSidebar = ({
     const handleModeChange = (
         mode: "statistics" | "nationalities" | "language"
     ) => {
+        console.log('LgaSidebar: Mode change requested to:', mode);
         setActiveMode(mode);
         onModeChange(mode);
     };
@@ -63,7 +66,6 @@ const LgaSidebar = ({
      */
     const handleStatisticChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const stat = e.target.value;
-        setSelectedStat(stat);
         onStatisticSelect(stat);
     };
 
@@ -77,6 +79,18 @@ const LgaSidebar = ({
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-md">
+            {/* User Instructions */}
+            <div className="mb-4 text-sm text-gray-600 space-y-2">
+                <h3 className="font-semibold text-gray-800 mb-2">To start Map Controls, pls zoom in to the map:</h3>
+                <ul className="list-disc pl-4 space-y-1">
+                    <li><span className="font-medium">Statistics Mode:</span> View demographic data across Victoria. Select a statistic from the dropdown to see the distribution.</li>
+                    <li><span className="font-medium">Nationalities Mode:</span> Click any LGA to see the distribution of nationalities in that area.</li>
+                    <li><span className="font-medium">Language Mode:</span> Click any LGA to view language statistics for that region.</li>
+                    <li><span className="font-medium">Landmarks:</span> Toggle to show/hide cultural landmarks and points of interest.</li>
+                </ul>
+                <p className="text-gray-500 italic mt-2">Hover over any region to see its name, and click to view detailed information.</p>
+            </div>
+
             <div className="flex gap-4 items-center flex-wrap">
                 {/* Mode selection buttons */}
                 <button
@@ -93,12 +107,10 @@ const LgaSidebar = ({
                 {activeMode === "statistics" && (
                     <select
                         onChange={handleStatisticChange}
-                        value={selectedStat}
+                        value={selectedStatistic}
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FABB20]"
                     >
-                        <option value="" disabled>
-                            Choose a statistic
-                        </option>
+                        <option value="">Choose a statistic</option>
                         <option value="born_overseas">Born Overseas</option>
                         <option value="pct_proficient_english">
                             English Proficiency
