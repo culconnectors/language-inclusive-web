@@ -6,6 +6,8 @@ import { useState } from "react";
  * @property onModeChange - Callback invoked when the mode changes (statistics, nationalities, language)
  * @property onStatisticSelect - Callback invoked when a statistic is selected
  * @property onToggleLandmarks - Callback invoked when the landmarks toggle is changed
+ * @property initialMode - Initial mode to display
+ * @property selectedStatistic - Currently selected statistic
  */
 interface LgaSidebarProps {
     onModeChange: (mode: "statistics" | "nationalities" | "language") => void;
