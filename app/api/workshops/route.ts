@@ -13,14 +13,31 @@ interface Workshop {
     };
 }
 
+// Function to calculate distance between two coordinates using Haversine formula
+function calculateDistance(
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number
+): number {
+    const R = 6371; // Earth's radius in kilometers
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const lat = parseFloat(searchParams.get("lat") || "0");
         const lng = parseFloat(searchParams.get("lng") || "0");
-        const page = parseInt(searchParams.get("page") || "1");
         const radius = parseFloat(searchParams.get("radius") || "20"); // Get radius from query params, default to 20km
-        const pageSize = 10;
 
         // Using Prisma's query builder with relations
         const providers = await workshopClient.provider.findMany({
@@ -79,7 +96,7 @@ export async function GET(request: Request) {
             });
         });
 
-        // Sort by distance and apply pagination
+        // Sort by distance
         const sortedWorkshops = formattedWorkshops.sort((a, b) => {
             const distanceA = calculateDistance(
                 lat,
@@ -96,21 +113,9 @@ export async function GET(request: Request) {
             return distanceA - distanceB;
         });
 
-        const startIndex = (page - 1) * pageSize;
-        const paginatedWorkshops = sortedWorkshops.slice(
-            startIndex,
-            startIndex + pageSize
-        );
-        const totalPages = Math.ceil(sortedWorkshops.length / pageSize);
-
         return NextResponse.json({
-            workshops: paginatedWorkshops,
-            pagination: {
-                currentPage: page,
-                totalPages,
-                totalItems: sortedWorkshops.length,
-                hasMore: page < totalPages,
-            },
+            workshops: sortedWorkshops,
+            totalItems: sortedWorkshops.length
         });
     } catch (error) {
         console.error("Error fetching workshops:", error);
@@ -119,24 +124,4 @@ export async function GET(request: Request) {
             { status: 500 }
         );
     }
-}
-
-// Function to calculate distance between two coordinates using Haversine formula
-function calculateDistance(
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number
-): number {
-    const R = 6371; // Earth's radius in kilometers
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos((lat1 * Math.PI) / 180) *
-            Math.cos((lat2 * Math.PI) / 180) *
-            Math.sin(dLon / 2) *
-            Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
 }

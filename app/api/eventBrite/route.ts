@@ -1,6 +1,7 @@
 // Description: This code defines a GET function that fetches events from the EventBrite API based on the user's location and filters them by category. It uses Prisma to query the database and returns the results in a specific format.
 /* File updated:
     (2025-04-20) Added "category" into Event interface for filtering
+    (2025-04-21) Removed pagination to handle it client-side after filtering
 */
 import { NextResponse } from "next/server";
 import { communityClient } from "@/lib/prisma";
@@ -37,8 +38,7 @@ function calculateDistance(
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos((lat1 * Math.PI) / 180) *
             Math.cos((lat2 * Math.PI) / 180) *
-            Math.sin(dLon / 2) *
-            Math.sin(dLon / 2);
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
@@ -50,8 +50,6 @@ export async function GET(request: Request) {
         const lat = parseFloat(searchParams.get("lat") || "0");
         const lng = parseFloat(searchParams.get("lng") || "0");
         const radius = parseFloat(searchParams.get("radius") || "20");
-        const page = parseInt(searchParams.get("page") || "1");
-        const pageSize = 12; // 12 events per page (3x4 grid)
 
         // Using raw SQL query with Prisma
         const events = await communityClient.$queryRaw<RawEventResult[]>`
@@ -117,22 +115,9 @@ export async function GET(request: Request) {
                 : undefined,
         }));
 
-        // Apply pagination
-        const startIndex = (page - 1) * pageSize;
-        const paginatedEvents = formattedEvents.slice(
-            startIndex,
-            startIndex + pageSize
-        );
-        const totalPages = Math.ceil(formattedEvents.length / pageSize);
-
         return NextResponse.json({
-            events: paginatedEvents,
-            pagination: {
-                currentPage: page,
-                totalPages,
-                totalItems: formattedEvents.length,
-                hasMore: page < totalPages,
-            },
+            events: formattedEvents,
+            totalItems: formattedEvents.length
         });
     } catch (error) {
         console.error("Error fetching events:", error);

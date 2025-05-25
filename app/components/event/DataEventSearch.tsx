@@ -5,10 +5,12 @@
 "use client";
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MapPin, Navigation, RefreshCw } from "lucide-react";
+import { MapPin, Navigation, RefreshCw, ArrowUpDown } from "lucide-react";
 import EventList from "./EventList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
+
+type SortOption = 'name-asc' | 'name-desc' | 'date-asc' | 'date-desc';
 
 // Define the API response type
 interface EventBriteResponse {
@@ -34,15 +36,12 @@ interface EventBriteResponse {
     };
 }
 
-interface PaginatedResponse {
+interface ApiResponse {
     events: EventBriteResponse[];
-    pagination: {
-        currentPage: number;
-        totalPages: number;
-        totalItems: number;
-        hasMore: boolean;
-    };
+    totalItems: number;
 }
+
+const ITEMS_PER_PAGE = 12; // 12 events per page (3x4 grid)
 
 export default function DataEventSearch() {
     const {
@@ -67,22 +66,23 @@ export default function DataEventSearch() {
     // State to manage pagination
     const [currentPage, setCurrentPage] = useState(1);
 
+    // State to manage current events filter
+    const [showCurrentOnly, setShowCurrentOnly] = useState(false);
+
+    // State to manage sort option
+    const [sortBy, setSortBy] = useState<SortOption>('date-asc');
+
     // Fetch events from api endpoint based on selected location
-    const { data, isLoading: isEventsLoading } = useQuery<PaginatedResponse>({
-        queryKey: ["events", selectedLocation, distance, currentPage],
+    const { data, isLoading: isEventsLoading } = useQuery<ApiResponse>({
+        queryKey: ["events", selectedLocation, distance],
         queryFn: async () => {
             if (!selectedLocation)
                 return {
                     events: [],
-                    pagination: {
-                        currentPage: 1,
-                        totalPages: 0,
-                        totalItems: 0,
-                        hasMore: false,
-                    },
+                    totalItems: 0
                 };
             const response = await fetch(
-                `/api/eventBrite?lat=${selectedLocation.lat}&lng=${selectedLocation.lng}&radius=${distance}&page=${currentPage}`
+                `/api/eventBrite?lat=${selectedLocation.lat}&lng=${selectedLocation.lng}&radius=${distance}`
             );
             if (!response.ok) {
                 throw new Error("Failed to fetch events");
@@ -93,12 +93,6 @@ export default function DataEventSearch() {
     });
 
     const events = data?.events || [];
-    const pagination = data?.pagination || {
-        currentPage: 1,
-        totalPages: 0,
-        totalItems: 0,
-        hasMore: false,
-    };
 
     // Extract unique categories from events
     const allCategories: string[] = useMemo(() => {
@@ -122,53 +116,79 @@ export default function DataEventSearch() {
             }
             return newSet;
         });
+        setCurrentPage(1); // Reset to first page when changing filters
     };
 
-    // Filter events by selected categories
+    // Filter events by selected categories and current status
     const filteredEvents = useMemo(() => {
-        if (selectedCategories.size === 0) return events;
+        let filtered = events;
 
-        return events.filter(
-            (event: EventBriteResponse) =>
-                event.category && selectedCategories.has(event.category)
-        );
-    }, [events, selectedCategories]);
+        // Apply category filter
+        if (selectedCategories.size > 0) {
+            filtered = filtered.filter(
+                (event: EventBriteResponse) =>
+                    event.category && selectedCategories.has(event.category)
+            );
+        }
+
+        // Apply current events filter
+        if (showCurrentOnly) {
+            const now = new Date().toISOString();
+            filtered = filtered.filter(
+                (event: EventBriteResponse) =>
+                    event.start.local <= now && event.end.local >= now
+            );
+        }
+
+        return filtered;
+    }, [events, selectedCategories, showCurrentOnly]);
+
+    // Sort events based on selected sort option
+    const sortedAndFilteredEvents = useMemo(() => {
+        let sorted = [...filteredEvents];
+        
+        switch (sortBy) {
+            case 'name-asc':
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'name-desc':
+                sorted.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case 'date-asc':
+                sorted.sort((a, b) => new Date(a.start.local).getTime() - new Date(b.start.local).getTime());
+                break;
+            case 'date-desc':
+                sorted.sort((a, b) => new Date(b.start.local).getTime() - new Date(a.start.local).getTime());
+                break;
+        }
+        
+        return sorted;
+    }, [filteredEvents, sortBy]);
+
+    // Calculate pagination based on sorted events
+    const totalPages = Math.ceil(sortedAndFilteredEvents.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedEvents = sortedAndFilteredEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
+        // Scroll to top of events section
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-                <div className="flex flex-col gap-4 mb-4">
-                    <div className="flex-1">
-                        <LocationSearch
-                            onLocationSelect={() => {}}
-                            predictions={predictions}
-                            loading={isLocationLoading}
-                            locationTerm={locationTerm}
-                            onLocationTermChange={setLocationTerm}
-                            onPredictionSelect={handlePredictionSelect}
-                        />
-                    </div>
-                    <div className="flex gap-4">
-                        <button
-                            onClick={getCurrentLocation}
-                            className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
-                        >
-                            <Navigation className="w-4 h-4" />
-                            Current Location
-                        </button>
-                        <button
-                            onClick={resetLocation}
-                            className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
-                        >
-                            <RefreshCw className="w-4 h-4" />
-                            New Search
-                        </button>
-                    </div>
-                </div>
+        <div className="max-w-7xl mx-auto">
+            <div className="mb-8 space-y-6">
+                <LocationSearch
+                    locationTerm={locationTerm}
+                    setLocationTerm={setLocationTerm}
+                    predictions={predictions}
+                    isLoading={isLocationLoading}
+                    onSelect={handlePredictionSelect}
+                    onGetCurrentLocation={getCurrentLocation}
+                    onReset={resetLocation}
+                />
+
                 {selectedLocation && (
                     <div className="space-y-4">
                         <div className="flex items-center gap-2 text-gray-600">
@@ -186,7 +206,7 @@ export default function DataEventSearch() {
                                 value={distance}
                                 onChange={(e) => {
                                     setDistance(Number(e.target.value));
-                                    setCurrentPage(1); // Reset to first page when distance changes
+                                    setCurrentPage(1);
                                 }}
                                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                             />
@@ -197,28 +217,87 @@ export default function DataEventSearch() {
                     </div>
                 )}
 
-                {allCategories.length > 0 && (
-                    <div className="mb-6">
-                        <p className="font-medium mb-2">
-                            Filter by Categories:
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                            {allCategories.map((category) => (
+                {!isEventsLoading && filteredEvents.length > 0 && (
+                    <div className="flex flex-col gap-6">
+                        {/* Sort Options */}
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2">
+                                <ArrowUpDown className="w-4 h-4 text-gray-600" />
+                                <span className="text-sm font-medium text-gray-700">Sort by:</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
                                 <button
-                                    key={category}
-                                    onClick={() =>
-                                        handleCategoryToggle(category)
-                                    }
+                                    onClick={() => {
+                                        setSortBy(sortBy === 'name-asc' ? 'name-desc' : 'name-asc');
+                                        setCurrentPage(1);
+                                    }}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                        selectedCategories.has(category)
+                                        sortBy.startsWith('name')
                                             ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
                                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
-                                    {category}
+                                    Name {sortBy === 'name-asc' ? '(A-Z)' : sortBy === 'name-desc' ? '(Z-A)' : ''}
                                 </button>
-                            ))}
+                                <button
+                                    onClick={() => {
+                                        setSortBy(sortBy === 'date-asc' ? 'date-desc' : 'date-asc');
+                                        setCurrentPage(1);
+                                    }}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                        sortBy.startsWith('date')
+                                            ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    }`}
+                                >
+                                    Date {sortBy === 'date-asc' ? '(Earliest)' : sortBy === 'date-desc' ? '(Latest)' : ''}
+                                </button>
+                            </div>
                         </div>
+
+                        {/* Current Events Toggle */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => {
+                                    setShowCurrentOnly(!showCurrentOnly);
+                                    setCurrentPage(1);
+                                }}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                    showCurrentOnly
+                                        ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
+                            >
+                                Currently Happening
+                            </button>
+                            {showCurrentOnly && (
+                                <span className="text-sm text-gray-600">
+                                    Showing only events happening right now
+                                </span>
+                            )}
+                        </div>
+
+                        {/* Categories */}
+                        {allCategories.length > 0 && (
+                            <div className="mb-6">
+                                <p className="font-medium mb-2">Filter by Categories:</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {allCategories.map((category) => (
+                                        <button
+                                            key={category}
+                                            onClick={() => handleCategoryToggle(category)}
+                                            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                                selectedCategories.has(category)
+                                                    ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                            }`}
+                                        >
+                                            {category}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
@@ -226,30 +305,25 @@ export default function DataEventSearch() {
             <div className="space-y-6">
                 <EventList
                     coordinates={selectedLocation}
-                    events={filteredEvents}
+                    events={paginatedEvents}
                     isLoading={isEventsLoading}
                 />
 
-                {pagination.totalPages > 1 && (
+                {totalPages > 1 && (
                     <div className="flex justify-center items-center gap-2 mt-8">
                         <button
-                            onClick={() =>
-                                handlePageChange(pagination.currentPage - 1)
-                            }
-                            disabled={pagination.currentPage === 1}
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
                             className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
                         >
                             Previous
                         </button>
                         <span className="text-sm text-gray-600">
-                            Page {pagination.currentPage} of{" "}
-                            {pagination.totalPages}
+                            Page {currentPage} of {totalPages}
                         </span>
                         <button
-                            onClick={() =>
-                                handlePageChange(pagination.currentPage + 1)
-                            }
-                            disabled={!pagination.hasMore}
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage >= totalPages}
                             className="px-4 py-2 bg-white border border-gray-300 rounded-md disabled:opacity-50 hover:bg-gray-50"
                         >
                             Next

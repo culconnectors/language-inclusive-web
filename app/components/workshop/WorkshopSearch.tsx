@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { MapPin, Navigation, RefreshCw } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useState, useMemo } from "react";
 import WorkshopList from "./WorkshopList";
 import LocationSearch from "../LocationSearch";
@@ -14,17 +14,18 @@ interface Workshop {
     provider_name: string;
     description: string;
     url: string;
-}
-
-interface PaginatedResponse {
-    workshops: Workshop[];
-    pagination: {
-        currentPage: number;
-        totalPages: number;
-        totalItems: number;
-        hasMore: boolean;
+    location: {
+        latitude: number;
+        longitude: number;
     };
 }
+
+interface ApiResponse {
+    workshops: Workshop[];
+    totalItems: number;
+}
+
+const ITEMS_PER_PAGE = 10; // 10 workshops per page
 
 export default function WorkshopSearch() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -37,37 +38,29 @@ export default function WorkshopSearch() {
         locationTerm,
         setLocationTerm,
         predictions,
-        isLoading: isLoadingLocation,
+        isLoading: isLocationLoading,
         selectedLocation,
-        selectedPostcode,
         handlePredictionSelect,
         getCurrentLocation,
         resetLocation,
     } = useLocationSearch();
 
-    const { data, isLoading } = useQuery<PaginatedResponse>({
+    const { data, isLoading } = useQuery<ApiResponse>({
         queryKey: [
             "workshops",
             selectedLocation?.lat,
             selectedLocation?.lng,
-            currentPage,
             distance,
         ],
         queryFn: async () => {
             if (!selectedLocation)
                 return {
                     workshops: [],
-                    pagination: {
-                        currentPage: 1,
-                        totalPages: 0,
-                        totalItems: 0,
-                        hasMore: false,
-                    },
+                    totalItems: 0
                 };
             const searchParams = new URLSearchParams({
                 lat: selectedLocation.lat.toString(),
                 lng: selectedLocation.lng.toString(),
-                page: currentPage.toString(),
                 radius: distance.toString(),
             });
             const response = await fetch(`/api/workshops?${searchParams}`);
@@ -79,15 +72,16 @@ export default function WorkshopSearch() {
         enabled: !!selectedLocation,
     });
 
+    const workshops = data?.workshops || [];
+
     // Extract unique provider names from workshops
     const providerNames = useMemo(() => {
-        if (!data?.workshops) return [];
         return [
             ...new Set(
-                data.workshops.map((workshop) => workshop.provider_name)
+                workshops.map((workshop) => workshop.provider_name)
             ),
         ].sort();
-    }, [data?.workshops]);
+    }, [workshops]);
 
     // Handle checkbox toggle
     const handleProviderToggle = (providerName: string) => {
@@ -100,52 +94,46 @@ export default function WorkshopSearch() {
             }
             return newSet;
         });
+        setCurrentPage(1); // Reset to first page when changing filters
     };
 
     // Filter workshops based on selected providers
     const filteredWorkshops = useMemo(() => {
-        if (!data?.workshops) return [];
-        if (selectedProviders.size === 0) return data.workshops;
-        return data.workshops.filter((workshop) =>
-            selectedProviders.has(workshop.provider_name)
-        );
-    }, [data?.workshops, selectedProviders]);
+        let filtered = workshops;
+
+        // Apply provider filter
+        if (selectedProviders.size > 0) {
+            filtered = filtered.filter((workshop) =>
+                selectedProviders.has(workshop.provider_name)
+            );
+        }
+
+        return filtered;
+    }, [workshops, selectedProviders]);
+
+    // Calculate pagination
+    const totalPages = Math.ceil(filteredWorkshops.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedWorkshops = filteredWorkshops.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
+        // Scroll to top of workshops section
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-                <div className="flex flex-col gap-4 mb-4">
-                    <div className="flex-1">
-                        <LocationSearch
-                            locationTerm={locationTerm}
-                            onLocationTermChange={setLocationTerm}
-                            predictions={predictions}
-                            loading={isLoadingLocation}
-                            onPredictionSelect={handlePredictionSelect}
-                            onLocationSelect={() => {}}
-                        />
-                    </div>
-                    <div className="flex gap-4">
-                        <button
-                            onClick={getCurrentLocation}
-                            className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors duration-300 flex items-center gap-2"
-                        >
-                            <Navigation className="w-4 h-4" />
-                            Current Location
-                        </button>
-                        <button
-                            onClick={resetLocation}
-                            className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
-                        >
-                            <RefreshCw className="w-4 h-4" />
-                            New Search
-                        </button>
-                    </div>
-                </div>
+        <div className="max-w-7xl mx-auto">
+            <div className="mb-8 space-y-6">
+                <LocationSearch
+                    locationTerm={locationTerm}
+                    setLocationTerm={setLocationTerm}
+                    predictions={predictions}
+                    isLoading={isLocationLoading}
+                    onSelect={handlePredictionSelect}
+                    onGetCurrentLocation={getCurrentLocation}
+                    onReset={resetLocation}
+                />
 
                 {selectedLocation && (
                     <div className="space-y-4">
@@ -164,7 +152,7 @@ export default function WorkshopSearch() {
                                 value={distance}
                                 onChange={(e) => {
                                     setDistance(Number(e.target.value));
-                                    setCurrentPage(1);
+                                    setCurrentPage(1); // Reset to first page when distance changes
                                 }}
                                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                             />
@@ -175,42 +163,41 @@ export default function WorkshopSearch() {
                     </div>
                 )}
 
-                {providerNames.length > 0 && (
-                    <div className="mb-6">
-                        <p className="font-medium mb-2">Filter by Provider:</p>
-                        <div className="flex flex-wrap gap-2">
-                            {providerNames.map((provider) => (
-                                <button
-                                    key={provider}
-                                    onClick={() =>
-                                        handleProviderToggle(provider)
-                                    }
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                        selectedProviders.has(provider)
-                                            ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    }`}
-                                >
-                                    {provider}
-                                </button>
-                            ))}
+                <div className="flex flex-col gap-6">
+                    {/* Providers */}
+                    {providerNames.length > 0 && (
+                        <div className="mb-6">
+                            <p className="font-medium mb-2">Filter by Provider:</p>
+                            <div className="flex flex-wrap gap-2">
+                                {providerNames.map((provider) => (
+                                    <button
+                                        key={provider}
+                                        onClick={() => handleProviderToggle(provider)}
+                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                            selectedProviders.has(provider)
+                                                ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
+                                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        }`}
+                                    >
+                                        {provider}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
 
             <div className="space-y-6">
                 <WorkshopList
                     coordinates={selectedLocation}
-                    workshops={filteredWorkshops}
-                    pagination={
-                        data?.pagination || {
-                            currentPage: 1,
-                            totalPages: 0,
-                            totalItems: 0,
-                            hasMore: false,
-                        }
-                    }
+                    workshops={paginatedWorkshops}
+                    pagination={{
+                        currentPage,
+                        totalPages,
+                        totalItems: filteredWorkshops.length,
+                        hasMore: currentPage < totalPages
+                    }}
                     isLoading={isLoading}
                     onPageChange={handlePageChange}
                 />
