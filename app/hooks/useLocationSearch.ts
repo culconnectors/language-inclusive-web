@@ -69,6 +69,7 @@ export function useLocationSearch() {
                 if (location) {
                     setSelectedLocation(location);
                     setSelectedPostcode(postcode);
+                    setLocationTerm(description);
                 }
             } catch (error) {
                 console.error("Error fetching place details:", error);
