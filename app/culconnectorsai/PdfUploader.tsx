@@ -4,9 +4,32 @@ import { useState, useCallback, useEffect } from "react";
 import * as pdfjs from "pdfjs-dist";
 import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
-import { Brain, Loader2 } from "lucide-react";
+import { Brain, Loader2, InfoIcon } from "lucide-react";
 
 type Service = "translate" | "summarise";
+
+const InfoBox = ({ title, description }: { title: string, description: string }) => (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+        <div className="flex items-start gap-3">
+            <InfoIcon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+            <div>
+                <h3 className="text-lg font-semibold text-blue-900 mb-2">{title}</h3>
+                <p className="text-blue-800/80 text-sm leading-relaxed">{description}</p>
+            </div>
+        </div>
+    </div>
+);
+
+const serviceInfo = {
+    translate: {
+        title: "Translate",
+        description: "Performs a literal translation of the entire document, preserving all content and context. Best used when you need to understand everything in the document, including minor details and specific wording."
+    },
+    summarise: {
+        title: "Summarise",
+        description: "Creates a concise summary focusing on the main points and key information. While faster to read, it may omit some details that could be important depending on your needs. Use when you want a quick overview of the content."
+    }
+};
 
 export default function PdfUploader() {
     useEffect(() => {
@@ -279,6 +302,15 @@ export default function PdfUploader() {
                             </button>
                         </div>
                     </div>
+
+                    {selectedService && (
+                        <div className="animate-fadeIn">
+                            <InfoBox 
+                                title={serviceInfo[selectedService].title}
+                                description={serviceInfo[selectedService].description}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="w-full mt-4">

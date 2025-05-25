@@ -13,21 +13,33 @@ const languages = [
     { text: "言語", color: "#3A86FF", lang: "ja" },
 ];
 
-export default function LanguageCycle() {
+interface LanguageCycleProps {
+    onLanguageChange?: (lang: string) => void;
+    onTransitionEnd?: () => void;
+}
+
+export default function LanguageCycle({ onLanguageChange, onTransitionEnd }: LanguageCycleProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setIsTransitioning(true);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            
+            // Change language immediately when transition starts
+            onLanguageChange?.(languages[nextIndex].lang);
+            
+            // Update the text after the fade out
             setTimeout(() => {
-                setCurrentIndex((prev) => (prev + 1) % languages.length);
+                setCurrentIndex(nextIndex);
                 setIsTransitioning(false);
-            }, 200); // Half of the transition duration
+                onTransitionEnd?.();
+            }, 400); // Match the CSS transition duration
         }, 2000); // Change every 2 seconds
 
         return () => clearInterval(interval);
-    }, []);
+    }, [currentIndex, onLanguageChange, onTransitionEnd]);
 
     return (
         <span

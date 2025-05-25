@@ -37,9 +37,6 @@ export default function CulConnectorsAIPage() {
             <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
                     <div className="max-w-3xl mx-auto">
-                        <p className="text-lg text-gray-600 text-center mb-8">
-                            Upload a PDF document to be processed by our AI
-                        </p>
                         <PdfUploader />
                         <div className="mt-8 space-y-8">
                             <div className="bg-red-100 border border-blue-200 rounded-lg p-6">
