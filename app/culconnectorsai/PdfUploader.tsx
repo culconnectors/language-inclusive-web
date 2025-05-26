@@ -50,6 +50,8 @@ export default function PdfUploader() {
     const [copySuccess, setCopySuccess] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [pdfUrl, setPdfUrl] = useState<string>("");
+    const [progress, setProgress] = useState(0);
+    const [progressStage, setProgressStage] = useState("");
 
     useEffect(() => {
         // Cleanup URL when component unmounts or when file changes
@@ -189,6 +191,24 @@ export default function PdfUploader() {
         setError("");
     };
 
+    const resetFile = () => {
+        if (pdfUrl) {
+            URL.revokeObjectURL(pdfUrl);
+        }
+        setPdfUrl("");
+        setSelectedFile(null);
+        setFileName("");
+        setError("");
+        setExtractedText("");
+        setTranslatedText("");
+        setCopySuccess(false);
+        // Reset the file input by clearing its value
+        const fileInput = document.getElementById('pdf-upload') as HTMLInputElement;
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    };
+
     const handleSubmit = async () => {
         // Validation
         if (!selectedFile) {
@@ -218,15 +238,53 @@ export default function PdfUploader() {
             setError("");
             setCopySuccess(false);
             setTranslatedText("");
+            setProgress(0);
+            setProgressStage("Extracting text from PDF...");
 
+            // Start gradual progress
+            let currentProgress = 0;
+            const progressInterval = setInterval(() => {
+                if (currentProgress < 20) {
+                    currentProgress += 2;
+                    setProgress(currentProgress);
+                }
+            }, 100);
+
+            // Extract text
             const text = await extractTextFromPdf(selectedFile);
             setExtractedText(text);
+            clearInterval(progressInterval);
+            setProgress(20);
+            setProgressStage(selectedService === "translate" ? "Translating text..." : "Summarizing text...");
+
+            // Calculate interval timing based on service
+            // For translation: 15s = 15000ms, need to go from 20 to 80 (60 steps of 1%)
+            // For summarization: 5s = 5000ms, need to go from 20 to 80 (60 steps of 1%)
+            const intervalTime = selectedService === "translate" ? 250 : 83; // 15000/60 or 5000/60
+
+            // Start second phase of gradual progress
+            currentProgress = 20;
+            const secondProgressInterval = setInterval(() => {
+                if (currentProgress < 80) {
+                    currentProgress += 1;
+                    setProgress(currentProgress);
+                }
+            }, intervalTime);
+
+            // Process text
             await processText(text, selectedLanguage, selectedService);
+            clearInterval(secondProgressInterval);
+            setProgress(100);
+            setProgressStage("Complete!");
         } catch (error) {
             setError("Failed to process PDF file");
             console.error(error);
         } finally {
             setIsLoading(false);
+            setTimeout(() => {
+                setProgress(0);
+                setProgressStage("");
+            }, 1000);
         }
     };
 
@@ -314,29 +372,31 @@ export default function PdfUploader() {
                 </div>
 
                 <div className="w-full mt-4">
-                    <label
-                        htmlFor="pdf-upload"
-                        className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
-                    >
-                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <p className="mb-2 text-sm text-gray-500">
-                                <span className="font-semibold">
-                                    Click to upload
-                                </span>{" "}
-                                or drag and drop
-                            </p>
-                            <p className="text-xs text-gray-500">
-                                PDF files only
-                            </p>
-                        </div>
-                        <input
-                            id="pdf-upload"
-                            type="file"
-                            className="hidden"
-                            accept=".pdf"
-                            onChange={handleFileSelect}
-                        />
-                    </label>
+                    {!selectedFile ? (
+                        <label
+                            htmlFor="pdf-upload"
+                            className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+                        >
+                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                <p className="mb-2 text-sm text-gray-500">
+                                    <span className="font-semibold">
+                                        Click to upload
+                                    </span>{" "}
+                                    or drag and drop
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                    PDF files only
+                                </p>
+                            </div>
+                            <input
+                                id="pdf-upload"
+                                type="file"
+                                className="hidden"
+                                accept=".pdf"
+                                onChange={handleFileSelect}
+                            />
+                        </label>
+                    ) : null}
                 </div>
 
                 {pdfUrl && (
@@ -358,23 +418,49 @@ export default function PdfUploader() {
                     </div>
                 )}
 
-                <button
-                    onClick={handleSubmit}
-                    disabled={isLoading || isTranslating}
-                    className="mt-4 px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                >
-                    {isLoading || isTranslating ? (
-                        <>
-                            Processing
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                        </>
-                    ) : (
-                        <>
-                            Process
-                            <Brain className="w-5 h-5" />
-                        </>
+                <div className="flex items-center gap-4 mt-4">
+                    <button
+                        onClick={handleSubmit}
+                        disabled={isLoading || isTranslating}
+                        className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                        {isLoading || isTranslating ? (
+                            <>
+                                Processing
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                            </>
+                        ) : (
+                            <>
+                                Process
+                                <Brain className="w-5 h-5" />
+                            </>
+                        )}
+                    </button>
+
+                    {selectedFile && (
+                        <button
+                            onClick={resetFile}
+                            className="px-6 py-2 bg-[#FABB20] text-white rounded-md hover:bg-[#FABB20]/90 transition-colors flex items-center gap-2"
+                        >
+                            Upload another file
+                        </button>
                     )}
-                </button>
+                </div>
+
+                {(isLoading || isTranslating) && progress > 0 && (
+                    <div className="w-full mt-4">
+                        <div className="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>{progressStage}</span>
+                            <span>{progress}%</span>
+                        </div>
+                        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div 
+                                className="h-full bg-[#FABB20] transition-all duration-500 ease-out"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
 
             {error && <div className="text-center text-red-500">{error}</div>}
