@@ -38,7 +38,8 @@ function calculateDistance(
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos((lat1 * Math.PI) / 180) *
             Math.cos((lat2 * Math.PI) / 180) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
@@ -82,6 +83,7 @@ export async function GET(request: Request) {
         JOIN "community_events"."Organizer" o ON e.organizer_id = o.organizer_id
         LEFT JOIN "community_events"."Logo" l ON e.logo_id = l.logo_id
         WHERE e.event_status = 'live'
+        AND e.end_datetime > NOW()
       )
       SELECT *
       FROM events_with_distance
@@ -117,7 +119,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({
             events: formattedEvents,
-            totalItems: formattedEvents.length
+            totalItems: formattedEvents.length,
         });
     } catch (error) {
         console.error("Error fetching events:", error);

@@ -10,7 +10,7 @@ import EventList from "./EventList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
 
-type SortOption = 'name-asc' | 'name-desc' | 'date-asc' | 'date-desc';
+type SortOption = "name-asc" | "name-desc" | "date-asc" | "date-desc";
 
 // Define the API response type
 interface EventBriteResponse {
@@ -70,7 +70,7 @@ export default function DataEventSearch() {
     const [showCurrentOnly, setShowCurrentOnly] = useState(false);
 
     // State to manage sort option
-    const [sortBy, setSortBy] = useState<SortOption>('date-asc');
+    const [sortBy, setSortBy] = useState<SortOption>("date-asc");
 
     // Fetch events from api endpoint based on selected location
     const { data, isLoading: isEventsLoading } = useQuery<ApiResponse>({
@@ -79,7 +79,7 @@ export default function DataEventSearch() {
             if (!selectedLocation)
                 return {
                     events: [],
-                    totalItems: 0
+                    totalItems: 0,
                 };
             const response = await fetch(
                 `/api/eventBrite?lat=${selectedLocation.lat}&lng=${selectedLocation.lng}&radius=${distance}`
@@ -146,34 +146,47 @@ export default function DataEventSearch() {
     // Sort events based on selected sort option
     const sortedAndFilteredEvents = useMemo(() => {
         let sorted = [...filteredEvents];
-        
+
         switch (sortBy) {
-            case 'name-asc':
+            case "name-asc":
                 sorted.sort((a, b) => a.name.localeCompare(b.name));
                 break;
-            case 'name-desc':
+            case "name-desc":
                 sorted.sort((a, b) => b.name.localeCompare(a.name));
                 break;
-            case 'date-asc':
-                sorted.sort((a, b) => new Date(a.start.local).getTime() - new Date(b.start.local).getTime());
+            case "date-asc":
+                sorted.sort(
+                    (a, b) =>
+                        new Date(a.start.local).getTime() -
+                        new Date(b.start.local).getTime()
+                );
                 break;
-            case 'date-desc':
-                sorted.sort((a, b) => new Date(b.start.local).getTime() - new Date(a.start.local).getTime());
+            case "date-desc":
+                sorted.sort(
+                    (a, b) =>
+                        new Date(b.start.local).getTime() -
+                        new Date(a.start.local).getTime()
+                );
                 break;
         }
-        
+
         return sorted;
     }, [filteredEvents, sortBy]);
 
     // Calculate pagination based on sorted events
-    const totalPages = Math.ceil(sortedAndFilteredEvents.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(
+        sortedAndFilteredEvents.length / ITEMS_PER_PAGE
+    );
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const paginatedEvents = sortedAndFilteredEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const paginatedEvents = sortedAndFilteredEvents.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+    );
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
         // Scroll to top of events section
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
@@ -217,40 +230,60 @@ export default function DataEventSearch() {
                     </div>
                 )}
 
-                {!isEventsLoading && filteredEvents.length > 0 && (
+                {!isEventsLoading && selectedLocation && (
                     <div className="flex flex-col gap-6">
                         {/* Sort Options */}
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-2">
                                 <ArrowUpDown className="w-4 h-4 text-gray-600" />
-                                <span className="text-sm font-medium text-gray-700">Sort by:</span>
+                                <span className="text-sm font-medium text-gray-700">
+                                    Sort by:
+                                </span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 <button
                                     onClick={() => {
-                                        setSortBy(sortBy === 'name-asc' ? 'name-desc' : 'name-asc');
+                                        setSortBy(
+                                            sortBy === "name-asc"
+                                                ? "name-desc"
+                                                : "name-asc"
+                                        );
                                         setCurrentPage(1);
                                     }}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                        sortBy.startsWith('name')
+                                        sortBy.startsWith("name")
                                             ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
                                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
-                                    Name {sortBy === 'name-asc' ? '(A-Z)' : sortBy === 'name-desc' ? '(Z-A)' : ''}
+                                    Name{" "}
+                                    {sortBy === "name-asc"
+                                        ? "(A-Z)"
+                                        : sortBy === "name-desc"
+                                        ? "(Z-A)"
+                                        : ""}
                                 </button>
                                 <button
                                     onClick={() => {
-                                        setSortBy(sortBy === 'date-asc' ? 'date-desc' : 'date-asc');
+                                        setSortBy(
+                                            sortBy === "date-asc"
+                                                ? "date-desc"
+                                                : "date-asc"
+                                        );
                                         setCurrentPage(1);
                                     }}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                        sortBy.startsWith('date')
+                                        sortBy.startsWith("date")
                                             ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
                                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                     }`}
                                 >
-                                    Date {sortBy === 'date-asc' ? '(Earliest)' : sortBy === 'date-desc' ? '(Latest)' : ''}
+                                    Date{" "}
+                                    {sortBy === "date-asc"
+                                        ? "(Earliest)"
+                                        : sortBy === "date-desc"
+                                        ? "(Latest)"
+                                        : ""}
                                 </button>
                             </div>
                         </div>
@@ -280,12 +313,16 @@ export default function DataEventSearch() {
                         {/* Categories */}
                         {allCategories.length > 0 && (
                             <div className="mb-6">
-                                <p className="font-medium mb-2">Filter by Categories:</p>
+                                <p className="font-medium mb-2">
+                                    Filter by Categories:
+                                </p>
                                 <div className="flex flex-wrap gap-2">
                                     {allCategories.map((category) => (
                                         <button
                                             key={category}
-                                            onClick={() => handleCategoryToggle(category)}
+                                            onClick={() =>
+                                                handleCategoryToggle(category)
+                                            }
                                             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                                                 selectedCategories.has(category)
                                                     ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
