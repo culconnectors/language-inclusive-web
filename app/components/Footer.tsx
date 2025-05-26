@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 
+/**
+ * Footer component
+ * Displays site information, navigation links, and contact details
+ * Organized in a responsive grid layout
+ */
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white">

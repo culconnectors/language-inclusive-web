@@ -3,31 +3,47 @@
 import { useEffect, useRef } from "react";
 
 interface VideoPopupProps {
+    /** Controls visibility of the popup */
     isOpen: boolean;
+    /** Callback function to close the popup */
     onClose: () => void;
 }
 
+/**
+ * Modal video popup component
+ * Features:
+ * - Fullscreen video display
+ * - Click outside to close
+ * - ESC key to close
+ * - Responsive design
+ * - Backdrop blur effect
+ */
 export default function VideoPopup({ isOpen, onClose }: VideoPopupProps) {
     const overlayRef = useRef<HTMLDivElement>(null);
 
+    // Handle keyboard events and body scroll
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
+            if (e.key === "Escape") onClose();
         };
 
         if (isOpen) {
-            document.addEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'hidden';
+            document.addEventListener("keydown", handleEscape);
+            document.body.style.overflow = "hidden";
         }
 
         return () => {
-            document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset';
+            document.removeEventListener("keydown", handleEscape);
+            document.body.style.overflow = "unset";
         };
     }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
+    /**
+     * Handles click events on the overlay
+     * Closes popup when clicking outside the video
+     */
     const handleOverlayClick = (e: React.MouseEvent) => {
         if (e.target === overlayRef.current) onClose();
     };
@@ -52,12 +68,16 @@ export default function VideoPopup({ isOpen, onClose }: VideoPopupProps) {
                         stroke="currentColor"
                         className="w-5 h-5"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
                     </svg>
                 </button>
-                
+
                 <div className="relative w-full h-0 pb-[56.25%]">
-                    <iframe 
+                    <iframe
                         src="https://streamable.com/e/3j2xwd?"
                         className="absolute inset-0 w-full h-full rounded-xl border-none"
                         allow="fullscreen"

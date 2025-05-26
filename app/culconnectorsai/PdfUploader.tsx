@@ -6,31 +6,55 @@ import { languages } from "./languages";
 import { translateWithGemini } from "./gemini";
 import { Brain, Loader2, InfoIcon } from "lucide-react";
 
+/** Type definition for available services */
 type Service = "translate" | "summarise";
 
-const InfoBox = ({ title, description }: { title: string, description: string }) => (
+/**
+ * InfoBox component for displaying service information
+ * @param title - The title of the info box
+ * @param description - The description text
+ */
+const InfoBox = ({
+    title,
+    description,
+}: {
+    title: string;
+    description: string;
+}) => (
     <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
         <div className="flex items-start gap-3">
             <InfoIcon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
             <div>
-                <h3 className="text-lg font-semibold text-blue-900 mb-2">{title}</h3>
-                <p className="text-blue-800/80 text-sm leading-relaxed">{description}</p>
+                <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                    {title}
+                </h3>
+                <p className="text-blue-800/80 text-sm leading-relaxed">
+                    {description}
+                </p>
             </div>
         </div>
     </div>
 );
 
+/** Service information configuration */
 const serviceInfo = {
     translate: {
         title: "Translate",
-        description: "Performs a literal translation of the entire document, preserving all content and context. Best used when you need to understand everything in the document, including minor details and specific wording."
+        description:
+            "Performs a literal translation of the entire document, preserving all content and context. Best used when you need to understand everything in the document, including minor details and specific wording.",
     },
     summarise: {
         title: "Summarise",
-        description: "Creates a concise summary focusing on the main points and key information. While faster to read, it may omit some details that could be important depending on your needs. Use when you want a quick overview of the content."
-    }
+        description:
+            "Creates a concise summary focusing on the main points and key information. While faster to read, it may omit some details that could be important depending on your needs. Use when you want a quick overview of the content.",
+    },
 };
 
+/**
+ * Main PDF Uploader component
+ * Handles PDF file upload, text extraction, and translation/summarization
+ * Provides user interface for file selection, language selection, and service type
+ */
 export default function PdfUploader() {
     useEffect(() => {
         // Initialize PDF.js worker in useEffect to avoid SSR issues
@@ -62,6 +86,11 @@ export default function PdfUploader() {
         };
     }, [pdfUrl]);
 
+    /**
+     * Formats extracted text from PDF by maintaining proper line breaks and spacing
+     * @param items - Array of text items from PDF
+     * @returns Formatted text string
+     */
     const formatExtractedText = (items: any[]) => {
         let formattedText = "";
         let lastY = -1;
@@ -103,6 +132,12 @@ export default function PdfUploader() {
         return formattedText;
     };
 
+    /**
+     * Extracts text content from a PDF file
+     * @param file - The PDF file to process
+     * @returns Promise with extracted text
+     * @throws Error if extraction fails
+     */
     const extractTextFromPdf = async (file: File) => {
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -124,20 +159,31 @@ export default function PdfUploader() {
         }
     };
 
+    /**
+     * Generates appropriate prompt for Gemini AI based on service type
+     * @param text - Text to process
+     * @param targetLanguage - Target language code
+     * @param service - Service type (translate/summarise)
+     * @returns Formatted prompt string
+     */
     const getGeminiPrompt = (
         text: string,
         targetLanguage: string,
         service: Service
     ) => {
-        console.log("Service selected:", service); // Debug log
         const prompt =
             service === "translate"
                 ? `Translate the following text into ${targetLanguage} language, using a style similar to Google Translate. Preserve the original formatting and page structure exactly. UNDER NO CIRCUMSTANCES SHOULD YOU USE ANY SPECIAL FORMATTING SUCH AS MARKDOWN SYMBOLS (FOR EXAMPLE, BOLD, ITALICS, OR HEADINGS). ONLY USE NORMAL CAPITALIZATION AND SPACING FOR EMPHASIS OR HEADINGS. THIS IS A STRICT REQUIREMENT, AND IT MUST BE FOLLOWED. DO NOT INCLUDE ANY ADDITIONAL COMMENTARY—ONLY OUTPUT THE TRANSLATED TEXT. Here is the text: ${text}`
                 : `Summarize the following text concisely in ${targetLanguage} language, using simple and easy-to-understand language. Begin the summary with a brief description, in 1-2 sentences, of what the text is about. Then, highlight the important points and key information. Maintain the original formatting and page structure. UNDER NO CIRCUMSTANCES SHOULD YOU USE ANY SPECIAL FORMATTING SUCH AS MARKDOWN SYMBOLS (FOR EXAMPLE, BOLD, ITALICS, OR HEADINGS). ONLY USE NORMAL CAPITALIZATION AND SPACING FOR EMPHASIS OR HEADINGS. THIS IS A STRICT REQUIREMENT, AND IT MUST BE FOLLOWED. DO NOT INCLUDE ANY ADDITIONAL COMMENTARY—ONLY OUTPUT THE SUMMARY. Here is the text: ${text}`;
-        console.log("Generated prompt:", prompt); // Debug log
         return prompt;
     };
 
+    /**
+     * Processes text using Gemini AI for translation or summarization
+     * @param text - Text to process
+     * @param targetLanguage - Target language code
+     * @param service - Service type (translate/summarise)
+     */
     const processText = async (
         text: string,
         targetLanguage: string,
@@ -145,14 +191,12 @@ export default function PdfUploader() {
     ) => {
         setIsTranslating(true);
         setError("");
-        console.log("Processing text with service:", service); // Debug log
 
         try {
             const selectedLangName =
                 languages.find((lang) => lang.code === targetLanguage)?.name ||
                 targetLanguage;
             const prompt = getGeminiPrompt(text, selectedLangName, service);
-            console.log("Using prompt:", prompt); // Debug log
             const result = await translateWithGemini(
                 text,
                 selectedLangName,
@@ -167,6 +211,10 @@ export default function PdfUploader() {
         }
     };
 
+    /**
+     * Handles file selection and validation
+     * @param event - File input change event
+     */
     const handleFileSelect = async (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -191,6 +239,9 @@ export default function PdfUploader() {
         setError("");
     };
 
+    /**
+     * Resets all state variables and cleans up resources
+     */
     const resetFile = () => {
         if (pdfUrl) {
             URL.revokeObjectURL(pdfUrl);
@@ -203,12 +254,17 @@ export default function PdfUploader() {
         setTranslatedText("");
         setCopySuccess(false);
         // Reset the file input by clearing its value
-        const fileInput = document.getElementById('pdf-upload') as HTMLInputElement;
+        const fileInput = document.getElementById(
+            "pdf-upload"
+        ) as HTMLInputElement;
         if (fileInput) {
-            fileInput.value = '';
+            fileInput.value = "";
         }
     };
 
+    /**
+     * Handles form submission and initiates text processing
+     */
     const handleSubmit = async () => {
         // Validation
         if (!selectedFile) {
@@ -255,7 +311,11 @@ export default function PdfUploader() {
             setExtractedText(text);
             clearInterval(progressInterval);
             setProgress(20);
-            setProgressStage(selectedService === "translate" ? "Translating text..." : "Summarizing text...");
+            setProgressStage(
+                selectedService === "translate"
+                    ? "Translating text..."
+                    : "Summarizing text..."
+            );
 
             // Calculate interval timing based on service
             // For translation: 15s = 15000ms, need to go from 20 to 80 (60 steps of 1%)
@@ -363,9 +423,11 @@ export default function PdfUploader() {
 
                     {selectedService && (
                         <div className="animate-fadeIn">
-                            <InfoBox 
+                            <InfoBox
                                 title={serviceInfo[selectedService].title}
-                                description={serviceInfo[selectedService].description}
+                                description={
+                                    serviceInfo[selectedService].description
+                                }
                             />
                         </div>
                     )}
@@ -454,7 +516,7 @@ export default function PdfUploader() {
                             <span>{progress}%</span>
                         </div>
                         <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div 
+                            <div
                                 className="h-full bg-[#FABB20] transition-all duration-500 ease-out"
                                 style={{ width: `${progress}%` }}
                             />

@@ -2,18 +2,40 @@
 
 import Image from "next/image";
 
+/**
+ * Represents a workshop with its details
+ */
 interface Workshop {
+    /** Unique identifier for the workshop */
     id: string;
+    /** Name of the workshop */
     name: string;
+    /** Name of the workshop provider */
     provider_name: string;
+    /** Workshop description */
     description: string;
+    /** URL to the workshop page */
     url: string;
 }
 
+/**
+ * Props for the WorkshopCard component
+ */
 interface WorkshopCardProps {
+    /** Workshop data to display */
     workshop: Workshop;
 }
 
+/**
+ * Workshop card component for displaying workshop information
+ * Features:
+ * - Workshop name display
+ * - Provider name
+ * - Description with line clamping
+ * - External link to course
+ * - Hover effects
+ * - Shadow transitions
+ */
 export default function WorkshopCard({ workshop }: WorkshopCardProps) {
     return (
         <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">

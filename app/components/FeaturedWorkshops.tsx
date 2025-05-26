@@ -3,20 +3,30 @@
 import { useQuery } from "@tanstack/react-query";
 import WorkshopCard from "./workshop/WorkshopCard";
 
+/** Represents a workshop from the API */
 interface Workshop {
+    /** Unique identifier for the workshop */
     id: string;
+    /** Name of the workshop */
     name: string;
+    /** Name of the workshop provider */
     provider_name: string;
+    /** Workshop description */
     description: string;
+    /** URL to the workshop page */
     url: string;
+    /** Workshop location coordinates */
     location: {
         latitude: number;
         longitude: number;
     };
 }
 
+/** API response structure for workshops */
 interface ApiResponse {
+    /** List of workshops */
     workshops: Workshop[];
+    /** Pagination information */
     pagination: {
         currentPage: number;
         totalPages: number;
@@ -25,6 +35,7 @@ interface ApiResponse {
     };
 }
 
+/** Featured workshops component that displays upcoming workshops in Melbourne */
 export default function FeaturedWorkshops() {
     // Melbourne coordinates
     const melbourneCoords = {

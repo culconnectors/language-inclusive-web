@@ -9,12 +9,22 @@ import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { set } from "date-fns";
 
+/**
+ * Represents geographical coordinates
+ * @property lat - Latitude value
+ * @property lng - Longitude value
+ */
 interface Coordinates {
     lat: number;
     lng: number;
 }
 
-// Prediction location and postcode within  from the autocomplete API
+/**
+ * Represents a location prediction from the autocomplete API
+ * @property description - Human-readable address
+ * @property place_id - Unique identifier for the place
+ * @property postcode - Optional postcode
+ */
 interface Prediction {
     description: string;
     place_id: string;
@@ -22,6 +32,27 @@ interface Prediction {
 }
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+/**
+ * Custom React hook for managing location search and selection
+ * Features:
+ * - Google Places Autocomplete integration
+ * - Deduplicated predictions
+ * - Place details fetching
+ * - Current location detection and reverse geocoding
+ * - Location reset functionality
+ *
+ * @returns {object} Location search state and handlers:
+ *   - locationTerm: Current search term
+ *   - setLocationTerm: Setter for search term
+ *   - predictions: List of location predictions
+ *   - isLoading: Loading state for predictions
+ *   - selectedLocation: Selected coordinates
+ *   - selectedPostcode: Selected postcode (if available)
+ *   - handlePredictionSelect: Handler for selecting a prediction
+ *   - getCurrentLocation: Handler for using the user's current location
+ *   - resetLocation: Handler to reset the search
+ */
 export function useLocationSearch() {
     const [locationTerm, setLocationTerm] = useState("");
     const [selectedLocation, setSelectedLocation] =

@@ -3,21 +3,46 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Navigation, RefreshCw } from "lucide-react";
 
+/**
+ * Represents a location prediction from the Google Places API
+ */
 export interface Prediction {
+    /** Unique identifier for the place */
     place_id: string;
+    /** Human-readable description of the location */
     description: string;
 }
 
+/**
+ * Props for the LocationSearch component
+ */
 interface LocationSearchProps {
+    /** Current search term */
     locationTerm: string;
+    /** Function to update the search term */
     setLocationTerm: Dispatch<SetStateAction<string>>;
+    /** List of location predictions */
     predictions: Prediction[];
+    /** Loading state indicator */
     isLoading: boolean;
+    /** Callback when a location is selected */
     onSelect: (placeId: string, description: string) => Promise<void>;
+    /** Callback to get user's current location */
     onGetCurrentLocation: () => void;
+    /** Callback to reset the search */
     onReset: () => void;
 }
 
+/**
+ * Location search component with autocomplete functionality
+ * Features:
+ * - Google Places API integration
+ * - Autocomplete predictions
+ * - Current location detection
+ * - Search reset capability
+ * - Click outside to close predictions
+ * - Loading state indicator
+ */
 export default function LocationSearch({
     locationTerm,
     setLocationTerm,
@@ -32,18 +57,24 @@ export default function LocationSearch({
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
-            if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+            if (
+                searchRef.current &&
+                !searchRef.current.contains(event.target as Node)
+            ) {
                 setShowPredictions(false);
             }
         }
 
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
-    const handlePredictionClick = async (placeId: string, description: string) => {
+    const handlePredictionClick = async (
+        placeId: string,
+        description: string
+    ) => {
         await onSelect(placeId, description);
         setShowPredictions(false);
     };
@@ -72,10 +103,12 @@ export default function LocationSearch({
                         {predictions.map((prediction) => (
                             <li
                                 key={prediction.place_id}
-                                onClick={() => handlePredictionClick(
-                                    prediction.place_id,
-                                    prediction.description
-                                )}
+                                onClick={() =>
+                                    handlePredictionClick(
+                                        prediction.place_id,
+                                        prediction.description
+                                    )
+                                }
                                 className="p-3 hover:bg-gray-100 cursor-pointer border-b last:border-b-0"
                             >
                                 {prediction.description}

@@ -10,39 +10,69 @@ import EventList from "./EventList";
 import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
 
+/** Available sorting options for events */
 type SortOption = "name-asc" | "name-desc" | "date-asc" | "date-desc";
 
-// Define the API response type
+/**
+ * Represents an event from the Eventbrite API
+ */
 interface EventBriteResponse {
+    /** Unique identifier for the event */
     id: string;
+    /** Name of the event */
     name: string;
+    /** Event description */
     description: string;
+    /** URL to the event page */
     url: string;
+    /** Event category */
     category: string;
+    /** Event start time */
     start: {
         local: string;
     };
+    /** Event end time */
     end: {
         local: string;
     };
+    /** Venue information */
     venue: {
         name: string;
         address: {
             localized_address_display: string;
         };
     };
+    /** Optional event logo */
     logo?: {
         url: string;
     };
 }
 
+/**
+ * API response structure for events
+ */
 interface ApiResponse {
+    /** List of events */
     events: EventBriteResponse[];
+    /** Total number of events */
     totalItems: number;
 }
 
+/** Number of events to display per page */
 const ITEMS_PER_PAGE = 12; // 12 events per page (3x4 grid)
 
+/**
+ * Event search component with advanced filtering and sorting
+ * Features:
+ * - Location-based search
+ * - Category filtering
+ * - Distance radius selection
+ * - Current events filter
+ * - Sorting options (name, date)
+ * - Pagination
+ * - Loading states
+ * - Error handling
+ */
 export default function DataEventSearch() {
     const {
         locationTerm,

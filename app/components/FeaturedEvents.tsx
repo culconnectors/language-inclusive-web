@@ -3,29 +3,50 @@
 import { useQuery } from "@tanstack/react-query";
 import EventCard from "./event/EventCard";
 
+/**
+ * Represents an event from the Eventbrite API
+ */
 interface Event {
+    /** Unique identifier for the event */
     id: string;
+    /** Name of the event */
     name: string;
+    /** Event description */
     description: string;
+    /** URL to the event page */
     url: string;
+    /** Event category */
     category: string;
+    /** Event start time */
     start: {
         local: string;
     };
+    /** Event end time */
     end: {
         local: string;
     };
+    /** Venue information */
     venue: {
         name: string;
         address: {
             localized_address_display: string;
         };
     };
+    /** Optional event logo */
     logo?: {
         url: string;
     };
 }
 
+/**
+ * Featured events component that displays upcoming events in Melbourne
+ * Features:
+ * - Fetches events from Eventbrite API
+ * - Displays events in a responsive grid
+ * - Shows loading skeleton while fetching
+ * - Limited to 4 featured events
+ * - Uses React Query for data fetching
+ */
 export default function FeaturedEvents() {
     // Melbourne coordinates
     const melbourneCoords = {

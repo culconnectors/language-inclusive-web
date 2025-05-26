@@ -1,15 +1,27 @@
+/**
+ * LGA Languages Data API Route
+ *
+ * This module provides an API endpoint for fetching language distribution data
+ * for a specific Local Government Area, including language counts and rankings.
+ *
+ * @module app/api/lga/languagesData/route
+ */
+
 import { NextResponse } from "next/server";
 import { lgaClient } from "@/lib/prisma";
 
 /**
- * GET handler for fetching language data for a given LGA.
+ * GET handler for the LGA Languages Data API endpoint
+ * Fetches language distribution data for a specific LGA
  *
- * @param {Request} request - The incoming request object.
- * @returns {Promise<NextResponse>} JSON array of language and count or error.
+ * @param {Request} request - The incoming HTTP request
+ * @returns {Promise<NextResponse>} JSON response containing language data
  *
- * - Expects `lgaCode` as a query parameter.
- * - Returns array of { language, count }.
- * - Returns 400 for missing code, 500 for server error.
+ * @example
+ * GET /api/lga/languagesData?lgaCode=12345
+ *
+ * @throws {Error} When LGA code is missing
+ * @throws {Error} When database query fails
  */
 export async function GET(request: Request) {
     try {

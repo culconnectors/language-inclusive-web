@@ -3,6 +3,15 @@
 import Navbar from "@/app/components/Navbar";
 import WorkshopSearch from "@/app/components/workshop/WorkshopSearch";
 
+/**
+ * Workshops page component
+ * Features:
+ * - Displays a hero section for language workshops
+ * - Integrates the workshop search component for location-based discovery
+ * - Responsive design with navigation
+ *
+ * @returns {JSX.Element} The rendered workshops page
+ */
 export default function Workshops() {
     return (
         <main className="min-h-screen">
@@ -18,15 +27,19 @@ export default function Workshops() {
                             </span>
                         </h1>
                         <p className="text-xl text-white/80 mb-4">
-                            Find and join language learning workshops in your area
+                            Find and join language learning workshops in your
+                            area
                         </p>
                     </div>
                 </div>
 
                 {/* Yellow Wave Divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]" style={{
-                    clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)"
-                }}></div>
+                <div
+                    className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]"
+                    style={{
+                        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)",
+                    }}
+                ></div>
             </section>
 
             <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">

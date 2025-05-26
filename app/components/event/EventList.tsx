@@ -5,40 +5,67 @@ import { MapPin, Calendar } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import Link from "next/link";
 
+/**
+ * Represents geographical coordinates
+ */
 interface Coordinates {
+    /** Latitude value */
     lat: number;
+    /** Longitude value */
     lng: number;
 }
 
+/**
+ * Represents an event with its details
+ */
 interface Event {
+    /** Unique identifier for the event */
     id: string;
+    /** Name of the event */
     name: string;
+    /** Event description */
     description: string;
+    /** URL to the event page */
     url: string;
+    /** Event category */
     category: string;
+    /** Event start time */
     start: {
         local: string;
     };
+    /** Event end time */
     end: {
         local: string;
     };
+    /** Venue information */
     venue: {
         name: string;
         address: {
             localized_address_display: string;
         };
     };
+    /** Optional event logo */
     logo?: {
         url: string;
     };
 }
 
+/**
+ * Props for the EventList component
+ */
 interface EventListProps {
+    /** Current location coordinates */
     coordinates: Coordinates | null;
+    /** List of events to display */
     events: Event[];
+    /** Loading state indicator */
     isLoading: boolean;
 }
 
+/**
+ * Loading skeleton component for event list
+ * Displays placeholder cards while events are being loaded
+ */
 function LoadingSkeleton() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -62,6 +89,11 @@ function LoadingSkeleton() {
     );
 }
 
+/**
+ * Checks if an event is currently happening
+ * @param event - The event to check
+ * @returns boolean indicating if the event is currently active
+ */
 function isEventHappening(event: Event): boolean {
     const now = new Date();
     const startDate = new Date(event.start.local);
@@ -69,6 +101,19 @@ function isEventHappening(event: Event): boolean {
     return now >= startDate && now <= endDate;
 }
 
+/**
+ * Event list component that displays a grid of event cards
+ * Features:
+ * - Responsive grid layout
+ * - Loading skeleton
+ * - Empty state handling
+ * - Current event highlighting
+ * - Event logo display
+ * - Date and time formatting
+ * - Venue information
+ * - Category badges
+ * - Interactive cards with hover effects
+ */
 export default function EventList({
     coordinates,
     events,
@@ -119,7 +164,7 @@ export default function EventList({
                         key={event.id}
                         href={`/events/${event.id}`}
                         className={`block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full relative ${
-                            isHappening ? 'border-2 border-[#FABB20]' : ''
+                            isHappening ? "border-2 border-[#FABB20]" : ""
                         }`}
                     >
                         {isHappening && (
@@ -148,10 +193,18 @@ export default function EventList({
                                         <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0" />
                                         <div>
                                             <div>
-                                                Starts: {format(new Date(event.start.local), "PPP 'at' p")}
+                                                Starts:{" "}
+                                                {format(
+                                                    new Date(event.start.local),
+                                                    "PPP 'at' p"
+                                                )}
                                             </div>
                                             <div>
-                                                Ends: {format(new Date(event.end.local), "PPP 'at' p")}
+                                                Ends:{" "}
+                                                {format(
+                                                    new Date(event.end.local),
+                                                    "PPP 'at' p"
+                                                )}
                                             </div>
                                         </div>
                                     </div>

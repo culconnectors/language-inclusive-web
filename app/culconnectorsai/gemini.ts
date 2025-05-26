@@ -1,14 +1,26 @@
+/**
+ * Configuration and utility functions for Google's Gemini AI API integration
+ */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// Validate environment variable
 if (!process.env.NEXT_PUBLIC_GEMINI_API_KEY) {
     throw new Error(
         "NEXT_PUBLIC_GEMINI_API_KEY is not defined in environment variables"
     );
 }
 
-// Initialize the Gemini API client
+// Initialize Gemini API client with API key
 const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
 
+/**
+ * Translates text using Gemini AI model
+ * @param text - The text to translate
+ * @param targetLanguage - The target language code
+ * @param customPrompt - Custom prompt for translation
+ * @returns Promise<string> - The translated text
+ * @throws Error if translation fails
+ */
 export async function translateWithGemini(
     text: string,
     targetLanguage: string,
@@ -16,12 +28,10 @@ export async function translateWithGemini(
 ) {
     const geminiModel = "gemini-2.0-flash-lite";
     try {
-        // Get the generative model
+        // Initialize the Gemini model
         const model = genAI.getGenerativeModel({ model: geminiModel });
 
-        console.log("Gemini received prompt:", customPrompt); // Debug log
-
-        // Generate content using the provided prompt directly
+        // Generate translation using custom prompt
         const result = await model.generateContent(customPrompt);
         const response = await result.response;
         const translation = response.text();

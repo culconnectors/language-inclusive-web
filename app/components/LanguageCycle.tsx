@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+/** Configuration for supported languages with their display text and colors */
 const languages = [
     { text: "Language", color: "#FF6B6B", lang: "en" },
     { text: "Idioma", color: "#4ECDC4", lang: "es" },
@@ -14,11 +15,21 @@ const languages = [
 ];
 
 interface LanguageCycleProps {
+    /** Callback when language changes */
     onLanguageChange?: (lang: string) => void;
+    /** Callback when transition animation completes */
     onTransitionEnd?: () => void;
 }
 
-export default function LanguageCycle({ onLanguageChange, onTransitionEnd }: LanguageCycleProps) {
+/**
+ * Animated language cycling component
+ * Displays different language words with smooth transitions
+ * Changes language every 2 seconds with fade animation
+ */
+export default function LanguageCycle({
+    onLanguageChange,
+    onTransitionEnd,
+}: LanguageCycleProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -26,10 +37,10 @@ export default function LanguageCycle({ onLanguageChange, onTransitionEnd }: Lan
         const interval = setInterval(() => {
             setIsTransitioning(true);
             const nextIndex = (currentIndex + 1) % languages.length;
-            
+
             // Change language immediately when transition starts
             onLanguageChange?.(languages[nextIndex].lang);
-            
+
             // Update the text after the fade out
             setTimeout(() => {
                 setCurrentIndex(nextIndex);
@@ -52,4 +63,4 @@ export default function LanguageCycle({ onLanguageChange, onTransitionEnd }: Lan
             {languages[currentIndex].text}
         </span>
     );
-} 
+}

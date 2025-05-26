@@ -8,25 +8,53 @@ import LocationSearch from "../LocationSearch";
 import { useLocationSearch } from "../../hooks/useLocationSearch";
 import WorkshopCard from "./WorkshopCard";
 
+/**
+ * Represents a workshop with its details
+ */
 interface Workshop {
+    /** Unique identifier for the workshop */
     id: string;
+    /** Name of the workshop */
     name: string;
+    /** Name of the workshop provider */
     provider_name: string;
+    /** Workshop description */
     description: string;
+    /** URL to the workshop page */
     url: string;
+    /** Workshop location coordinates */
     location: {
         latitude: number;
         longitude: number;
     };
 }
 
+/**
+ * API response structure for workshops
+ */
 interface ApiResponse {
+    /** List of workshops */
     workshops: Workshop[];
+    /** Total number of workshops */
     totalItems: number;
 }
 
+/** Number of workshops to display per page */
 const ITEMS_PER_PAGE = 10; // 10 workshops per page
 
+/**
+ * Workshop search component with advanced filtering and location-based search
+ * Features:
+ * - Location-based search
+ * - Provider filtering
+ * - Distance radius selection
+ * - Pagination
+ * - Loading states
+ * - Error handling
+ * - Smooth scrolling
+ * - Provider name extraction
+ * - Distance-based filtering
+ */
 export default function WorkshopSearch() {
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedProviders, setSelectedProviders] = useState<Set<string>>(
@@ -56,7 +84,7 @@ export default function WorkshopSearch() {
             if (!selectedLocation)
                 return {
                     workshops: [],
-                    totalItems: 0
+                    totalItems: 0,
                 };
             const searchParams = new URLSearchParams({
                 lat: selectedLocation.lat.toString(),
@@ -77,9 +105,7 @@ export default function WorkshopSearch() {
     // Extract unique provider names from workshops
     const providerNames = useMemo(() => {
         return [
-            ...new Set(
-                workshops.map((workshop) => workshop.provider_name)
-            ),
+            ...new Set(workshops.map((workshop) => workshop.provider_name)),
         ].sort();
     }, [workshops]);
 
@@ -114,12 +140,15 @@ export default function WorkshopSearch() {
     // Calculate pagination
     const totalPages = Math.ceil(filteredWorkshops.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const paginatedWorkshops = filteredWorkshops.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const paginatedWorkshops = filteredWorkshops.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+    );
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
         // Scroll to top of workshops section
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
@@ -167,12 +196,16 @@ export default function WorkshopSearch() {
                     {/* Providers */}
                     {providerNames.length > 0 && (
                         <div className="mb-6">
-                            <p className="font-medium mb-2">Filter by Provider:</p>
+                            <p className="font-medium mb-2">
+                                Filter by Provider:
+                            </p>
                             <div className="flex flex-wrap gap-2">
                                 {providerNames.map((provider) => (
                                     <button
                                         key={provider}
-                                        onClick={() => handleProviderToggle(provider)}
+                                        onClick={() =>
+                                            handleProviderToggle(provider)
+                                        }
                                         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                                             selectedProviders.has(provider)
                                                 ? "bg-[#FABB20] text-white hover:bg-[#FABB20]/90"
@@ -196,7 +229,7 @@ export default function WorkshopSearch() {
                         currentPage,
                         totalPages,
                         totalItems: filteredWorkshops.length,
-                        hasMore: currentPage < totalPages
+                        hasMore: currentPage < totalPages,
                     }}
                     isLoading={isLoading}
                     onPageChange={handlePageChange}

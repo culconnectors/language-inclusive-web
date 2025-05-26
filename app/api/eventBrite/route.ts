@@ -1,3 +1,12 @@
+/**
+ * EventBrite API Route
+ *
+ * This module provides an API endpoint for fetching events from the EventBrite database.
+ * It supports location-based filtering and distance calculations.
+ *
+ * @module app/api/eventBrite/route
+ */
+
 // Description: This code defines a GET function that fetches events from the EventBrite API based on the user's location and filters them by category. It uses Prisma to query the database and returns the results in a specific format.
 /* File updated:
     (2025-04-20) Added "category" into Event interface for filtering
@@ -6,6 +15,10 @@
 import { NextResponse } from "next/server";
 import { communityClient } from "@/lib/prisma";
 
+/**
+ * Interface representing a raw event result from the database
+ * @interface RawEventResult
+ */
 interface RawEventResult {
     event_id: string;
     event_name: string;
@@ -24,7 +37,14 @@ interface RawEventResult {
     distance: number;
 }
 
-// Function to calculate distance between two coordinates using Haversine formula
+/**
+ * Calculates the distance between two geographic coordinates using the Haversine formula
+ * @param {number} lat1 - Latitude of first point
+ * @param {number} lon1 - Longitude of first point
+ * @param {number} lat2 - Latitude of second point
+ * @param {number} lon2 - Longitude of second point
+ * @returns {number} Distance in kilometers
+ */
 function calculateDistance(
     lat1: number,
     lon1: number,
@@ -44,7 +64,16 @@ function calculateDistance(
     return R * c;
 }
 
-// This GRT function is used to fetch all events from the EventBrite API based on the user's location, and return them in a specific format. It uses Prisma to query the database
+/**
+ * GET handler for the EventBrite API endpoint
+ * Fetches events based on location and radius parameters
+ *
+ * @param {Request} request - The incoming HTTP request
+ * @returns {Promise<NextResponse>} JSON response containing events and total count
+ *
+ * @example
+ * GET /api/eventBrite?lat=-33.8688&lng=151.2093&radius=20
+ */
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);

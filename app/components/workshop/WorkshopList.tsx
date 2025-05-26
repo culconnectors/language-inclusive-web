@@ -2,34 +2,66 @@
 
 import WorkshopCard from "./WorkshopCard";
 
+/**
+ * Represents geographical coordinates
+ */
 interface Coordinates {
+    /** Latitude value */
     lat: number;
+    /** Longitude value */
     lng: number;
 }
 
+/**
+ * Represents a workshop with its details
+ */
 interface Workshop {
+    /** Unique identifier for the workshop */
     id: string;
+    /** Name of the workshop */
     name: string;
+    /** Name of the workshop provider */
     provider_name: string;
+    /** Workshop description */
     description: string;
+    /** URL to the workshop page */
     url: string;
 }
 
+/**
+ * Represents pagination information
+ */
 interface Pagination {
+    /** Current page number */
     currentPage: number;
+    /** Total number of pages */
     totalPages: number;
+    /** Total number of items */
     totalItems: number;
+    /** Whether there are more pages */
     hasMore: boolean;
 }
 
+/**
+ * Props for the WorkshopList component
+ */
 interface WorkshopListProps {
+    /** Current location coordinates */
     coordinates: Coordinates | null;
+    /** List of workshops to display */
     workshops: Workshop[];
+    /** Pagination information */
     pagination: Pagination;
+    /** Loading state indicator */
     isLoading: boolean;
+    /** Callback when page changes */
     onPageChange: (page: number) => void;
 }
 
+/**
+ * Loading skeleton component for workshop list
+ * Displays placeholder cards while workshops are being loaded
+ */
 function LoadingSkeleton() {
     return (
         <div className="space-y-4">
@@ -50,6 +82,16 @@ function LoadingSkeleton() {
     );
 }
 
+/**
+ * Workshop list component that displays a list of workshop cards
+ * Features:
+ * - Responsive list layout
+ * - Loading skeleton
+ * - Empty state handling
+ * - Pagination controls
+ * - Workshop card display
+ * - Location-based filtering
+ */
 export default function WorkshopList({
     coordinates,
     workshops,

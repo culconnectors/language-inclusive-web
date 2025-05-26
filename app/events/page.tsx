@@ -3,6 +3,15 @@
 import Navbar from "@/app/components/Navbar";
 import EventSearch from "@/app/components/event/DataEventSearch";
 
+/**
+ * Events page component
+ * Features:
+ * - Displays a hero section for social events
+ * - Integrates the event search component for location-based event discovery
+ * - Responsive design with navigation
+ *
+ * @returns {JSX.Element} The rendered events page
+ */
 export default function Events() {
     return (
         <main className="min-h-screen">
@@ -24,9 +33,12 @@ export default function Events() {
                 </div>
 
                 {/* Yellow Wave Divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]" style={{
-                    clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)"
-                }}></div>
+                <div
+                    className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]"
+                    style={{
+                        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)",
+                    }}
+                ></div>
             </section>
 
             <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">

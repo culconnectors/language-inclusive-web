@@ -5,13 +5,26 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 interface ServiceCardProps {
+    /** Title of the service */
     title: string;
+    /** Lucide icon component for the service */
     icon: LucideIcon;
+    /** Description of the service */
     description: string;
+    /** Index for staggered animation */
     index: number;
+    /** Link destination for the card */
     href: string;
 }
 
+/**
+ * Animated service card component
+ * Features:
+ * - Hover animation with Framer Motion
+ * - Staggered entrance animation
+ * - Icon display
+ * - Clickable card with link
+ */
 const ServiceCard = ({
     title,
     icon: Icon,

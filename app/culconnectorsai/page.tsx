@@ -4,6 +4,11 @@ import Navbar from "@/app/components/Navbar";
 import PdfUploader from "./PdfUploader";
 import { InfoIcon, AlertTriangle } from "lucide-react";
 
+/**
+ * Main page component for CulConnectorsAI
+ * Provides a user interface for document translation and understanding
+ * Includes a PDF uploader and important notices about translation services
+ */
 export default function CulConnectorsAIPage() {
     return (
         <main className="min-h-screen">

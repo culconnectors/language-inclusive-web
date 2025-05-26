@@ -39,7 +39,9 @@ const LgaSidebar = ({
     /**
      * State for the currently active mode (statistics, nationalities, or language)
      */
-    const [activeMode, setActiveMode] = useState<"statistics" | "nationalities" | "language">(initialMode);
+    const [activeMode, setActiveMode] = useState<
+        "statistics" | "nationalities" | "language"
+    >(initialMode);
 
     // Ensure activeMode stays in sync with initialMode
     useEffect(() => {
@@ -54,7 +56,7 @@ const LgaSidebar = ({
     const handleModeChange = (
         mode: "statistics" | "nationalities" | "language"
     ) => {
-        console.log('LgaSidebar: Mode change requested to:', mode);
+        console.log("LgaSidebar: Mode change requested to:", mode);
         setActiveMode(mode);
         onModeChange(mode);
     };
@@ -81,14 +83,34 @@ const LgaSidebar = ({
         <div className="bg-white p-4 rounded-lg shadow-md">
             {/* User Instructions */}
             <div className="mb-4 text-sm text-gray-600 space-y-2">
-                <h3 className="font-semibold text-gray-800 mb-2">To start Map Controls, pls zoom in to the map:</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">
+                    To start Map Controls, pls zoom in to the map:
+                </h3>
                 <ul className="list-disc pl-4 space-y-1">
-                    <li><span className="font-medium">Statistics Mode:</span> View demographic data across Victoria. Select a statistic from the dropdown to see the distribution.</li>
-                    <li><span className="font-medium">Nationalities Mode:</span> Click any LGA to see the distribution of nationalities in that area.</li>
-                    <li><span className="font-medium">Language Mode:</span> Click any LGA to view language statistics for that region.</li>
-                    <li><span className="font-medium">Landmarks:</span> Toggle to show/hide cultural landmarks and points of interest.</li>
+                    <li>
+                        <span className="font-medium">Statistics Mode:</span>{" "}
+                        View demographic data across Victoria. Select a
+                        statistic from the dropdown to see the distribution.
+                    </li>
+                    <li>
+                        <span className="font-medium">Nationalities Mode:</span>{" "}
+                        Click any LGA to see the distribution of nationalities
+                        in that area.
+                    </li>
+                    <li>
+                        <span className="font-medium">Language Mode:</span>{" "}
+                        Click any LGA to view language statistics for that
+                        region.
+                    </li>
+                    <li>
+                        <span className="font-medium">Landmarks:</span> Toggle
+                        to show/hide cultural landmarks and points of interest.
+                    </li>
                 </ul>
-                <p className="text-gray-500 italic mt-2">Hover over any region to see its name, and click to view detailed information.</p>
+                <p className="text-gray-500 italic mt-2">
+                    Hover over any region to see its name, and click to view
+                    detailed information.
+                </p>
             </div>
 
             <div className="flex gap-4 items-center flex-wrap">

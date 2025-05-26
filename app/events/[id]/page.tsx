@@ -4,6 +4,18 @@ import { notFound } from "next/navigation";
 import { getEventById } from "@/lib/services/eventService";
 import Navbar from "@/app/components/Navbar";
 
+/**
+ * Event details page component
+ * Features:
+ * - Fetches and displays detailed information for a single event
+ * - Shows event image, name, date, time, location, and organizer
+ * - Displays event status and community-friendly/free badges
+ * - Responsive layout with hero, sidebar, and main content
+ * - Handles not-found state for missing events
+ *
+ * @param params - Route parameters containing the event ID
+ * @returns {JSX.Element} The rendered event details page
+ */
 export default async function EventPage({
     params,
 }: {
@@ -16,6 +28,11 @@ export default async function EventPage({
         notFound();
     }
 
+    /**
+     * Formats a date object into a readable string
+     * @param date - The date to format
+     * @returns {string} Formatted date string
+     */
     const formatDate = (date: Date) => {
         // Parse the date string directly without timezone conversion
         const dateString = date.toISOString();

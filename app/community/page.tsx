@@ -4,10 +4,27 @@ import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import LgaMap from "@/app/components/map/LgaMap";
 
+/**
+ * Community Explorer page component
+ * Features:
+ * - Interactive map visualization of Victorian LGAs
+ * - Demographic data exploration
+ * - LGA selection and statistics viewing
+ * - Responsive design with hero section
+ * - Navigation integration
+ *
+ * @returns {JSX.Element} The rendered community explorer page
+ */
 export default function CommunityPage() {
+    /** State for tracking the currently selected statistic */
     const [selectedStatistic, setSelectedStatistic] = useState<string>();
+    /** State for tracking the currently selected LGA */
     const [selectedLga, setSelectedLga] = useState<string>();
 
+    /**
+     * Handles LGA selection from the map
+     * @param {string} lgaCode - The code of the selected LGA
+     */
     const handleLgaSelect = (lgaCode: string) => {
         setSelectedLga(lgaCode);
         console.log("Selected LGA:", lgaCode);
@@ -27,15 +44,19 @@ export default function CommunityPage() {
                             </span>
                         </h1>
                         <p className="text-xl text-white/80 mb-4">
-                            Explore Victorian Local Government Areas and their demographics
+                            Explore Victorian Local Government Areas and their
+                            demographics
                         </p>
                     </div>
                 </div>
 
                 {/* Yellow Wave Divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]" style={{
-                    clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)"
-                }}></div>
+                <div
+                    className="absolute bottom-0 left-0 right-0 h-12 bg-[#FABB20]"
+                    style={{
+                        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 100%)",
+                    }}
+                ></div>
             </section>
 
             <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">

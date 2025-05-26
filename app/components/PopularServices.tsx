@@ -3,6 +3,14 @@
 import { Languages, Briefcase, Users } from "lucide-react";
 import ServiceCard from "@/app/components/ServiceCard";
 
+/**
+ * Configuration for the main services offered by the platform
+ * Each service includes:
+ * - Title: Name of the service
+ * - Icon: Lucide icon component
+ * - Description: Brief explanation of the service
+ * - Href: Link to the service page
+ */
 const services = [
     {
         title: "CulConnectorsAI",
@@ -27,6 +35,14 @@ const services = [
     },
 ];
 
+/**
+ * Popular services section component
+ * Displays a grid of service cards highlighting the main offerings
+ * Features:
+ * - Responsive grid layout
+ * - Service cards with icons and descriptions
+ * - Links to detailed service pages
+ */
 export default function PopularServices() {
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">

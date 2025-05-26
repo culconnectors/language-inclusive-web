@@ -5,33 +5,54 @@ import { format } from "date-fns";
 import { MapPin, Calendar } from "lucide-react";
 import Link from "next/link";
 
+/**
+ * Represents an event from the Eventbrite API
+ */
 interface Event {
+    /** Unique identifier for the event */
     id: string;
+    /** Name of the event */
     name: string;
+    /** Event description */
     description: string;
+    /** URL to the event page */
     url: string;
+    /** Event category */
     category: string;
+    /** Event start time */
     start: {
         local: string;
     };
+    /** Event end time */
     end: {
         local: string;
     };
+    /** Venue information */
     venue: {
         name: string;
         address: {
             localized_address_display: string;
         };
     };
+    /** Optional event logo */
     logo?: {
         url: string;
     };
 }
 
+/**
+ * Props for the EventCard component
+ */
 interface EventCardProps {
+    /** Event data to display */
     event: Event;
 }
 
+/**
+ * Checks if an event is currently happening
+ * @param event - The event to check
+ * @returns boolean indicating if the event is currently active
+ */
 function isEventHappening(event: Event): boolean {
     const now = new Date();
     const startDate = new Date(event.start.local);
@@ -39,6 +60,17 @@ function isEventHappening(event: Event): boolean {
     return now >= startDate && now <= endDate;
 }
 
+/**
+ * Event card component for displaying event information
+ * Features:
+ * - Event logo display
+ * - Date and time formatting
+ * - Venue information
+ * - Category badge
+ * - Currently happening indicator
+ * - Interactive hover effects
+ * - Link to event details
+ */
 export default function EventCard({ event }: EventCardProps) {
     const isHappening = isEventHappening(event);
 

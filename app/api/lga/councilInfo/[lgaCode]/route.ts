@@ -1,15 +1,28 @@
+/**
+ * LGA Council Info API Route
+ *
+ * This module provides an API endpoint for fetching detailed council information
+ * for a specific Local Government Area, including related LGA data.
+ *
+ * @module app/api/lga/councilInfo/[lgaCode]/route
+ */
+
 import { NextRequest, NextResponse } from "next/server";
 import { lgaClient } from "@/lib/prisma";
 
 /**
- * GET handler for fetching council information for a specific LGA.
+ * GET handler for the LGA Council Info API endpoint
+ * Fetches council information for a specific LGA code
  *
- * @param {NextRequest} request - The incoming request object.
- * @returns {Promise<NextResponse>} JSON response with council info or error.
+ * @param {NextRequest} request - The incoming HTTP request
+ * @returns {Promise<NextResponse>} JSON response containing council information
  *
- * - Extracts lgaCode from the URL path.
- * - Returns council info and related LGA data if found.
- * - Returns 400 for invalid code, 404 if not found, 500 for server error.
+ * @example
+ * GET /api/lga/councilInfo/12345
+ *
+ * @throws {Error} When LGA code is invalid
+ * @throws {Error} When council information is not found
+ * @throws {Error} When database query fails
  */
 export async function GET(request: NextRequest) {
     try {

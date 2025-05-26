@@ -3,6 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+/**
+ * 404 Not Found page component
+ * Automatically redirects to homepage after a brief delay
+ */
 export default function NotFound() {
     const router = useRouter();
 

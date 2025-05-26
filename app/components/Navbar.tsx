@@ -6,11 +6,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
+/**
+ * Main navigation component
+ * Provides responsive navigation with mobile sidebar support
+ * Uses Framer Motion for smooth animations
+ */
 const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    // Handle responsive behavior
     useEffect(() => {
         const checkScreenSize = () => {
             setIsMobile(window.innerWidth < 850);
@@ -22,6 +28,7 @@ const Navbar = () => {
         return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
+    /** Navigation items configuration */
     const navItems = [
         { name: "Home", path: "/" },
         { name: "Events", path: "/events" },
@@ -30,6 +37,10 @@ const Navbar = () => {
         { name: "CulConnectorsAI", path: "/culconnectorsai" },
     ];
 
+    /**
+     * Mobile sidebar component
+     * Animated slide-in menu for mobile navigation
+     */
     const Sidebar = () => (
         <motion.div
             initial={{ x: 300 }}

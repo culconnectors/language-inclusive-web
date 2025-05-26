@@ -1,6 +1,26 @@
+/**
+ * LGA Landmarks Destinations API Route
+ *
+ * This module provides an API endpoint for fetching destination information
+ * across all Local Government Areas, including visitor statistics and images.
+ *
+ * @module app/api/lga/landmarks/destinations/route
+ */
+
 import { NextResponse } from "next/server";
 import { landmarkClient } from "@/lib/prisma";
 
+/**
+ * GET handler for the LGA Landmarks Destinations API endpoint
+ * Fetches destination information with visitor statistics and images
+ *
+ * @returns {Promise<NextResponse>} JSON response containing destinations data
+ *
+ * @example
+ * GET /api/lga/landmarks/destinations
+ *
+ * @throws {Error} When database query fails
+ */
 export async function GET() {
     try {
         const destinations = await landmarkClient.destination.findMany({

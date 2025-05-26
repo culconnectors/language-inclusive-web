@@ -2,6 +2,15 @@
 
 import { useState, useEffect } from "react";
 
+/**
+ * Password protection wrapper component
+ * Provides website access control with session management
+ * Features:
+ * - Password-based authentication
+ * - Session timeout after 2 hours of inactivity
+ * - Activity tracking for session maintenance
+ * @param children - Protected content to be rendered after authentication
+ */
 export function PasswordProtection({
     children,
 }: {
@@ -15,6 +24,7 @@ export function PasswordProtection({
     // Get password from environment variable with fallback
     const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_WEBSITE_PASSWORD;
 
+    // Initialize authorization state and check for existing session
     useEffect(() => {
         // Validate environment variable
         if (!CORRECT_PASSWORD) {
@@ -40,6 +50,7 @@ export function PasswordProtection({
         }
     }, []);
 
+    // Set up activity tracking and session timeout
     useEffect(() => {
         if (isAuthorized) {
             // Set up activity listeners
@@ -80,6 +91,9 @@ export function PasswordProtection({
         }
     }, [isAuthorized]);
 
+    /**
+     * Handles user logout by clearing session data
+     */
     const handleLogout = () => {
         setIsAuthorized(false);
         localStorage.removeItem("isAuthorized");
@@ -87,6 +101,10 @@ export function PasswordProtection({
         setPassword("");
     };
 
+    /**
+     * Handles password submission and authentication
+     * @param e - Form submission event
+     */
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!CORRECT_PASSWORD) {

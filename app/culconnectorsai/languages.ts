@@ -1,3 +1,9 @@
+/**
+ * List of supported languages for translation
+ * Each language entry contains:
+ * @property {string} code - ISO 639-1 language code
+ * @property {string} name - Full language name in English
+ */
 export const languages = [
     { code: "af", name: "Afrikaans" },
     { code: "sq", name: "Albanian" },

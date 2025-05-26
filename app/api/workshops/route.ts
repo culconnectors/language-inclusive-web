@@ -1,6 +1,19 @@
+/**
+ * Workshops API Route
+ *
+ * This module provides an API endpoint for fetching language workshops and courses.
+ * It supports location-based filtering and distance calculations for finding nearby workshops.
+ *
+ * @module app/api/workshops/route
+ */
+
 import { NextResponse } from "next/server";
 import { workshopClient } from "@/lib/prisma";
 
+/**
+ * Interface representing a workshop with its details
+ * @interface Workshop
+ */
 interface Workshop {
     id: string;
     name: string;
@@ -13,7 +26,14 @@ interface Workshop {
     };
 }
 
-// Function to calculate distance between two coordinates using Haversine formula
+/**
+ * Calculates the distance between two geographic coordinates using the Haversine formula
+ * @param {number} lat1 - Latitude of first point
+ * @param {number} lon1 - Longitude of first point
+ * @param {number} lat2 - Latitude of second point
+ * @param {number} lon2 - Longitude of second point
+ * @returns {number} Distance in kilometers
+ */
 function calculateDistance(
     lat1: number,
     lon1: number,
@@ -27,11 +47,22 @@ function calculateDistance(
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos((lat1 * Math.PI) / 180) *
             Math.cos((lat2 * Math.PI) / 180) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
 
+/**
+ * GET handler for the Workshops API endpoint
+ * Fetches English language workshops and courses based on location and radius parameters
+ *
+ * @param {Request} request - The incoming HTTP request
+ * @returns {Promise<NextResponse>} JSON response containing workshops and total count
+ *
+ * @example
+ * GET /api/workshops?lat=-33.8688&lng=151.2093&radius=20
+ */
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -115,7 +146,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json({
             workshops: sortedWorkshops,
-            totalItems: sortedWorkshops.length
+            totalItems: sortedWorkshops.length,
         });
     } catch (error) {
         console.error("Error fetching workshops:", error);

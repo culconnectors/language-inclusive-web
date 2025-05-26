@@ -4,8 +4,14 @@ import { PasswordProtection } from "./components/PasswordProtection";
 import Footer from "./components/Footer";
 import "./globals.css";
 
+/** Initialize Inter font with Latin subset */
 const inter = Inter({ subsets: ["latin"] });
 
+/**
+ * Root layout component that wraps all pages
+ * Provides font, providers, password protection, and footer
+ * @param children - Child components to be rendered
+ */
 export default function RootLayout({
     children,
 }: {
