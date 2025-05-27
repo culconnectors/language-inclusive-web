@@ -78,7 +78,7 @@ export default function VideoPopup({ isOpen, onClose }: VideoPopupProps) {
 
                 <div className="relative w-full h-0 pb-[56.25%]">
                     <iframe
-                        src="https://streamable.com/e/3j2xwd?"
+                        src="https://streamable.com/e/feh8tr?"
                         className="absolute inset-0 w-full h-full rounded-xl border-none"
                         allow="fullscreen"
                         allowFullScreen
